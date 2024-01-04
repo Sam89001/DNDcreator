@@ -1,0 +1,114 @@
+body {
+    font: 18px 'Grenze', sans-serif;
+    background-color: var(--backgroundGrey);
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+:root {
+    --backgroundGrey: #262525;
+    --lightBackgroundGrey: #4D4A4A;
+    --inputGrey: #353535;
+    --textGrey: #636060;
+    --textLightGrey: #B6B1B1;
+    --lightestGrey: #cfc8c8;
+
+}
+
+/* Navbar */
+.navigation-bar {
+    background-color: var(--inputGrey);
+    z-index: 5;
+    position: fixed;
+    height: 75px;
+    width: 100%;
+    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-text {
+    font: 400 20px 'Grenze Gotisch', sans-serif;
+    color: var( --textLightGrey);
+    transition: font-size 0.2s ease-in-out;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar-text:hover {
+    color: var(--lightestGrey);
+    font-size: 21px;
+}
+
+/* Cover Pages */
+
+.header {
+    color: white;
+    font: 400 70px 'Grenze Gotisch', sans-serif;
+    padding-bottom: 20px;
+}
+
+.cover-image {
+    opacity: 0.3;
+}
+
+.cover-buttons {
+    color: var(--textGrey);
+    font: 300 20px;
+    transition: font-size 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.cover-buttons:hover {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+/* Main Page */
+
+.reserved-hover-space {
+    width: 325px;
+    height: 375px;
+}
+
+.selection-box {
+    background-color: var(--inputGrey);
+    width: 275px;
+    height: 325px;
+    border-radius: 20px;
+    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+.selection-box:hover  {
+    width: 300px;
+    height: 350px;
+    cursor: pointer;
+}
+
+.selection-box-text {
+    font: 400 24px 'Grenze Gotisch', sans-serif;
+    color: var( --textLightGrey);
+    cursor: pointer;
+}
+
+/* Select Characters */
+
+.character-select-box {
+    background-color: var(--inputGrey);
+    max-height: 600px;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+.choose-character {
+    background-color: var(--backgroundGrey);
+    border-radius: 20px;
+    text-decoration: none;
+}
