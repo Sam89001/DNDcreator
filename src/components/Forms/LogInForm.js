@@ -1,5 +1,5 @@
 //CSS
-import '../css/Form.css';
+import '../../css/Form.css';
 
 function LogInForm() {
   return (

@@ -1,4 +1,5 @@
 //CSS
+import './css/App.css';
 import './css/Site.css';
 import './css/Animations.css';
 
@@ -7,11 +8,11 @@ import Logo from './images/Logo.png';
 import CoverImage from './images/DND Image 2.jpg';
 
 //Components
-import LogInForm from './components/Forms/LogInForm';
+import RegisterForm from './components/Forms/RegisterForm';
 
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-function App() {
+function Register() {
   return (
       <div className="App">
         <div className="row d-flex container-fluid gx-0">
@@ -32,7 +33,7 @@ function App() {
               </div>
 
               <div className="col-12 mb-4 d-flex align-items-center justify-content-center">
-              <LogInForm />
+              <RegisterForm />
               </div>
 
               <div className="col-6 d-flex align-items-center justify-content-center">
@@ -58,4 +59,4 @@ function App() {
   );
 }
 
-export default App;
+export default Register;
