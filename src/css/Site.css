@@ -59,6 +59,18 @@
     font-size: 25px;
 }
 
+.cover-logo-container {
+    max-height: 275px; 
+    overflow: hidden; 
+    padding-bottom: 30px;
+}
+
+.cover-logo {
+    opacity: 0.7; 
+    max-height: 100%
+}
+
+
 /* Main Page */
 
 .reserved-hover-space {

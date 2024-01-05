@@ -22,8 +22,8 @@ function Login() {
       <div className="col-4 page-fade-in">
         <div className="row justify-content-center align-content-center">
 
-          <div className="col-12 d-flex justify-content-center align-items-center">
-            <img className="img-fluid" src={Logo} ></img>
+          <div className="col-12 d-flex justify-content-center align-items-center cover-logo-container">
+            <img className="img-fluid cover-logo" src={Logo} ></img>
           </div>
 
           <div className="col-12 text-center">
@@ -38,7 +38,7 @@ function Login() {
             <div className="row">
 
               <div className="col-6 d-flex justify-content-center align-items-center text-center">
-                <a className="cover-buttons">Register</a>
+                <a className="cover-buttons" href="/Register">Register</a>
               </div>
 
               <div className="col-6 d-flex justify-content-center align-items-center text-center" >
