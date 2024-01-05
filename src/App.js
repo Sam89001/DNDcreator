@@ -8,7 +8,7 @@ import Logo from './images/Logo.png';
 import CoverImage from './images/DND Image 2.jpg';
 
 //Components
-import LogInForm from './components/LogInForm';
+import LogInForm from './components/Forms/LogInForm';
 
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
