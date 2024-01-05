@@ -11,4 +11,3 @@ root.render(
   </React.StrictMode>
 );
 
-//renders in the App component.

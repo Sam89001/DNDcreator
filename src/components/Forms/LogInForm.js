@@ -2,27 +2,44 @@
 import '../../css/Form.css';
 import '../../css/Site.css';
 
+//States
+import { useState } from 'react';
+import axios from 'axios';
+
 function LogInForm() {
+
+//Functions
+
+const [data, setData] = useState({
+	email: '',
+	password: '',
+})
+
+const loginUser = (e) => {
+	e.preventDefault()
+	axios.get('/login')
+}
+
+//HTML
   return (
+	<form >
+		<div className="row">
 
-			<form method="post">
-				<div className="row">
+			<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
+    			<input className="login-field" type="text" placeholder="Login" value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
+			</div>
 
-					<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
-    				<input className="login-field" type="text" id="username" name="username" placeholder="Login"/>
-					</div>
+			<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
+    			<input className="login-field" type="password" placeholder="Password" value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>
+			</div>
 
-					<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
-    				<input className="login-field" type="password" id="password" name="password" placeholder="Password"/>
-					</div>
+			<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
+   				<button className="login-button" type="submit">Login</button>
+			</div>
 
-					<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
-   					 <button className="login-button" type="submit">Login</button>
-					</div>
-
-				</div>
+		</div>
 				
-			</form>
+	</form>
 			
 
   );
