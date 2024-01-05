@@ -1,6 +1,7 @@
 //CSS
 import '../../css/Site.css';
 import '../../css/Animations.css';
+import '../../css/Form.css';
 
 //Images
 import Logo from '../../images/Logo.png';

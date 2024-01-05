@@ -1,5 +1,6 @@
 //CSS
 import '../../css/Form.css';
+import '../../css/Site.css';
 
 function LogInForm() {
   return (
@@ -20,7 +21,9 @@ function LogInForm() {
 					</div>
 
 				</div>
+				
 			</form>
+			
 
   );
 }

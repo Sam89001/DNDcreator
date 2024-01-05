@@ -1,7 +1,7 @@
 //CSS
-import '../../css/App.css';
 import '../../css/Site.css';
 import '../../css/Animations.css';
+import '../../css/Form.css';
 
 //Images
 import Logo from '../../images/Logo.png';
@@ -29,7 +29,7 @@ function Register() {
               </div>
 
               <div className="col-12 text-center">
-                <header className="header">Login</header>
+                <header className="header">Register</header>
               </div>
 
               <div className="col-12 mb-4 d-flex align-items-center justify-content-center">
@@ -39,12 +39,8 @@ function Register() {
               <div className="col-6 d-flex align-items-center justify-content-center">
                 <div className="row">
 
-                  <div className="col-6 d-flex justify-content-center align-items-center text-center">
-                    <a className="cover-buttons">Register</a>
-                  </div>
-
-                  <div className="col-6 d-flex justify-content-center align-items-center text-center" >
-                    <a className="cover-buttons">Forgot Password</a>
+                  <div className="col-6 d-flex align-items-center justify-content-center">
+                    <a className="cover-buttons">Return</a>
                   </div>
 
                 </div>
