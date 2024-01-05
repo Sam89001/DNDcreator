@@ -1,7 +1,3 @@
-body {
-    font: 18px 'Grenze', sans-serif;
-    background-color: var(--backgroundGrey);
-}
 
 @media (min-width: 768px) {
   html {
@@ -9,20 +5,7 @@ body {
   }
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
 
-:root {
-    --backgroundGrey: #262525;
-    --lightBackgroundGrey: #4D4A4A;
-    --inputGrey: #353535;
-    --textGrey: #636060;
-    --textLightGrey: #B6B1B1;
-    --lightestGrey: #cfc8c8;
-
-}
 
 /* Navbar */
 .navigation-bar {
