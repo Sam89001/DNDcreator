@@ -1,14 +1,14 @@
 //CSS
-import './css/App.css';
-import './css/Site.css';
-import './css/Animations.css';
+import '../../css/App.css';
+import '../../css/Site.css';
+import '../../css/Animations.css';
 
 //Images
-import Logo from './images/Logo.png';
-import CoverImage from './images/DND Image 2.jpg';
+import Logo from '../../images/Logo.png';
+import CoverImage from '../../images/DND Image 2.jpg';
 
 //Components
-import RegisterForm from './components/Forms/RegisterForm';
+import RegisterForm from '../../components/Forms/RegisterForm';
 
 //import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
