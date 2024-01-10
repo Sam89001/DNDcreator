@@ -17,7 +17,7 @@ const [data, setData] = useState({
 
 const loginUser = (e) => {
 	e.preventDefault()
-	axios.get('/login')
+	axios.get('/')
 }
 
 //HTML

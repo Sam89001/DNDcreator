@@ -22,6 +22,8 @@
   // Models
   
   // Routes setup using the LoginController
+
+  App.use('/', require('./routes/loginRoutes'));
   
   // Port
   const port = process.env.PORT || 4000; // Utilizing process.env.PORT if available

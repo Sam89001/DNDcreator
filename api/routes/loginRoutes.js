@@ -9,3 +9,9 @@ router.use(
         origin: 'http://localhost:3000'
     })
 )
+
+router.get('/', (req, res) => {
+    res.json('working!!!')
+})
+
+module.exports = router;
