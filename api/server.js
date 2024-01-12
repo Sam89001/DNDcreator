@@ -18,11 +18,13 @@
   const db = mongoose.connection;
   db.on('error', (error) => console.error(error));
   db.once('open', () => console.log('Connected to Mongoose'));
+
+  //Middleware
+  App.use(express.json())
   
   // Models
-  
-  // Routes setup using the LoginController
 
+  // Controllers
   App.use('/', require('./routes/loginRoutes'));
   
   // Port
