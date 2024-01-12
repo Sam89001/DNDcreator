@@ -9,7 +9,7 @@
   
   App.use(express.json());
   App.use(cors());
-  
+
   // Database Connections
   mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

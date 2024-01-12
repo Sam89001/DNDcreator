@@ -7,8 +7,12 @@ import { useState } from 'react';
 
 //Dependencies
 import axios from 'axios';
-
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom'
+ 
 function RegisterForm() {
+
+	const navigate = useNavigate();
 
 //Function
 
@@ -24,9 +28,18 @@ function RegisterForm() {
 		const {email, firstName, password} = data
 		try {
 			//this is likely to be where the issue is
-			const {data} = await axios.post('/register', {
+			const {data} = await axios.post('http://localhost:4000/', {
 				firstName, email, password
 			})
+
+			//toast notification
+			if (data.error) {
+				toast.error(data.error)
+			} else {
+				setData({})
+				toast.success('Login Successful')
+				navigate('/Login')
+			}
 		} catch (error) {
 			console.log(error)
 		}
@@ -36,7 +49,7 @@ function RegisterForm() {
 
   return (
 
-	<form >
+	<form onSubmit={registerUser}>
 		<div className="row">
 
 			<div className="col-12 mb-3 d-flex align-items-center justify-content-center">
@@ -60,7 +73,7 @@ function RegisterForm() {
 			</div>
 
 			<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
-				<button class="login-button" type="submit">Register</button>
+				<button className="login-button" type="submit">Register</button>
 			</div>
 
 		</div>

@@ -5,6 +5,7 @@ import Register from './components/Views/Register';
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter, Navigate } from 'react-router-dom'
 //Dependencies
 import axios from 'axios';
+import { Toaster } from 'react-hot-toast';
 
 //axios
 axios.defaults.baseURL = 'http://localhost:4000'

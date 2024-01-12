@@ -10,7 +10,11 @@ import CoverImage from '../../images/DND Image 2.jpg';
 //Components
 import RegisterForm from '../../components/Forms/RegisterForm';
 
+//Router
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+//Dependencies
+import { Toaster } from 'react-hot-toast';
 
 function Register() {
   return (

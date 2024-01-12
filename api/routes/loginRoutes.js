@@ -7,14 +7,13 @@ const RegisterSchema = require('../models/RegisterSchema');
 
 //cors middleware to resolve cors issues
 router.use(
-    cors({
-        credentials: true,
-        origin: 'http://localhost:3000'
-    })
+	cors({
+			credentials: true,
+			origin: 'http://localhost:3000'
+	})
 )
 
 router.get('/', (req, res) => {
-    res.json('working!!!')
 })
 
 //Register
