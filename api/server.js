@@ -6,9 +6,15 @@
   const dotenv = require('dotenv').config();
   
   const App = express();
-  
+
+  //prevent cors error
+  App.use(cors({
+    credentials: true,
+		origin: 'http://localhost:3000'
+  }));
+
   App.use(express.json());
-  App.use(cors());
+
 
   // Database Connections
   mongoose.connect(process.env.MONGO_URL, {

@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 			
 			//check is email already exists
 			const existingEmail = await RegisterSchema.findOne({email})
-			if (existingEmail = true) {
+			if (existingEmail  === true) {
 				return res.json({
 					error: 'email already taken'
 				})
