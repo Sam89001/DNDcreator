@@ -14,4 +14,8 @@ router.get('/', (req, res) => {
     res.json('working!!!')
 })
 
+router.post('/', (req, res) => {
+    
+})
+
 module.exports = router;
