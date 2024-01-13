@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const router = express.Router();
+const { hashedPassword, comparePassword } = require('../helpers/auth')
 
 //import models
 const RegisterSchema = require('../models/RegisterSchema');
