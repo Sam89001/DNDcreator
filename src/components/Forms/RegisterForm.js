@@ -57,19 +57,19 @@ function RegisterForm() {
 			</div>
 
 			<div className="col-12 mb-3 d-flex align-items-center justify-content-center">
-				<input className="login-field" placeholder="Email"  />
+				<input className="login-field" placeholder="Email" type='email' />
 			</div>
 
 			<div className="col-12 mb-3 d-flex align-items-center justify-content-center">
-				<input className="login-field" placeholder="Confirm Email" value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
+				<input className="login-field" placeholder="Confirm Email" type='email'  value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
 			</div>
 
           	<div className="col-12 mb-3 d-flex align-items-center justify-content-center">
-				<input className="login-field" placeholder="Password" />
+				<input className="login-field" placeholder="Password" type='password' />
 			</div>
 
           	<div className="col-12 mb-3 d-flex align-items-center justify-content-center">
-				<input className="login-field" placeholder="Confirm Password" value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>
+				<input className="login-field" placeholder="Confirm Password" type='password' value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>
 			</div>
 
 			<div className="col-12 mb-4 d-flex align-items-center justify-content-center">
