@@ -15,13 +15,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <main>
-        <Routes>
-          <Route path="/" element={<Navigate to="/Login" />} />
-          <Route path="Login" element={<Login/>}/>
-          <Route path="Register" element={<Register/>}/>
-        </Routes>
-      </main>    
+      <Toaster position='bottom-right' toastOptions={{duration: 2000}}/>
+        <main>
+          <Routes>
+            <Route path="/" element={<Navigate to="/Login" />} />
+            <Route path="Login" element={<Login/>}/>
+            <Route path="Register" element={<Register/>}/>
+          </Routes>
+        </main>
     </BrowserRouter>
   );
 }

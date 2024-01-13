@@ -27,7 +27,7 @@ function RegisterForm() {
 		e.preventDefault();
 		const {email, firstName, password} = data
 		try {
-			//this is likely to be where the issue is
+			//Posts the data
 			const {data} = await axios.post('http://localhost:4000/', {
 				firstName, email, password
 			})
@@ -37,7 +37,7 @@ function RegisterForm() {
 				toast.error(data.error)
 			} else {
 				setData({})
-				toast.success('Login Successful')
+				toast.success('Account created successfully!')
 				navigate('/Login')
 			}
 		} catch (error) {
