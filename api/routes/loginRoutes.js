@@ -25,9 +25,9 @@ router.post('/', async (req, res) => {
 
 			//Database Verification
 
-			if (!email) {
+			if (!email || !firstName) {
 				return res.json({
-					error: 'email is required'
+					error: 'email and name are required'
 				})
 			}
 
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 			
 			//check is email already exists
 			const existingEmail = await RegisterSchema.findOne({email})
-			if (existingEmail  === true) {
+			if (existingEmail) {
 				return res.json({
 					error: 'email already taken'
 				})
