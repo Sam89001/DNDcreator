@@ -45,11 +45,16 @@ router.post('/', async (req, res) => {
 					error: 'email already taken'
 				})
 			}
+			//hashed password
+
+			const hashPassword = await hashedPassword(password)
 
 			//Submit User
 
 			const user = await RegisterSchema.create({
-				email, firstName, password
+				email, 
+				firstName, 
+				password: hashPassword
 			})
 
 			return res.json(user)
