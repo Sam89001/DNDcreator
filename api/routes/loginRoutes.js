@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const router = express.Router();
 const { hashedPassword, comparePassword } = require('../helpers/auth')
+const jwt = require('jsonwebtoken')
 
 //import models
 const RegisterSchema = require('../models/RegisterSchema');
@@ -83,7 +84,10 @@ router.post('/Login', async (req, res) => {
 		//check for password
 		const match = await comparePassword(password, user.password)
 		if(match) {
-			res.json('passwords match')
+			jwt.sign({email: user.email, id: user._id, name: user.firstName}, process.env.JWT_SECRET_STRING, {}, (err, token) => {
+				if(err) throw err;
+				res.cookie('token', token).json(user)
+			})
 		}
 		if(!match) {
 			return res.json({
