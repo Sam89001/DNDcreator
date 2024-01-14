@@ -22,7 +22,15 @@ router.get('/Login', (req, res) => {
 })
 
 router.get('/Profile', (req, res) => {
-	
+	const {token} = req.cookies
+	if (token) {
+		jwt.verify(token, process.env.JWT_SECRET_STRING, {}, (err, user) => {
+			if(err) throw err;
+			res.json(user)
+		})
+	} else {
+		res.json(null)
+	}
 })
 
 //Register
