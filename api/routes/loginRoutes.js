@@ -30,13 +30,13 @@ router.post('/', async (req, res) => {
 
 			if (!email || !firstName) {
 				return res.json({
-					error: 'email and name are required'
+					error: 'Email and Name are required'
 				})
 			}
 
 			if (!password || password.length < 4) {
 				return res.json({
-					error: 'password is required and should be more than 4 characters long'
+					error: 'Password is required and should be more than 4 characters long'
 				})
 			}
 			
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 			const existingEmail = await RegisterSchema.findOne({email})
 			if (existingEmail) {
 				return res.json({
-					error: 'email already taken'
+					error: 'Email already taken'
 				})
 			}
 			//hashed password
@@ -84,6 +84,11 @@ router.post('/Login', async (req, res) => {
 		const match = await comparePassword(password, user.password)
 		if(match) {
 			res.json('passwords match')
+		}
+		if(!match) {
+			return res.json({
+				error: 'Incorect Password'
+			})
 		}
 	} catch (error) {
 		console.log(error)

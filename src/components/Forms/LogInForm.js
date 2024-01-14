@@ -31,6 +31,7 @@ const loginUser = async (e) => {
 				toast.error(data.error)
 			} else {
 				setData({});
+				toast.success('Login successful!')
 				navigate('/Home')
 			}
 		} catch (error) {
