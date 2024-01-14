@@ -10,11 +10,9 @@ import CoverImage from '../../images/DND Image 2.jpg';
 //Components
 import RegisterForm from '../../components/Forms/RegisterForm';
 
-//Router
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
 //Dependencies
 import { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 function Register() {
   return (
@@ -41,7 +39,7 @@ function Register() {
               </div>
 
               <div className="col-6 d-flex justify-content-center text-center" >          
-                <a className="cover-buttons" href="/">Return</a>     
+                <Link className="cover-buttons" to="/Login">Return</Link>     
               </div>
 
             </div>

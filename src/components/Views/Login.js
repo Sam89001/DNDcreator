@@ -10,6 +10,9 @@ import CoverImage from '../../images/DND Image 2.jpg';
 //Components
 import LogInForm from '../../components/Forms/LogInForm';
 
+//Dependencies
+import { Link } from 'react-router-dom';
+
 
 function Login() {
   return(
@@ -38,7 +41,7 @@ function Login() {
             <div className="row">
 
               <div className="col-6 d-flex justify-content-center align-items-center text-center">
-                <a className="cover-buttons" href="/Register">Register</a>
+                <Link className="cover-buttons" to="/Register">Register</Link>
               </div>
 
               <div className="col-6 d-flex justify-content-center align-items-center text-center" >

@@ -15,7 +15,7 @@ function Home() {
   return (
     <div>
       <nav className='navigation-bar'>
-        <Navbar navigationTitle="Account Settings" secondNavigationTitle="Logout"/>
+        <Navbar navigationTitle="Account Settings" navigationTitleLink="" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
       <div className="col-12 d-flex align-items-center justify-content-center page-styling" style={{ paddingBottom: '80px' }}>
@@ -25,11 +25,11 @@ function Home() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0">
         <div className="row justify-content-center align-items-center"> 
 
-          <OptionChoice title="Create a Character" imageUrl={CreateCharacterImage}/>
+          <OptionChoice title="Create a Character" imageUrl={CreateCharacterImage} link=""/>
 
-          <OptionChoice title="Play a Session" imageUrl={PlaySessionImage}/>
+          <OptionChoice title="Play a Session" imageUrl={PlaySessionImage} link=""/>
 
-          <OptionChoice title="Host a Session" imageUrl={HostSessionImage}/>
+          <OptionChoice title="Host a Session" imageUrl={HostSessionImage} link=""/>
 
         </div>
       </div>
