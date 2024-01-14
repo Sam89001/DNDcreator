@@ -3,8 +3,10 @@ import Login from './components/Views/Login'
 import Register from './components/Views/Register';
 import Home from './components/Views/Home';
 import { UserContextProvider } from './context/userContext';
+
 //Router
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter, Navigate } from 'react-router-dom'
+import AuthenticatedRoutes from './verification/AuthenticatedRoutes';
 //Dependencies
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
@@ -24,7 +26,9 @@ function App() {
               <Route path="/" element={<Navigate to="/Login" />} />
               <Route path="Login" element={<Login/>}/>
               <Route path="Register" element={<Register/>}/>
-              <Route path="Home" element={<Home/>}/>
+              <Route element={<AuthenticatedRoutes/>}>
+                <Route path="Home" element={<Home/>}/>
+              </Route>
             </Routes>
           </main>
       </BrowserRouter>
