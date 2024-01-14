@@ -14,7 +14,7 @@ function NavBar() {
 			</div>			
 
 			<div className="col-3 d-flex justify-content-center align-items-center p-0">
-				//fill this content depending on which page it is on.
+				 {/* fill this content depending on which page it is on */}
 			</div>
 		</div>
 				

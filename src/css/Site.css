@@ -5,8 +5,6 @@
   }
 }
 
-
-
 /* Navbar */
 .navigation-bar {
     background-color: var(--inputGrey);
@@ -33,6 +31,10 @@
 .navbar-text:hover {
     color: var(--lightestGrey);
     font-size: 21px;
+}
+
+.page-styling {
+    padding-top: 100px;
 }
 
 /* Cover Pages */
