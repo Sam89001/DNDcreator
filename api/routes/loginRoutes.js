@@ -21,6 +21,10 @@ router.get('/', (req, res) => {
 router.get('/Login', (req, res) => {
 })
 
+router.get('/Profile', (req, res) => {
+	
+})
+
 //Register
 
 router.post('/', async (req, res) => {
@@ -84,6 +88,7 @@ router.post('/Login', async (req, res) => {
 		//check for password
 		const match = await comparePassword(password, user.password)
 		if(match) {
+			//create json web token
 			jwt.sign({email: user.email, id: user._id, name: user.firstName}, process.env.JWT_SECRET_STRING, {}, (err, token) => {
 				if(err) throw err;
 				res.cookie('token', token).json(user)

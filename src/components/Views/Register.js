@@ -8,7 +8,7 @@ import Logo from '../../images/Logo.png';
 import CoverImage from '../../images/DND Image 2.jpg';
 
 //Components
-import RegisterForm from '../../components/Forms/RegisterForm';
+import RegisterForm from '../Forms/RegisterForm';
 
 //Dependencies
 import { Toaster } from 'react-hot-toast';

@@ -2,6 +2,7 @@
 import Login from './components/Views/Login'
 import Register from './components/Views/Register';
 import Home from './components/Views/Home';
+import { UserContextProvider } from './context/userContext';
 //Router
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter, Navigate } from 'react-router-dom'
 //Dependencies
@@ -15,17 +16,19 @@ axios.defaults.withCredentials = true;
 function App() {
 
   return (
-    <BrowserRouter>
-      <Toaster position='bottom-right' toastOptions={{duration: 2000}}/>
-        <main>
-          <Routes>
-            <Route path="/" element={<Navigate to="/Login" />} />
-            <Route path="Login" element={<Login/>}/>
-            <Route path="Register" element={<Register/>}/>
-            <Route path="Home" element={<Home/>}/>
-          </Routes>
-        </main>
-    </BrowserRouter>
+    <UserContextProvider>
+      <BrowserRouter>
+        <Toaster position='bottom-right' toastOptions={{duration: 2000}}/>
+          <main>
+            <Routes>
+              <Route path="/" element={<Navigate to="/Login" />} />
+              <Route path="Login" element={<Login/>}/>
+              <Route path="Register" element={<Register/>}/>
+              <Route path="Home" element={<Home/>}/>
+            </Routes>
+          </main>
+      </BrowserRouter>
+    </UserContextProvider>
   );
 }
 
