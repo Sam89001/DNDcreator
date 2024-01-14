@@ -4,10 +4,14 @@ import '../../css/Site.css';
 
 //States
 import { useState } from 'react';
+
+//Dependencies
 import axios from 'axios';
+import {toast} from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom';
 
 function LogInForm() {
-
+	const navigate = useNavigate(); 
 //Functions
 
 const [data, setData] = useState({
@@ -15,14 +19,28 @@ const [data, setData] = useState({
 	password: '',
 })
 
-const loginUser = (e) => {
+const loginUser = async (e) => {
 	e.preventDefault()
-	axios.get('/')
+	const {email, password} = data
+		try {
+			const {data} = await axios.post('/Login', {
+				email,
+				password
+			})
+			if (data.error) {
+				toast.error(data.error)
+			} else {
+				setData({});
+				navigate('/Home')
+			}
+		} catch (error) {
+			console.log(error)
+		}
 }
 
 //HTML
   return (
-	<form >
+	<form onSubmit={loginUser}>
 		<div className="row">
 
 			<div className="col-12 mb-4 d-flex align-items-center justify-content-center">

@@ -1,6 +1,7 @@
 //Views
 import Login from './components/Views/Login'
 import Register from './components/Views/Register';
+import Home from './components/Views/Home';
 //Router
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter, Navigate } from 'react-router-dom'
 //Dependencies
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Navigate to="/Login" />} />
             <Route path="Login" element={<Login/>}/>
             <Route path="Register" element={<Register/>}/>
+            <Route path="Home" element={<Home/>}/>
           </Routes>
         </main>
     </BrowserRouter>

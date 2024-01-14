@@ -17,9 +17,11 @@ router.use(
 router.get('/', (req, res) => {
 })
 
+router.get('/Login', (req, res) => {
+})
+
 //Register
 
-// '/' is likely to be where the issue is
 router.post('/', async (req, res) => {
     try {
       const {email, firstName, password} = req.body;
@@ -62,6 +64,30 @@ router.post('/', async (req, res) => {
     } catch (error) {
       console.log(error)
     }
+})
+
+//Login
+
+router.post('/Login', async (req, res) => {
+	try {
+		const {email, password} = req.body;
+
+		//Look for user
+		const user = await RegisterSchema.findOne({email});
+		if (!user) {
+			return res.json({
+				error: 'No user found'
+			})
+		}
+
+		//check for password
+		const match = await comparePassword(password, user.password)
+		if(match) {
+			res.json('passwords match')
+		}
+	} catch (error) {
+		console.log(error)
+	}
 })
 
 module.exports = router;
