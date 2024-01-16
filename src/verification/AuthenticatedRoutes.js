@@ -4,7 +4,7 @@ import { UserContext } from '../context/userContext';
 
 function AuthenticatedRoutes({ element: Element, ...rest }) {
   const { user } = useContext(UserContext);
-  let auth = {'token':false}
+  let auth = {'token': true}
   return (
     auth.token ? <Outlet/> : <Navigate to="/Login"/>
   );

@@ -2,6 +2,7 @@
 import Login from './components/Views/Login'
 import Register from './components/Views/Register';
 import Home from './components/Views/Home';
+import AccountEdit from './components/Views/AccountEdit';
 import { UserContextProvider } from './context/userContext';
 
 //Router
@@ -28,6 +29,7 @@ function App() {
               <Route path="Register" element={<Register/>}/>
               <Route element={<AuthenticatedRoutes/>}>
                 <Route path="Home" element={<Home/>}/>
+                <Route path="AccountEdit" element={<AccountEdit/>}/>
               </Route>
             </Routes>
           </main>

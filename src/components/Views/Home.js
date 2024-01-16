@@ -21,7 +21,7 @@ function Home() {
   return (
     <div>
       <nav className='navigation-bar'>
-        <Navbar navigationTitle="Account Settings" navigationTitleLink="" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
+        <Navbar navigationTitle="Account Settings" navigationTitleLink="/AccountEdit" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
       <div className="col-12 d-flex align-items-center justify-content-center page-styling" style={{ paddingBottom: '80px' }}>
