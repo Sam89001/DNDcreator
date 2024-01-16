@@ -4,7 +4,7 @@ import '../../css/Animations.css';
 
 //components
 import Navbar from '../Layouts/Navbar';
-import OptionChoice from '../Components/OptionChoice';
+import ChangeUserDetailsForm from '../../components/Forms/ChangeUserDetailsForm';
 import { UserContext } from '../../context/userContext';
 
 //images
@@ -24,15 +24,16 @@ function AccountEdit() {
         <Navbar navigationTitle="Main Menu" navigationTitleLink="/Home" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
-      <div className="col-12 d-flex align-items-center justify-content-center page-styling" style={{ paddingBottom: '80px' }}>
-
+      <div className="col-12 d-flex align-items-center justify-content-center page-styling" >
         <header className="header text-center">Edit Account Details</header>
-        <p className="text-center w-100" style="color: var(--textGrey);">Leave blank to keep details the same</p>
-
       </div>
 
-      <div className="col-12 text-center justify-content-center align-items-center mb-0">
-        
+      <div className="col-12 text-center justify-content-center align-items-center mb-0" > 
+        <p className="text-center w-100" style={{color: 'var(--textGrey)'}}>Leave blank to keep details the same</p>
+      </div>
+
+      <div className="col-12 text-center d-flex justify-content-center align-items-center mb-0">
+            <ChangeUserDetailsForm/>
       </div>
 
     </div>
