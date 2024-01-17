@@ -4,10 +4,14 @@ import '../../css/Animations.css';
 
 //components
 import Navbar from '../Layouts/Navbar';
+import LoadItem from '../Components/LoadItem';
 import { UserContext } from '../../context/userContext';
 
 //Dependencies
 import React, { useContext } from 'react';
+
+//Temp Images
+import TempImage from '../../images/temp-character.jpg'
 
 
 function ChoosePlaySession() {
@@ -26,11 +30,12 @@ function ChoosePlaySession() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center">
           <div className="row h-100 w-100 d-flex"> 
-            <div className="col-2 d-flex align-items-center justify-content-center" style={{padding: '30px'}}>
+            <LoadItem title="Mike" link="" image={TempImage}/>
+            <LoadItem title="Mike" link="" image={TempImage}/>
+            <LoadItem title="Mike" link="" image={TempImage}/>
+            <LoadItem title="Mike" link="" image={TempImage}/>
+            <LoadItem title="Mike" link="" image={TempImage}/>
 
-              
-
-            </div>
           </div>
         </div>
       </div>
