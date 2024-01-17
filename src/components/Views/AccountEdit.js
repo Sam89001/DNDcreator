@@ -33,7 +33,7 @@ function AccountEdit() {
       </div>
 
       <div className="col-12 text-center d-flex justify-content-center align-items-center mb-0">
-            <ChangeUserDetailsForm/>
+            <ChangeUserDetailsForm userData={user}/>
       </div>
 
     </div>

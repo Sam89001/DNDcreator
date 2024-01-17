@@ -25,7 +25,7 @@ function ChooseSession() {
       </div>
 
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
-        <div className="h-100 w-100 d-flex character-select-box justify-content-center">
+        <div className="d-flex character-select-box justify-content-center">
           <div className="row h-100 w-100 d-flex"> 
             <div className="col-2 d-flex align-items-center justify-content-center" style={{padding: '30px'}}>
 
