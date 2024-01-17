@@ -2,10 +2,15 @@ import '../../css/Site.css';
 import '../../css/Animations.css';
 
 // Dependencies
-import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
-function PopUp({ /* your props here */ }) {
+function PopUp({ onClose }) {
+  const handleClick = () => {
+    // Perform any action you need when the click happens
+    // For example, close the popup
+    onClose();
+  };
+
   return (
     <div style={{
       zIndex: '10',
@@ -18,6 +23,28 @@ function PopUp({ /* your props here */ }) {
       transform: 'translate(-50%, -50%)',
     }}>
       {/* PopUp content */}
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            cursor: 'pointer',
+            marginBottom: '10px',
+          }}
+          onClick={handleClick}
+        >
+          Close me
+        </div>
+        {/* Your other PopUp content goes here */}
+        {/* ... */}
+      </div>
     </div>
   );
 }

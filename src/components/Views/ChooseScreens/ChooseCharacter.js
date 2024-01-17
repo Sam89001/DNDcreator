@@ -15,14 +15,19 @@ import React, { useContext, useState } from 'react';
 //Temp Images
 import TempImage from '../../../images/temp-character.jpg'
 
+
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
-
   const [isPopupVisible, setPopupVisibility] = useState(false);
 
   const handleItemClick = () => {
     // Set the state to true when the item is clicked
     setPopupVisibility(true);
+  };
+
+  const handleClosePopup = () => {
+    // Set the state to false when the popup is closed
+    setPopupVisibility(false);
   };
 
   return (
@@ -31,7 +36,7 @@ function ChooseCharacter() {
         <Navbar navigationTitle="Main Menu" navigationTitleLink="/Home" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
-      <div className="col-12 d-flex align-items-center justify-content-center page-styling" >
+      <div className="col-12 d-flex align-items-center justify-content-center page-styling">
         <header className="header text-center">Choose Your Character</header>
       </div>
 
@@ -39,15 +44,12 @@ function ChooseCharacter() {
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
             <Create title="Create a Character"/>
-            <LoadItem title="Mike" link="/CreateCharacter" image={TempImage}/>
+            <LoadItem title="Mike" link="/CreateCharacter" image={TempImage} onClick={handleItemClick}/>
           </div>
         </div>
       </div>
 
-      <div>
-        <PopUp/>
-      </div>
-
+      {isPopupVisible && <PopUp onClose={handleClosePopup} />}
     </div>
   );
 }
