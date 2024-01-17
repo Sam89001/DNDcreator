@@ -10,58 +10,83 @@ function SkillsForm() {
 //HTML
   return (
 	<form >
-		<div className='row' style={{padding: '20px'}}>
+		<div className='row' style={{padding: '5px'}}>
 
-			<div className='col-6 d-flex align-items-center justify-content-center'> 
+			{/* Titles */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right'> 
+				<div className="text-center form-titles">Profficiency</div>
+			</div>
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-left'> 
+				<div className="text-center form-titles" style={{paddingRight: '10px'}}>Skills</div>
+			</div>
+
+			{/* Strength */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' > 
   			<input className='profficient-field' type="checkbox" />
 			</div>
 
-      <div className='col-6'> 
-			  <input className='skills-field'></input>
+      <div className='col-6 skill-section-margin' > 
+			  <input className='skills-field' placeholder='Strength'></input>
       </div>
 
-			<div className='col-6 d-flex align-items-center justify-content-center'> 
+			{/* Dexterity */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' > 
   			<input className='profficient-field' type="checkbox" />
 			</div>
 
-      <div className='col-6'> 
-			  <input className='skills-field'></input>
+      <div className='col-6 skill-section-margin' > 
+			  <input className='skills-field' placeholder='Dexterity'></input>
       </div>
 
-			<div className='col-6 d-flex align-items-center justify-content-center'> 
+			{/* Constitution */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' > 
   			<input className='profficient-field' type="checkbox" />
 			</div>
 
-      <div className='col-6'> 
-			  <input className='skills-field'></input>
+      <div className='col-6 skill-section-margin' > 
+			  <input className='skills-field' placeholder='Constitution'></input>
       </div>
 
-			<div className='col-6 d-flex align-items-center justify-content-center'> 
+			{/* Intelligence */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' > 
   			<input className='profficient-field' type="checkbox" />
 			</div>
 
-      <div className='col-6'> 
-			  <input className='skills-field'></input>
+      <div className='col-6 skill-section-margin' > 
+			  <input className='skills-field' placeholder='Intelligence'></input>
       </div>
 
-			<div className='col-6 d-flex align-items-center justify-content-center'> 
+			{/* Wisdom */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' > 
   			<input className='profficient-field' type="checkbox" />
 			</div>
 
-      <div className='col-6'> 
-			  <input className='skills-field'></input>
+      <div className='col-6 skill-section-margin' > 
+			  <input className='skills-field' placeholder='Wisdom'></input>
       </div>
 
-			<div className='col-6 d-flex align-items-center justify-content-center'> 
+			{/* Charisma */}
+
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' > 
   			<input className='profficient-field' type="checkbox" />
 			</div>
 
-      <div className='col-6'> 
-			  <input className='skills-field'></input>
+      <div className='col-6 skill-section-margin' > 
+			  <input className='skills-field' placeholder='Charisma'></input>
       </div>
 
-			
+			{/* Save button */}
 
+			<div className='col-12 d-flex align-items-center justify-content-center' > 
+  			<button className='create-character-button' type="submit" > Save</button>
+			</div>
 
 		</div>
 			

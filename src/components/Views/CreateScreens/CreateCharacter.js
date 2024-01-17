@@ -33,15 +33,16 @@ function ChoosePlaySession() {
 
         <div className="col-8" style={{ color: 'white' }}>
           <div className='w-100'>
-            <header className="header">Create Your Character</header>
+            <header className="form-header">Create Your Character</header>
           </div>
 
           <div className='row'>
-						<div className='col-3'>
+						
+						<div className='col-2'>
 							<SkillsForm/>
 						</div>
 
-						<div className='col-9'>
+						<div className='col-10'>
 							<div className='row' style={{maxWidth: '900px'}}>
 
 								<div className='col-12' >
