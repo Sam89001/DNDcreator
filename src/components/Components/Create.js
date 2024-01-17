@@ -12,7 +12,7 @@ function Create({ title, link }) {
       <Link className="w-100 d-flex justify-content-center align-items-center choose-character" to={link}>
         <div className="row text-center">
           <div className="col-12" style={{ paddingBottom: '10px', paddingTop: '20px' }}>
-            <img className="img-fluid" src={PlusImage} alt="Plus Graphic" style={{ maxWidth: '80%' }} />
+            <img className="img-fluid plus-symbol" src={PlusImage} alt="Plus Graphic" />
           </div>
           
           <div className="col-12" style={{ paddingBottom: '30px' }}>
