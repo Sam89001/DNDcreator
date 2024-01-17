@@ -11,7 +11,7 @@ import { UserContext } from '../../context/userContext';
 import React, { useContext } from 'react';
 
 
-function ChooseCharacter() {
+function ChooseSession() {
   const { user } = useContext(UserContext);
 
   return (
@@ -21,7 +21,7 @@ function ChooseCharacter() {
       </nav>
 
       <div className="col-12 d-flex align-items-center justify-content-center page-styling" >
-        <header className="header text-center">Choose Your Character</header>
+        <header className="header text-center">Choose Your Session</header>
       </div>
 
       <div className="col-12 text-center justify-content-center align-items-center mb-0">
@@ -29,7 +29,7 @@ function ChooseCharacter() {
           <div className="row h-100 w-100 d-flex"> 
             <div className="col-2 d-flex align-items-center justify-content-center" style={{padding: '30px'}}>
 
-              <Create title="Create a Character" link=""/>
+              <Create title="Create a Session" link=""/>
 
             </div>
 
@@ -41,4 +41,4 @@ function ChooseCharacter() {
   );
 }
 
-export default ChooseCharacter;
+export default ChooseSession;

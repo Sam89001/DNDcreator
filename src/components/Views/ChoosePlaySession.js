@@ -4,14 +4,13 @@ import '../../css/Animations.css';
 
 //components
 import Navbar from '../Layouts/Navbar';
-import Create from '../Components/Create'
 import { UserContext } from '../../context/userContext';
 
 //Dependencies
 import React, { useContext } from 'react';
 
 
-function ChooseCharacter() {
+function ChoosePlaySession() {
   const { user } = useContext(UserContext);
 
   return (
@@ -29,10 +28,9 @@ function ChooseCharacter() {
           <div className="row h-100 w-100 d-flex"> 
             <div className="col-2 d-flex align-items-center justify-content-center" style={{padding: '30px'}}>
 
-              <Create title="Create a Character" link=""/>
+              
 
             </div>
-
           </div>
         </div>
       </div>
@@ -41,4 +39,4 @@ function ChooseCharacter() {
   );
 }
 
-export default ChooseCharacter;
+export default ChoosePlaySession;

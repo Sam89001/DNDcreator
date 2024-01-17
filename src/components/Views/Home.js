@@ -35,9 +35,9 @@ function Home() {
 
           <OptionChoice title="Create a Character" imageUrl={CreateCharacterImage} link="/ChooseCharacter"/>
 
-          <OptionChoice title="Play a Session" imageUrl={PlaySessionImage} link=""/>
+          <OptionChoice title="Play a Session" imageUrl={PlaySessionImage} link="/ChoosePlaySession"/>
 
-          <OptionChoice title="Host a Session" imageUrl={HostSessionImage} link=""/>
+          <OptionChoice title="Host a Session" imageUrl={HostSessionImage} link="/ChooseSession"/>
 
         </div>
       </div>
