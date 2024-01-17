@@ -20,6 +20,8 @@ import DndSheet from '../../../images/sheet1.jpg'
 function ChoosePlaySession() {
   const { user } = useContext(UserContext);
 
+	
+
   return (
     <div>
       <nav className='navigation-bar'>

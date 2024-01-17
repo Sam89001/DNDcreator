@@ -36,6 +36,7 @@
   // Controllers
   App.use('/', require('./routes/loginRoutes'));
   App.use('/Home', require('./routes/homeRoutes'));
+  App.use('/CreateCharacter', require('./routes/createCharacterRoutes'));
   
   // Port
   const port = process.env.PORT || 4000; // Utilizing process.env.PORT if available

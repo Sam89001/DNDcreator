@@ -6,16 +6,24 @@ import '../../../css/Animations.css';
 import Navbar from '../../Layouts/Navbar';
 import Create from '../../Components/Create'
 import LoadItem from '../../Components/LoadItem';
+import PopUp from '../../Components/PopUp';
 import { UserContext } from '../../../context/userContext';
 
 //Dependencies
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 //Temp Images
 import TempImage from '../../../images/temp-character.jpg'
 
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
+
+  const [isPopupVisible, setPopupVisibility] = useState(false);
+
+  const handleItemClick = () => {
+    // Set the state to true when the item is clicked
+    setPopupVisibility(true);
+  };
 
   return (
     <div>
@@ -30,10 +38,14 @@ function ChooseCharacter() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
-            <Create title="Create a Character" link="/CreateCharacter"/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
+            <Create title="Create a Character"/>
+            <LoadItem title="Mike" link="/CreateCharacter" image={TempImage}/>
           </div>
         </div>
+      </div>
+
+      <div>
+        <PopUp/>
       </div>
 
     </div>
