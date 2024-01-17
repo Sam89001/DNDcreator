@@ -3,6 +3,7 @@ import Login from './components/Views/Login'
 import Register from './components/Views/Register';
 import Home from './components/Views/Home';
 import AccountEdit from './components/Views/AccountEdit';
+import ChooseCharacter from './components/Views/ChooseCharacter';
 import { UserContextProvider } from './context/userContext';
 
 //Router
@@ -30,6 +31,7 @@ function App() {
               <Route element={<AuthenticatedRoutes/>}>
                 <Route path="Home" element={<Home/>}/>
                 <Route path="AccountEdit" element={<AccountEdit/>}/>
+                <Route path="ChooseCharacter" element={<ChooseCharacter/>}/>
               </Route>
             </Routes>
           </main>

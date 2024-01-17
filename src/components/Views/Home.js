@@ -33,7 +33,7 @@ function Home() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0">
         <div className="row justify-content-center align-items-center"> 
 
-          <OptionChoice title="Create a Character" imageUrl={CreateCharacterImage} link=""/>
+          <OptionChoice title="Create a Character" imageUrl={CreateCharacterImage} link="/ChooseCharacter"/>
 
           <OptionChoice title="Play a Session" imageUrl={PlaySessionImage} link=""/>
 

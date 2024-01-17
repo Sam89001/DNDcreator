@@ -4,18 +4,17 @@ import '../../css/Animations.css';
 
 //components
 import Navbar from '../Layouts/Navbar';
-import ChangeUserDetailsForm from '../../components/Forms/ChangeUserDetailsForm';
+import Create from '../Components/Create'
 import { UserContext } from '../../context/userContext';
 
 //images
 import CreateCharacterImage from '../../images/dungeons-and-dragons.jpg'
-import PlaySessionImage from '../../images/play-a-session.jpg'
-import HostSessionImage from '../../images/host-a-session.jpg'
 
 //Dependencies
 import React, { useContext } from 'react';
 
-function AccountEdit() {
+
+function ChooseCharacter() {
   const { user } = useContext(UserContext);
 
   return (
@@ -25,19 +24,24 @@ function AccountEdit() {
       </nav>
 
       <div className="col-12 d-flex align-items-center justify-content-center page-styling" >
-        <header className="header text-center">Edit Account Details</header>
+        <header className="header text-center">Choose Your Character</header>
       </div>
 
-      <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{paddingBottom: '80px'}} >
-        <p className="text-center w-100" style={{color: 'var(--textGrey)'}}>Leave blank to keep details the same</p>
-      </div>
+      <div className="col-12 text-center justify-content-center align-items-center mb-0">
+        <div className="h-100 w-100 d-flex character-select-box justify-content-center">
+          <div className="row h-100 w-100 d-flex"> 
+            <div class="col-2 d-flex align-items-center justify-content-center" style={{padding: '30px'}}>
 
-      <div className="col-12 text-center d-flex justify-content-center align-items-center mb-0">
-            <ChangeUserDetailsForm/>
+              <Create title="Create a Character"/>
+
+            </div>
+
+          </div>
+        </div>
       </div>
 
     </div>
   );
 }
 
-export default AccountEdit;
+export default ChooseCharacter;
