@@ -3,9 +3,10 @@ import Login from './components/Views/Login'
 import Register from './components/Views/Register';
 import Home from './components/Views/Home';
 import AccountEdit from './components/Views/AccountEdit';
-import ChooseCharacter from './components/Views/ChooseCharacter';
-import ChoosePlaySession from './components/Views/ChoosePlaySession';
-import ChooseSession from './components/Views/ChooseSession';
+import ChooseCharacter from './components/Views/ChooseScreens/ChooseCharacter';
+import CreateCharacter from './components/Views/CreateScreens/CreateCharacter'
+import ChoosePlaySession from './components/Views/ChooseScreens/ChoosePlaySession';
+import ChooseSession from './components/Views/ChooseScreens/ChooseSession';
 import { UserContextProvider } from './context/userContext';
 
 //Router
@@ -34,7 +35,8 @@ function App() {
                 <Route path="Home" element={<Home/>}/>
                 <Route path="AccountEdit" element={<AccountEdit/>}/>
                 <Route path="ChooseCharacter" element={<ChooseCharacter/>}/>
-                <Route path="ChoosePlaySession" element={<ChoosePlaySession/>}></Route>
+                <Route path="CreateCharacter" element={<CreateCharacter/>}/>
+                <Route path="ChoosePlaySession" element={<ChoosePlaySession/>}/>
                 <Route path="ChooseSession" element={<ChooseSession/>}/>
               </Route>
             </Routes>

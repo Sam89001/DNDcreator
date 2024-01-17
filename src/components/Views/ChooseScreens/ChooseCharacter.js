@@ -1,20 +1,20 @@
 //css
-import '../../css/Site.css';
-import '../../css/Animations.css';
+import '../../../css/Site.css';
+import '../../../css/Animations.css';
 
 //components
-import Navbar from '../Layouts/Navbar';
-import LoadItem from '../Components/LoadItem';
-import { UserContext } from '../../context/userContext';
+import Navbar from '../../Layouts/Navbar';
+import Create from '../../Components/Create'
+import LoadItem from '../../Components/LoadItem';
+import { UserContext } from '../../../context/userContext';
 
 //Dependencies
 import React, { useContext } from 'react';
 
 //Temp Images
-import TempImage from '../../images/temp-character.jpg'
+import TempImage from '../../../images/temp-character.jpg'
 
-
-function ChoosePlaySession() {
+function ChooseCharacter() {
   const { user } = useContext(UserContext);
 
   return (
@@ -28,14 +28,10 @@ function ChoosePlaySession() {
       </div>
 
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
-        <div className="d-flex character-select-box justify-content-center">
-          <div className="row h-100 w-100 d-flex"> 
+        <div className="d-flex character-select-box justify-content-center" >
+          <div className="row h-100 w-100 d-flex" >  
+            <Create title="Create a Character" link="/CreateCharacter"/>
             <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-
           </div>
         </div>
       </div>
@@ -44,4 +40,4 @@ function ChoosePlaySession() {
   );
 }
 
-export default ChoosePlaySession;
+export default ChooseCharacter;

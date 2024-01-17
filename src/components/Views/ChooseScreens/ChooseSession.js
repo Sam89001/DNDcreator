@@ -1,18 +1,18 @@
 //css
-import '../../css/Site.css';
-import '../../css/Animations.css';
+import '../../../css/Site.css';
+import '../../../css/Animations.css';
 
 //components
-import Navbar from '../Layouts/Navbar';
-import Create from '../Components/Create';
-import LoadItem from '../Components/LoadItem';
-import { UserContext } from '../../context/userContext';
+import Navbar from '../../Layouts/Navbar';
+import Create from '../../Components/Create';
+import LoadItem from '../../Components/LoadItem';
+import { UserContext } from '../../../context/userContext';
 
 //Dependencies
 import React, { useContext } from 'react';
 
 //Temp Images
-import TempImage from '../../images/temp-character.jpg'
+import TempImage from '../../../images/temp-character.jpg'
 
 
 function ChooseSession() {
