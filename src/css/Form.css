@@ -45,7 +45,7 @@
 .form-header {
 	color: white;
   font: 400 55px 'Grenze Gotisch', sans-serif;
-  padding-bottom: 15px;
+	padding-bottom: 10px;
 }
 
 .form-titles {
@@ -76,12 +76,16 @@
 /* Fields */
 
 .create-character-field {
-    max-height: 40px;
-    padding: 3px;
+  max-height: 40px;
+  padding: 3px;
+}
+
+.create-character-small-field {
+	width: 60px;
 }
 
 .skill-section-margin {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .skills-field {

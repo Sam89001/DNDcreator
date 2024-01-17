@@ -8,6 +8,7 @@ import { UserContext } from '../../../context/userContext';
 //forms
 import GeneralStatsForm from '../../Forms/CreateCharacterForms/GeneralStatsForm';
 import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
+import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
 
 //Dependencies
 import React, { useContext } from 'react';
@@ -32,7 +33,7 @@ function ChoosePlaySession() {
         </div>
 
         <div className="col-8" style={{ color: 'white' }}>
-          <div className='w-100'>
+          <div className='w-100 d-flex align-items-center'>
             <header className="form-header">Create Your Character</header>
           </div>
 
@@ -40,6 +41,7 @@ function ChoosePlaySession() {
 						
 						<div className='col-2'>
 							<SkillsForm/>
+							<MiscStatsForm/>
 						</div>
 
 						<div className='col-10'>
