@@ -9,10 +9,6 @@ import {toast} from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom';
 
 function ChangeUserDetailsForm({userData}) {
-	
-	
-	//fetch
-
 
 	const navigate = useNavigate(); 
 
@@ -24,6 +20,7 @@ function ChangeUserDetailsForm({userData}) {
 			id: '',
 		})
 
+		//display current user data
 		useEffect(() => {
 			if (userData) {
 				setData({
@@ -34,7 +31,8 @@ function ChangeUserDetailsForm({userData}) {
 				});
 			}
 		}, [userData]);
-	
+		
+		//update user data
 		const changeUserDetails = async (e) => {
 			e.preventDefault();
 			const { email, firstName, password, id } = data;
@@ -60,7 +58,6 @@ function ChangeUserDetailsForm({userData}) {
 		};
     
     //html
-
     return (
 
       <form onSubmit={changeUserDetails}>

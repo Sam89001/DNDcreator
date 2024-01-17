@@ -14,18 +14,45 @@ router.use(
 			credentials: true,
 			origin: 'http://localhost:3000'
 	})
-)
-
+);
 
 router.put('/AccountEdit', async (req, res) => {
   try {
     const { firstName, email, password, id } = req.body;
-    const hashPassword = await hashedPassword(password);
+
+    if (password && password.length < 4) {
+      return res.json({
+        error: 'Password should be more than 4 characters long',
+      });
+    }
+
+    const existingUser = await RegisterSchema.findById(id);
+
+    if (existingUser && existingUser.email !== email) {
+      return res.json({
+        error: 'Email already exists',
+      });
+    }
+
+    const updatedEmail = email.trim() === '' ? existingUser.email : email;
+    const updatedUsername = firstName.trim() === '' ? existingUser.firstName : firstName;
+
+    const updateFields = {};
+
+    if (email !== undefined) {
+      updateFields.email = updatedEmail;
+    }
+    if (firstName !== undefined) {
+      updateFields.firstName = updatedUsername;
+    }
+    if (password !== undefined && password !== '') {
+      updateFields.password = await hashedPassword(password);
+    }
 
     const updateUserDetails = await RegisterSchema.findByIdAndUpdate(
       id,
       {
-        $set: { email: email, firstName: firstName, password: hashPassword }, 
+        $set: updateFields,
       },
       { new: true }
     );
@@ -42,9 +69,7 @@ router.put('/AccountEdit', async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
 
 module.exports = router;
