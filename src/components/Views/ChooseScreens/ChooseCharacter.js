@@ -20,9 +20,14 @@ function ChooseCharacter() {
   const { user } = useContext(UserContext);
   const [popUp, setPopUp] = useState(false);
 
-  const togglePopUp = () => {
-    setPopUp(!popUp)
+  const openPopUp = () => {
+    setPopUp(true)
   }
+
+  const closePopUp = () => {
+    setPopUp(false)
+  }
+
 
   return (
     <div>
@@ -37,13 +42,13 @@ function ChooseCharacter() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
-            <Create title="Create a Character" togglePopUp={togglePopUp} />
+            <Create title="Create a Character" openPopUp={openPopUp} />
             <LoadItem title="Mike" link="/CreateCharacter" image={TempImage} />
           </div>
         </div>
       </div>
 
-      {popUp && <PopUp togglePopUp={togglePopUp} />}
+      {popUp && <PopUp closePopUp={closePopUp} />}
     </div>
   );
 }

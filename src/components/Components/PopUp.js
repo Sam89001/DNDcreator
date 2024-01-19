@@ -1,7 +1,7 @@
 import '../../css/Site.css';
 import '../../css/Animations.css';
 
-function PopUp({togglePopUp}) {
+function PopUp({closePopUp}) {
 
   return (
     <div className="pop-up">
@@ -16,7 +16,7 @@ function PopUp({togglePopUp}) {
             justifyContent: 'center',
           }}
         >
-          <button onClick={togglePopUp}>Close me</button>
+          <button onClick={closePopUp}>Close me</button>
           {/* Your other PopUp content goes here */}
           {/* ... */}
         </div>
