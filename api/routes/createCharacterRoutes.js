@@ -7,7 +7,6 @@ const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 
 router.get('/', async (req, res) => {
   try {
-    //const userId = '65a7fe22a35046f872249a23';
 		const userId = req.query.userId; 
     const LoadCharacters = await CreateCharacterSchema.find({ userId });
 
