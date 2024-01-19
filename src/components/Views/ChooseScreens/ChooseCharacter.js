@@ -38,7 +38,7 @@ function ChooseCharacter() {
         <header className="header text-center">Choose Your Character</header>
       </div>
 
-      <h1>{user.id}</h1>
+      <h1>{!!user && (user.id)}</h1>
 
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >
