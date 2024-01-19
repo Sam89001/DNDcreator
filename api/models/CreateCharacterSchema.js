@@ -2,10 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const CreateCharacterSchema = new mongoose.Schema({
-    charactername: {
-        type: String,
-        unique: true
-    }
+  userId: {
+		type: String,
+		required: true
+  },
+  characterName: {
+    type: String,
+    unique: true
+  }
     
 })
 

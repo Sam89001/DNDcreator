@@ -1,8 +1,29 @@
+//CSS
+
 import '../../css/Site.css';
 import '../../css/Components.css';
 import '../../css/Animations.css';
 
-function PopUp({closePopUp, popUpTitle}) {
+//Forms
+
+import CreateCharacterForm from '../Forms/CreateCharacterForms/CreateCharacterForm';
+
+function PopUp({closePopUp, popUpTitle, formType}) {
+
+  {/* Form rendering*/ }
+
+  const renderForm = () => {
+    switch (formType) {
+      case 'createCharacterForm':
+        return <CreateCharacterForm/>;
+      case 'createSessionForm':
+        return ;
+      default:
+        return null;
+    }
+  };
+
+  {/*HTML*/}
 
   return (
     <div className='pop-up-overlay'>
@@ -23,11 +44,11 @@ function PopUp({closePopUp, popUpTitle}) {
         </div>
 
         <div className='pop-up-body'>
-
+          {/* Load forms depending on view here */}
+          {renderForm()}
         </div>
       </div>
     </div>
-
   );
 }
 

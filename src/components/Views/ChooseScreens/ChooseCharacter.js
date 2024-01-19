@@ -15,7 +15,6 @@ import React, { useContext, useState } from 'react';
 //Temp Images
 import TempImage from '../../../images/temp-character.jpg'
 
-
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
   const [popUp, setPopUp] = useState(false);
@@ -39,6 +38,8 @@ function ChooseCharacter() {
         <header className="header text-center">Choose Your Character</header>
       </div>
 
+      <h1>{user.id}</h1>
+
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
@@ -48,7 +49,7 @@ function ChooseCharacter() {
         </div>
       </div>
 
-      {popUp && <PopUp closePopUp={closePopUp} popUpTitle='Create Your Character'/>}
+      {popUp && <PopUp closePopUp={closePopUp} popUpTitle='Create Your Character' formType='createCharacterForm' />}
     </div>
   );
 }

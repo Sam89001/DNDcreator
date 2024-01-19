@@ -35,7 +35,7 @@ function App() {
                 <Route path="Home" element={<Home/>}/>
                 <Route path="AccountEdit" element={<AccountEdit/>}/>
                 <Route path="ChooseCharacter" element={<ChooseCharacter/>}/>
-                <Route path="LoadCharacter" element={<LoadCharacter/>}/>
+                <Route path="LoadCharacter/:id" element={<LoadCharacter/>}/>
                 <Route path="ChoosePlaySession" element={<ChoosePlaySession/>}/>
                 <Route path="ChooseSession" element={<ChooseSession/>}/>
               </Route>
