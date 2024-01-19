@@ -20,7 +20,7 @@ import TempImage from '../../../images/temp-character.jpg'
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
   const [popUp, setPopUp] = useState(false);
-  const [characters, setCharacters] = useState([]);
+  const [characters, setCharacters] = useState([]);  
 
   //Pop Ups
 
@@ -34,16 +34,24 @@ function ChooseCharacter() {
   //Get Request
 
   useEffect(() => {
-    axios.get('/CreateCharacter').then(response => {
-      const characterData = response.data;
-      setCharacters(characterData);
-
-    })
-    .catch(err => {
-      console.error('Error fetching character data:', err);
-      toast.error('Error fetching character data');
-    });
-  }, []);
+    // Check if user and user.id are present before making the API request
+    if (user && user.id) {
+      axios
+        .get('/CreateCharacter', {
+          params: {
+            userId: user.id,
+          },
+        })
+        .then((response) => {
+          const characterData = response.data;
+          setCharacters(characterData);
+        })
+        .catch((err) => {
+          console.error('Error fetching character data:', err);
+          toast.error('Error fetching character data');
+        });
+    }
+  }, [user]);
 
 
   return (
