@@ -43,7 +43,7 @@ function ChooseCharacter() {
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
             <Create title="Create a Character" openPopUp={openPopUp} />
-            <LoadItem title="Mike" link="/CreateCharacter" image={TempImage} />
+            <LoadItem title="Mike" link="/LoadCharacter" image={TempImage} />
           </div>
         </div>
       </div>

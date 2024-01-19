@@ -25,9 +25,6 @@ function PopUp({closePopUp, popUpTitle}) {
         <div className='pop-up-body'>
 
         </div>
-
-
-            
       </div>
     </div>
 
