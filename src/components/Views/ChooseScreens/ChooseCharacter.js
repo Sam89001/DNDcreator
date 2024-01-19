@@ -24,8 +24,6 @@ function ChooseCharacter() {
 
   //Pop Ups
 
-  
-
   const openPopUp = () => {
     setPopUp(true)
   }
@@ -36,27 +34,16 @@ function ChooseCharacter() {
   //Get Request
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Make a GET request to your API endpoint
-        const response = await axios.get('http://localhost:4000/CreateCharacter');
+    axios.get('/CreateCharacter').then(response => {
+      const characterData = response.data;
+      setCharacters(characterData);
 
-        // Assuming the response data is an array of character objects
-        const characterData = response.data;
-
-        // Update the characters state with the fetched data
-        setCharacters(characterData);
-      } catch (error) {
-        console.error('Error fetching character data:', error);
-        // Display a toast notification for the error
-        toast.error('Error fetching character data');
-      }
-    };
-
-    // Call the asynchronous function
-    fetchData();
+    })
+    .catch(err => {
+      console.error('Error fetching character data:', err);
+      toast.error('Error fetching character data');
+    });
   }, []);
-
 
 
   return (
@@ -75,15 +62,16 @@ function ChooseCharacter() {
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
             <Create title="Create a Character" openPopUp={openPopUp} />
-            {/* Map through characters and render LoadItem components */}
 
-            {characters.map((character) => (
-              <LoadItem
-                key={character._id}  // Assuming _id is the unique identifier in your character data
-                title={character.name}
-                link={`/LoadCharacter/${character._id}`}  // Use the character's unique id in the link
-                image={TempImage}  // Replace with the actual image source from character data
-              />
+            {/* Map through characters and render LoadItem components */}     
+
+            {Array.isArray(characters) && characters.length > 0 && characters.map((character) => (
+            <LoadItem
+              key={character._id}
+              title={character.characterName}
+              link={`/LoadCharacter/${character._id}`}
+              image={TempImage}
+            />
             ))}
             
           </div>
