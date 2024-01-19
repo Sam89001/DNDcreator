@@ -10,7 +10,9 @@ import PopUp from '../../Components/PopUp';
 import { UserContext } from '../../../context/userContext';
 
 //Dependencies
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import {toast} from 'react-hot-toast'
 
 //Temp Images
 import TempImage from '../../../images/temp-character.jpg'
@@ -18,14 +20,43 @@ import TempImage from '../../../images/temp-character.jpg'
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
   const [popUp, setPopUp] = useState(false);
+  const [characters, setCharacters] = useState([]);
+
+  //Pop Ups
+
+  
 
   const openPopUp = () => {
     setPopUp(true)
   }
-
   const closePopUp = () => {
     setPopUp(false)
   }
+
+  //Get Request
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Make a GET request to your API endpoint
+        const response = await axios.get('http://localhost:4000/CreateCharacter');
+
+        // Assuming the response data is an array of character objects
+        const characterData = response.data;
+
+        // Update the characters state with the fetched data
+        setCharacters(characterData);
+      } catch (error) {
+        console.error('Error fetching character data:', error);
+        // Display a toast notification for the error
+        toast.error('Error fetching character data');
+      }
+    };
+
+    // Call the asynchronous function
+    fetchData();
+  }, []);
+
 
 
   return (
@@ -44,7 +75,17 @@ function ChooseCharacter() {
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
             <Create title="Create a Character" openPopUp={openPopUp} />
-            <LoadItem title="Mike" link="/LoadCharacter" image={TempImage} />
+            {/* Map through characters and render LoadItem components */}
+
+            {characters.map((character) => (
+              <LoadItem
+                key={character._id}  // Assuming _id is the unique identifier in your character data
+                title={character.name}
+                link={`/LoadCharacter/${character._id}`}  // Use the character's unique id in the link
+                image={TempImage}  // Replace with the actual image source from character data
+              />
+            ))}
+            
           </div>
         </div>
       </div>

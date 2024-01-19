@@ -25,7 +25,7 @@ function CreateCharacterForm() {
 		const {characterName, id} = data
 
 		try {
-      const response = await axios.post('http://localhost:4000/CreateCharacter', {
+      const response = await axios.post('http://localhost:4000/CreateCharacter/CreateNewCharacter', {
         characterName, id
       });
 
