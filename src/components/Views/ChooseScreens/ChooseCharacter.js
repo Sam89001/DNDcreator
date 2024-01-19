@@ -18,17 +18,11 @@ import TempImage from '../../../images/temp-character.jpg'
 
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
-  const [isPopupVisible, setPopupVisibility] = useState(false);
+  const [popUp, setPopUp] = useState(false);
 
-  const handleItemClick = () => {
-    // Set the state to true when the item is clicked
-    setPopupVisibility(true);
-  };
-
-  const handleClosePopup = () => {
-    // Set the state to false when the popup is closed
-    setPopupVisibility(false);
-  };
+  const togglePopUp = () => {
+    setPopUp(!popUp)
+  }
 
   return (
     <div>
@@ -43,13 +37,13 @@ function ChooseCharacter() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
-            <Create title="Create a Character"/>
-            <LoadItem title="Mike" link="/CreateCharacter" image={TempImage} onClick={handleItemClick}/>
+            <Create title="Create a Character" togglePopUp={togglePopUp} />
+            <LoadItem title="Mike" link="/CreateCharacter" image={TempImage} />
           </div>
         </div>
       </div>
 
-      {isPopupVisible && <PopUp onClose={handleClosePopup} />}
+      {popUp && <PopUp togglePopUp={togglePopUp} />}
     </div>
   );
 }
