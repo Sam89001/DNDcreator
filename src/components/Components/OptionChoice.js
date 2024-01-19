@@ -1,6 +1,7 @@
 //css
 import '../../css/Site.css';
 import '../../css/Animations.css';
+import '../../css/Components.css';
 
 //Dependencies
 import { Link } from 'react-router-dom';

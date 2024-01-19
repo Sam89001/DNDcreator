@@ -1,8 +1,10 @@
 import '../../css/Site.css';
 import '../../css/Animations.css';
+import '../../css/Components.css';
 
 //Images
 import PlusImage from '../../images/Plus Graphic.png'
+
 
 //Dependencies
 

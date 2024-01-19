@@ -48,7 +48,7 @@ function ChooseCharacter() {
         </div>
       </div>
 
-      {popUp && <PopUp closePopUp={closePopUp} />}
+      {popUp && <PopUp closePopUp={closePopUp} popUpTitle='Create Your Character'/>}
     </div>
   );
 }

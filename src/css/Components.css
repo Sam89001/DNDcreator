@@ -1,0 +1,72 @@
+/* Popup */
+
+.pop-up {
+    /* Position */
+  z-index: 10;
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Styling */
+  background-color: var(--textGrey);
+  border-radius: 10px;
+}
+
+.pop-up-header {
+    background-color: var(--inputGrey);
+    width: 100%;
+    padding: 10px;
+}
+
+.pop-up-body {
+    padding: 10px;
+}
+
+.pop-up-overlay {
+    z-index: 9;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+}
+
+.pop-up-title,
+.pop-up-button {
+    font: 400 25px 'Grenze Gotisch', sans-serif;
+    color: var(--textLightGrey);
+}
+
+.pop-up-button {
+    border: none;
+    background-color: transparent; /* Use transparent instead of none */
+}
+
+.pop-up-button:hover {
+    color: white; /* Adjust the variable name as needed */
+}
+
+/* Select Characters */
+
+.character-select-box {
+    background-color: var(--inputGrey);
+    max-height: 600px;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+.choose-character {
+    background-color: var(--backgroundGrey);
+    border-radius: 20px;
+    text-decoration: none;
+    border: none;
+}
+
+.plus-symbol {
+    max-width: 70%;
+    transition: max-width 0.3s ease-in-out; /* Add 's' for seconds and specify ease-in-out */
+}
