@@ -15,7 +15,7 @@ import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
 //Temp Images
-import TempImage from '../../../images/temp-character.jpg'
+import TempImage from '../../../images/Question Mark Graphic.png'
 
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
@@ -37,7 +37,7 @@ function ChooseCharacter() {
     // Check if user and user.id are present before making the API request
     if (user && user.id) {
       axios
-        .get('/CreateCharacter', {
+        .get('/CreateCharacter/', {
           params: {
             userId: user.id,
           },
@@ -64,7 +64,7 @@ function ChooseCharacter() {
         <header className="header text-center">Choose Your Character</header>
       </div>
 
-      <h1>{!!user && (user.id)}</h1>
+      {/*<h1>{!!user && (user.id)}</h1>*/}
 
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >

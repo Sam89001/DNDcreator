@@ -25,6 +25,26 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:characterId', async (req, res) => {
+  try {
+    const characterId = req.params.characterId; 
+    const LoadCharacters = await CreateCharacterSchema.findById(characterId);
+
+    if (!LoadCharacters) {
+      return res.json({
+        error: 'No characters found with the specified ID'
+      });
+    }
+
+    res.json(LoadCharacters);
+  } catch (error) {
+    console.error('Error fetching character data:', error);
+    return res.json({
+      error: 'Internal server error'
+    });
+  }
+});
+
 router.post('/CreateNewCharacter', async (req, res) => {
 	try {
 		const {characterName, id} = req.body
