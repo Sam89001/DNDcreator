@@ -11,12 +11,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
+//Components
+import DndSheet from '../../Components/DndSheet'
+
 //Temp Images
-import DndSheet from '../../../images/sheet1.jpg'
+
 
 function LoadPlaySession() {
   const { user } = useContext(UserContext);
-  const [characters, setCharacters] = useState([]);  
+  const [characters, setCharacters] = useState();  
+  const [sheetInformation, setSheetInformation] = useState();
     
     useEffect(() => {  
       const characterId = window.location.pathname.split('/').pop();
@@ -43,7 +47,7 @@ function LoadPlaySession() {
         <div className='row' style={{paddingTop: '85px'}}>
   
           <div className="col-4" style={{ color: 'white', padding: '20px' }}>
-            <img className="img-fluid" src={DndSheet} alt="Character Image" />
+            <DndSheet/>
           </div>
   
           <div className="col-8" style={{ color: 'white' }}>
@@ -52,29 +56,30 @@ function LoadPlaySession() {
               <header className="form-header">Create Your Character</header>
             </div>
   
-              <div className='row'>
+            <div className='row'>
                               
-                <div className='col-2'>
-                  <SkillsForm/>
-                  <MiscStatsForm/>
-                </div>
+              <div className='col-2'>
+                <SkillsForm/>
+                <MiscStatsForm/>
+              </div>
       
-                <div className='col-10'>
-                  <div className='row' style={{maxWidth: '900px'}}>
+              <div className='col-10'>
+                <div className='row' style={{maxWidth: '900px'}}>
       
-                    <div className='col-12' >
-                      <GeneralStatsForm/>
-                    </div>
+                  <div className='col-12' >
+                    <GeneralStatsForm/>
+                  </div>
 
-                    <div className='col-7'>
-                      <GeneralStatsForm/>
-                    </div>
+                  <div className='col-7'>
+                    <GeneralStatsForm/>
+                  </div>
       
-                    <div className='col-5'>
-                      <GeneralStatsForm/>
-                    </div>
+                  <div className='col-5'>
+                    <GeneralStatsForm/>
                   </div>
                 </div>
+              </div>
+
             </div>
           
           </div>
