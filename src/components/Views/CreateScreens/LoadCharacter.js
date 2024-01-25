@@ -46,11 +46,19 @@ function LoadPlaySession() {
   
         <div className='row' style={{paddingTop: '85px'}}>
   
-          <div className="col-4" style={{ color: 'white', padding: '20px' }}>
-            <DndSheet/>
+          <div className="col-5" style={{ color: 'white', padding: '0px 55px 55px 55px' }}>
+            <DndSheet
+            characterName={characters ? characters.characterName : ''}
+            characterClass={characters ? characters.characterClass : 'Working'}
+            characterLevel={characters ? characters.characterLevel : 'Working'}
+            characterBackground={characters ? characters.characterBackground : 'Working'}
+            characterRace={characters ? characters.characterRace : 'Working'}
+            characterAlignment={characters ? characters.characterAlignment : 'Working'}
+            characterXp={characters ? characters.characterXp : 'Working'}
+            />
           </div>
   
-          <div className="col-8" style={{ color: 'white' }}>
+          <div className="col-7" style={{ color: 'white' }}>
 
             <div className='w-100 d-flex align-items-center'>
               <header className="form-header">Create Your Character</header>
