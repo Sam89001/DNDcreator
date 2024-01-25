@@ -15,7 +15,7 @@ function SkillsForm() {
 			{/* Titles */}
 
 			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right'> 
-				<div className="text-center form-titles">Profficiency</div>
+				<div className="text-center form-titles">Proficiency</div>
 			</div>
 
 			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-left'> 

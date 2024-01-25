@@ -44,9 +44,11 @@ function LoadPlaySession() {
           <Navbar navigationTitle="Character Menu" navigationTitleLink="/ChooseCharacter" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
         </nav>
   
-        <div className='row' style={{paddingTop: '85px'}}>
+        <div className='row' style={{paddingTop: '85px', maxWidth: '1900px'}}>
+
+          {/* Character Sheet */}
   
-          <div className="col-5" style={{ color: 'white', padding: '0px 55px 55px 55px' }}>
+          <div className="col-5" style={{ color: 'white', padding: '0px 50px 50px 50px' }}>
             <DndSheet
             characterName={characters ? characters.characterName : ''}
             characterClass={characters ? characters.characterClass : 'Working'}
@@ -57,6 +59,8 @@ function LoadPlaySession() {
             characterXp={characters ? characters.characterXp : 'Working'}
             />
           </div>
+
+          {/* Form Fields */}
   
           <div className="col-7" style={{ color: 'white' }}>
 
@@ -66,12 +70,14 @@ function LoadPlaySession() {
   
             <div className='row'>
                               
-              <div className='col-2'>
-                <SkillsForm/>
+              <div className='col-3'>
+                <div style={{paddingBottom: '10px'}}>
+                  <SkillsForm/>
+                </div>
                 <MiscStatsForm/>
               </div>
       
-              <div className='col-10'>
+              <div className='col-9'>
                 <div className='row' style={{maxWidth: '900px'}}>
       
                   <div className='col-12' >
@@ -79,11 +85,11 @@ function LoadPlaySession() {
                   </div>
 
                   <div className='col-7'>
-                    <GeneralStatsForm/>
+                    
                   </div>
       
                   <div className='col-5'>
-                    <GeneralStatsForm/>
+                    
                   </div>
                 </div>
               </div>

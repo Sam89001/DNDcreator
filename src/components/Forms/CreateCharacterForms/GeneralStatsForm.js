@@ -14,18 +14,63 @@ function GeneralStatsForm() {
 //HTML
   return (
 	<form >
-		<div >
-			<input className='create-character-field'></input>
-		
-			<input className='create-character-field'></input>
-					
-			<input className='create-character-field'></input>
-				
-			<input className='create-character-field'></input>
+		<div style={{display: 'flex', justifyContent: 'center' }}>
+			<div >
+				{/* First Row*/}
 
-			<input className='create-character-field'></input>
+				<div style={{ display: 'flex'}}>
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-large-field' placeholder='Character Name'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-mid-field' placeholder='Class'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='HP'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='AC'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='Level'></input>
+					</div>
+				</div>
+
+				{/* Second Row*/}
+
+				<div style={{ display: 'flex'}}>
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-mid-field' placeholder='Character Name'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-mid-field' placeholder='Class'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-mid-field' placeholder='HP'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='AC'></input>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='Level'></input>
+					</div>
+
+					<div style={{width: '60px', textAlign: 'center'}}>
+						<button className='create-character-button' type="submit" > Save</button>
+					</div>
+
+				</div>
+
+			</div>
 		</div>
-			
 	</form>
   );
 }
