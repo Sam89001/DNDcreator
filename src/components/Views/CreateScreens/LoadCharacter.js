@@ -71,7 +71,7 @@ function LoadPlaySession() {
             <div className='row'>
                               
               <div className='col-3'>
-                <div style={{paddingBottom: '10px'}}>
+                <div style={{paddingBottom: '22px'}}>
                   <SkillsForm/>
                 </div>
                 <MiscStatsForm/>

@@ -54,7 +54,7 @@ function SkillsForm() {
 			</div>
 
 			<div className='col-12 d-flex align-items-center justify-content-center' style={{marginBottom: '10px'}}> 
-  			<button className='create-character-button' type="submit" > Save</button>
+  			<button className='create-character-button' type="submit" > Update</button>
 			</div>
 
 		</div>

@@ -64,7 +64,7 @@ function GeneralStatsForm() {
 					</div>
 
 					<div style={{width: '60px', textAlign: 'center'}}>
-						<button className='create-character-button' type="submit" > Save</button>
+						<button className='create-character-button' type="submit" > Update</button>
 					</div>
 
 				</div>
