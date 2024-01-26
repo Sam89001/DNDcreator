@@ -20,6 +20,18 @@ import DndSheet from '../../Components/DndSheet'
 function LoadPlaySession() {
   const { user } = useContext(UserContext);
   const [characters, setCharacters] = useState();  
+  const [characterData, setData] = useState({
+		characterName: '',
+		characterClass: '',
+		characterHp: '',
+		characterAc: '',
+		characterLevel: '',
+		characterRace: '',
+		characterBackground: '',
+		characterAlignment: '',
+		characterSpeed: '',
+		characterXp: ''
+	}) 
   const [sheetInformation, setSheetInformation] = useState();
     
     useEffect(() => {  
@@ -44,7 +56,7 @@ function LoadPlaySession() {
           <Navbar navigationTitle="Character Menu" navigationTitleLink="/ChooseCharacter" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
         </nav>
   
-        <div className='row' style={{paddingTop: '85px', maxWidth: '1900px'}}>
+        <div className='row' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
           {/* Character Sheet */}
   
@@ -81,7 +93,7 @@ function LoadPlaySession() {
                 <div className='row' style={{maxWidth: '900px'}}>
       
                   <div className='col-12' >
-                    <GeneralStatsForm/>
+                    <GeneralStatsForm />
                   </div>
 
                   <div className='col-7'>

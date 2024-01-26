@@ -96,7 +96,7 @@ function ChangeUserDetailsForm({userData}) {
 							<button className="login-button" type="submit">Update</button>
 					</div>
     		</div>
-			</form>
+		</form>
 
     )
 }

@@ -63,7 +63,7 @@ router.put('/AccountEdit', async (req, res) => {
       });
     }
 
-    res.json({
+    return res.json({
       success: true,
       user: updateUserDetails,
     });

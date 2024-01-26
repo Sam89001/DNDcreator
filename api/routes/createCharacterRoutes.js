@@ -69,9 +69,53 @@ router.post('/CreateNewCharacter', async (req, res) => {
   
 })
 
-router.post('/:id', async (req, res) => {
+router.put('/UpdateGeneralStats/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterName, characterClass, characterHp, characterAc, 
+      characterLevel, characterRace, characterBackground, characterAlignment, 
+      characterSpeed, characterXp } = req.body;
     
-})
+    console.log(id)
+
+    const characterData = {
+      characterName,
+      characterClass,
+      characterHp,
+      characterAc,
+      characterLevel,
+      characterRace,
+      characterBackground,
+      characterAlignment,
+      characterSpeed,
+      characterXp
+    };
+
+    console.log(characterData)
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
 
 
 module.exports = router;
