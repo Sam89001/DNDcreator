@@ -20,7 +20,7 @@ import DndSheet from '../../Components/DndSheet'
 function LoadPlaySession() {
   const { user } = useContext(UserContext);
   const [characters, setCharacters] = useState();  
-  const [characterData, setData] = useState({
+  const [characterData, setCharacterData] = useState({
 		characterName: '',
 		characterClass: '',
 		characterHp: '',
@@ -42,13 +42,31 @@ function LoadPlaySession() {
         .then((response) => {
           const characterData = response.data;
           setCharacters(characterData);
-          console.log(characterData)
+
+          setCharacterData({
+            characterName: characterData.characterName || '',
+            characterClass: characterData.characterClass || '',
+            characterHp: characterData.characterHp || '',
+            characterAc: characterData.characterAc || '',
+            characterLevel: characterData.characterLevel || '',
+            characterRace: characterData.characterRace || '',
+            characterBackground: characterData.characterBackground || '',
+            characterAlignment: characterData.characterAlignment || '',
+            characterSpeed: characterData.characterSpeed || '',
+            characterXp: characterData.characterXp || ''
+          });
+
+          console.log('This is the character data:', JSON.stringify(characterData, null, 2));
         })
         .catch((err) => {
           console.error('Error fetching character data:', err);
           toast.error('Error fetching character data');
         });
     }, []);
+
+    const updateCharacterData = (newCharacterData) => {
+      setCharacterData(newCharacterData);
+    }
   
     return (
       <div>
@@ -62,13 +80,13 @@ function LoadPlaySession() {
   
           <div className="col-5" style={{ color: 'white', padding: '0px 50px 50px 50px' }}>
             <DndSheet
-            characterName={characters ? characters.characterName : ''}
-            characterClass={characters ? characters.characterClass : ''}
-            characterLevel={characters ? characters.characterLevel : ''}
-            characterBackground={characters ? characters.characterBackground : ''}
-            characterRace={characters ? characters.characterRace : ''}
-            characterAlignment={characters ? characters.characterAlignment : ''}
-            characterXp={characters ? characters.characterXp : ''}
+            characterName={characterData ? characterData.characterName : ''}
+            characterClass={characterData ? characterData.characterClass : ''}
+            characterLevel={characterData ? characterData.characterLevel : ''}
+            characterBackground={characterData ? characterData.characterBackground : ''}
+            characterRace={characterData ? characterData.characterRace : ''}
+            characterAlignment={characterData ? characterData.characterAlignment : ''}
+            characterXp={characterData ? characterData.characterXp : ''}
             characterUser={user ? user.name : ''}
             />
           </div>
@@ -94,7 +112,7 @@ function LoadPlaySession() {
                 <div className='row' style={{maxWidth: '900px'}}>
       
                   <div className='col-12' >
-                    <GeneralStatsForm />
+                    <GeneralStatsForm updateCharacterData={updateCharacterData}/>
                   </div>
 
                   <div className='col-7'>

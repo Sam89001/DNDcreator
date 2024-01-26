@@ -9,11 +9,11 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function GeneralStatsForm({}) {
+function GeneralStatsForm({updateCharacterData}) {
 
-	const { id } = useParams();
+	const { id: urlId } = useParams();
 	const [data, setData] = useState({
-		id: id,
+		id: urlId,
 		characterName: '',
 		characterClass: '',
 		characterHp: '',
@@ -41,7 +41,8 @@ function GeneralStatsForm({}) {
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
-				setData({});
+				updateCharacterData(data);
+				setData((prevData) => ({ ...prevData, id: urlId }));
 				toast.success('Updated character details');
 			}
 		} catch (error) {
