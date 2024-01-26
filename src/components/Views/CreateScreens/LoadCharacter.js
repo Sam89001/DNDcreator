@@ -63,12 +63,13 @@ function LoadPlaySession() {
           <div className="col-5" style={{ color: 'white', padding: '0px 50px 50px 50px' }}>
             <DndSheet
             characterName={characters ? characters.characterName : ''}
-            characterClass={characters ? characters.characterClass : 'Working'}
-            characterLevel={characters ? characters.characterLevel : 'Working'}
-            characterBackground={characters ? characters.characterBackground : 'Working'}
-            characterRace={characters ? characters.characterRace : 'Working'}
-            characterAlignment={characters ? characters.characterAlignment : 'Working'}
-            characterXp={characters ? characters.characterXp : 'Working'}
+            characterClass={characters ? characters.characterClass : ''}
+            characterLevel={characters ? characters.characterLevel : ''}
+            characterBackground={characters ? characters.characterBackground : ''}
+            characterRace={characters ? characters.characterRace : ''}
+            characterAlignment={characters ? characters.characterAlignment : ''}
+            characterXp={characters ? characters.characterXp : ''}
+            characterUser={user ? user.name : ''}
             />
           </div>
 
