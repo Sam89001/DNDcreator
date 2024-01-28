@@ -5,6 +5,7 @@ import { UserContext } from '../../../context/userContext';
 import GeneralStatsForm from '../../Forms/CreateCharacterForms/GeneralStatsForm';
 import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
 import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
+import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -120,7 +121,7 @@ function LoadPlaySession() {
                   </div>
       
                   <div className='col-5'>
-                    
+                    <PersonalityTraitForm></PersonalityTraitForm>
                   </div>
                 </div>
               </div>
