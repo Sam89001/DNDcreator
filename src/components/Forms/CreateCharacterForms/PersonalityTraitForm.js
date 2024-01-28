@@ -11,13 +11,24 @@ import {toast} from 'react-hot-toast'
 
 function PersonalityTraitForm() {
  return (
-  <div>
-    <form>
+	<form>
+  	<div className = "row">
 
-			
+			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'> 
+				<div className="text-center form-titles">Add New Personality Trait</div>
+			</div>
 
-    </form>
-  </div>
+			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
+				<input className='create-character-multichoice-field create-character-field' placeholder='Name'/>
+			</div>
+
+			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'> 
+				<div className="text-center form-titles">View/Edit Personality Trait</div>
+			</div>
+    
+   
+  	</div>
+	</form>
  )
 }
 

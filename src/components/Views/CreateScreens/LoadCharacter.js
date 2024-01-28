@@ -6,6 +6,7 @@ import GeneralStatsForm from '../../Forms/CreateCharacterForms/GeneralStatsForm'
 import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
 import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
 import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
+import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm'
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -112,12 +113,12 @@ function LoadPlaySession() {
               <div className='col-9'>
                 <div className='row' style={{maxWidth: '900px'}}>
       
-                  <div className='col-12' >
+                  <div className='col-12' style={{paddingBottom: '20px'}}>
                     <GeneralStatsForm updateCharacterData={updateCharacterData}/>
                   </div>
 
                   <div className='col-7'>
-                    
+                    <ProficiencyForm></ProficiencyForm>
                   </div>
       
                   <div className='col-5'>

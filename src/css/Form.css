@@ -1,7 +1,8 @@
 .login-field,
 .change-details-field,
 .create-character-field,
-.skills-field {
+.skills-field,
+.create-character-multichoice-field {
     background-color: var(--inputGrey);
     border: none;
     color: white;
@@ -115,6 +116,10 @@
     border: 5px solid var(--inputGrey);
     border-radius: 5px;
     /* Add any other styles you want here */
+}
+
+.create-character-multichoice-field {
+  width: 80%;
 }
 
 
