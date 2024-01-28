@@ -8,7 +8,7 @@ import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
 
-function SkillsForm({}) {
+function SkillsForm({updateCharacterSkills}) {
 
 	const { id: urlId } = useParams();
 	const [data, setData] = useState({
@@ -46,7 +46,7 @@ function SkillsForm({}) {
 			if (response.error) {
 				toast.error(response.data.error);
 			} else {
-				
+				updateCharacterSkills(data);
 				setData((prevData) => ({ ...prevData, id: urlId }));
 				toast.success('Updated character details');
 			}

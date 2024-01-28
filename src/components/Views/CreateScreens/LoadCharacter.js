@@ -88,6 +88,11 @@ function LoadPlaySession() {
     const updateCharacterData = (newCharacterData) => {
       setCharacterData(newCharacterData);
     }
+
+    const updateCharacterSkills = (newSkillsData) => {
+      setCharacterSkills(newSkillsData);
+    }
+    
   
     return (
       <div>
@@ -130,7 +135,7 @@ function LoadPlaySession() {
                               
               <div className='col-3'>
                 <div style={{paddingBottom: '22px'}}>
-                  <SkillsForm updateCharacterData={updateCharacterData}/>
+                  <SkillsForm updateCharacterSkills={updateCharacterSkills}/>
                 </div>
                 <MiscStatsForm/>
               </div>
