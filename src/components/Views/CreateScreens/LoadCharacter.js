@@ -34,6 +34,16 @@ function LoadPlaySession() {
 		characterSpeed: '',
 		characterXp: ''
 	}) 
+
+  const [characterSkills, setcharacterSkills] = useState({
+		characterStrength: '',
+		characterDexterity: '',
+		characterConstitution: '',
+		characterIntelligence: '',
+		characterWisdom: '',
+		characterCharisma: '',
+	}) 
+
   const [sheetInformation, setSheetInformation] = useState();
     
     useEffect(() => {  
@@ -43,7 +53,6 @@ function LoadPlaySession() {
         .get('/CreateCharacter/' + characterId)
         .then((response) => {
           const characterData = response.data;
-          setCharacters(characterData);
 
           setCharacterData({
             characterName: characterData.characterName || '',
@@ -57,6 +66,18 @@ function LoadPlaySession() {
             characterSpeed: characterData.characterSpeed || '',
             characterXp: characterData.characterXp || ''
           });
+    
+          setcharacterSkills({
+            characterStrength: characterData.characterStrength || '',
+            characterDexterity: characterData.characterDexterity ||'',
+            characterConstitution: characterData.characterConstitution ||'',
+            characterIntelligence: characterData.characterIntelligence ||'',
+            characterWisdom: characterData.characterWisdom ||'',
+            characterCharisma: characterData.characterCharisma ||'',
+          });
+    
+          // Update characters state (if needed)
+          setCharacters(characterData);
 
           console.log('This is the character data:', JSON.stringify(characterData, null, 2));
         })
@@ -90,6 +111,12 @@ function LoadPlaySession() {
             characterAlignment={characterData ? characterData.characterAlignment : ''}
             characterXp={characterData ? characterData.characterXp : ''}
             characterUser={user ? user.name : ''}
+            characterStrength= {characterData ? characterData.characterStrength : ''}
+            characterDexterity= {characterData ? characterData.characterDexterity : ''}
+            characterConstitution={characterData ? characterData.characterConstitution : ''}
+            characterIntelligence={characterData ? characterData.characterIntelligence : ''}
+            characterWisdom={characterData ? characterData.characterWisdom : ''}
+            characterCharisma={characterData ? characterData.characterCharisma : ''}
             />
           </div>
 
@@ -105,7 +132,7 @@ function LoadPlaySession() {
                               
               <div className='col-3'>
                 <div style={{paddingBottom: '22px'}}>
-                  <SkillsForm/>
+                  <SkillsForm updateCharacterData={updateCharacterData}/>
                 </div>
                 <MiscStatsForm/>
               </div>

@@ -25,6 +25,12 @@ function PersonalityTraitForm() {
 			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'> 
 				<div className="text-center form-titles">View/Edit Personality Trait</div>
 			</div>
+
+			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
+				<div className='create-character-multichoice-field create-character-field' placeholder='Name'></div>
+			</div>
+
+			
     
    
   	</div>

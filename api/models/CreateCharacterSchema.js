@@ -37,6 +37,28 @@ const CreateCharacterSchema = new mongoose.Schema({
   characterXp: {
     type: String,
   },
+  characterProficiencys: {
+    type: [String],  
+    default: []
+  },
+  characterStrength: {
+    type: String,
+  },
+  characterDexterity: {
+    type: String,
+  },
+  characterConstitution: {
+    type: String,
+  },
+  characterIntelligence: {
+    type: String,
+  },
+  characterWisdom: {
+    type: String,
+  },
+  characterCharisma: {
+    type: String,
+  },
 })
 
 module.exports = mongoose.model('CreateCharacterSchema', CreateCharacterSchema)

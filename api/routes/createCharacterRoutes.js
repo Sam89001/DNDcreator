@@ -117,5 +117,43 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
 
 });
 
+router.put('/UpdateSkills/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterStrength, characterDexterity, characterConstitution, characterIntelligence,
+      characterWisdom, characterCharisma, characterProficiencys } = req.body;
+
+    console.log(id)
+
+    const characterData = {
+      characterStrength, characterDexterity, characterConstitution, characterIntelligence,
+      characterWisdom, characterCharisma, characterProficiencys
+    };
+
+    console.log(characterData)
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+
+    return res.json({
+      success: true,
+    });
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 
 module.exports = router;

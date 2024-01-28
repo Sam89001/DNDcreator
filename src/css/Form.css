@@ -86,6 +86,10 @@
   padding: 2px 10px 10px 0px;
 }
 
+.create-character-multichoice-field {
+  width: 80%;
+}
+
 .create-character-large-field {
   width: 280px;
 }
@@ -118,8 +122,5 @@
     /* Add any other styles you want here */
 }
 
-.create-character-multichoice-field {
-  width: 80%;
-}
 
 

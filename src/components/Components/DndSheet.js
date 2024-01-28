@@ -10,7 +10,9 @@ import DndSheetImage from '../../images/sheet1.jpg'
 
 //Dependencies
 
-function DndSheet({ title, openPopUp, characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, characterXp, characterUser  }) {
+function DndSheet({ title, openPopUp, characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, 
+  characterXp, characterUser, characterStrength, characterDexterity, characterConstitution, characterIntelligence, characterWisdom, characterCharisma  }) {
+
 	return (
     <div>
       <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
@@ -53,6 +55,32 @@ function DndSheet({ title, openPopUp, characterName, characterClass, characterLe
         {/* XP */}
         <div className="absolute-div" style={{ position: 'absolute', top: '9%', left: '77%',  zIndex: '4', width: '14%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
           <div>{characterXp}</div>
+        </div>
+
+        {/* Skills */}
+
+        <div className="absolute-div" style={{ position: 'absolute', top: '20%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+          <div>{characterStrength}</div>
+        </div>
+
+        <div className="absolute-div" style={{ position: 'absolute', top: '29%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+          <div>{characterDexterity}</div>
+        </div>
+
+        <div className="absolute-div" style={{ position: 'absolute', top: '38%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+          <div>{characterConstitution}</div>
+        </div>
+
+        <div className="absolute-div" style={{ position: 'absolute', top: '47%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+          <div>{characterIntelligence}</div>
+        </div>
+
+        <div className="absolute-div" style={{ position: 'absolute', top: '56%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+          <div>{characterWisdom}</div>
+        </div>
+
+        <div className="absolute-div" style={{ position: 'absolute', top: '65%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+          <div>{characterCharisma}</div>
         </div>
 
         {/* image */}
