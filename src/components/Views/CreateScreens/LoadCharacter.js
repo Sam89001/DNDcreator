@@ -35,7 +35,7 @@ function LoadPlaySession() {
 		characterXp: ''
 	}) 
 
-  const [characterSkills, setcharacterSkills] = useState({
+  const [characterSkills, setCharacterSkills] = useState({
 		characterStrength: '',
 		characterDexterity: '',
 		characterConstitution: '',
@@ -43,49 +43,47 @@ function LoadPlaySession() {
 		characterWisdom: '',
 		characterCharisma: '',
 	}) 
-
-  const [sheetInformation, setSheetInformation] = useState();
     
     useEffect(() => {  
       const characterId = window.location.pathname.split('/').pop();
 
       axios
-        .get('/CreateCharacter/' + characterId)
-        .then((response) => {
-          const characterData = response.data;
+    .get('/CreateCharacter/' + characterId)
+    .then((response) => {
+      const characterData = response.data;
 
-          setCharacterData({
-            characterName: characterData.characterName || '',
-            characterClass: characterData.characterClass || '',
-            characterHp: characterData.characterHp || '',
-            characterAc: characterData.characterAc || '',
-            characterLevel: characterData.characterLevel || '',
-            characterRace: characterData.characterRace || '',
-            characterBackground: characterData.characterBackground || '',
-            characterAlignment: characterData.characterAlignment || '',
-            characterSpeed: characterData.characterSpeed || '',
-            characterXp: characterData.characterXp || ''
-          });
-    
-          setcharacterSkills({
-            characterStrength: characterData.characterStrength || '',
-            characterDexterity: characterData.characterDexterity ||'',
-            characterConstitution: characterData.characterConstitution ||'',
-            characterIntelligence: characterData.characterIntelligence ||'',
-            characterWisdom: characterData.characterWisdom ||'',
-            characterCharisma: characterData.characterCharisma ||'',
-          });
-    
-          // Update characters state (if needed)
-          setCharacters(characterData);
+      setCharacterData({
+        characterName: characterData.characterName || '',
+        characterClass: characterData.characterClass || '',
+        characterHp: characterData.characterHp || '',
+        characterAc: characterData.characterAc || '',
+        characterLevel: characterData.characterLevel || '',
+        characterRace: characterData.characterRace || '',
+        characterBackground: characterData.characterBackground || '',
+        characterAlignment: characterData.characterAlignment || '',
+        characterSpeed: characterData.characterSpeed || '',
+        characterXp: characterData.characterXp || ''
+      });
 
-          console.log('This is the character data:', JSON.stringify(characterData, null, 2));
-        })
-        .catch((err) => {
-          console.error('Error fetching character data:', err);
-          toast.error('Error fetching character data');
-        });
-    }, []);
+      setCharacterSkills({
+        characterStrength: characterData.characterStrength || '',
+        characterDexterity: characterData.characterDexterity || '',
+        characterConstitution: characterData.characterConstitution || '',
+        characterIntelligence: characterData.characterIntelligence || '',
+        characterWisdom: characterData.characterWisdom || '',
+        characterCharisma: characterData.characterCharisma || '',
+      });
+
+      // Update characters state (if needed)
+      setCharacters(characterData);
+
+      console.log('This is the character data:', JSON.stringify(characterData, null, 2));
+    })
+    .catch((err) => {
+      console.error('Error fetching character data:', err);
+      toast.error('Error fetching character data');
+    });
+}, []);
 
     const updateCharacterData = (newCharacterData) => {
       setCharacterData(newCharacterData);
@@ -111,12 +109,12 @@ function LoadPlaySession() {
             characterAlignment={characterData ? characterData.characterAlignment : ''}
             characterXp={characterData ? characterData.characterXp : ''}
             characterUser={user ? user.name : ''}
-            characterStrength= {characterData ? characterData.characterStrength : ''}
-            characterDexterity= {characterData ? characterData.characterDexterity : ''}
-            characterConstitution={characterData ? characterData.characterConstitution : ''}
-            characterIntelligence={characterData ? characterData.characterIntelligence : ''}
-            characterWisdom={characterData ? characterData.characterWisdom : ''}
-            characterCharisma={characterData ? characterData.characterCharisma : ''}
+            characterStrength={characterSkills ? characterSkills.characterStrength : ''}
+            characterDexterity={characterSkills ? characterSkills.characterDexterity : ''}
+            characterConstitution={characterSkills ? characterSkills.characterConstitution : ''}
+            characterIntelligence={characterSkills ? characterSkills.characterIntelligence : ''}
+            characterWisdom={characterSkills ? characterSkills.characterWisdom : ''}
+            characterCharisma={characterSkills ? characterSkills.characterCharisma : ''}
             />
           </div>
 

@@ -10,7 +10,7 @@ import DndSheetImage from '../../images/sheet1.jpg'
 
 //Dependencies
 
-function DndSheet({ title, openPopUp, characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, 
+function DndSheet({ characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, 
   characterXp, characterUser, characterStrength, characterDexterity, characterConstitution, characterIntelligence, characterWisdom, characterCharisma  }) {
 
 	return (
