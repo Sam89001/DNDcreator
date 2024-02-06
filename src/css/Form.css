@@ -2,7 +2,8 @@
 .change-details-field,
 .create-character-field,
 .skills-field,
-.create-character-multichoice-field {
+.create-character-multichoice-field,
+.edit-character-field {
     background-color: var(--inputGrey);
     border: none;
     color: white;
@@ -76,6 +77,11 @@
 }
 
 /* Fields */
+
+.edit-character-field {
+  width: 100%;
+  font-size: 16px; /* Change font size */
+}
 
 .create-character-field {
   max-height: 40px;

@@ -110,6 +110,14 @@ function DndSheet({ characterName, characterClass, characterLevel, characterBack
           <div>{characterHitDice}</div>
         </div>
 
+        {/* Personality Trait */}
+        <div className="absolute-div row" style={{ overflow: 'auto', position: 'absolute', top: '17.5%', left: '70%',  zIndex: '4', width: '24%', height: '6%', fontSize: '0.9vw', display: 'flex', alignItems: 'center' }}>
+          <div className='col-12'>Amogus</div>
+          <div className='col-12'>Sussus</div>
+          <div className='col-12'>Poggus</div>
+          <div className='col-12'>Pinkus</div>
+        </div>
+
         {/* image */}
         <img className="img-fluid" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px',}}/>
        

@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 //Dependencies
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom';
 
 function SkillsForm({updateCharacterMisc}) {
 

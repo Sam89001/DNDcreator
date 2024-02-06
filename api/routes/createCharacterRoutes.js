@@ -4,6 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
+const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
 
 router.get('/', async (req, res) => {
   try {
@@ -182,6 +183,8 @@ router.put('/UpdateMiscStats/:id', async (req, res) => {
     console.log(error)
   }
 })
+
+
 
 
 module.exports = router;
