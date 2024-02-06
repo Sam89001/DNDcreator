@@ -59,6 +59,18 @@ const CreateCharacterSchema = new mongoose.Schema({
   characterCharisma: {
     type: String,
   },
+  characterInspiration: {
+    type: String,
+  },
+  characterProficiencyBonus: {
+    type: String,
+  },
+  characterPerception: {
+    type: String,
+  },
+  characterHitDice: {
+    type: String,
+  },
 })
 
 module.exports = mongoose.model('CreateCharacterSchema', CreateCharacterSchema)

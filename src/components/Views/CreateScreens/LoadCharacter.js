@@ -43,6 +43,13 @@ function LoadPlaySession() {
 		characterWisdom: '',
 		characterCharisma: '',
 	}) 
+
+  const [characterMiscStats, setCharacterMiscStats] = useState({
+		characterInspiration: '',
+		characterProficiencyBonus: '',
+		characterPerception: '',
+		characterHitDice: '',
+	}) 
     
     useEffect(() => {  
       const characterId = window.location.pathname.split('/').pop();
@@ -71,8 +78,15 @@ function LoadPlaySession() {
         characterConstitution: characterData.characterConstitution || '',
         characterIntelligence: characterData.characterIntelligence || '',
         characterWisdom: characterData.characterWisdom || '',
-        characterCharisma: characterData.characterCharisma || '',
+        characterCharisma: characterData.characterCharisma || ''
       });
+
+      setCharacterMiscStats({
+        characterInspiration: characterData.characterInspiration || '',
+		    characterProficiencyBonus: characterData.characterProficiencyBonus || '',
+        characterPerception: characterData.characterPerception || '',
+        characterHitDice: characterData.characterHitDice || ''
+      })
 
       // Update characters state (if needed)
       setCharacters(characterData);
@@ -120,6 +134,10 @@ function LoadPlaySession() {
             characterIntelligence={characterSkills ? characterSkills.characterIntelligence : ''}
             characterWisdom={characterSkills ? characterSkills.characterWisdom : ''}
             characterCharisma={characterSkills ? characterSkills.characterCharisma : ''}
+            characterInspiration={characterMiscStats ? characterMiscStats.characterInspiration : ''}
+            characterProficiencyBonus={characterMiscStats ? characterMiscStats.characterProficiencyBonus : ''}
+            characterPerception={characterMiscStats ? characterMiscStats.characterPerception : ''}
+            characterHitDice={characterMiscStats ? characterMiscStats.characterHitDice : ''}
             />
           </div>
 
