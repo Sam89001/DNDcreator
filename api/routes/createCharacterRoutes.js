@@ -184,6 +184,30 @@ router.put('/UpdateMiscStats/:id', async (req, res) => {
   }
 })
 
+router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterPersonalityTrait } = req.body; 
+    const characterData = { characterId: id, characterPersonalityTrait: characterPersonalityTrait } 
+
+    const updateCharacterPersonality = await CreateCharacterPersonalitySchema.create(
+      characterData
+    );
+
+    if (!updateCharacterPersonality) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 

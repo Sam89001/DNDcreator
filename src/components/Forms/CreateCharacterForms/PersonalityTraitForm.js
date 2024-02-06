@@ -21,7 +21,7 @@ function PersonalityTraitForm() {
 		e.preventDefault()
 		const {id, characterPersonalityTrait } = data;
 		try {
-			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdatePersonalityTrait/${id}`, {
+			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdatePersonalityTrait/${id}`, {
 				id, characterPersonalityTrait
 			});
 
@@ -66,9 +66,6 @@ function PersonalityTraitForm() {
 			<div className='col-3 d-flex align-items-center justify-content-center skill-section-margin'>
 				<button className='create-character-button' type="submit" > Update</button>
 			</div>
-
-			
-    
    
   	</div>
 	</form>
