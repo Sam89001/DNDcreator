@@ -1,11 +1,31 @@
 import '../../../css/Form.css';
 import '../../../css/Site.css';
 
+//States
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+//Dependencies
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom';
 
 function SkillsForm() {
+
+	const { id: urlId } = useParams();
+	const [data, setData] = useState({
+		id: urlId,
+		characterInspiration: '',
+		characterProficiencyBonus: '',
+		characterPerception: '',
+		characterHitDice: '',
+	}) 
+
+	const updateMiscStats = async (e) => {
+		e.preventDefault();
+		
+
+	}
 
 //HTML
   return (
