@@ -123,14 +123,10 @@ router.put('/UpdateSkills/:id', async (req, res) => {
     const { characterStrength, characterDexterity, characterConstitution, characterIntelligence,
       characterWisdom, characterCharisma, characterProficiencys } = req.body;
 
-    console.log(id)
-
     const characterData = {
       characterStrength, characterDexterity, characterConstitution, characterIntelligence,
       characterWisdom, characterCharisma, characterProficiencys
     };
-
-    console.log(characterData)
 
     const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
       id,
@@ -144,6 +140,38 @@ router.put('/UpdateSkills/:id', async (req, res) => {
       return res.json({
         error: 'Error updating character data',
       });
+    }
+
+    return res.json({
+      success: true,
+    });
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+router.put('/UpdateMiscStats/:id', async (req, res) => {
+  try {
+
+    const { id } = req.params;
+    const { characterInspiration, characterProficiencyBonus, 
+    characterPerception, characterHitDice } = req.body;    
+    const characterMiscData = { characterInspiration, characterProficiencyBonus, 
+    characterPerception, characterHitDice } 
+
+    const updateMiscStats = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterMiscData
+      },
+      { new: true }
+    );
+
+    if (!updateMiscStats) {
+      return res.json({
+        error: 'Error updating character data',
+      })
     }
 
     return res.json({

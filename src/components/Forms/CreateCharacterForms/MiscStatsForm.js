@@ -23,13 +23,31 @@ function SkillsForm() {
 
 	const updateMiscStats = async (e) => {
 		e.preventDefault();
-		
+		const { id, characterInspiration, characterProficiencyBonus, characterPerception,
+			characterHitDice } = data;
+
+		try {
+			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateMiscStats/${id}`, {
+				id, characterInspiration, characterProficiencyBonus, characterPerception,
+				characterHitDice
+			});
+
+			if (response.data.error) {
+				toast.error(response.data.error);
+			} else {
+				setData((prevData) => ({ ...prevData, id: urlId }));
+				toast.success('Updated character details');
+			}
+			
+		} catch (error) {
+			console.log(error);
+		}
 
 	}
 
 //HTML
   return (
-	<form >
+	<form onSubmit={updateMiscStats}>
 		<div className='row' style={{padding: '5px'}}>
 
 			{/* First Titles */}
@@ -45,11 +63,13 @@ function SkillsForm() {
 			{/* First Fields */}
 
 			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin '> 
-				<input className='create-character-field create-character-small-field'></input>
+				<input className='create-character-field create-character-small-field' placeholder='Inspiration'
+				onChange={(e) => setData({ ...data, characterInspiration: e.target.value})}/>
 			</div>
 
 			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin'> 
-				<input className='create-character-field create-character-small-field' style={{borderRadius: '10px'}}></input>
+				<input className='create-character-field create-character-small-field' style={{borderRadius: '10px'}} placeholder='P Bonus'
+				onChange={(e) => setData({ ...data, characterProficiencyBonus: e.target.value})}/>
 			</div>
 
 
@@ -66,11 +86,13 @@ function SkillsForm() {
 			{/* Second Fields */}
 
 			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin '> 
-				<input className='create-character-field create-character-small-field'></input>
+				<input className='create-character-field create-character-small-field' placeholder='Perception'
+				onChange={(e) => setData({ ...data, characterPerception: e.target.value})}/>
 			</div>
 
 			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin '> 
-				<input className='create-character-field create-character-small-field' style={{borderRadius: '10px'}}></input>
+				<input className='create-character-field create-character-small-field' style={{borderRadius: '10px'}} placeholder='Hit Dice'
+				onChange={(e) => setData({ ...data, characterHitDice: e.target.value})}/>
 			</div>
 
 			<div className='col-12 d-flex align-items-center justify-content-center' style={{marginBottom: '10px'}}> 
