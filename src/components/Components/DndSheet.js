@@ -111,11 +111,14 @@ function DndSheet({ characterName, characterClass, characterLevel, characterBack
         </div>
 
         {/* Personality Trait */}
-        <div className="absolute-div row" style={{ overflow: 'auto', position: 'absolute', top: '17.5%', left: '70%',  zIndex: '4', width: '24%', height: '6%', fontSize: '0.9vw', display: 'flex', alignItems: 'center' }}>
-        {characterPersonalityTraits.map(trait => (
-          <div key={trait._id} className='col-6'>{trait.characterPersonalityTrait}</div>
-        ))}
-      </div>
+        <div className="absolute-div row" style={{ overflow: 'auto', position: 'absolute', top: '17.5%', left: '70%', zIndex: '4', width: '24%', height: '6%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+          {characterPersonalityTraits.map(trait => (
+            <div key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {trait.characterPersonalityTrait}
+              <button className='delete-property-button'>X</button>
+            </div>
+          ))}
+        </div>
 
         {/* image */}
         <img className="img-fluid" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px',}}/>

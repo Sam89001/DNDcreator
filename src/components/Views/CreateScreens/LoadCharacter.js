@@ -171,7 +171,7 @@ function LoadPlaySession() {
                   </div>
       
                   <div className='col-5'>
-                    <PersonalityTraitForm></PersonalityTraitForm>
+                    <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits}/>
                   </div>
                 </div>
               </div>

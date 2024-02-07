@@ -76,6 +76,25 @@
   background-color: var(--textGrey);
 }
 
+.delete-property-button {
+  max-height: 15px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: white;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 0.6vw;
+}
+
+.delete-property-button:hover {
+  font-size: 0.8vw;
+  text-align: center;
+}
+
+.multiple-property-container:hover {
+  background-color: rgb(75, 5, 5);
+}
 /* Fields */
 
 .edit-character-field {

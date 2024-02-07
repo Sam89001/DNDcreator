@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function PersonalityTraitForm() {
+function PersonalityTraitForm({characterPersonalityTraits}) {
 
 	const { id: urlId } = useParams();
 	const [data, setData] = useState({
@@ -57,8 +57,10 @@ function PersonalityTraitForm() {
 			<div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'>
 				<div className='create-character-multichoice-field create-character-field'>
 					<select className='edit-character-field' id='characterPersonalityEdit'>
-						<option></option>
-						
+						<option/>
+						{characterPersonalityTraits.map(trait => (
+          	<option key={trait._id} >{trait.characterPersonalityTrait}</option>
+        		))}
 					</select>
 				</div>
 			</div>
