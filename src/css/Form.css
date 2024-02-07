@@ -85,10 +85,12 @@
   border-radius: 7px;
   text-align: center;
   font-size: 0.6vw;
+  line-height: 15px;
 }
 
 .delete-property-button:hover {
-  font-size: 0.8vw;
+  font-size: 0.9vw;
+  line-height: 15px;
   text-align: center;
 }
 
