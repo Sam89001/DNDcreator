@@ -218,6 +218,15 @@ router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
   }
 })
 
+router.put('/ChangePersonalityTrait/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+  } catch (error) {
+    console.log(error)
+  }
+  
+})
+
 
 
 module.exports = router;

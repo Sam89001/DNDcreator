@@ -94,6 +94,12 @@
   text-align: center;
 }
 
+.multiple-property-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
+}
 .multiple-property-container:hover {
   background-color: rgb(75, 5, 5);
 }

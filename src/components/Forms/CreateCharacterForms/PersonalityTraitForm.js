@@ -17,8 +17,30 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 		characterPersonalityTrait: '',
 	}) 
 
+	//Sets user change
+	const [selectedTrait, setSelectedTrait] = useState({
+		id: '',
+		characterPersonalityTrait: ''
+	});
+
+	const handleSelectChange = (e) => {
+		const selectedId = e.target.key; 
+		const selectedValue = e.target.value; 
+		setSelectedTrait({ id: selectedId, characterPersonalityTrait: selectedValue }); 
+  };
+
+	//Handles user change
+	const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!selectedTrait.id && !selectedTrait.characterPersonalityTrait) {
+			updatePersonalityTrait();
+		} else {
+			updateExistingPersonalityTrait();
+		}
+  };
+
+	//Post Request
 	const updatePersonalityTrait =  async (e) => {
-		e.preventDefault()
 		const {id, characterPersonalityTrait } = data;
 		try {
 			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdatePersonalityTrait/${id}`, {
@@ -31,14 +53,32 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 				setData((prevData) => ({ ...prevData, id: urlId }));
 				toast.success('Updated character details');
 			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
+	//Put Request
+	const updateExistingPersonalityTrait = async (e) => {
+		const { id, characterPersonalityTrait } = selectedTrait;
+		try {
+			const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangePersonalityTrait/${id}`, {
+				id, characterPersonalityTrait
+			});
+
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				setData((prevData) => ({ ...prevData, id: urlId }));
+				toast.success('Updated character details');
+			}
 		} catch (error) {
 			console.log(error)
 		}
 	}
 
  return (
-	<form onSubmit={updatePersonalityTrait}>
+	<form onSubmit={handleSubmit}>
   	<div className = "row">
 
 			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'> 
@@ -56,12 +96,15 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 
 			<div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'>
 				<div className='create-character-multichoice-field create-character-field'>
-					<select className='edit-character-field' id='characterPersonalityEdit'>
+
+					<select className='edit-character-field' id='characterPersonalityEdit'
+					 onChange={handleSelectChange}>
 						<option/>
 						{characterPersonalityTraits.map(trait => (
           	<option key={trait._id} >{trait.characterPersonalityTrait}</option>
         		))}
 					</select>
+
 				</div>
 			</div>
 
