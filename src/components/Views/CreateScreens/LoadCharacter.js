@@ -60,34 +60,34 @@ function LoadPlaySession() {
       const characterData = response.data;
 
       setCharacterData({
-        characterName: characterData.characterName || '',
-        characterClass: characterData.characterClass || '',
-        characterHp: characterData.characterHp || '',
-        characterAc: characterData.characterAc || '',
-        characterLevel: characterData.characterLevel || '',
-        characterRace: characterData.characterRace || '',
-        characterBackground: characterData.characterBackground || '',
-        characterAlignment: characterData.characterAlignment || '',
-        characterSpeed: characterData.characterSpeed || '',
-        characterXp: characterData.characterXp || ''
+        characterName: characterData.character.characterName || '',
+        characterClass: characterData.character.characterClass || '',
+        characterHp: characterData.character.characterHp || '',
+        characterAc: characterData.character.characterAc || '',
+        characterLevel: characterData.character.characterLevel || '',
+        characterRace: characterData.character.characterRace || '',
+        characterBackground: characterData.character.characterBackground || '',
+        characterAlignment: characterData.character.characterAlignment || '',
+        characterSpeed: characterData.character.characterSpeed || '',
+        characterXp: characterData.character.characterXp || ''
       });
 
       setCharacterSkills({
-        characterStrength: characterData.characterStrength || '',
-        characterDexterity: characterData.characterDexterity || '',
-        characterConstitution: characterData.characterConstitution || '',
-        characterIntelligence: characterData.characterIntelligence || '',
-        characterWisdom: characterData.characterWisdom || '',
-        characterCharisma: characterData.characterCharisma || ''
+        characterStrength: characterData.character.characterStrength || '',
+        characterDexterity: characterData.character.characterDexterity || '',
+        characterConstitution: characterData.character.characterConstitution || '',
+        characterIntelligence: characterData.character.characterIntelligence || '',
+        characterWisdom: characterData.character.characterWisdom || '',
+        characterCharisma: characterData.character.characterCharisma || ''
       });
 
       setCharacterMiscStats({
-        characterInspiration: characterData.characterInspiration || '',
-		    characterProficiencyBonus: characterData.characterProficiencyBonus || '',
-        characterPerception: characterData.characterPerception || '',
-        characterHitDice: characterData.characterHitDice || ''
+        characterInspiration: characterData.character.characterInspiration || '',
+        characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
+        characterPerception: characterData.character.characterPerception || '',
+        characterHitDice: characterData.character.characterHitDice || ''
       })
-
+      
       // Update characters state (if needed)
       setCharacters(characterData);
 

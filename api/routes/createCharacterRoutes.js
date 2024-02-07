@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
 
+//Load all characters
 router.get('/', async (req, res) => {
   try {
 		const userId = req.query.userId; 
@@ -26,10 +27,12 @@ router.get('/', async (req, res) => {
   }
 });
 
+//Load character stats
 router.get('/:characterId', async (req, res) => {
   try {
     const characterId = req.params.characterId; 
     const LoadCharacters = await CreateCharacterSchema.findById(characterId);
+    const LoadCharacterPersonalityTraits = await CreateCharacterPersonalitySchema.find({ characterId: characterId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -37,7 +40,13 @@ router.get('/:characterId', async (req, res) => {
       });
     }
 
-    res.json(LoadCharacters);
+    const responseData = {
+      character: LoadCharacters,
+      personalityTraits: LoadCharacterPersonalityTraits
+    };
+
+    res.json(responseData);
+ 
   } catch (error) {
     console.error('Error fetching character data:', error);
     return res.json({
