@@ -199,6 +199,9 @@ router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
     const { characterPersonalityTrait } = req.body; 
     const characterData = { characterId: id, characterPersonalityTrait: characterPersonalityTrait } 
 
+    console.log('post request' + id)
+		console.log('post request' + characterData)
+
     const updateCharacterPersonality = await CreateCharacterPersonalitySchema.create(
       characterData
     );
@@ -221,6 +224,30 @@ router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
 router.put('/ChangePersonalityTrait/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    const { characterPersonalityTrait } = req.body; 
+    const personalityData = { characterPersonalityTrait }
+
+    console.log('put request= ' + id)
+    console.log('put request= ' + personalityData)
+
+    const updatePersonalityTrait = await CreateCharacterPersonalitySchema.findByIdAndUpdate(
+      id,
+      {
+        $set: personalityData
+      },
+      { new: true }
+    );
+
+    if (!updatePersonalityTrait) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+
   } catch (error) {
     console.log(error)
   }

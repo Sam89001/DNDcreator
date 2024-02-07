@@ -19,29 +19,39 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 
 	//Sets user change
 	const [selectedTrait, setSelectedTrait] = useState({
-		id: '',
-		characterPersonalityTrait: ''
+		selectedId: '',
+		selectedCharacterPersonalityTrait: ''
 	});
 
 	const handleSelectChange = (e) => {
-		const selectedId = e.target.key; 
-		const selectedValue = e.target.value; 
-		setSelectedTrait({ id: selectedId, characterPersonalityTrait: selectedValue }); 
-  };
+    const selectedId = e.target.key; 
+    const selectedValue = e.target.value; 
+		console.log("Selected ID:", selectedId);
+    setSelectedTrait({ selectedId: selectedId, selectedCharacterPersonalityTrait: selectedValue });
+};
 
 	//Handles user change
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedTrait.id && !selectedTrait.characterPersonalityTrait) {
-			updatePersonalityTrait();
-		} else {
-			updateExistingPersonalityTrait();
-		}
-  };
+    if (!selectedTrait.selectedId && !selectedTrait.selectedCharacterPersonalityTrait) {
+        setData((prevData) => ({ ...prevData, id: urlId }));
+        await updatePersonalityTrait();
+    } else {
+        setData((prevData) => ({
+            ...prevData,
+            id: selectedTrait.selectedId,
+            characterPersonalityTrait: selectedTrait.selectedCharacterPersonalityTrait
+        }));
+        await updateExistingPersonalityTrait();
+        setData((prevData) => ({ ...prevData, id: urlId }));
+    }
+};
 
 	//Post Request
 	const updatePersonalityTrait =  async (e) => {
 		const {id, characterPersonalityTrait } = data;
+
+		
 		try {
 			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdatePersonalityTrait/${id}`, {
 				id, characterPersonalityTrait
@@ -60,7 +70,7 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 
 	//Put Request
 	const updateExistingPersonalityTrait = async (e) => {
-		const { id, characterPersonalityTrait } = selectedTrait;
+		const { id, characterPersonalityTrait } = data;
 		try {
 			const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangePersonalityTrait/${id}`, {
 				id, characterPersonalityTrait
