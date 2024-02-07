@@ -16,9 +16,6 @@ import {toast} from 'react-hot-toast'
 //Components
 import DndSheet from '../../Components/DndSheet'
 
-//Temp Images
-
-
 function LoadPlaySession() {
   const { user } = useContext(UserContext);
   const [characters, setCharacters] = useState();  
@@ -49,7 +46,9 @@ function LoadPlaySession() {
 		characterProficiencyBonus: '',
 		characterPerception: '',
 		characterHitDice: '',
-	}) 
+	})
+  
+  const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
     
     useEffect(() => {  
       const characterId = window.location.pathname.split('/').pop();
@@ -87,9 +86,8 @@ function LoadPlaySession() {
         characterPerception: characterData.character.characterPerception || '',
         characterHitDice: characterData.character.characterHitDice || ''
       })
-      
-      // Update characters state (if needed)
-      setCharacters(characterData);
+
+      setCharacterPersonalityTraits(characterData.personalityTraits || []);
 
       console.log('This is the character data:', JSON.stringify(characterData, null, 2));
     })
@@ -140,6 +138,7 @@ function LoadPlaySession() {
             characterProficiencyBonus={characterMiscStats ? characterMiscStats.characterProficiencyBonus : ''}
             characterPerception={characterMiscStats ? characterMiscStats.characterPerception : ''}
             characterHitDice={characterMiscStats ? characterMiscStats.characterHitDice : ''}
+            characterPersonalityTraits={characterPersonalityTraits}
             />
           </div>
 
