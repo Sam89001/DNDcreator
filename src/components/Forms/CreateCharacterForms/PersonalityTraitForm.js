@@ -22,15 +22,14 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 		selectedId: '',
 		selectedCharacterPersonalityTrait: ''
 	});
-
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     console.log("Selected ID:", selectedId);
     console.log("Selected Value:", selectedValue);
     setSelectedTrait({ selectedId: selectedId, selectedCharacterPersonalityTrait: selectedValue });
-};
-
+	};
+	
 	//Handles user change
 	const handleSubmit = async (e) => {
     e.preventDefault();
