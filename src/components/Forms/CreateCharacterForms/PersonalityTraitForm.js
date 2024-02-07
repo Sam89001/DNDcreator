@@ -24,9 +24,10 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 	});
 
 	const handleSelectChange = (e) => {
-    const selectedId = e.target.key; 
-    const selectedValue = e.target.value; 
-		console.log("Selected ID:", selectedId);
+    const selectedId = e.target.value; 
+    const selectedValue = e.target.options[e.target.selectedIndex].text; 
+    console.log("Selected ID:", selectedId);
+    console.log("Selected Value:", selectedValue);
     setSelectedTrait({ selectedId: selectedId, selectedCharacterPersonalityTrait: selectedValue });
 };
 
@@ -37,20 +38,13 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
         setData((prevData) => ({ ...prevData, id: urlId }));
         await updatePersonalityTrait();
     } else {
-        setData((prevData) => ({
-            ...prevData,
-            id: selectedTrait.selectedId,
-            characterPersonalityTrait: selectedTrait.selectedCharacterPersonalityTrait
-        }));
-        await updateExistingPersonalityTrait();
-        setData((prevData) => ({ ...prevData, id: urlId }));
+        await updateExistingPersonalityTrait(selectedTrait.selectedId, data.characterPersonalityTrait);
     }
-};
+		};
 
 	//Post Request
 	const updatePersonalityTrait =  async (e) => {
 		const {id, characterPersonalityTrait } = data;
-
 		
 		try {
 			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdatePersonalityTrait/${id}`, {
@@ -69,23 +63,23 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 	}
 
 	//Put Request
-	const updateExistingPersonalityTrait = async (e) => {
-		const { id, characterPersonalityTrait } = data;
+	const updateExistingPersonalityTrait = async (id, characterPersonalityTrait) => {
 		try {
-			const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangePersonalityTrait/${id}`, {
-				id, characterPersonalityTrait
-			});
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangePersonalityTrait/${id}`, {
+						id,
+						characterPersonalityTrait
+				});
 
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				setData((prevData) => ({ ...prevData, id: urlId }));
-				toast.success('Updated character details');
-			}
+				if (response.error) {
+						toast.error(response.data.error);
+				} else {
+						setData((prevData) => ({ ...prevData, id: urlId }));
+						toast.success('Updated character details');
+				}
 		} catch (error) {
-			console.log(error)
+				console.log(error);
 		}
-	}
+	};
 
  return (
 	<form onSubmit={handleSubmit}>
@@ -111,7 +105,7 @@ function PersonalityTraitForm({characterPersonalityTraits}) {
 					 onChange={handleSelectChange}>
 						<option/>
 						{characterPersonalityTraits.map(trait => (
-          	<option key={trait._id} >{trait.characterPersonalityTrait}</option>
+          		<option key={trait._id} value={trait._id}>{trait.characterPersonalityTrait}</option>
         		))}
 					</select>
 
