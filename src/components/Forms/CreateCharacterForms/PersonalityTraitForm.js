@@ -53,7 +53,7 @@ function PersonalityTraitForm({characterPersonalityTraits, fetchData}) {
 			if(response.error) {
 				toast.error(response.data.error);
 			} else {
-				fetchData();
+				//adds to state
 				toast.success('Updated character details');
 			}
 		} catch (error) {
@@ -65,14 +65,16 @@ function PersonalityTraitForm({characterPersonalityTraits, fetchData}) {
 	const updateExistingPersonalityTrait = async (id, characterPersonalityTrait) => {
 		try {
 				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangePersonalityTrait/${id}`, {
-						id,
-						characterPersonalityTrait
+					id,
+					characterPersonalityTrait
 				});
 
 				if (response.error) {
-						toast.error(response.data.error);
+					toast.error(response.data.error);
 				} else {
-						toast.success('Updated character details');
+					//Calls the get request
+					fetchData();
+					toast.success('Updated character details');
 				}
 		} catch (error) {
 				console.log(error);
