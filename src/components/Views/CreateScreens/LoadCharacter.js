@@ -174,7 +174,7 @@ function LoadPlaySession() {
                   </div>
       
                   <div className='col-5'>
-                    <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} fetchData={fetchData}/>
+                    <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} setCharacterPersonalityTraits={setCharacterPersonalityTraits} fetchData={fetchData}/>
                   </div>
                 </div>
               </div>

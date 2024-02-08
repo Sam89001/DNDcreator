@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function PersonalityTraitForm({characterPersonalityTraits, fetchData}) {
+function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonalityTraits, fetchData}) {
 
 	const { id: urlId } = useParams();
 	const [data, setData] = useState({
@@ -50,11 +50,12 @@ function PersonalityTraitForm({characterPersonalityTraits, fetchData}) {
 				id, characterPersonalityTrait
 			});
 
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//adds to state
+			if (response.data.success) {
+				const newTrait = response.data.newPersonalityTrait;
+				setCharacterPersonalityTraits(prevTraits => [...prevTraits, newTrait]);
 				toast.success('Updated character details');
+			} else {
+				toast.error('Failed to update character details');
 			}
 		} catch (error) {
 			console.log(error)

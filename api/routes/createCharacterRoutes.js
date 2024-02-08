@@ -217,8 +217,9 @@ router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
       })
     }
 
-    return res.json({
+    return res.status(200).json({
       success: true,
+      newPersonalityTrait: updateCharacterPersonality
     });
 
   } catch (error) {
