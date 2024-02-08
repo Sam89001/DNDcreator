@@ -25,7 +25,7 @@ function DndSheet({fetchData,
   
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
   
-  characterPersonalityTraits }) {
+  characterPersonalityTraits, characterIdeals }) {
 
   //Delete Request
 	const deletePersonalityTrait =  async (e, id) => {
@@ -169,10 +169,10 @@ function DndSheet({fetchData,
 
         {/* Ideals */}
         <div className="absolute-div row dnd-sheet" style={{  overflow: 'auto', top: '26%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
-          {characterPersonalityTraits.map(trait => (
-            <div value={trait._id} key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {trait.characterPersonalityTrait}
-              <button className='delete-property-button' onClick={(e) => deletePersonalityTrait(e, trait._id)}>X</button>
+          {characterIdeals.map(ideal => (
+            <div value={ideal._id} key={ideal._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {ideal.characterIdeal}
+              <button className='delete-property-button' /* onClick={(e) => deletePersonalityTrait(e, ideal._id)} */>X</button>
             </div>
           ))}
         </div>

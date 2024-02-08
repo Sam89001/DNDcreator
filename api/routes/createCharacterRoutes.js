@@ -34,6 +34,7 @@ router.get('/:characterId', async (req, res) => {
     const characterId = req.params.characterId; 
     const LoadCharacters = await CreateCharacterSchema.findById(characterId);
     const LoadCharacterPersonalityTraits = await CreateCharacterPersonalitySchema.find({ characterId: characterId })
+    const LoadCharacterIdeal = await CreateCharacterIdealSchema.find({ characterId: characterId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -43,7 +44,8 @@ router.get('/:characterId', async (req, res) => {
 
     const responseData = {
       character: LoadCharacters,
-      personalityTraits: LoadCharacterPersonalityTraits
+      personalityTraits: LoadCharacterPersonalityTraits,
+      ideals: LoadCharacterIdeal
     };
 
     res.json(responseData);

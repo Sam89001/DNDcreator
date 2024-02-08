@@ -92,6 +92,7 @@ function LoadPlaySession() {
         });
 
         setCharacterPersonalityTraits(characterData.personalityTraits || []);
+        setCharacterIdeals(characterData.ideals || []);
 
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
@@ -152,7 +153,9 @@ function LoadPlaySession() {
             characterProficiencyBonus={characterMiscStats ? characterMiscStats.characterProficiencyBonus : ''}
             characterPerception={characterMiscStats ? characterMiscStats.characterPerception : ''}
             characterHitDice={characterMiscStats ? characterMiscStats.characterHitDice : ''}
+
             characterPersonalityTraits={characterPersonalityTraits}
+            characterIdeals={characterIdeals}
             />
           </div>
 
