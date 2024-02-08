@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
+const CreateCharacterIdealSchema = require('../models/CreateCharacterIdealSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {

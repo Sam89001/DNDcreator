@@ -6,6 +6,7 @@ import GeneralStatsForm from '../../Forms/CreateCharacterForms/GeneralStatsForm'
 import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
 import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
 import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
+import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
 import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm'
 
 //Dependencies
@@ -184,6 +185,15 @@ function LoadPlaySession() {
                   <div className='col-5'>
                     <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} setCharacterPersonalityTraits={setCharacterPersonalityTraits} fetchData={fetchData}/>
                   </div>
+
+                  <div className='col-7'>
+                    
+                  </div>
+
+                  <div className='col-5'>
+                    <IdealsForm/>
+                  </div>
+
                 </div>
               </div>
 

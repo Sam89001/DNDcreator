@@ -167,6 +167,16 @@ function DndSheet({fetchData,
           ))}
         </div>
 
+        {/* Ideals */}
+        <div className="absolute-div row dnd-sheet" style={{  overflow: 'auto', top: '26%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
+          {characterPersonalityTraits.map(trait => (
+            <div value={trait._id} key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {trait.characterPersonalityTrait}
+              <button className='delete-property-button' onClick={(e) => deletePersonalityTrait(e, trait._id)}>X</button>
+            </div>
+          ))}
+        </div>
+
         {/* image */}
         <img className="img-fluid" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px',}}/>
        
