@@ -53,6 +53,7 @@ function LoadPlaySession() {
 	})
   
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
+  const [characterIdeals, setCharacterIdeals] = useState([]);
     
   
     const fetchData = async () => {
@@ -91,6 +92,7 @@ function LoadPlaySession() {
         });
 
         setCharacterPersonalityTraits(characterData.personalityTraits || []);
+
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -182,7 +184,7 @@ function LoadPlaySession() {
                     <ProficiencyForm></ProficiencyForm>
                   </div>
       
-                  <div className='col-5'>
+                  <div className='col-5' style={{paddingBottom: '10px'}}>
                     <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} setCharacterPersonalityTraits={setCharacterPersonalityTraits} fetchData={fetchData}/>
                   </div>
 
@@ -191,7 +193,7 @@ function LoadPlaySession() {
                   </div>
 
                   <div className='col-5'>
-                    <IdealsForm/>
+                    <IdealsForm characterIdeals={characterIdeals} setCharacterIdeals={setCharacterIdeals} fetchData={fetchData}/>
                   </div>
 
                 </div>

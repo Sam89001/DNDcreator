@@ -51,7 +51,8 @@
 }
 
 .form-titles {
-    color: var(--textGrey);
+  font-size: 0.9vw;
+  color: var(--textGrey);
 }
 
 .form-title-border-right {
@@ -103,6 +104,15 @@
 .multiple-property-container:hover {
   background-color: rgb(75, 5, 5);
 }
+
+.multichoice-input-field {
+  width: 91%;
+}
+
+.multichoice-edit-field-small {
+  width: 85%;
+}
+
 /* Fields */
 
 .edit-character-field {

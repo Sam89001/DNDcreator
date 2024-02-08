@@ -25,8 +25,6 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
-    console.log("Selected ID:", selectedId);
-    console.log("Selected Value:", selectedValue);
     setSelectedTrait({ selectedId: selectedId, selectedCharacterPersonalityTrait: selectedValue });
 	};
 	
@@ -91,7 +89,7 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 			</div>
 
 			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
-				<input className='create-character-multichoice-field create-character-field' placeholder='Name'
+				<input className='create-character-field multichoice-input-field' placeholder='Name'
 				onChange={(e) => setData({ ...data, characterPersonalityTrait: e.target.value})}/>
 			</div>
 
@@ -100,8 +98,7 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 			</div>
 
 			<div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'>
-				<div className='create-character-multichoice-field create-character-field'>
-
+				<div className=' create-character-field multichoice-edit-field-small'>
 					<select className='edit-character-field' id='characterPersonalityEdit'
 					 onChange={handleSelectChange}>
 						<option/>
