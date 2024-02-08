@@ -193,6 +193,16 @@ function DndSheet({fetchData,
           ))}
         </div>
 
+        {/* Bonds */}
+        <div className="absolute-div row dnd-sheet" style={{  overflow: 'auto', top: '33%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
+          {characterIdeals.map(ideal => (
+            <div value={ideal._id} key={ideal._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {ideal.characterIdeal}
+              <button className='delete-property-button' /* onClick={(e) => deleteIdeal(e, ideal._id)}*/ >X</button>
+            </div>
+          ))}
+        </div>
+
         {/* image */}
         <img className="img-fluid" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px',}}/>
        
