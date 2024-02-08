@@ -308,6 +308,35 @@ router.post('/UpdateIdeal/:id', async (req, res) => {
   }
 })
 
+//Updates an Ideal
+router.put('/ChangeIdeal/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterIdeal } = req.body; 
+    const characterData = { characterIdeal } 
+
+    const updateIdeal = await CreateCharacterIdealSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateIdeal) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Deletes an Ideal
 router.delete('/DeleteIdeal/:id', async (req, res) => {
   try {

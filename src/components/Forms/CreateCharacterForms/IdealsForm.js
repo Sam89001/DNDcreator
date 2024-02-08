@@ -37,7 +37,7 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
 			await updateIdeal();
 		} else {
-			//await updateExistingIdeal(selectedIdeal.selectedId, data.characterIdeal);
+			await updateExistingIdeal(selectedIdeal.selectedId, data.characterIdeal);
 		}
 	};
 
@@ -61,6 +61,25 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 			console.log(error)
 		}
 	}
+
+	//Put Request
+	const updateExistingIdeal = async (id, characterIdeal) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeIdeal/${id}`, {
+					id,
+					characterIdeal
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					fetchData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	};
 
  return(
     <form onSubmit={handleSubmit}>
