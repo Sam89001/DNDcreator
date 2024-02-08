@@ -70,3 +70,10 @@
     max-width: 70%;
     transition: max-width 0.3s ease-in-out; /* Add 's' for seconds and specify ease-in-out */
 }
+
+.dnd-sheet {
+  position: absolute;  
+	display: flex;
+	align-items: center;
+	z-index: 4;
+}

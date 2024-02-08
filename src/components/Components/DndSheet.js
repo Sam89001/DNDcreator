@@ -15,9 +15,17 @@ import {toast} from 'react-hot-toast'
 
 //Dependencies
 
-function DndSheet({fetchData, characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, 
-  characterXp, characterUser, characterStrength, characterDexterity, characterConstitution, characterIntelligence, characterWisdom, characterCharisma,
-  characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, characterPersonalityTraits }) {
+function DndSheet({fetchData, 
+  
+  characterName, characterClass, characterLevel, characterBackground, characterRace, 
+  characterAlignment, characterXp, characterUser, characterAC, characterInt, characterSpeed,
+  
+  characterStrength, characterDexterity, characterConstitution, characterIntelligence, 
+  characterWisdom, characterCharisma,
+  
+  characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
+  
+  characterPersonalityTraits }) {
 
   //Delete Request
 	const deletePersonalityTrait =  async (e, id) => {
@@ -41,99 +49,116 @@ function DndSheet({fetchData, characterName, characterClass, characterLevel, cha
       <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
         {/* Character Name */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '7.6%', left: '10%', zIndex: '4', width: '20%', height: '2.5%', fontSize: '1.1vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '7.6%', left: '10%', width: '20%', height: '2.5%', fontSize: '1.1vw' }}>
           <div>{characterName}</div>
         </div>
 
         {/* Class */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '5.7%', left: '44%',  zIndex: '4', width: '12%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '5.7%', left: '44%',  width: '12%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterClass}</div>
         </div>
 
         {/* Level */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '5.7%', left: '57%',  zIndex: '4', width: '3%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '5.7%', left: '57%',  width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>({characterLevel})</div>
         </div>
 
         {/* Background */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '5.7%', left: '62%',  zIndex: '4', width: '14%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '5.7%', left: '62%',  width: '14%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterBackground}</div>
         </div>
 
         {/* Player Name */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '5.7%', left: '77%',  zIndex: '4', width: '14%', height: '2.5%',  fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '5.7%', left: '77%', width: '14%', height: '2.5%',  fontSize: '0.7vw' }}>
           <div>{characterUser}</div>
         </div>
 
         {/* Race */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '9%', left: '44%',  zIndex: '4', width: '16%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '9%', left: '44%',  width: '16%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterRace}</div>
         </div>
 
         {/* Alignment */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '9%', left: '62%',  zIndex: '4', width: '14%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '9%', left: '62%', width: '14%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterAlignment}</div>
         </div>
 
         {/* XP */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '9%', left: '77%',  zIndex: '4', width: '14%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{ top: '9%', left: '77%', width: '14%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterXp}</div>
         </div>
+
+        {/* AC */}
+        <div className="absolute-div dnd-sheet" style={{ top: '18%', left: '39%',  width: '5%', height: '2.5%', fontSize: '1vw' }}>
+          <div>{characterAC} </div>
+        </div>
+
+        {/* Initiative */}
+        <div className="absolute-div dnd-sheet" style={{ top: '18%', left: '47%',  width: '5%', height: '2.5%', fontSize: '1vw' }}>
+          <div>{characterInt}</div>
+        </div>
+
+        {/* Speed */}
+        <div className="absolute-div dnd-sheet" style={{ top: '18%', left: '56%',  width: '6%', height: '2.5%', fontSize: '1vw' }}>
+          <div>{characterSpeed}</div>
+        </div>
+
+
 
         {/* Skills */}
 
         {/* Strength */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '20%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '20%', left: '9%', width: '4%', height: '2.5%', fontSize: '1.4vw' }}>
           <div>{characterStrength}</div>
         </div>
 
         {/* Dexterity */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '29%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '29%', left: '9%', width: '4%', height: '2.5%', fontSize: '1.4vw' }}>
           <div>{characterDexterity}</div>
         </div>
 
         {/* Constitution */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '38%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '38%', left: '9%', width: '4%', height: '2.5%', fontSize: '1.4vw' }}>
           <div>{characterConstitution}</div>
         </div>
 
         {/* Intelligence */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '47%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '47%', left: '9%', width: '4%', height: '2.5%', fontSize: '1.4vw' }}>
           <div>{characterIntelligence}</div>
         </div>
 
         {/* Wisdom */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '56%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '56%', left: '9%', width: '4%', height: '2.5%', fontSize: '1.4vw' }}>
           <div>{characterWisdom}</div>
         </div>
 
         {/* Charisma */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '65%', left: '9%',  zIndex: '4', width: '4%', height: '2.5%', fontSize: '1.4vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '65%', left: '9%', width: '4%', height: '2.5%', fontSize: '1.4vw' }}>
           <div>{characterCharisma}</div>
         </div>
 
         {/* Inspiration */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '16.5%', left: '17.5%',  zIndex: '4', width: '3%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '16.5%', left: '17.5%', width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterInspiration}</div>
         </div>
 
         {/* Proficiency Bonus */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '21%', left: '17.5%',  zIndex: '4', width: '3%', height: '2.5%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '21%', left: '17.5%', width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterProficiencyBonus}</div>
         </div>
 
         {/* Perception */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '74.5%', left: '7%',  zIndex: '4', width: '3%', height: '2%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{ top: '74.5%', left: '7%', width: '3%', height: '2%', fontSize: '0.7vw' }}>
           <div>{characterPerception}</div>
         </div>
 
         {/* Hit Dice */}
-        <div className="absolute-div" style={{ position: 'absolute', top: '42%', left: '39%',  zIndex: '4', width: '9%', height: '2.5%', fontSize: '0.9vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div dnd-sheet" style={{ top: '42%', left: '39%', width: '9%', height: '2.5%', fontSize: '0.9vw' }}>
           <div>{characterHitDice}</div>
         </div>
 
         {/* Personality Trait */}
-        <div className="absolute-div row" style={{ overflow: 'auto', position: 'absolute', top: '17.5%', left: '70%', zIndex: '4', width: '24%', height: '6%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
+        <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '17.5%', left: '70%',width: '24%', height: '6%', fontSize: '0.7vw' }}>
           {characterPersonalityTraits.map(trait => (
             <div value={trait._id} key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {trait.characterPersonalityTrait}

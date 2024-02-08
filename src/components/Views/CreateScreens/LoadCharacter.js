@@ -29,7 +29,10 @@ function LoadPlaySession() {
 		characterBackground: '',
 		characterAlignment: '',
 		characterSpeed: '',
-		characterXp: ''
+		characterXp: '',
+    characterAc: '',
+    characterInt: '',
+    characterSpeed: '',
 	}) 
 
   const [characterSkills, setCharacterSkills] = useState({
@@ -131,6 +134,11 @@ function LoadPlaySession() {
             characterAlignment={characterData ? characterData.characterAlignment : ''}
             characterXp={characterData ? characterData.characterXp : ''}
             characterUser={user ? user.name : ''}
+            characterAC={characterData ? characterData.characterAc : ''}
+            characterInt={characterData ? characterData.characterInitiative : ''}
+            characterSpeed={characterData ? characterData.characterSpeed: ''}
+
+
             characterStrength={characterSkills ? characterSkills.characterStrength : ''}
             characterDexterity={characterSkills ? characterSkills.characterDexterity : ''}
             characterConstitution={characterSkills ? characterSkills.characterConstitution : ''}

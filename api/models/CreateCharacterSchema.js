@@ -34,6 +34,9 @@ const CreateCharacterSchema = new mongoose.Schema({
   characterSpeed: {
     type: String,
   },
+  characterInitiative: {
+    type: String,
+  },
   characterXp: {
     type: String,
   },
