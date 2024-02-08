@@ -71,7 +71,8 @@ function LoadPlaySession() {
           characterBackground: characterData.character.characterBackground || '',
           characterAlignment: characterData.character.characterAlignment || '',
           characterSpeed: characterData.character.characterSpeed || '',
-          characterXp: characterData.character.characterXp || ''
+          characterXp: characterData.character.characterXp || '',
+          characterHP: characterData.character.characterHp || ''
         });
         setCharacterSkills({
           characterStrength: characterData.character.characterStrength || '',
@@ -136,7 +137,7 @@ function LoadPlaySession() {
             characterAC={characterData ? characterData.characterAc : ''}
             characterInt={characterData ? characterData.characterInitiative : ''}
             characterSpeed={characterData ? characterData.characterSpeed: ''}
-
+            characterHP={characterData ? characterData.characterHp: ''}
 
             characterStrength={characterSkills ? characterSkills.characterStrength : ''}
             characterDexterity={characterSkills ? characterSkills.characterDexterity : ''}

@@ -19,6 +19,7 @@ function DndSheet({fetchData,
   
   characterName, characterClass, characterLevel, characterBackground, characterRace, 
   characterAlignment, characterXp, characterUser, characterAC, characterInt, characterSpeed,
+  characterHP,
   
   characterStrength, characterDexterity, characterConstitution, characterIntelligence, 
   characterWisdom, characterCharisma,
@@ -43,6 +44,7 @@ function DndSheet({fetchData,
 			console.log(error)
 		}
 	}
+
   const deleteIdeal =  async (e, id) => {
 		e.preventDefault();
 		try {
@@ -59,10 +61,8 @@ function DndSheet({fetchData,
 		}
 	}
 
-  
   const deleteBond =  async (e, id) => {
 		e.preventDefault();
-    
 		try {
 			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteBond/${id}`);
 			if(response.error) {
@@ -75,9 +75,7 @@ function DndSheet({fetchData,
 		} catch (error) {
 			console.log(error)
 		} 
-    
 	} 
-  
 
 	return (
     <div>
@@ -138,7 +136,10 @@ function DndSheet({fetchData,
           <div>{characterSpeed}</div>
         </div>
 
-
+        {/* Speed */}
+        <div className="absolute-div dnd-sheet" style={{ top: '24%', left: '48%',  width: '6%', height: '2.5%', fontSize: '0.7vw' }}>
+          <div>{characterHP}</div>
+        </div>
 
         {/* Skills */}
 
