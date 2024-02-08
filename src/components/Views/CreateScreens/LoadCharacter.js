@@ -96,9 +96,8 @@ function LoadPlaySession() {
     };
 
     useEffect(() => {
-
-    fetchData();
-  }, []);
+      fetchData();
+    }, []);
 
     const updateCharacterData = (newCharacterData) => {
       setCharacterData(newCharacterData);
@@ -123,6 +122,7 @@ function LoadPlaySession() {
   
           <div className="col-5" style={{ color: 'white', padding: '0px 50px 50px 50px' }}>
             <DndSheet
+            fetchData={fetchData}
             characterName={characterData ? characterData.characterName : ''}
             characterClass={characterData ? characterData.characterClass : ''}
             characterLevel={characterData ? characterData.characterLevel : ''}

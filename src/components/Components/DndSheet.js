@@ -5,14 +5,36 @@ import '../../css/Components.css';
 //Images
 import DndSheetImage from '../../images/sheet1.jpg'
 
+//States
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-
+//Dependencies
+import axios from 'axios';
+import {toast} from 'react-hot-toast'
 
 //Dependencies
 
-function DndSheet({ characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, 
+function DndSheet({fetchData, characterName, characterClass, characterLevel, characterBackground, characterRace, characterAlignment, 
   characterXp, characterUser, characterStrength, characterDexterity, characterConstitution, characterIntelligence, characterWisdom, characterCharisma,
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, characterPersonalityTraits }) {
+
+  //Delete Request
+	const deletePersonalityTrait =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeletePersonalityTrait/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
 	return (
     <div>
@@ -113,9 +135,9 @@ function DndSheet({ characterName, characterClass, characterLevel, characterBack
         {/* Personality Trait */}
         <div className="absolute-div row" style={{ overflow: 'auto', position: 'absolute', top: '17.5%', left: '70%', zIndex: '4', width: '24%', height: '6%', fontSize: '0.7vw', display: 'flex', alignItems: 'center' }}>
           {characterPersonalityTraits.map(trait => (
-            <div key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div value={trait._id} key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {trait.characterPersonalityTrait}
-              <button className='delete-property-button'>X</button>
+              <button className='delete-property-button' onClick={(e) => deletePersonalityTrait(e, trait._id)}>X</button>
             </div>
           ))}
         </div>

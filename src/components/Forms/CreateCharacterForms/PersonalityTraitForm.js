@@ -105,8 +105,8 @@ function PersonalityTraitForm({characterPersonalityTraits, fetchData}) {
 					 onChange={handleSelectChange}>
 						<option/>
 						{characterPersonalityTraits.map(trait => (
-          		<option key={trait._id} value={trait._id}>{trait.characterPersonalityTrait}</option>
-        		))}
+						<option key={trait._id} value={trait._id}>{trait.characterPersonalityTrait}</option>
+						))}
 					</select>
 
 				</div>

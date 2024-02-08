@@ -55,6 +55,7 @@ router.get('/:characterId', async (req, res) => {
   }
 });
 
+//Initial Creation of character
 router.post('/CreateNewCharacter', async (req, res) => {
 	try {
 		const {characterName, id} = req.body
@@ -79,6 +80,7 @@ router.post('/CreateNewCharacter', async (req, res) => {
   
 })
 
+//Creates & Updates General Stats
 router.put('/UpdateGeneralStats/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -127,6 +129,7 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
 
 });
 
+//Creates & Updates Skills
 router.put('/UpdateSkills/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -161,6 +164,7 @@ router.put('/UpdateSkills/:id', async (req, res) => {
   }
 })
 
+//Creates & Updates MiscStats
 router.put('/UpdateMiscStats/:id', async (req, res) => {
   try {
 
@@ -193,6 +197,7 @@ router.put('/UpdateMiscStats/:id', async (req, res) => {
   }
 })
 
+//Creates a new Personality Trait
 router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -221,6 +226,7 @@ router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
   }
 })
 
+//Updates a Personality Trait 
 router.put('/ChangePersonalityTrait/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -252,6 +258,27 @@ router.put('/ChangePersonalityTrait/:id', async (req, res) => {
     console.log(error)
   }
   
+})
+
+//Deletes a Personality Trait
+router.delete('/DeletePersonalityTrait/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('deleted id' + id)
+
+    const deletedTrait = await CreateCharacterPersonalitySchema.findByIdAndDelete(id);
+    if (!deletedTrait) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+    
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 
