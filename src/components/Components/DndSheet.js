@@ -25,7 +25,7 @@ function DndSheet({fetchData,
   
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
   
-  characterPersonalityTraits, characterIdeals }) {
+  characterPersonalityTraits, characterIdeals, characterBonds }) {
 
   //Delete Request
 	const deletePersonalityTrait =  async (e, id) => {
@@ -43,7 +43,6 @@ function DndSheet({fetchData,
 			console.log(error)
 		}
 	}
-
   const deleteIdeal =  async (e, id) => {
 		e.preventDefault();
 		try {
@@ -59,6 +58,26 @@ function DndSheet({fetchData,
 			console.log(error)
 		}
 	}
+
+  
+  const deleteBond =  async (e, id) => {
+		e.preventDefault();
+    
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteBond/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		} 
+    
+	} 
+  
 
 	return (
     <div>
@@ -195,10 +214,10 @@ function DndSheet({fetchData,
 
         {/* Bonds */}
         <div className="absolute-div row dnd-sheet" style={{  overflow: 'auto', top: '33%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
-          {characterIdeals.map(ideal => (
-            <div value={ideal._id} key={ideal._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {ideal.characterIdeal}
-              <button className='delete-property-button' /* onClick={(e) => deleteIdeal(e, ideal._id)}*/ >X</button>
+          {characterBonds.map(bond => (
+            <div value={bond._id} key={bond._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {bond.characterBond}
+              <button className='delete-property-button' onClick={(e) => deleteBond(e, bond._id)} >X</button>
             </div>
           ))}
         </div>

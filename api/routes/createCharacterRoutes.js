@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
 const CreateCharacterIdealSchema = require('../models/CreateCharacterIdealSchema')
+const CreateCharacterBondSchema = require('../models/CreateCharacterBondSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -35,21 +36,20 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacters = await CreateCharacterSchema.findById(characterId);
     const LoadCharacterPersonalityTraits = await CreateCharacterPersonalitySchema.find({ characterId: characterId })
     const LoadCharacterIdeal = await CreateCharacterIdealSchema.find({ characterId: characterId })
+    const LoadCharacterBonds = await CreateCharacterBondSchema .find({ characterId: characterId })
 
     if (!LoadCharacters) {
       return res.json({
         error: 'No characters found with the specified ID'
       });
     }
-
     const responseData = {
       character: LoadCharacters,
       personalityTraits: LoadCharacterPersonalityTraits,
-      ideals: LoadCharacterIdeal
+      ideals: LoadCharacterIdeal,
+      bonds: LoadCharacterBonds
     };
-
     res.json(responseData);
- 
   } catch (error) {
     console.error('Error fetching character data:', error);
     return res.json({
@@ -285,9 +285,6 @@ router.post('/UpdateIdeal/:id', async (req, res) => {
     const { characterIdeal } = req.body; 
     const characterData = { characterId: id, characterIdeal: characterIdeal } 
 
-    console.log('post request' + id)
-		console.log('post request' + characterData)
-
     const updateCharacterIdeal = await CreateCharacterIdealSchema.create(
       characterData
     );
@@ -297,12 +294,10 @@ router.post('/UpdateIdeal/:id', async (req, res) => {
         error: 'Error updating character data',
       })
     }
-
     return res.status(200).json({
       success: true,
       newIdeal: updateCharacterIdeal
     });
-
   } catch (error) {
     console.log(error)
   }
@@ -355,6 +350,80 @@ router.delete('/DeleteIdeal/:id', async (req, res) => {
   } catch (error) {
     console.log(error)
   }
+})
+
+//Creates a Bond
+router.post('/UpdateBond/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterBond } = req.body; 
+    const characterData = { characterId: id, characterBond: characterBond } 
+
+    const updateCharacterBond = await CreateCharacterBondSchema.create(
+      characterData
+    );
+
+    if (!updateCharacterBond) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newBond: updateCharacterBond
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Updates a Bond
+router.put('/Changebond/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterBond } = req.body; 
+    const characterData = { characterBond } 
+
+    const updateBond = await CreateCharacterBondSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateBond) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Deletes a Bond
+router.delete('/DeleteBond/:id', async (req, res) => {
+ try{
+  const { id } = req.params;
+
+  const deletedBond = await CreateCharacterBondSchema.findByIdAndDelete(id);
+  if (!deletedBond) {
+    return res.json({
+      error: 'Error deleting character data',
+    })
+  }
+  return res.json({
+    success: 'Successfully deleted character data',
+  });
+
+} catch (error) {
+  console.log(error)
+}
 })
 
 

@@ -25,8 +25,6 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
-		console.log('SelectedId' + selectedId )
-		console.log('SelectedValue' + selectedValue )
     setSelectedIdeal({ selectedId: selectedId, selectedCharacterIdeal: selectedValue });
 	};
 

@@ -7,7 +7,8 @@ import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
 import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
 import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
 import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
-import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm'
+import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
+import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm';
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -35,7 +36,6 @@ function LoadPlaySession() {
     characterInt: '',
     characterSpeed: '',
 	}) 
-
   const [characterSkills, setCharacterSkills] = useState({
 		characterStrength: '',
 		characterDexterity: '',
@@ -44,7 +44,6 @@ function LoadPlaySession() {
 		characterWisdom: '',
 		characterCharisma: '',
 	}) 
-
   const [characterMiscStats, setCharacterMiscStats] = useState({
 		characterInspiration: '',
 		characterProficiencyBonus: '',
@@ -54,7 +53,7 @@ function LoadPlaySession() {
   
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
   const [characterIdeals, setCharacterIdeals] = useState([]);
-    
+  const [characterBonds, setCharacterBonds] = useState([]);
   
     const fetchData = async () => {
       try {
@@ -74,7 +73,6 @@ function LoadPlaySession() {
           characterSpeed: characterData.character.characterSpeed || '',
           characterXp: characterData.character.characterXp || ''
         });
-
         setCharacterSkills({
           characterStrength: characterData.character.characterStrength || '',
           characterDexterity: characterData.character.characterDexterity || '',
@@ -83,17 +81,16 @@ function LoadPlaySession() {
           characterWisdom: characterData.character.characterWisdom || '',
           characterCharisma: characterData.character.characterCharisma || ''
         });
-
         setCharacterMiscStats({
           characterInspiration: characterData.character.characterInspiration || '',
           characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
           characterPerception: characterData.character.characterPerception || '',
           characterHitDice: characterData.character.characterHitDice || ''
         });
-
         setCharacterPersonalityTraits(characterData.personalityTraits || []);
         setCharacterIdeals(characterData.ideals || []);
-
+        setCharacterBonds(characterData.bonds || []);
+        
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -101,7 +98,6 @@ function LoadPlaySession() {
         toast.error('Error fetching character data');
       }
     };
-
     useEffect(() => {
       fetchData();
     }, []);
@@ -115,7 +111,6 @@ function LoadPlaySession() {
     const updateCharacterMisc = (newcharacterMiscStats) => {
       setCharacterMiscStats(newcharacterMiscStats);
     }
-    
   
     return (
       <div>
@@ -156,6 +151,7 @@ function LoadPlaySession() {
 
             characterPersonalityTraits={characterPersonalityTraits}
             characterIdeals={characterIdeals}
+            characterBonds={characterBonds}
             />
           </div>
 
@@ -195,8 +191,16 @@ function LoadPlaySession() {
                     
                   </div>
 
-                  <div className='col-5'>
+                  <div className='col-5' style={{paddingBottom: '10px'}}>
                     <IdealsForm characterIdeals={characterIdeals} setCharacterIdeals={setCharacterIdeals} fetchData={fetchData}/>
+                  </div>
+
+                  <div className='col-7'>
+                    
+                  </div>
+
+                  <div className='col-5' style={{paddingBottom: '10px'}}>
+                    <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
                   </div>
 
                 </div>
