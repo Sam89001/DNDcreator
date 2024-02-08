@@ -205,9 +205,6 @@ router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
     const { characterPersonalityTrait } = req.body; 
     const characterData = { characterId: id, characterPersonalityTrait: characterPersonalityTrait } 
 
-    console.log('post request' + id)
-		console.log('post request' + characterData)
-
     const updateCharacterPersonality = await CreateCharacterPersonalitySchema.create(
       characterData
     );
@@ -234,9 +231,6 @@ router.put('/ChangePersonalityTrait/:id', async (req, res) => {
     const { id } = req.params;
     const { characterPersonalityTrait } = req.body; 
     const personalityData = { characterPersonalityTrait }
-
-    console.log('put request= ' + id)
-    console.log('put request= ' + personalityData)
 
     const updatePersonalityTrait = await CreateCharacterPersonalitySchema.findByIdAndUpdate(
       id,
@@ -266,7 +260,6 @@ router.put('/ChangePersonalityTrait/:id', async (req, res) => {
 router.delete('/DeletePersonalityTrait/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('deleted id' + id)
 
     const deletedTrait = await CreateCharacterPersonalitySchema.findByIdAndDelete(id);
     if (!deletedTrait) {
@@ -278,6 +271,36 @@ router.delete('/DeletePersonalityTrait/:id', async (req, res) => {
       success: 'Successfully deleted character data',
     });
     
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Creates a new Ideal
+router.post('/UpdateIdeal/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterIdeal } = req.body; 
+    const characterData = { characterId: id, characterIdeal: characterIdeal } 
+
+    console.log('post request' + id)
+		console.log('post request' + characterData)
+
+    const updateCharacterIdeal = await CreateCharacterIdealSchema.create(
+      characterData
+    );
+
+    if (!updateCharacterIdeal) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.status(200).json({
+      success: true,
+      newIdeal: updateCharacterIdeal
+    });
+
   } catch (error) {
     console.log(error)
   }

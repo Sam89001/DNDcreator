@@ -25,13 +25,45 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
+		console.log('SelectedId' + selectedId )
+		console.log('SelectedValue' + selectedValue )
     setSelectedIdeal({ selectedId: selectedId, selectedCharacterIdeal: selectedValue });
 	};
 
 	//Handles user change
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		if (!selectedIdeal.selectedId && !selectedIdeal.selectedCharacterIdeal) {
+			setData((prevData) => ({ ...prevData, id: urlId }));
+			await updateIdeal();
+		} else {
+			//await updateExistingIdeal(selectedIdeal.selectedId, data.characterIdeal);
+		}
+	};
+
+	//Post Request
+	const updateIdeal =  async (e) => {
+		const {id, characterIdeal } = data;
+		
+		try {
+			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateIdeal/${id}`, {
+				id, characterIdeal
+			});
+
+			if (response.data.success) {
+				const newIdeal = response.data.newIdeal;
+				setCharacterIdeals(prevIdeals => [...prevIdeals, newIdeal]);
+				toast.success('Updated character details');
+			} else {
+				toast.error('Failed to update character details');
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
  return(
-    <form >
+    <form onSubmit={handleSubmit}>
   	<div className = "row">
 
 			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'> 

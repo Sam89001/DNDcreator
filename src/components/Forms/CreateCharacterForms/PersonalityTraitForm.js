@@ -30,14 +30,14 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 	
 	//Handles user change
 	const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!selectedTrait.selectedId && !selectedTrait.selectedCharacterPersonalityTrait) {
-        setData((prevData) => ({ ...prevData, id: urlId }));
-        await updatePersonalityTrait();
-    } else {
-        await updateExistingPersonalityTrait(selectedTrait.selectedId, data.characterPersonalityTrait);
-    }
-		};
+		e.preventDefault();
+		if (!selectedTrait.selectedId && !selectedTrait.selectedCharacterPersonalityTrait) {
+			setData((prevData) => ({ ...prevData, id: urlId }));
+			await updatePersonalityTrait();
+		} else {
+			await updateExistingPersonalityTrait(selectedTrait.selectedId, data.characterPersonalityTrait);
+		}
+	};
 
 	//Post Request
 	const updatePersonalityTrait =  async (e) => {

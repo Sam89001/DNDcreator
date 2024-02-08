@@ -6,7 +6,7 @@ const CreateCharacterIdealSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-	characterPersonalityTrait: {
+	characterIdeal: {
     type: String,
     required: true,
   },
