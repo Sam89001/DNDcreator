@@ -308,6 +308,26 @@ router.post('/UpdateIdeal/:id', async (req, res) => {
   }
 })
 
+//Deletes an Ideal
+router.delete('/DeleteIdeal/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedIdeal = await CreateCharacterIdealSchema.findByIdAndDelete(id);
+    if (!deletedIdeal) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 
 
 module.exports = router;

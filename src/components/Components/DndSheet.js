@@ -44,6 +44,22 @@ function DndSheet({fetchData,
 		}
 	}
 
+  const deleteIdeal =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteIdeal/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	return (
     <div>
       <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
@@ -172,7 +188,7 @@ function DndSheet({fetchData,
           {characterIdeals.map(ideal => (
             <div value={ideal._id} key={ideal._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {ideal.characterIdeal}
-              <button className='delete-property-button' /* onClick={(e) => deletePersonalityTrait(e, ideal._id)} */>X</button>
+              <button className='delete-property-button' onClick={(e) => deleteIdeal(e, ideal._id)} >X</button>
             </div>
           ))}
         </div>
