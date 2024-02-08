@@ -50,52 +50,55 @@ function LoadPlaySession() {
   
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
     
-    useEffect(() => {  
-      const characterId = window.location.pathname.split('/').pop();
+  
+    const fetchData = async () => {
+      try {
+        const characterId = window.location.pathname.split('/').pop();
+        const response = await axios.get('/CreateCharacter/' + characterId);
+        const characterData = response.data;
 
-      axios
-    .get('/CreateCharacter/' + characterId)
-    .then((response) => {
-      const characterData = response.data;
+        setCharacterData({
+          characterName: characterData.character.characterName || '',
+          characterClass: characterData.character.characterClass || '',
+          characterHp: characterData.character.characterHp || '',
+          characterAc: characterData.character.characterAc || '',
+          characterLevel: characterData.character.characterLevel || '',
+          characterRace: characterData.character.characterRace || '',
+          characterBackground: characterData.character.characterBackground || '',
+          characterAlignment: characterData.character.characterAlignment || '',
+          characterSpeed: characterData.character.characterSpeed || '',
+          characterXp: characterData.character.characterXp || ''
+        });
 
-      setCharacterData({
-        characterName: characterData.character.characterName || '',
-        characterClass: characterData.character.characterClass || '',
-        characterHp: characterData.character.characterHp || '',
-        characterAc: characterData.character.characterAc || '',
-        characterLevel: characterData.character.characterLevel || '',
-        characterRace: characterData.character.characterRace || '',
-        characterBackground: characterData.character.characterBackground || '',
-        characterAlignment: characterData.character.characterAlignment || '',
-        characterSpeed: characterData.character.characterSpeed || '',
-        characterXp: characterData.character.characterXp || ''
-      });
+        setCharacterSkills({
+          characterStrength: characterData.character.characterStrength || '',
+          characterDexterity: characterData.character.characterDexterity || '',
+          characterConstitution: characterData.character.characterConstitution || '',
+          characterIntelligence: characterData.character.characterIntelligence || '',
+          characterWisdom: characterData.character.characterWisdom || '',
+          characterCharisma: characterData.character.characterCharisma || ''
+        });
 
-      setCharacterSkills({
-        characterStrength: characterData.character.characterStrength || '',
-        characterDexterity: characterData.character.characterDexterity || '',
-        characterConstitution: characterData.character.characterConstitution || '',
-        characterIntelligence: characterData.character.characterIntelligence || '',
-        characterWisdom: characterData.character.characterWisdom || '',
-        characterCharisma: characterData.character.characterCharisma || ''
-      });
+        setCharacterMiscStats({
+          characterInspiration: characterData.character.characterInspiration || '',
+          characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
+          characterPerception: characterData.character.characterPerception || '',
+          characterHitDice: characterData.character.characterHitDice || ''
+        });
 
-      setCharacterMiscStats({
-        characterInspiration: characterData.character.characterInspiration || '',
-        characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
-        characterPerception: characterData.character.characterPerception || '',
-        characterHitDice: characterData.character.characterHitDice || ''
-      })
+        setCharacterPersonalityTraits(characterData.personalityTraits || []);
 
-      setCharacterPersonalityTraits(characterData.personalityTraits || []);
+        console.log('This is the character data:', JSON.stringify(characterData, null, 2));
+      } catch (error) {
+        console.error('Error fetching character data:', error);
+        toast.error('Error fetching character data');
+      }
+    };
 
-      console.log('This is the character data:', JSON.stringify(characterData, null, 2));
-    })
-    .catch((err) => {
-      console.error('Error fetching character data:', err);
-      toast.error('Error fetching character data');
-    });
-}, []);
+    useEffect(() => {
+
+    fetchData();
+  }, []);
 
     const updateCharacterData = (newCharacterData) => {
       setCharacterData(newCharacterData);
@@ -171,7 +174,7 @@ function LoadPlaySession() {
                   </div>
       
                   <div className='col-5'>
-                    <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits}/>
+                    <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} fetchData={fetchData}/>
                   </div>
                 </div>
               </div>
