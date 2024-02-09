@@ -90,7 +90,7 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 
-            <div className="text-center form-titles">View/Edit Bond</div>
+            <div className="text-center form-titles">View/Edit Language</div>
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'>
