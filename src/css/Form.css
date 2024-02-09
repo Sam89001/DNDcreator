@@ -134,7 +134,7 @@
 }
 
 .down-arrow {
-  max-height: 8px; 
+  max-height: 10px; 
   position: absolute;
   right: 10px; 
   top: 50%; 
@@ -144,7 +144,7 @@
 }
 
 .down-arrow:hover {
-  max-height: 9px; 
+  max-height: 11px; 
 }
 
 .down-arrow.active {

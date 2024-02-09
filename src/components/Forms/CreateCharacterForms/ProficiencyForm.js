@@ -34,6 +34,8 @@ function ProficiencyForm() {
 				<div className="text-center form-titles" >Saving Throws</div>
 			</div>
 
+      {/* Skills List */}
+
       <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin'>
         <div className='multichoice-edit-field'>
           <form>
@@ -137,6 +139,7 @@ function ProficiencyForm() {
         </div>
       </div>
 
+      {/* Saving Throws */}
 
       <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin'>
         <div className='multichoice-edit-field'>
