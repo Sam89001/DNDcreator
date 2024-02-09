@@ -506,5 +506,49 @@ router.delete('/DeleteFlaw/:id', async (req, res) => {
   }
 })
 
+//Creates a Language
+router.post('/UpdateLanguage/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterLanguage } = req.body; 
+    const characterData = { characterId: id, characterLanguage: characterLanguage } 
+
+    const updateCharacterLanguage = await CreateCharacterLanguageSchema.create(
+      characterData
+    );
+
+    if (!updateCharacterLanguage) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newLanguage: updateCharacterLanguage
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Deletes a Language
+router.delete('/DeleteLanguage/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deletedLanguage = await CreateCharacterLanguageSchema.findByIdAndDelete(id);
+    if (!deletedLanguage) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;

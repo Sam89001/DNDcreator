@@ -9,10 +9,12 @@ import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTr
 import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
 import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
 import FlawsForm from '../../Forms/CreateCharacterForms/FlawsForm';
+import LanguagesForm from '../../Forms/CreateCharacterForms/LanguagesForm';
 import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm';
 import AttacksForm from '../../Forms/CreateCharacterForms/AttacksForm';
 import EquipmentForm from '../../Forms/CreateCharacterForms/EquipmentForm';
 import FeaturesTraitsForm from '../../Forms/CreateCharacterForms/FeatureTraitsForm';
+
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -59,6 +61,7 @@ function LoadPlaySession() {
   const [characterIdeals, setCharacterIdeals] = useState([]);
   const [characterBonds, setCharacterBonds] = useState([]);
   const [characterFlaws, setCharacterFlaws] = useState([]);
+  const [characterLanguages, setCharacterLanguages] = useState([]);
   
     const fetchData = async () => {
       try {
@@ -97,7 +100,7 @@ function LoadPlaySession() {
         setCharacterIdeals(characterData.ideals || []);
         setCharacterBonds(characterData.bonds || []);
         setCharacterFlaws(characterData.flaws || []);
-        
+        setCharacterLanguages(characterData.languages || []);
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -238,7 +241,7 @@ function LoadPlaySession() {
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '5px'}}>
-                        <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
+                        <LanguagesForm characterLanguages={characterLanguages} setCharacterLanguages={setCharacterLanguages} fetchData={fetchData}/>
                       </div>
 
                     </div>

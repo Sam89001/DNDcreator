@@ -22,7 +22,7 @@ function DndSheet({fetchData,
   
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
   
-  characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws }) {
+  characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws, characterLanguages }) {
 
   //Delete Request
 	const deletePersonalityTrait =  async (e, id) => {
@@ -88,6 +88,23 @@ function DndSheet({fetchData,
 			console.log(error)
 		} 
 	} 
+
+  const deleteLanguage =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteLanguage/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		} 
+	} 
+
 
 	return (
     <div>
@@ -246,11 +263,11 @@ function DndSheet({fetchData,
         </div>
 
         {/* Other Proficiency/Languages */}
-        <div className="absolute-div row dnd-sheet" style={{overflow: 'auto', top: '79%', left: '8%', width: '27%', height: '16.5%', fontSize: '0.7vw' }}>
-          {characterFlaws.map(flaw => (
-            <div value={flaw._id} key={flaw._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {flaw.characterFlaw}
-              <button className='delete-property-button' onClick={(e) => deleteFlaw(e, flaw._id)} >X</button>
+        <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '79%', left: '8%', width: '27%', height: '16.5%', fontSize: '0.7vw' }}>
+          {characterLanguages.map(language => (
+            <div value={language._id} key={language._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {language.characterLanguage}
+              <button className='delete-property-button' onClick={(e) => deleteLanguage(e, language._id)} >X</button>
             </div>
           ))}
         </div>

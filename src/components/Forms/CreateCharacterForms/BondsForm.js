@@ -98,9 +98,9 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
                 <select className='edit-character-field' id='characterPersonalityEdit'
                   onChange={handleSelectChange}>
                   <option/>
-									{characterBonds.map(Bond => (
-										<option key={Bond._id} value={Bond._id}>{Bond.characterBond}</option>
-									))}
+										{characterBonds.map(Bond => (
+											<option key={Bond._id} value={Bond._id}>{Bond.characterBond}</option>
+										))}
                 </select>
     
             </div>

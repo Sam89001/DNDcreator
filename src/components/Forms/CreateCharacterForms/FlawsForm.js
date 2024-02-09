@@ -20,6 +20,7 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 		selectedId: '',
 		selectedCharacterFlaw: ''
 	});
+
 	//Handles user change
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
@@ -28,7 +29,6 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 		console.log('SelectedValue' + selectedValue )
     setSelectedFlaw({ selectedId: selectedId, selectedCharacterFlaw: selectedValue });
 	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!selectedFlaw.selectedId && !selectedFlaw.selectedCharacterFlaw) {
@@ -38,6 +38,7 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 			 await updateExistingFlaw(selectedFlaw.selectedId, data.characterFlaw); 
 		}
 	};
+
 	//Post Request
 	const updateFlaw =  async (e) => {
 		const {id, characterFlaw } = data;
@@ -57,6 +58,7 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 			console.log(error)
 		}
 	}
+	
 	//Put Request
 	const updateExistingFlaw = async (id, characterFlaw) => {
 		try {
