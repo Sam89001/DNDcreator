@@ -122,7 +122,8 @@
 }
 
 .multichoice-edit-field,
-.down-arrow-container {
+.down-arrow-container,
+.basic-field-container {
   max-height: 40px;
 }
 /* List */

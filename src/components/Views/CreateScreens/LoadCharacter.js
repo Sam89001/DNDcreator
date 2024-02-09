@@ -11,6 +11,7 @@ import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
 import FlawsForm from '../../Forms/CreateCharacterForms/FlawsForm';
 import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm';
 import AttacksForm from '../../Forms/CreateCharacterForms/AttacksForm';
+import EquipmentForm from '../../Forms/CreateCharacterForms/EquipmentForm';
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -197,11 +198,15 @@ function LoadPlaySession() {
                     <div className='col-7'>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>
-                        <ProficiencyForm></ProficiencyForm>
+                        <ProficiencyForm/>
                       </div>
 
-                      <div className='col-12'>
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
                         <AttacksForm/>
+                      </div>
+
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                        <EquipmentForm/>
                       </div>
 
                     </div>

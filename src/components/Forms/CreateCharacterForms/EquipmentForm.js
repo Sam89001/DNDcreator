@@ -9,12 +9,12 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function AttacksForm() {
+function EquipmentForm() {
   return (
     <form>
     <div className='row'>
       <div className='col-12' style={{paddingBottom: '10px'}}>
-        <div className="text-center form-titles">Add New Attack</div>
+        <div className="text-center form-titles">Add New Equipment</div>
       </div>
 
       <div className='col-12' style={{paddingBottom: '10px'}}>
@@ -33,7 +33,7 @@ function AttacksForm() {
 
     </div>
     </form>
-  );
+  ); 
 }
 
-export default AttacksForm
+export default EquipmentForm
