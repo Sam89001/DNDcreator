@@ -246,8 +246,7 @@ function DndSheet({fetchData,
         </div>
 
         {/* image */}
-        <img className="img-fluid" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px',}}/>
-       
+        <img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px'}}/>
       </div>
     </div>
   );

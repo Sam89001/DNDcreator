@@ -12,6 +12,7 @@ import FlawsForm from '../../Forms/CreateCharacterForms/FlawsForm';
 import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm';
 import AttacksForm from '../../Forms/CreateCharacterForms/AttacksForm';
 import EquipmentForm from '../../Forms/CreateCharacterForms/EquipmentForm';
+import FeaturesTraitsForm from '../../Forms/CreateCharacterForms/FeatureTraitsForm';
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -119,7 +120,7 @@ function LoadPlaySession() {
     }
   
     return (
-      <div>
+      <div style={{paddingBottom: '20px'}}>
         <nav className='navigation-bar'>
           <Navbar navigationTitle="Character Menu" navigationTitleLink="/ChooseCharacter" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
         </nav>
@@ -128,7 +129,7 @@ function LoadPlaySession() {
 
           {/* Character Sheet */}
   
-          <div className="col-5" style={{ color: 'white', padding: '0px 30px 30px 30px' }}>
+          <div className="col-5" style={{ color: 'white', padding: '30px 20px 20px 20px' }}>
             <DndSheet
             fetchData={fetchData}
             characterName={characterData ? characterData.characterName : ''}
@@ -175,9 +176,10 @@ function LoadPlaySession() {
               {/* Skills */}
                               
               <div className='col-3'>
-                <div style={{paddingBottom: '22px'}}>
-                  <SkillsForm updateCharacterSkills={updateCharacterSkills}/>
+                <div style={{paddingBottom: '30px'}}>
+                  <SkillsForm updateCharacterSkills={updateCharacterSkills} />
                 </div>
+                
                 <MiscStatsForm updateCharacterMisc={updateCharacterMisc}/>
               </div>
 
@@ -197,16 +199,20 @@ function LoadPlaySession() {
                   <div className='row'>
                     <div className='col-7'>
 
-                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                      <div className='col-12' style={{paddingBottom: '20px'}}>
                         <ProficiencyForm/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                      <div className='col-12' style={{paddingBottom: '20px'}}>
                         <AttacksForm/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                      <div className='col-12' style={{paddingBottom: '20px'}}>
                         <EquipmentForm/>
+                      </div>
+
+                      <div className='col-12' style={{paddingBottom: '20px'}}>
+                        <FeaturesTraitsForm/>
                       </div>
 
                     </div>
@@ -214,20 +220,24 @@ function LoadPlaySession() {
                     {/* Right Side */}
 
                     <div className='col-5'>
-                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                      <div className='col-12' style={{paddingBottom: '5px'}}>
                         <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} setCharacterPersonalityTraits={setCharacterPersonalityTraits} fetchData={fetchData}/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                      <div className='col-12' style={{paddingBottom: '5px'}}>
                         <IdealsForm characterIdeals={characterIdeals} setCharacterIdeals={setCharacterIdeals} fetchData={fetchData}/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                      <div className='col-12' style={{paddingBottom: '5px'}}>
                         <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
                       </div>
 
                       <div className='col-12'>
                        <FlawsForm characterFlaws={characterFlaws} setCharacterFlaws={setCharacterFlaws} fetchData={fetchData}/>
+                      </div>
+
+                      <div className='col-12' style={{paddingBottom: '5px'}}>
+                        <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
                       </div>
 
                     </div>

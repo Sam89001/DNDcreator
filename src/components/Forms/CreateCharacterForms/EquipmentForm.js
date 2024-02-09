@@ -19,15 +19,23 @@ function EquipmentForm() {
 
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div className='basic-field-container' style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-          <input className='create-character-field' style={{width: '55%'}} placeholder='Attack Name'/>
-          <input className='create-character-field' style={{width: '20%'}} placeholder='Atk Bonus'/>
-          <input className='create-character-field' style={{width: '20%'}} placeholder='Dmg Type'/>
+          <input className='create-character-field' style={{width: '74%'}} placeholder='Equipment Name'/>
+          <input className='create-character-field' style={{width: '24%'}} placeholder='Quantity'/>
         </div>
       </div>
 
-      <div className='col-12'>
-        <div className='basic-field-container'>
-          <input className='create-character-field' style={{width: '100%'}} placeholder='Description'/>
+      <div className='col-12' style={{paddingBottom: '10px'}}>
+        <div style={{width: '100%'}}>
+          <textarea className='description-field' placeholder='Description'/>
+        </div>
+      </div>
+
+      <div className='col-12' style={{paddingBottom: '10px'}}>
+        <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
+          <select className='create-character-field' style={{width: '75%'}} placeholder='Attack Name'>
+            <option/>
+          </select>
+					<button className='create-character-button' type="submit" > Update</button>
         </div>
       </div>
 

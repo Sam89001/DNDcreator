@@ -3,7 +3,8 @@
 .create-character-field,
 .skills-field,
 .create-character-multichoice-field,
-.edit-character-field {
+.edit-character-field,
+.description-field {
     background-color: var(--inputGrey);
     border: none;
     color: white;
@@ -126,6 +127,7 @@
 .basic-field-container {
   max-height: 40px;
 }
+
 /* List */
 .down-arrow-container {
   position: relative;
@@ -193,6 +195,14 @@
   padding: 3px 3px 3px 10px;
 }
 
+.description-field {
+  width: 100%;
+  min-height: 60px;
+  max-height: 100px;
+  font-size: 15px;
+  padding: 3px 3px 3px 10px;
+}
+
 .create-character-container {
   padding: 2px 10px 10px 0px;
 }
@@ -213,20 +223,22 @@
 	width: 60px;
 }
 
+/* Skills Fields */
+
 .skill-section-margin {
     margin-bottom: 8px;
 }
 
 .skills-field {
-    height: 63px;
-    width: 63px;
-    border-radius: 35px;
+    height: 85px;
+    width: 85px;
+    border-radius: 45px;
     padding: 5px;
 }
 
 .profficient-field {
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
     accent-color: var(--inputGrey);
     border: 5px solid var(--inputGrey);
     border-radius: 5px;

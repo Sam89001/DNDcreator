@@ -9,19 +9,19 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function AttacksForm() {
+function FeaturesTraitsForm() {
   return (
     <form>
     <div className='row'>
       <div className='col-12' style={{paddingBottom: '10px'}}>
-        <div className="text-center form-titles">Add New Attack</div>
+        <div className="text-center form-titles">Add New Feature/Trait</div>
       </div>
 
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div className='basic-field-container' style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-          <input className='create-character-field' style={{width: '55%'}} placeholder='Attack Name'/>
-          <input className='create-character-field' style={{width: '20%'}} placeholder='Atk Bonus'/>
-          <input className='create-character-field' style={{width: '20%'}} placeholder='Dmg Type'/>
+          <input className='create-character-field' style={{width: '65%'}} placeholder='Feature/Trait Name'/>
+          <input className='create-character-field' style={{width: '33%'}} placeholder='Additional Detail'/>
+
         </div>
       </div>
 
@@ -45,4 +45,4 @@ function AttacksForm() {
   );
 }
 
-export default AttacksForm
+export default FeaturesTraitsForm

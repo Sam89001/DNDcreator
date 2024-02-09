@@ -65,12 +65,12 @@ function SkillsForm({updateCharacterSkills}) {
 
 			{/* Titles */}
 
-			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right'> 
+			<div className='col-6 d-flex align-items-center justify-content-center'> 
 				<div className="text-center form-titles">Proficiency</div>
 			</div>
 
-			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-left'> 
-				<div className="text-center form-titles" style={{paddingRight: '10px'}}>Skills</div>
+			<div className='col-6 d-flex align-items-center justify-content-center'> 
+				<div className="text-center form-titles" style={{paddingRight: '10px'}}></div>
 			</div>
 
 			{/* Strength */}
