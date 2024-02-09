@@ -5,10 +5,6 @@ import '../../css/Components.css';
 //Images
 import DndSheetImage from '../../images/sheet1.jpg'
 
-//States
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-
 //Dependencies
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
@@ -26,7 +22,7 @@ function DndSheet({fetchData,
   
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
   
-  characterPersonalityTraits, characterIdeals, characterBonds }) {
+  characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws }) {
 
   //Delete Request
 	const deletePersonalityTrait =  async (e, id) => {
@@ -65,6 +61,22 @@ function DndSheet({fetchData,
 		e.preventDefault();
 		try {
 			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteBond/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		} 
+	} 
+
+  const deleteFlaw =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteFlaw/${id}`);
 			if(response.error) {
 				toast.error(response.data.error);
 			} else {
@@ -219,6 +231,16 @@ function DndSheet({fetchData,
             <div value={bond._id} key={bond._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {bond.characterBond}
               <button className='delete-property-button' onClick={(e) => deleteBond(e, bond._id)} >X</button>
+            </div>
+          ))}
+        </div>
+
+        {/* Flaws */}
+        <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '40%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
+          {characterFlaws.map(flaw => (
+            <div value={flaw._id} key={flaw._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {flaw.characterFlaw}
+              <button className='delete-property-button' onClick={(e) => deleteFlaw(e, flaw._id)} >X</button>
             </div>
           ))}
         </div>

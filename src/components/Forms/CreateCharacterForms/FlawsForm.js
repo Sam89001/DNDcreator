@@ -9,45 +9,45 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
+function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 	const { id: urlId } = useParams();
 	const [data, setData] = useState({
 		id: urlId,
-		characterBond: '',
+		characterFlaw: '',
 	})
-	 //Sets user change
-	const [selectedBond, setSelectedBond] = useState({
+	//Sets user change
+	const [selectedFlaw, setSelectedFlaw] = useState({
 		selectedId: '',
-		selectedCharacterBond: ''
+		selectedCharacterFlaw: ''
 	});
+	//Handles user change
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
-    setSelectedBond({ selectedId: selectedId, selectedCharacterBond: selectedValue });
+		console.log('SelectedId' + selectedId )
+		console.log('SelectedValue' + selectedValue )
+    setSelectedFlaw({ selectedId: selectedId, selectedCharacterFlaw: selectedValue });
 	};
-
-	//Handles user change
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!selectedBond.selectedId && !selectedBond.selectedCharacterBond) {
+		if (!selectedFlaw.selectedId && !selectedFlaw.selectedCharacterFlaw) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
-			await updateBond();
+			await updateFlaw();
 		} else {
-			 await updateExistingBond(selectedBond.selectedId, data.characterBond); 
+			 //await updateExistingBond(selectedFlaw.selectedId, data.characterFlaw); 
 		}
 	};
-
 	//Post Request
-	const updateBond =  async (e) => {
-		const {id, characterBond } = data;
+	const updateFlaw =  async (e) => {
+		const {id, characterFlaw } = data;
 		try {
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateBond/${id}`, {
-				id, characterBond
+			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateFlaw/${id}`, {
+				id, characterFlaw
 			});
 
 			if (response.data.success) {
-				const newBond = response.data.newBond;
-				setCharacterBonds(prevBond => [...prevBond, newBond]);
+				const newFlaw = response.data.newFlaw;
+				setCharacterFlaws(prevFlaw => [...prevFlaw, newFlaw]);
 				toast.success('Updated character details');
 			} else {
 				toast.error('Failed to update character details');
@@ -56,41 +56,23 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
 			console.log(error)
 		}
 	}
-
 	//Put Request
-	const updateExistingBond = async (id, characterBond) => {
-		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/Changebond/${id}`, {
-					id,
-					characterBond
-				});
-
-				if (response.error) {
-					toast.error(response.data.error);
-				} else {
-					fetchData();
-					toast.success('Updated character details');
-				}
-		} catch (error) {
-				console.log(error);
-		}
-	};
 
   return(
     <form onSubmit={handleSubmit}>
       <div className = "row">
     
         <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'> 
-           <div className="text-center form-titles">Add New Bond</div>
+           <div className="text-center form-titles">Add New Flaw</div>
         </div>
     
         <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
           <input className='create-character-field multichoice-input-field' placeholder='Name'
-             onChange={(e) => setData({ ...data, characterBond: e.target.value})}/>
+             onChange={(e) => setData({ ...data, characterFlaw: e.target.value})}/>
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 
-            <div className="text-center form-titles">View/Edit Bond</div>
+            <div className="text-center form-titles">View/Edit Flaw</div>
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'>
@@ -98,8 +80,8 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
                 <select className='edit-character-field' id='characterPersonalityEdit'
                   onChange={handleSelectChange}>
                   <option/>
-									{characterBonds.map(Bond => (
-										<option key={Bond._id} value={Bond._id}>{Bond.characterBond}</option>
+									{characterFlaws.map(Flaw => (
+										<option key={Flaw._id} value={Flaw._id}>{Flaw.characterFlaw}</option>
 									))}
                 </select>
     
@@ -113,7 +95,6 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
       </div>
     </form>
   )
-
 }
 
-export default BondsForm
+export default FlawsForm;

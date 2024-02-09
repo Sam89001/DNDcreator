@@ -8,6 +8,7 @@ import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
 import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
 import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
 import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
+import FlawsForm from '../../Forms/CreateCharacterForms/FlawsForm';
 import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm';
 
 //Dependencies
@@ -54,6 +55,7 @@ function LoadPlaySession() {
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
   const [characterIdeals, setCharacterIdeals] = useState([]);
   const [characterBonds, setCharacterBonds] = useState([]);
+  const [characterFlaws, setCharacterFlaws] = useState([]);
   
     const fetchData = async () => {
       try {
@@ -91,6 +93,7 @@ function LoadPlaySession() {
         setCharacterPersonalityTraits(characterData.personalityTraits || []);
         setCharacterIdeals(characterData.ideals || []);
         setCharacterBonds(characterData.bonds || []);
+        setCharacterFlaws(characterData.flaws || []);
         
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
@@ -153,6 +156,7 @@ function LoadPlaySession() {
             characterPersonalityTraits={characterPersonalityTraits}
             characterIdeals={characterIdeals}
             characterBonds={characterBonds}
+            characterFlaws={characterFlaws}
             />
           </div>
 
@@ -202,6 +206,14 @@ function LoadPlaySession() {
 
                   <div className='col-5' style={{paddingBottom: '10px'}}>
                     <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
+                  </div>
+
+                  <div className='col-7'>
+                    
+                  </div>
+
+                  <div className='col-5'>
+                    <FlawsForm characterFlaws={characterFlaws} setCharacterFlaws={setCharacterFlaws} fetchData={fetchData}/>
                   </div>
 
                 </div>

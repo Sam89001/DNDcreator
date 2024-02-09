@@ -7,6 +7,7 @@ const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
 const CreateCharacterIdealSchema = require('../models/CreateCharacterIdealSchema')
 const CreateCharacterBondSchema = require('../models/CreateCharacterBondSchema')
+const CreateCharacterFlawSchema = require('../models/CreateCharacterFlawSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -36,7 +37,8 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacters = await CreateCharacterSchema.findById(characterId);
     const LoadCharacterPersonalityTraits = await CreateCharacterPersonalitySchema.find({ characterId: characterId })
     const LoadCharacterIdeal = await CreateCharacterIdealSchema.find({ characterId: characterId })
-    const LoadCharacterBonds = await CreateCharacterBondSchema .find({ characterId: characterId })
+    const LoadCharacterBonds = await CreateCharacterBondSchema.find({ characterId: characterId })
+    const LoadCharacterFlaw = await CreateCharacterFlawSchema.find({ characterId: characterId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -47,7 +49,8 @@ router.get('/:characterId', async (req, res) => {
       character: LoadCharacters,
       personalityTraits: LoadCharacterPersonalityTraits,
       ideals: LoadCharacterIdeal,
-      bonds: LoadCharacterBonds
+      bonds: LoadCharacterBonds,
+      flaws: LoadCharacterFlaw
     };
     res.json(responseData);
   } catch (error) {
@@ -426,6 +429,50 @@ router.delete('/DeleteBond/:id', async (req, res) => {
 }
 })
 
+//Creates a Flaw
+router.post('/UpdateFlaw/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterFlaw } = req.body; 
+    const characterData = { characterId: id, characterFlaw: characterFlaw } 
+
+    const updateCharacterFlaw = await CreateCharacterFlawSchema.create(
+      characterData
+    );
+
+    if (!updateCharacterFlaw) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newFlaw: updateCharacterFlaw
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Deletes a Flaw 
+router.delete('/DeleteFlaw/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deletedFlaw = await CreateCharacterFlawSchema.findByIdAndDelete(id);
+    if (!deletedFlaw) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+  
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 module.exports = router;
