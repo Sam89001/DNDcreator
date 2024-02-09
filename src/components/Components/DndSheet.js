@@ -22,7 +22,10 @@ function DndSheet({fetchData,
   
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
   
-  characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws, characterLanguages }) {
+  characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws, characterLanguages,
+
+  characterTraits
+  }) {
 
   //Delete Request
 	const deletePersonalityTrait =  async (e, id) => {
@@ -275,29 +278,20 @@ function DndSheet({fetchData,
         {/* Features/Traits */}
 
         <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '48.5%', left: '68%', width: '27%', height: '47%', fontSize: '0.7vw' }}>
-
-          <div className='col-12' style={{paddingBottom: '40px', paddingTop: '10px'}}>
-            <div className='row '>
-              <div className='col-7' style={{ padding: '0px 5px 15px 10px' }}>TEST TEST TEST TEST</div> 
-              <div className='col-3 d-flex align-items-center' style={{ padding: '0px 5px 15px 5px' }}>Test</div>
-              <div className='col-2 d-flex align-items-center justify-content-center' style={{ padding: '0px 5px 15px 5px' }}>
-                <button className='delete-property-button'>X</button>
-              </div>
-              <div className='col-12' style={{ padding: '0px 5px 0px 10px' }}>
-              TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+          {characterTraits.map(trait => (
+            <div value={trait._id} key={trait._id} className='col-12' style={{paddingBottom: '40px', paddingTop: '10px'}}>
+              <div className='row '>
+                <div className='col-7' style={{ padding: '0px 5px 15px 10px' }}>{trait.characterTraitTitle}</div> 
+                <div className='col-3 d-flex align-items-center' style={{ padding: '0px 5px 15px 5px' }}>{trait.characterTraitAdditionalInfo}</div>
+                <div className='col-2 d-flex align-items-center justify-content-center' style={{ padding: '0px 5px 15px 5px' }}>
+                  <button className='delete-property-button'>X</button>
+                </div>
+                <div className='col-12' style={{ padding: '0px 5px 0px 10px' }}>
+                  {trait.characterTraitDescription}
+                </div>
               </div>
             </div>
-          </div>
-
-          
-          
-          {/* 
-          {characterLanguages.map(language => (
-            <div value={language._id} key={language._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {language.characterLanguage}
-              <button className='delete-property-button' onClick={(e) => deleteLanguage(e, language._id)} >X</button>
-            </div>
-          ))} */}
+          ))}
         </div>
 
         {/* image */}

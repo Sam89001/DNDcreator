@@ -9,6 +9,7 @@ const CreateCharacterIdealSchema = require('../models/CreateCharacterIdealSchema
 const CreateCharacterBondSchema = require('../models/CreateCharacterBondSchema')
 const CreateCharacterFlawSchema = require('../models/CreateCharacterFlawSchema')
 const CreateCharacterLanguageSchema = require('../models/CreateCharacterLanguageSchema')
+const CreateCharacterTraitSchema = require('../models/CreateCharacterTraitSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -41,6 +42,8 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterBonds = await CreateCharacterBondSchema.find({ characterId: characterId })
     const LoadCharacterFlaw = await CreateCharacterFlawSchema.find({ characterId: characterId })
     const LoadCharacterLanguage = await CreateCharacterLanguageSchema.find({ characterId: characterId })
+    const LoadCharacterTrait = await CreateCharacterTraitSchema.find({ characterId: characterId })
+    
 
     if (!LoadCharacters) {
       return res.json({
@@ -53,7 +56,8 @@ router.get('/:characterId', async (req, res) => {
       ideals: LoadCharacterIdeal,
       bonds: LoadCharacterBonds,
       flaws: LoadCharacterFlaw,
-      languages: LoadCharacterLanguage
+      languages: LoadCharacterLanguage,
+      traits: LoadCharacterTrait
     };
     res.json(responseData);
   } catch (error) {
@@ -579,5 +583,35 @@ router.delete('/DeleteLanguage/:id', async (req, res) => {
     console.log(error)
   }
 })
+
+//Creates a Trait
+router.post('/UpdateTrait/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterTraitTitle, characterTraitAdditionalInfo,
+      characterTraitDescription } = req.body; 
+
+    const characterData = { characterId: id, characterTraitTitle: characterTraitTitle,
+      characterTraitAdditionalInfo: characterTraitAdditionalInfo, characterTraitDescription: characterTraitDescription } 
+
+    const updateCharacterTrait = await CreateCharacterTraitSchema.create(
+      characterData
+    );
+
+    if (!updateCharacterTrait) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newFeatureTrait: updateCharacterTrait
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
 
 module.exports = router;

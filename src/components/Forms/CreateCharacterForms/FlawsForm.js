@@ -25,8 +25,6 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
-		console.log('SelectedId' + selectedId )
-		console.log('SelectedValue' + selectedValue )
     setSelectedFlaw({ selectedId: selectedId, selectedCharacterFlaw: selectedValue });
 	};
 	const handleSubmit = async (e) => {
@@ -100,9 +98,9 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
                 <select className='edit-character-field' id='characterPersonalityEdit'
                   onChange={handleSelectChange}>
                   <option/>
-									{characterFlaws.map(Flaw => (
-										<option key={Flaw._id} value={Flaw._id}>{Flaw.characterFlaw}</option>
-									))}
+					{characterFlaws.map(Flaw => (
+						<option key={Flaw._id} value={Flaw._id}>{Flaw.characterFlaw}</option>
+					))}
                 </select>
     
             </div>

@@ -62,6 +62,7 @@ function LoadPlaySession() {
   const [characterBonds, setCharacterBonds] = useState([]);
   const [characterFlaws, setCharacterFlaws] = useState([]);
   const [characterLanguages, setCharacterLanguages] = useState([]);
+  const [characterTraits, setCharacterTraits] = useState([]);
   
     const fetchData = async () => {
       try {
@@ -101,6 +102,7 @@ function LoadPlaySession() {
         setCharacterBonds(characterData.bonds || []);
         setCharacterFlaws(characterData.flaws || []);
         setCharacterLanguages(characterData.languages || []);
+        setCharacterTraits(characterData.traits || []);
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -164,6 +166,8 @@ function LoadPlaySession() {
             characterBonds={characterBonds}
             characterFlaws={characterFlaws}
             characterLanguages={characterLanguages}
+
+            characterTraits={characterTraits}
             />
           </div>
 
@@ -216,7 +220,7 @@ function LoadPlaySession() {
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '20px'}}>
-                        <FeaturesTraitsForm/>
+                        <FeaturesTraitsForm characterTraits={characterTraits} setCharacterTraits={setCharacterTraits} fetchData={fetchData}/>
                       </div>
 
                     </div>
