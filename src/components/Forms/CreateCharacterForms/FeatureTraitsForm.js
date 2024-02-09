@@ -84,11 +84,11 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
   return (
     <form onSubmit={handleSubmit}>
     <div className='row'>
-      <div className='col-12' style={{paddingBottom: '10px'}}>
+      <div className='col-12' style={{paddingBottom: '2px'}}>
         <div className="text-center form-titles">Add New Feature/Trait</div>
       </div>
 
-      <div className='col-12' style={{paddingBottom: '10px'}}>
+      <div className='col-12' style={{paddingBottom: '5px'}}>
         <div className='basic-field-container' style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
 
           <input className='create-character-field' style={{width: '65%'}} placeholder='Feature/Trait Name'
@@ -100,7 +100,7 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
         </div>
       </div>
 
-      <div className='col-12' style={{paddingBottom: '10px'}}>
+      <div className='col-12' style={{paddingBottom: '5px'}}>
         <div style={{width: '100%'}}>
 
           <textarea className='description-field' placeholder='Description'
@@ -109,7 +109,11 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
         </div>
       </div>
 
-      <div className='col-12' style={{paddingBottom: '10px'}}>
+      <div className='col-9' style={{paddingBottom: '2px'}}>
+        <div className="text-center form-titles">View/Edit Flaw</div>
+      </div>
+
+      <div className='col-12' style={{paddingBottom: '5px'}}>
         <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
           <select className='create-character-field' style={{width: '75%'}} 
           placeholder='Attack Name' onChange={handleSelectChange}>

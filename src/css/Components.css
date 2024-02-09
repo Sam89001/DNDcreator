@@ -79,5 +79,11 @@
 }
 
 .character-sheet {
-    border-radius: 40px;
+  border-radius: 40px;
+}
+
+.trait-title {
+  padding: 0px 5px 5px 5px;
+	font-size: 12px;
+	color: var(--textLightGrey);
 }

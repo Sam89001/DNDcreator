@@ -293,16 +293,22 @@ function DndSheet({fetchData,
 
         {/* Features/Traits */}
 
-        <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '48.5%', left: '68%', width: '27%', height: '47%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '47%', fontSize: '0.7vw' }}>
           {characterTraits.map(trait => (
-            <div value={trait._id} key={trait._id} className='col-12' style={{paddingBottom: '40px', paddingTop: '10px'}}>
+            <div value={trait._id} key={trait._id} className='col-12' style={{paddingBottom: '15px', paddingTop: '10px', borderBottom: '1px solid var(--lightBackgroundGrey)'}}>
               <div className='row '>
-                <div className='col-7' style={{ padding: '0px 5px 15px 10px' }}>{trait.characterTraitTitle}</div> 
-                <div className='col-3 d-flex align-items-center' style={{ padding: '0px 5px 15px 5px' }}>{trait.characterTraitAdditionalInfo}</div>
-                <div className='col-2 d-flex align-items-center justify-content-center' style={{ padding: '0px 5px 15px 5px' }}>
+                <div className='col-5 trait-title' >Trait Title</div> 
+                <div className='col-5 d-flex align-items-center trait-title' >Other Trait Info:</div>
+                <div className='col-2 d-flex align-items-center justify-content-center trait-title' >
                   <button className='delete-property-button' onClick={(e) => deleteTrait(e, trait._id)}>X</button>
                 </div>
-                <div className='col-12' style={{ padding: '0px 5px 0px 10px' }}>
+
+                <div className='col-5' style={{ padding: '0px 5px 15px 5px' }}>{trait.characterTraitTitle}</div> 
+                <div className='col-7 d-flex align-items-center' style={{ padding: '0px 5px 15px 5px' }}>{trait.characterTraitAdditionalInfo}</div>
+
+                <div className='col-12 trait-title' >Trait Description:</div> 
+
+                <div className='col-12' style={{ padding: '0px 5px 0px 5px' }}>
                   {trait.characterTraitDescription}
                 </div>
               </div>
