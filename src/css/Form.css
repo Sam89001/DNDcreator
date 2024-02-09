@@ -95,6 +95,8 @@
   text-align: center;
 }
 
+/* Multichoice */
+
 .multiple-property-container {
   display: flex;
   justify-content: space-between;
@@ -111,6 +113,54 @@
 
 .multichoice-edit-field-small {
   width: 85%;
+}
+
+.multichoice-edit-field,
+.list-dropdown,
+.list-item {
+  width: 100%;
+}
+
+.multichoice-edit-field,
+.down-arrow-container {
+  max-height: 40px;
+}
+/* List */
+.down-arrow-container {
+  position: relative;
+  margin-bottom: 10px;
+  height: 40px;
+  background-color: var(--inputGrey)
+}
+
+.down-arrow {
+  max-height: 8px; 
+  position: absolute;
+  right: 10px; 
+  top: 50%; 
+  transform: translateY(-50%) rotate(180deg); 
+  cursor: pointer;
+  transition: max-height 0.3s; 
+}
+
+.down-arrow:hover {
+  max-height: 9px; 
+}
+
+.list-dropdown {
+  list-style: none;
+  padding: 0px 0px 0px 0px;
+  background-color: var(--inputGrey);
+  overflow: hidden;
+}
+
+.list-item {
+  font-size: 16px;
+  padding: 0px 15px 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--inputGrey)
 }
 
 /* Fields */
