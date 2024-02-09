@@ -612,6 +612,58 @@ router.post('/UpdateTrait/:id', async (req, res) => {
   }
 })
 
+//Put a Trait
+router.put('/ChangeTrait/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterTraitTitle, characterTraitAdditionalInfo,
+      characterTraitDescription } = req.body; 
+    const characterData = { characterTraitTitle, characterTraitAdditionalInfo,
+      characterTraitDescription } 
+
+    const updateTrait = await CreateCharacterTraitSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateTrait) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Delete a Trait
+router.delete('/DeleteTrait/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deletedTrait = await CreateCharacterTraitSchema.findByIdAndDelete(id);
+    if (!deletedTrait) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
 
 
 module.exports = router;

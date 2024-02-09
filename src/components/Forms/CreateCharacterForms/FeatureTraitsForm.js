@@ -33,8 +33,8 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
 			await updateTrait();
 		} else {
-			//await updateExistingTrait(selectedTrait.selectedId, data.characterTraitTitle, 
-      //data.characterTraitAdditionalInfo, data.characterTraitDescription); 
+			await updateExistingTrait(selectedTrait.selectedId, data.characterTraitTitle, 
+      data.characterTraitAdditionalInfo, data.characterTraitDescription); 
 		}
 	};
 
@@ -60,6 +60,26 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
 			console.log(error)
 		}
 	}
+
+  //Put Request
+  const updateExistingTrait = async (id, characterTraitTitle, characterTraitAdditionalInfo, characterTraitDescription) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeTrait/${id}`, {
+					id, characterTraitTitle, 
+          characterTraitAdditionalInfo, 
+          characterTraitDescription
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					fetchData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	};
 
   return (
     <form onSubmit={handleSubmit}>

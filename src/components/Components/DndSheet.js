@@ -108,6 +108,22 @@ function DndSheet({fetchData,
 		} 
 	} 
 
+  const deleteTrait =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteTrait/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		} 
+	} 
+
 
 	return (
     <div>
@@ -284,7 +300,7 @@ function DndSheet({fetchData,
                 <div className='col-7' style={{ padding: '0px 5px 15px 10px' }}>{trait.characterTraitTitle}</div> 
                 <div className='col-3 d-flex align-items-center' style={{ padding: '0px 5px 15px 5px' }}>{trait.characterTraitAdditionalInfo}</div>
                 <div className='col-2 d-flex align-items-center justify-content-center' style={{ padding: '0px 5px 15px 5px' }}>
-                  <button className='delete-property-button'>X</button>
+                  <button className='delete-property-button' onClick={(e) => deleteTrait(e, trait._id)}>X</button>
                 </div>
                 <div className='col-12' style={{ padding: '0px 5px 0px 10px' }}>
                   {trait.characterTraitDescription}
