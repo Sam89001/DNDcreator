@@ -165,13 +165,19 @@
   transition: max-height 2s;
 }
 
-.list-item {
+.list-item,
+.list-item-header {
   font-size: 16px;
-  padding: 0px 15px 10px 15px;
+  padding: 0px 15px 2px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--inputGrey)
+  background-color: var(--inputGrey);
+}
+
+.list-item-header {
+  font-size: 18px;
+  color: var(--textGrey);
 }
 
 /* Fields */

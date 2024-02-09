@@ -46,10 +46,15 @@ function ProficiencyForm() {
                   onClick={skillsToggleDropdown}
                 />
               </li>
+              <li className='list-item list-item-header '> Strength</li>
+
               <li className='list-item'>
                 <input type="checkbox" id="athletics" name="athletics" />
                 <label htmlFor="athletics">Athletics</label>
               </li>
+
+              <li className='list-item list-item-header '> Dexterity</li>
+
               <li className='list-item'>
                 <input type="checkbox" id="acrobatics" name="acrobatics" />
                 <label htmlFor="acrobatics">Acrobatics</label>
@@ -62,6 +67,9 @@ function ProficiencyForm() {
                 <input type="checkbox" id="stealth" name="stealth" />
                 <label htmlFor="stealth">Stealth</label>
               </li>
+
+              <li className='list-item list-item-header '> Intelligence</li>
+
               <li className='list-item'>
                 <input type="checkbox" id="arcana" name="arcana" />
                 <label htmlFor="arcana">Arcana</label>
@@ -82,6 +90,9 @@ function ProficiencyForm() {
                 <input type="checkbox" id="religion" name="religion" />
                 <label htmlFor="religion">Religion</label>
               </li>
+
+              <li className='list-item list-item-header '> Wisdom</li>
+
               <li className='list-item'>
                 <input type="checkbox" id="animalHandling" name="animalHandling" />
                 <label htmlFor="animalHandling">Animal Handling</label>
@@ -102,6 +113,9 @@ function ProficiencyForm() {
                 <input type="checkbox" id="survival" name="survival" />
                 <label htmlFor="survival">Survival</label>
               </li>
+
+              <li className='list-item list-item-header '> Charisma</li>
+
               <li className='list-item'>
                 <input type="checkbox" id="deception" name="deception" />
                 <label htmlFor="deception">Deception</label>
