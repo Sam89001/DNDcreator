@@ -126,7 +126,7 @@ function LoadPlaySession() {
 
           {/* Character Sheet */}
   
-          <div className="col-5" style={{ color: 'white', padding: '0px 50px 50px 50px' }}>
+          <div className="col-5" style={{ color: 'white', padding: '0px 30px 30px 30px' }}>
             <DndSheet
             fetchData={fetchData}
             characterName={characterData ? characterData.characterName : ''}
