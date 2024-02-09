@@ -137,50 +137,49 @@
 }
 
 .down-arrow {
-  max-height: 10px; 
+  max-height: 12px; 
   position: absolute;
   right: 10px; 
   top: 50%; 
   transform: translateY(-50%) rotate(180deg); 
   cursor: pointer;
-  transition: max-height 0.3s; 
-}
-
-.down-arrow:hover {
-  max-height: 11px; 
 }
 
 .down-arrow.active {
   transform: rotate(0deg);
 }
 
-.list-dropdown{
+.list-dropdown {
   list-style: none;
-  padding: 0px 0px 0px 0px;
+  padding: 0px 0px 20px 0px;
+  margin: 0px;
   background-color: var(--inputGrey);
   overflow: hidden;
   max-height: 40px;
-  transition: max-height 1s;
+  transition: max-height 0.4s, border 0.4s; 
+  border: none; 
 }
 
 .list-dropdown.active {
   max-height: 800px;
-  transition: max-height 2s;
+  transition: max-height 1s, border 0.5s; 
+  border: 1px solid rgb(43, 42, 42); 
 }
 
 .list-item,
 .list-item-header {
-  font-size: 16px;
+  font-size: 17px;
   padding: 0px 15px 2px 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--textGrey);
   background-color: var(--inputGrey);
 }
 
 .list-item-header {
   font-size: 18px;
-  color: var(--textGrey);
+  color: var(--textLightGrey);
 }
 
 /* Fields */

@@ -36,8 +36,8 @@ function ProficiencyForm() {
 
       {/* Skills List */}
 
-      <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin'>
-        <div className='multichoice-edit-field'>
+      <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin' >
+        <div className='multichoice-edit-field' style={{zIndex: '4'}}>
           <form>
             <ul className={`list-dropdown ${skillsDropdownCheck ? 'active' : ''}`}>
               <li className='down-arrow-container' style={{ position: 'relative' }}>
@@ -142,7 +142,7 @@ function ProficiencyForm() {
       {/* Saving Throws */}
 
       <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin'>
-        <div className='multichoice-edit-field'>
+        <div className='multichoice-edit-field' style={{zIndex: '4'}}>
           <form>
               <ul className={`list-dropdown ${savingThrowDropdownCheck ? 'active' : ''}`}>
                 <li className='down-arrow-container' style={{position: 'relative'}}>
