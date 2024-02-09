@@ -33,7 +33,7 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
 			await updateLanguage();
 		} else {
-			 //await updateExistingLanguage(selectedLanguage.selectedId, data.characterLanguage); 
+			 await updateExistingLanguage(selectedLanguage.selectedId, data.characterLanguage); 
 		}
 	};
 
@@ -56,6 +56,25 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
 			console.log(error)
 		}
 	}
+
+	//Put Request
+	const updateExistingLanguage = async (id, characterLanguage) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeLanguage/${id}`, {
+					id,
+					characterLanguage
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					fetchData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	};
 
 	return(
     <form onSubmit={handleSubmit}>

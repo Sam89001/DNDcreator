@@ -531,6 +531,35 @@ router.post('/UpdateLanguage/:id', async (req, res) => {
   }
 })
 
+//Updates a Language
+router.put('/ChangeLanguage/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterLanguage } = req.body; 
+    const characterData = { characterLanguage } 
+
+    const updateLanguage = await CreateCharacterLanguageSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateLanguage) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Deletes a Language
 router.delete('/DeleteLanguage/:id', async (req, res) => {
   try{
