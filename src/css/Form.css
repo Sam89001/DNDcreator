@@ -147,11 +147,22 @@
   max-height: 9px; 
 }
 
-.list-dropdown {
+.down-arrow.active {
+  transform: rotate(0deg);
+}
+
+.list-dropdown{
   list-style: none;
   padding: 0px 0px 0px 0px;
   background-color: var(--inputGrey);
   overflow: hidden;
+  max-height: 40px;
+  transition: max-height 1s;
+}
+
+.list-dropdown.active {
+  max-height: 800px;
+  transition: max-height 2s;
 }
 
 .list-item {
