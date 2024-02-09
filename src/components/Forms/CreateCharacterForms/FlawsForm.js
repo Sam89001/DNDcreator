@@ -28,13 +28,14 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 		console.log('SelectedValue' + selectedValue )
     setSelectedFlaw({ selectedId: selectedId, selectedCharacterFlaw: selectedValue });
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!selectedFlaw.selectedId && !selectedFlaw.selectedCharacterFlaw) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
 			await updateFlaw();
 		} else {
-			 //await updateExistingBond(selectedFlaw.selectedId, data.characterFlaw); 
+			 await updateExistingFlaw(selectedFlaw.selectedId, data.characterFlaw); 
 		}
 	};
 	//Post Request
@@ -57,6 +58,23 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 		}
 	}
 	//Put Request
+	const updateExistingFlaw = async (id, characterFlaw) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeFlaw/${id}`, {
+					id,
+					characterFlaw
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					fetchData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	};
 
   return(
     <form onSubmit={handleSubmit}>

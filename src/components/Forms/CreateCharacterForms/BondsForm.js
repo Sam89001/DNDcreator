@@ -60,7 +60,7 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
 	//Put Request
 	const updateExistingBond = async (id, characterBond) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/Changebond/${id}`, {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeBond/${id}`, {
 					id,
 					characterBond
 				});

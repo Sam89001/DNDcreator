@@ -381,7 +381,7 @@ router.post('/UpdateBond/:id', async (req, res) => {
 })
 
 //Updates a Bond
-router.put('/Changebond/:id', async (req, res) => {
+router.put('/ChangeBond/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { characterBond } = req.body; 
@@ -448,6 +448,35 @@ router.post('/UpdateFlaw/:id', async (req, res) => {
     return res.status(200).json({
       success: true,
       newFlaw: updateCharacterFlaw
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Updates a Flaw
+router.put('/ChangeFlaw/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterFlaw } = req.body; 
+    const characterData = { characterFlaw } 
+
+    const updateFlaw = await CreateCharacterFlawSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateFlaw) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
     });
   } catch (error) {
     console.log(error)
