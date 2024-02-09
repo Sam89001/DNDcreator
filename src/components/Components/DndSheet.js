@@ -293,7 +293,7 @@ function DndSheet({fetchData,
 
         {/* Features/Traits */}
 
-        <div className="absolute-div row dnd-sheet" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '47%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '46%', fontSize: '0.7vw' }}>
           {characterTraits.map(trait => (
             <div value={trait._id} key={trait._id} className='col-12 trait-container' >
               <div className='row '>
