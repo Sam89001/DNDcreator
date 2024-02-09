@@ -245,6 +245,16 @@ function DndSheet({fetchData,
           ))}
         </div>
 
+        {/* Other Proficiency/Languages */}
+        <div className="absolute-div row dnd-sheet" style={{overflow: 'auto', top: '79%', left: '8%', width: '27%', height: '16.5%', fontSize: '0.7vw' }}>
+          {characterFlaws.map(flaw => (
+            <div value={flaw._id} key={flaw._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {flaw.characterFlaw}
+              <button className='delete-property-button' onClick={(e) => deleteFlaw(e, flaw._id)} >X</button>
+            </div>
+          ))}
+        </div>
+
         {/* image */}
         <img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px'}}/>
       </div>

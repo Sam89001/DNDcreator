@@ -8,6 +8,7 @@ const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeron
 const CreateCharacterIdealSchema = require('../models/CreateCharacterIdealSchema')
 const CreateCharacterBondSchema = require('../models/CreateCharacterBondSchema')
 const CreateCharacterFlawSchema = require('../models/CreateCharacterFlawSchema')
+const CreateCharacterLanguageSchema = require('../models/CreateCharacterLanguageSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -30,7 +31,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-//Load character stats
+//Get character stats
 router.get('/:characterId', async (req, res) => {
   try {
     const characterId = req.params.characterId; 
@@ -39,6 +40,7 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterIdeal = await CreateCharacterIdealSchema.find({ characterId: characterId })
     const LoadCharacterBonds = await CreateCharacterBondSchema.find({ characterId: characterId })
     const LoadCharacterFlaw = await CreateCharacterFlawSchema.find({ characterId: characterId })
+    const LoadCharacterLanguage = await CreateCharacterLanguageSchema.find({ characterId: characterId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -50,7 +52,8 @@ router.get('/:characterId', async (req, res) => {
       personalityTraits: LoadCharacterPersonalityTraits,
       ideals: LoadCharacterIdeal,
       bonds: LoadCharacterBonds,
-      flaws: LoadCharacterFlaw
+      flaws: LoadCharacterFlaw,
+      languages: LoadCharacterLanguage
     };
     res.json(responseData);
   } catch (error) {

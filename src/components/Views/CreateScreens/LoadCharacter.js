@@ -160,6 +160,7 @@ function LoadPlaySession() {
             characterIdeals={characterIdeals}
             characterBonds={characterBonds}
             characterFlaws={characterFlaws}
+            characterLanguages={characterLanguages}
             />
           </div>
 
