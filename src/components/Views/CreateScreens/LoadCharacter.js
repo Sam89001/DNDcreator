@@ -10,6 +10,7 @@ import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
 import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
 import FlawsForm from '../../Forms/CreateCharacterForms/FlawsForm';
 import ProficiencyForm from '../../Forms/CreateCharacterForms/ProficiencyForm';
+import AttacksForm from '../../Forms/CreateCharacterForms/AttacksForm';
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -169,6 +170,8 @@ function LoadPlaySession() {
             </div>
   
             <div className='row'>
+
+              {/* Skills */}
                               
               <div className='col-3'>
                 <div style={{paddingBottom: '22px'}}>
@@ -176,51 +179,58 @@ function LoadPlaySession() {
                 </div>
                 <MiscStatsForm updateCharacterMisc={updateCharacterMisc}/>
               </div>
+
+              {/* Other Stats */}
       
               <div className='col-9'>
                 <div className='row' style={{maxWidth: '900px'}}>
+
+                  {/* Top */}
       
                   <div className='col-12' style={{paddingBottom: '20px'}}>
                     <GeneralStatsForm updateCharacterData={updateCharacterData}/>
                   </div>
 
-                  <div className='col-7'>
-                    <ProficiencyForm></ProficiencyForm>
-                  </div>
-      
-                  <div className='col-5' style={{paddingBottom: '10px'}}>
-                    <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} setCharacterPersonalityTraits={setCharacterPersonalityTraits} fetchData={fetchData}/>
-                  </div>
+                  {/* Left Side */}
 
-                  <div className='col-7'>
-                    
-                  </div>
+                  <div className='row'>
+                    <div className='col-7'>
 
-                  <div className='col-5' style={{paddingBottom: '10px'}}>
-                    <IdealsForm characterIdeals={characterIdeals} setCharacterIdeals={setCharacterIdeals} fetchData={fetchData}/>
-                  </div>
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                        <ProficiencyForm></ProficiencyForm>
+                      </div>
 
-                  <div className='col-7'>
-                    
-                  </div>
+                      <div className='col-12'>
+                        <AttacksForm/>
+                      </div>
 
-                  <div className='col-5' style={{paddingBottom: '10px'}}>
-                    <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
-                  </div>
+                    </div>
 
-                  <div className='col-7'>
-                    
-                  </div>
+                    {/* Right Side */}
 
-                  <div className='col-5'>
-                    <FlawsForm characterFlaws={characterFlaws} setCharacterFlaws={setCharacterFlaws} fetchData={fetchData}/>
-                  </div>
+                    <div className='col-5'>
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                        <PersonalityTraitForm characterPersonalityTraits={characterPersonalityTraits} setCharacterPersonalityTraits={setCharacterPersonalityTraits} fetchData={fetchData}/>
+                      </div>
 
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                        <IdealsForm characterIdeals={characterIdeals} setCharacterIdeals={setCharacterIdeals} fetchData={fetchData}/>
+                      </div>
+
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
+                        <BondsForm characterBonds={characterBonds} setCharacterBonds={setCharacterBonds} fetchData={fetchData}/>
+                      </div>
+
+                      <div className='col-12'>
+                       <FlawsForm characterFlaws={characterFlaws} setCharacterFlaws={setCharacterFlaws} fetchData={fetchData}/>
+                      </div>
+
+                    </div>
+
+                  </div>
                 </div>
               </div>
-
             </div>
-          
           </div>
         </div>
       </div>
