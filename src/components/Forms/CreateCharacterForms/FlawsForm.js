@@ -26,7 +26,15 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     setSelectedFlaw({ selectedId: selectedId, selectedCharacterFlaw: selectedValue });
+
+	//populates the field
+	const loadedValue = characterFlaws.find(value => value._id === selectedId);
+	setData({
+		...data,
+		characterFlaw: loadedValue ? loadedValue.characterFlaw : '',
+  	});
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!selectedFlaw.selectedId && !selectedFlaw.selectedCharacterFlaw) {
@@ -86,7 +94,13 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
     
         <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
           <input className='create-character-field multichoice-input-field' placeholder='Name'
-             onChange={(e) => setData({ ...data, characterFlaw: e.target.value})}/>
+						value={data.characterFlaw}
+						onChange={(e) =>
+							setData((prevData) => ({
+								...prevData,
+								characterFlaw: e.target.value,
+							}))
+						}/>
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 

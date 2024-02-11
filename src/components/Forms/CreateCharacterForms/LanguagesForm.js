@@ -26,7 +26,14 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
   	const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     setSelectedLanguage({ selectedId: selectedId, selectedCharacterLanguage: selectedValue });
+
+		const loadedValue = characterLanguages.find(value => value._id === selectedId);
+		setData({
+			...data,
+			characterLanguage: loadedValue ? loadedValue.characterLanguage : '',
+  	});
   };
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!selectedLanguage.selectedId && !selectedLanguage.selectedCharacterLanguage) {
@@ -86,7 +93,13 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
     
         <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
           <input className='create-character-field multichoice-input-field' placeholder='Name'
-             onChange={(e) => setData({ ...data, characterLanguage: e.target.value})}/>
+						value={data.characterLanguage}
+            onChange={(e) =>
+							setData((prevData) => ({
+								...prevData,
+								characterFlaw: e.target.value,
+							}))
+						}/>
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 
