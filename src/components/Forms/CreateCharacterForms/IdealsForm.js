@@ -26,6 +26,13 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     setSelectedIdeal({ selectedId: selectedId, selectedCharacterIdeal: selectedValue });
+
+	//populates the field
+	const loadedValue = characterIdeals.find(value => value._id === selectedId);
+	setData({
+		...data,
+		characterIdeal: loadedValue ? loadedValue.characterIdeal : '',
+	  });
 	};
 
 	//Handles user change
@@ -89,7 +96,13 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 
 			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
 				<input className='create-character-field multichoice-input-field' placeholder='Name'
-				onChange={(e) => setData({ ...data, characterIdeal: e.target.value})}/>
+				value={data.characterIdeal}
+				onChange={(e) =>
+					setData((prevData) => ({
+						...prevData,
+						characterIdeal: e.target.value,
+					}))
+				}/>
 			</div>
 
 			<div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 

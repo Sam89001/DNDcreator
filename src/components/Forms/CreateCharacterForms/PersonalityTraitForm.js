@@ -28,7 +28,7 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     setSelectedTrait({ selectedId: selectedId, selectedCharacterPersonalityTrait: selectedValue });
 
-	//populates the field
+	
 	const loadedValue = characterPersonalityTraits.find(value => value._id === selectedId);
 	setData({
 		...data,

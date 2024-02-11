@@ -24,6 +24,13 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     setSelectedBond({ selectedId: selectedId, selectedCharacterBond: selectedValue });
+
+		//populates the field
+		const loadedValue = characterBonds.find(value => value._id === selectedId);
+		setData({
+			...data,
+			characterBond: loadedValue ? loadedValue.characterBond : '',
+	  });
 	};
 
 	//Handles user change
@@ -86,7 +93,13 @@ function BondsForm({characterBonds, setCharacterBonds, fetchData}) {
     
         <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
           <input className='create-character-field multichoice-input-field' placeholder='Name'
-             onChange={(e) => setData({ ...data, characterBond: e.target.value})}/>
+						value={data.characterBond}
+            onChange={(e) =>
+							setData((prevData) => ({
+								...prevData,
+								characterBond: e.target.value,
+							}))
+						}/>
           </div>
     
           <div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 
