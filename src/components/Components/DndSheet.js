@@ -241,6 +241,38 @@ function DndSheet({fetchData,
           <div>{characterHitDice}</div>
         </div>
 
+        {/* Saving Throws */}
+
+        {/* Proficiencys */}
+        {/* Strength */}
+        <div className="absolute-div dnd-sheet" style={{ backgroundColor: 'white', borderRadius: '10px', top: '26.3%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
+        </div>
+
+        {/* Dexterity */}
+        <div className="absolute-div dnd-sheet" style={{ backgroundColor: 'white', borderRadius: '10px', top: '28%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
+        </div>
+
+        {/* Constitution */}
+        <div className="absolute-div dnd-sheet" style={{ backgroundColor: 'white', borderRadius: '10px', top: '29.7%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
+        </div>
+
+        {/* Intelligence */}
+        <div className="absolute-div dnd-sheet" style={{ backgroundColor: 'white', borderRadius: '10px', top: '31.4%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
+        </div>
+
+        {/* Wisdom */}
+        <div className="absolute-div dnd-sheet" style={{ backgroundColor: 'white', borderRadius: '10px', top: '33.1%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
+        </div>
+
+        {/* Charisma */}
+        <div className="absolute-div dnd-sheet" style={{ backgroundColor: 'white', borderRadius: '10px', top: '34.8%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
+        </div>
+
+
+
+        {/* Stats */}
+
+
         {/* Personality Trait */}
         <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '17.5%', left: '70%',width: '24%', height: '6%', fontSize: '0.7vw' }}>
           {characterPersonalityTraits.map(trait => (
