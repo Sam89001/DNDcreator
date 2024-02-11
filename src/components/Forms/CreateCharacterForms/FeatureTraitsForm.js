@@ -26,6 +26,16 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     setSelectedTrait({ selectedId: selectedId });
+
+
+  //finds and updates the fields
+    const selectedTrait = characterTraits.find(trait => trait._id === selectedId);
+    setData({
+      ...data,
+      characterTraitTitle: selectedTrait ? selectedTrait.characterTraitTitle : '',
+      characterTraitAdditionalInfo: selectedTrait ? selectedTrait.characterTraitAdditionalInfo : '',
+      characterTraitDescription: selectedTrait ? selectedTrait.characterTraitDescription : ''
+    });
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -92,10 +102,22 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
         <div className='basic-field-container' style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
 
           <input className='create-character-field' style={{width: '65%'}} placeholder='Feature/Trait Name'
-          onChange={(e) => setData({ ...data, characterTraitTitle: e.target.value})}/>
+          value={data.characterTraitTitle}
+          onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterTraitTitle: e.target.value,
+            }))
+          }/>
 
           <input className='create-character-field' style={{width: '33%'}} placeholder='Additional Detail'
-          onChange={(e) => setData({ ...data, characterTraitAdditionalInfo: e.target.value})}/>
+          value={data.characterTraitAdditionalInfo}
+          onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterTraitAdditionalInfo: e.target.value,
+            }))
+          }/>
 
         </div>
       </div>
@@ -104,7 +126,13 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
         <div style={{width: '100%'}}>
 
           <textarea className='description-field' placeholder='Description'
-          onChange={(e) => setData({ ...data, characterTraitDescription: e.target.value})}/>
+          value={data.characterTraitDescription}
+          onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterTraitDescription: e.target.value,
+            }))
+          }/>
 
         </div>
       </div>
