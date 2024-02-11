@@ -14,20 +14,30 @@ import DownArrowImage from '../../../images/Down Arrow.png'
 
 function ProficiencyForm() {
   const { id: urlId } = useParams();
+
+  const [savingThrowDropdownCheck, setSavingThrowDropdownCheck] = useState(false);
+  const savingThrowToggleDropdown = () => {
+    setSavingThrowDropdownCheck(prevState => !prevState);
+  };
+  const [skillsDropdownCheck, setSkillsDropdownCheck] = useState(false);
+  const skillsToggleDropdown = () => {
+    setSkillsDropdownCheck(prevState => !prevState);
+  };
+
   const [data, setData] = useState({
     id: urlId,
     characterSavingThrowProficiencys: [],
     characterSkillProficiencys: []
   });
 
-  const [savingThrowDropdownCheck, setSavingThrowDropdownCheck] = useState(false);
-  const savingThrowToggleDropdown = () => {
-    setSavingThrowDropdownCheck(prevState => !prevState);
-  };
-
-  const [skillsDropdownCheck, setSkillsDropdownCheck] = useState(false);
-  const skillsToggleDropdown = () => {
-    setSkillsDropdownCheck(prevState => !prevState);
+  const handleCheckboxChange = (e, proficiencyId, fieldName) => {
+    const { checked } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [fieldName]: checked
+        ? [...prevData[fieldName], proficiencyId]
+        : prevData[fieldName].filter((id) => id !== proficiencyId),
+    }));
   };
 
  return (
@@ -167,27 +177,33 @@ function ProficiencyForm() {
                         alt="Character Image" onClick={savingThrowToggleDropdown}/>
                       </li>
                       <li className='list-item'>
-                        <input type="checkbox" id="strength" name="strength" />
+                        <input type="checkbox" id="strength" name="strength" 
+                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="strength">Strength</label>
                       </li>
                       <li className='list-item'>
-                        <input type="checkbox" id="dexterity" name="dexterity" />
+                        <input type="checkbox" id="dexterity" name="dexterity" 
+                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="dexterity">Dexterity</label>
                       </li>
                       <li className='list-item'>
-                        <input type="checkbox" id="constitution" name="constitution" />
+                        <input type="checkbox" id="constitution" name="constitution" 
+                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="constitution">Constitution</label>
                       </li>
                       <li className='list-item'>
-                        <input type="checkbox" id="intelligence" name="intelligence" />
+                        <input type="checkbox" id="intelligence" name="intelligence" 
+                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="intelligence">Intelligence</label>
                       </li>
                       <li className='list-item'>
-                        <input type="checkbox" id="wisdom" name="wisdom" />
+                        <input type="checkbox" id="wisdom" name="wisdom" 
+                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="wisdom">Wisdom</label>
                       </li>
                       <li className='list-item'>
-                        <input type="checkbox" id="charisma" name="charisma" />
+                        <input type="checkbox" id="charisma" name="charisma" 
+                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="charisma">Charisma</label>
                       </li>
                 </ul>
@@ -195,7 +211,7 @@ function ProficiencyForm() {
             </div>
 
             <button className='create-character-button' type="submit" > Update</button>
-            
+
           </form>
         </div>
       </div>
