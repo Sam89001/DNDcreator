@@ -12,9 +12,8 @@ import {toast} from 'react-hot-toast'
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function ProficiencyForm() {
-  const { id: urlId } = useParams();
-
+function ProficiencyForm({}) {
+  
   const [savingThrowDropdownCheck, setSavingThrowDropdownCheck] = useState(false);
   const savingThrowToggleDropdown = () => {
     setSavingThrowDropdownCheck(prevState => !prevState);
@@ -24,12 +23,14 @@ function ProficiencyForm() {
     setSkillsDropdownCheck(prevState => !prevState);
   };
 
+
+  const { id: urlId } = useParams();
   const [data, setData] = useState({
     id: urlId,
     characterSavingThrowProficiencys: [],
     characterSkillProficiencys: []
   });
-
+  
   const handleCheckboxChange = (e, proficiencyId, fieldName) => {
     const { checked } = e.target;
     setData((prevData) => ({
@@ -38,6 +39,26 @@ function ProficiencyForm() {
         ? [...prevData[fieldName], proficiencyId]
         : prevData[fieldName].filter((id) => id !== proficiencyId),
     }));
+  };
+
+  const updateProficiencys = async (e) => {
+    e.preventDefault();
+    const { id, characterSavingThrowProficiencys } = data;
+
+    try {
+      const response = await axios.put(`http://localhost:4000/CreateCharacter/SavingThrows/${id}`, {
+        id, characterSavingThrowProficiencys
+      })
+
+      if (response.error) {
+				toast.error(response.data.error);
+			} else {
+				setData((prevData) => ({ ...prevData, id: urlId }));
+				toast.success('Updated character details');
+			}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
  return (
@@ -167,7 +188,7 @@ function ProficiencyForm() {
 
       <div className='col-6 '>
         <div className='row'>
-          <form>
+          <form onSubmit={updateProficiencys}>
 
             <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
               <div className='multichoice-edit-field' style={{zIndex: '4'}}>
@@ -178,32 +199,32 @@ function ProficiencyForm() {
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="strength" name="strength" 
-                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="strength">Strength</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="dexterity" name="dexterity" 
-                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="dexterity">Dexterity</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="constitution" name="constitution" 
-                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="constitution">Constitution</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="intelligence" name="intelligence" 
-                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="intelligence">Intelligence</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="wisdom" name="wisdom" 
-                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="wisdom">Wisdom</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="charisma" name="charisma" 
-                        onChange={(e) => handleCheckboxChange(e, proficiencyId, 'characterSavingThrowProficiencys')} />
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="charisma">Charisma</label>
                       </li>
                 </ul>

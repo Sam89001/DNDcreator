@@ -63,6 +63,7 @@ function LoadPlaySession() {
   const [characterFlaws, setCharacterFlaws] = useState([]);
   const [characterLanguages, setCharacterLanguages] = useState([]);
   const [characterTraits, setCharacterTraits] = useState([]);
+  const [characterSavingThrows, setCharacterSavingThrows] = useState([])
   
     const fetchData = async () => {
       try {
@@ -103,6 +104,7 @@ function LoadPlaySession() {
         setCharacterFlaws(characterData.flaws || []);
         setCharacterLanguages(characterData.languages || []);
         setCharacterTraits(characterData.traits || []);
+        setCharacterSavingThrows(characterData.savingThrows || [])
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -122,6 +124,9 @@ function LoadPlaySession() {
     }
     const updateCharacterMisc = (newcharacterMiscStats) => {
       setCharacterMiscStats(newcharacterMiscStats);
+    }
+    const updateCharacterProficiencys = (newData) => {
+      setCharacterSkills(newData);
     }
   
     return (

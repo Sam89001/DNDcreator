@@ -53,10 +53,7 @@ function SkillsForm({updateCharacterSkills}) {
 		} catch (error) {
 			console.log(error)
 		}
-
-		
 	};
-	
 
 //HTML
   return (

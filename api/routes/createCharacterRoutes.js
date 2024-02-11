@@ -612,7 +612,7 @@ router.post('/UpdateTrait/:id', async (req, res) => {
   }
 })
 
-//Put a Trait
+//Updates a Trait
 router.put('/ChangeTrait/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -660,6 +660,41 @@ router.delete('/DeleteTrait/:id', async (req, res) => {
 
   } catch (error) {
     console.log(error)
+  }
+})
+
+//Updates Character Saving Throws
+router.put('/SavingThrows/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterSavingThrowProficiencys } = req.body;
+
+    const characterData = {
+      characterSavingThrowProficiencys
+    };
+
+    console.log(characterData)
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.status(200).json({
+      success: true,
+      newSavingThrows: updateGeneralStats
+    });
+    
+  } catch (error) {
   }
 })
 
