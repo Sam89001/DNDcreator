@@ -12,7 +12,7 @@ import {toast} from 'react-hot-toast'
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function ProficiencyForm({}) {
+function ProficiencyForm({fetchData}) {
   
   const [savingThrowDropdownCheck, setSavingThrowDropdownCheck] = useState(false);
   const savingThrowToggleDropdown = () => {
@@ -41,6 +41,7 @@ function ProficiencyForm({}) {
     }));
   };
 
+  //Post Request
   const updateProficiencys = async (e) => {
     e.preventDefault();
     const { id, characterSavingThrowProficiencys } = data;
@@ -51,11 +52,11 @@ function ProficiencyForm({}) {
       })
 
       if (response.error) {
-				toast.error(response.data.error);
-			} else {
-				setData((prevData) => ({ ...prevData, id: urlId }));
-				toast.success('Updated character details');
-			}
+        toast.error(response.data.error);
+      } else {
+        fetchData();
+        toast.success('Updated character details');
+      }
     } catch (error) {
       console.log(error)
     }

@@ -98,13 +98,14 @@ function LoadPlaySession() {
           characterPerception: characterData.character.characterPerception || '',
           characterHitDice: characterData.character.characterHitDice || ''
         });
+        setCharacterSavingThrows(characterData.character.characterSavingThrowProficiencys || [])
         setCharacterPersonalityTraits(characterData.personalityTraits || []);
         setCharacterIdeals(characterData.ideals || []);
         setCharacterBonds(characterData.bonds || []);
         setCharacterFlaws(characterData.flaws || []);
         setCharacterLanguages(characterData.languages || []);
         setCharacterTraits(characterData.traits || []);
-        setCharacterSavingThrows(characterData.savingThrows || [])
+        
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -124,9 +125,6 @@ function LoadPlaySession() {
     }
     const updateCharacterMisc = (newcharacterMiscStats) => {
       setCharacterMiscStats(newcharacterMiscStats);
-    }
-    const updateCharacterProficiencys = (newData) => {
-      setCharacterSkills(newData);
     }
   
     return (
@@ -173,6 +171,8 @@ function LoadPlaySession() {
             characterLanguages={characterLanguages}
 
             characterTraits={characterTraits}
+
+            characterSavingThrows={characterSavingThrows}
             />
           </div>
 
@@ -213,7 +213,7 @@ function LoadPlaySession() {
                     <div className='col-7'>
 
                       <div className='col-12' style={{paddingBottom: '20px'}}>
-                        <ProficiencyForm/>
+                        <ProficiencyForm fetchData={fetchData}/>
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '20px'}}>
