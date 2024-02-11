@@ -141,12 +141,15 @@
   position: absolute;
   right: 10px; 
   top: 50%; 
-  transform: translateY(-50%) rotate(180deg); 
+  transform: translateY(-50%) rotate(0deg); 
   cursor: pointer;
+  /* Set the transform origin to center */
+  transform-origin: center;
 }
 
 .down-arrow.active {
-  transform: rotate(0deg);
+  /* Rotate the arrow without changing its position */
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .list-dropdown {
