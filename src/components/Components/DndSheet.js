@@ -249,27 +249,22 @@ function DndSheet({fetchData,
         {/* Strength */}
         <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('strength') ? 'white' : 'transparent', borderRadius: '10px', top: '26.3%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
         </div>
-
         {/* Dexterity */}
         <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('dexterity') ? 'white' : 'transparent', borderRadius: '10px', top: '28%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
         </div>
-
         {/* Constitution */}
         <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('constitution') ? 'white' : 'transparent', borderRadius: '10px', top: '29.7%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
         </div>
-
         {/* Intelligence */}
         <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('intelligence') ? 'white' : 'transparent', borderRadius: '10px', top: '31.4%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
         </div>
-
         {/* Wisdom */}
         <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('wisdom') ? 'white' : 'transparent', borderRadius: '10px', top: '33.1%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
         </div>
-
         {/* Charisma */}
         <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('charisma') ? 'white' : 'transparent', borderRadius: '10px', top: '34.8%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
         </div>
-
+        
         {/* Stats */}
 
 

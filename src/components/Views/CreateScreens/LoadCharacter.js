@@ -213,7 +213,7 @@ function LoadPlaySession() {
                     <div className='col-7'>
 
                       <div className='col-12' style={{paddingBottom: '20px'}}>
-                        <ProficiencyForm fetchData={fetchData}/>
+                        <ProficiencyForm characterSavingThrows={characterSavingThrows} fetchData={fetchData}/>
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '20px'}}>

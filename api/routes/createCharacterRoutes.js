@@ -688,12 +688,6 @@ router.put('/SavingThrows/:id', async (req, res) => {
         error: 'Error updating character data',
       })
     }
-
-    return res.status(200).json({
-      success: true,
-      newSavingThrows: updateGeneralStats
-    });
-    
   } catch (error) {
   }
 })
