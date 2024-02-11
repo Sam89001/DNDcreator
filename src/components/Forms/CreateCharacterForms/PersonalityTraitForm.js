@@ -22,10 +22,18 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 		selectedId: '',
 		selectedCharacterPersonalityTrait: ''
 	});
+
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     const selectedValue = e.target.options[e.target.selectedIndex].text; 
     setSelectedTrait({ selectedId: selectedId, selectedCharacterPersonalityTrait: selectedValue });
+
+	//populates the field
+	const loadedValue = characterPersonalityTraits.find(value => value._id === selectedId);
+	setData({
+		...data,
+		characterPersonalityTrait: loadedValue ? loadedValue.characterPersonalityTrait : '',
+	  });
 	};
 	
 	//Handles user change
@@ -90,7 +98,13 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 
 			<div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
 				<input className='create-character-field multichoice-input-field' placeholder='Name'
-				onChange={(e) => setData({ ...data, characterPersonalityTrait: e.target.value})}/>
+					value={data.characterPersonalityTrait}
+					onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterPersonalityTrait: e.target.value,
+            }))
+          }/>
 			</div>
 
 			<div className='col-8 d-flex align-items-center justify-content-center skill-section-margin'> 

@@ -26,15 +26,13 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
 	const handleSelectChange = (e) => {
     const selectedId = e.target.value; 
     setSelectedTrait({ selectedId: selectedId });
-
-
   //finds and updates the fields
-    const selectedTrait = characterTraits.find(trait => trait._id === selectedId);
+    const loadedValue = characterTraits.find(value => value._id === selectedId);
     setData({
       ...data,
-      characterTraitTitle: selectedTrait ? selectedTrait.characterTraitTitle : '',
-      characterTraitAdditionalInfo: selectedTrait ? selectedTrait.characterTraitAdditionalInfo : '',
-      characterTraitDescription: selectedTrait ? selectedTrait.characterTraitDescription : ''
+      characterTraitTitle: loadedValue ? loadedValue.characterTraitTitle : '',
+      characterTraitAdditionalInfo: loadedValue ? loadedValue.characterTraitAdditionalInfo : '',
+      characterTraitDescription: loadedValue ? loadedValue.characterTraitDescription : ''
     });
 	};
 	const handleSubmit = async (e) => {
