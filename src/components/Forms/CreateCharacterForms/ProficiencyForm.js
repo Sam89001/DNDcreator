@@ -12,7 +12,7 @@ import {toast} from 'react-hot-toast'
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function ProficiencyForm({characterSavingThrows, fetchData}) {
+function ProficiencyForm({fetchData}) {
   
   const [savingThrowDropdownCheck, setSavingThrowDropdownCheck] = useState(false);
   const savingThrowToggleDropdown = () => {
@@ -198,41 +198,34 @@ function ProficiencyForm({characterSavingThrows, fetchData}) {
                         <img className={`img-fluid down-arrow ${savingThrowDropdownCheck ? 'active' : ''}`} src={DownArrowImage} 
                         alt="Character Image" onClick={savingThrowToggleDropdown}/>
                       </li>
-
                       <li className='list-item'>
                         <input type="checkbox" id="strength" name="strength" 
-                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} 
-                        checked={characterSavingThrows.includes('strength')}/>
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="strength">Strength</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="dexterity" name="dexterity" 
-                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} 
-                        checked={characterSavingThrows.includes('dexterity')}/>
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="dexterity">Dexterity</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="constitution" name="constitution" 
-                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} 
-                        checked={characterSavingThrows.includes('constitution')}/>
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="constitution">Constitution</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="intelligence" name="intelligence" 
-                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} 
-                        checked={characterSavingThrows.includes('intelligence')}/>
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="intelligence">Intelligence</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="wisdom" name="wisdom" 
-                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} 
-                        checked={characterSavingThrows.includes('wisdom')}/>
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="wisdom">Wisdom</label>
                       </li>
                       <li className='list-item'>
                         <input type="checkbox" id="charisma" name="charisma" 
-                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} 
-                        checked={characterSavingThrows.includes('charisma')}/>
+                        onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSavingThrowProficiencys')} />
                         <label htmlFor="charisma">Charisma</label>
                       </li>
                 </ul>
