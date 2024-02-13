@@ -64,6 +64,7 @@ function LoadPlaySession() {
   const [characterLanguages, setCharacterLanguages] = useState([]);
   const [characterTraits, setCharacterTraits] = useState([]);
   const [characterSavingThrows, setCharacterSavingThrows] = useState([])
+  const [characterProfSkills, setCharacterProfSkills] = useState([]) 
   
     const fetchData = async () => {
       try {
@@ -173,6 +174,7 @@ function LoadPlaySession() {
             characterTraits={characterTraits}
 
             characterSavingThrows={characterSavingThrows}
+            characterSkills={characterProfSkills}
             />
           </div>
 

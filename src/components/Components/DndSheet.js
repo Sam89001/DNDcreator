@@ -26,7 +26,7 @@ function DndSheet({fetchData,
 
   characterTraits,
 
-  characterSavingThrows
+  characterSavingThrows, characterSkills
   }) {
 
   //Delete Request
@@ -125,6 +125,74 @@ function DndSheet({fetchData,
 			console.log(error)
 		} 
 	} 
+
+  const skills = [
+    "Acrobatics",
+    "Animal Handling",
+    "Arcana",
+    "Athletics",
+    "Deception",
+    "History",
+    "Insight",
+    "Intimidation",
+    "Investigation",
+    "Medicine",
+    "Nature",
+    "Perception",
+    "Performance",
+    "Persuasion",
+    "Religion",
+    "Sleight of Hand",
+    "Stealth",
+    "Survival"
+  ];
+  const savingThrows = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+  ];
+
+  let topPositionSkills = 40.8; 
+  let topPositionSavingThrows = 26.3;
+
+  const skillDivs = skills.map((skill) => {
+      const backgroundColor = characterSkills.includes(skill.toLowerCase()) ? 'white' : 'red';
+      const style = {
+        backgroundColor,
+        borderRadius: '10px',
+        top: `${topPositionSkills}%`, // Set top position dynamically
+        left: '18%',
+        width: '1%',
+        height: '0.8%',
+        fontSize: '1vw'
+      };
+      topPositionSkills += 1.7;
+      return (
+        <div key={skill} className="absolute-div dnd-sheet" style={style}> 
+        </div>
+      );
+  });
+
+  const savingThrowsDiv = savingThrows.map((savingThrow) => {
+    const backgroundColor = characterSavingThrows.includes(savingThrow.toLowerCase()) ? 'white' : 'red';
+    const style = {
+      backgroundColor,
+      borderRadius: '10px',
+      top: `${topPositionSavingThrows}%`, // Set top position dynamically
+      left: '18%',
+      width: '1%',
+      height: '0.8%',
+      fontSize: '1vw'
+    };
+    topPositionSavingThrows += 1.7;
+    return (
+      <div key={savingThrow} className="absolute-div dnd-sheet" style={style}> 
+      </div>
+    );
+  });
 
 
 	return (
@@ -244,27 +312,12 @@ function DndSheet({fetchData,
         </div>
 
         {/* Saving Throws */}
+        {savingThrowsDiv}
 
-        {/* Proficiencys */}
-        {/* Strength */}
-        <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('strength') ? 'white' : 'transparent', borderRadius: '10px', top: '26.3%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
-        </div>
-        {/* Dexterity */}
-        <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('dexterity') ? 'white' : 'transparent', borderRadius: '10px', top: '28%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
-        </div>
-        {/* Constitution */}
-        <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('constitution') ? 'white' : 'transparent', borderRadius: '10px', top: '29.7%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
-        </div>
-        {/* Intelligence */}
-        <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('intelligence') ? 'white' : 'transparent', borderRadius: '10px', top: '31.4%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
-        </div>
-        {/* Wisdom */}
-        <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('wisdom') ? 'white' : 'transparent', borderRadius: '10px', top: '33.1%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
-        </div>
-        {/* Charisma */}
-        <div className="absolute-div dnd-sheet" style={{ backgroundColor: characterSavingThrows.includes('charisma') ? 'white' : 'transparent', borderRadius: '10px', top: '34.8%', left: '17.5%', width: '1%', height: '0.8%', fontSize: '1vw' }}>
-        </div>
-        
+
+        {/* Prof Skills */}
+        {skillDivs}
+
         {/* Stats */}
 
 
