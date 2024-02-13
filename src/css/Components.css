@@ -78,6 +78,11 @@
 	z-index: 4;
 }
 
+.dnd-sheet-noflex {
+  position: absolute;  
+	z-index: 4;
+}
+
 .character-sheet {
   border-radius: 40px;
 }
@@ -106,3 +111,21 @@
   padding: 0px 15px 0px 0px;
   word-break: break-all;
 }
+
+.attack-first-field,
+.attack-second-field,
+.attack-third-field {
+  padding: 0px 0px 0px 2px;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.attack-first-field {
+    margin: 0px 15px 0px 5px;
+}
+
+.attack-second-field {
+  margin: 0px 7px 0px 0px;
+}
+

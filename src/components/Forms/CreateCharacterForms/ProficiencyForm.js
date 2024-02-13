@@ -85,11 +85,11 @@ function ProficiencyForm({fetchData}) {
 
  return (
     <div className="row">
-      <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right' style={{marginBottom: '25px'}}> 
+      <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right' style={{marginBottom: '10px'}}> 
 				<div className="text-center form-titles">Skills</div>
 			</div>    
 
-			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-left' style={{marginBottom: '25px'}}> 
+			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-left' style={{marginBottom: '10px'}}> 
 				<div className="text-center form-titles" >Saving Throws</div>
 			</div>
 

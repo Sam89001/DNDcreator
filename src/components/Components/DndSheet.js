@@ -314,12 +314,71 @@ function DndSheet({fetchData,
         {/* Saving Throws */}
         {savingThrowsDiv}
 
-
         {/* Prof Skills */}
         {skillDivs}
 
-        {/* Stats */}
+        {/* Attacks */}
+        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '49.5%', left: '38%', width: '27.5%', height: '7.5%', fontSize: '0.7vw' }}>
+            
+          <div className='col-12' style={{marginBottom: '3px'}}>
+              <div className='row'>
+                  <div className='col-4 attack-first-field'>TEST</div>
+                  <div className='col-2 attack-second-field' >TEST</div>
+                  <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
+              </div>
+          </div>
 
+          <div className='col-12' style={{marginBottom: '3px'}}>
+              <div className='row'>
+                  <div className='col-4 attack-first-field'>TEST</div>
+                  <div className='col-2 attack-second-field' >TEST</div>
+                  <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
+              </div>
+          </div>
+
+          <div className='col-12' style={{marginBottom: '3px'}}>
+              <div className='row'>
+                  <div className='col-4 attack-first-field'>TEST</div>
+                  <div className='col-2 attack-second-field' >TEST</div>
+                  <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
+              </div>
+          </div>
+
+        </div>
+
+
+        {/* Features/Traits */}
+        <div className="absolute-div row dnd-sheet" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '46%', fontSize: '0.7vw' }}>
+          {characterTraits.map(trait => (
+            <div value={trait._id} key={trait._id} className='col-12 trait-container' >
+              <div className='row '>
+                <div className='col-5 trait-title' >Trait Title</div> 
+                <div className='col-5 d-flex align-items-center trait-title' >Other Trait Info:</div>
+                <div className='col-2 d-flex align-items-center justify-content-center trait-title' >
+                  <button className='delete-property-button' onClick={(e) => deleteTrait(e, trait._id)}>X</button>
+                </div>
+
+                <div className='col-5 trait-field-container' >
+                  <div className='trait-field'>
+                    {trait.characterTraitTitle}
+                  </div>
+                </div>
+
+                <div className='col-7 d-flex align-items-center trait-field-container' >
+                  <div className='trait-field'>
+                    {trait.characterTraitAdditionalInfo}
+                  </div>
+                </div>
+                
+                <div className='col-12 trait-title' >Trait Description:</div> 
+
+                <div className='col-12 trait-field' style={{ padding: '0px 15px 0px 5px' }}>
+                  {trait.characterTraitDescription}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Personality Trait */}
         <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '17.5%', left: '70%',width: '24%', height: '6%', fontSize: '0.7vw' }}>
@@ -370,41 +429,7 @@ function DndSheet({fetchData,
             </div>
           ))}
         </div>
-
-        {/* Features/Traits */}
-
-        <div className="absolute-div row dnd-sheet" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '46%', fontSize: '0.7vw' }}>
-          {characterTraits.map(trait => (
-            <div value={trait._id} key={trait._id} className='col-12 trait-container' >
-              <div className='row '>
-                <div className='col-5 trait-title' >Trait Title</div> 
-                <div className='col-5 d-flex align-items-center trait-title' >Other Trait Info:</div>
-                <div className='col-2 d-flex align-items-center justify-content-center trait-title' >
-                  <button className='delete-property-button' onClick={(e) => deleteTrait(e, trait._id)}>X</button>
-                </div>
-
-                <div className='col-5 trait-field-container' >
-                  <div className='trait-field'>
-                    {trait.characterTraitTitle}
-                  </div>
-                </div>
-
-                <div className='col-7 d-flex align-items-center trait-field-container' >
-                  <div className='trait-field'>
-                    {trait.characterTraitAdditionalInfo}
-                  </div>
-                </div>
-                
-                <div className='col-12 trait-title' >Trait Description:</div> 
-
-                <div className='col-12 trait-field' style={{ padding: '0px 15px 0px 5px' }}>
-                  {trait.characterTraitDescription}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
+        
         {/* image */}
         <img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px'}}/>
       </div>

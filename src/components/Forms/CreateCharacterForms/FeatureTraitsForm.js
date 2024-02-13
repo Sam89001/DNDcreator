@@ -136,7 +136,7 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
       </div>
 
       <div className='col-9' style={{paddingBottom: '2px'}}>
-        <div className="text-center form-titles">View/Edit Flaw</div>
+        <div className="text-center form-titles">View/Edit Feature/Trait</div>
       </div>
 
       <div className='col-12' style={{paddingBottom: '5px'}}>

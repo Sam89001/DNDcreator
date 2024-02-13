@@ -215,19 +215,19 @@ function LoadPlaySession() {
                   <div className='row'>
                     <div className='col-7'>
 
-                      <div className='col-12' style={{paddingBottom: '20px'}}>
+                      <div className='col-12' style={{paddingBottom: '15px'}}>
                         <ProficiencyForm characterSavingThrows={characterSavingThrows} fetchData={fetchData}/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '20px'}}>
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
                         <AttacksForm/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '20px'}}>
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
                         <EquipmentForm/>
                       </div>
 
-                      <div className='col-12' style={{paddingBottom: '20px'}}>
+                      <div className='col-12' style={{paddingBottom: '10px'}}>
                         <FeaturesTraitsForm characterTraits={characterTraits} setCharacterTraits={setCharacterTraits} fetchData={fetchData}/>
                       </div>
 
