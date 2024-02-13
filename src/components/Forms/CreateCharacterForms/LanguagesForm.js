@@ -93,11 +93,11 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
     
         <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
           <input className='create-character-field multichoice-input-field' placeholder='Name'
-						value={data.characterLanguage}
+					value={data.characterLanguage}
             onChange={(e) =>
 							setData((prevData) => ({
 								...prevData,
-								characterFlaw: e.target.value,
+								characterLanguage: e.target.value,
 							}))
 						}/>
           </div>
