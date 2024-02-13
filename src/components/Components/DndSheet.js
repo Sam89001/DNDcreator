@@ -127,24 +127,24 @@ function DndSheet({fetchData,
 	} 
 
   const skills = [
-    "Acrobatics",
-    "Animal Handling",
-    "Arcana",
-    "Athletics",
-    "Deception",
-    "History",
-    "Insight",
-    "Intimidation",
-    "Investigation",
-    "Medicine",
-    "Nature",
-    "Perception",
-    "Performance",
-    "Persuasion",
-    "Religion",
-    "Sleight of Hand",
-    "Stealth",
-    "Survival"
+    "acrobatics",
+    "animalHandling",
+    "arcana",
+    "athletics",
+    "deception",
+    "history",
+    "insight",
+    "intimidation",
+    "investigation",
+    "medicine",
+    "nature",
+    "perception",
+    "performance",
+    "persuasion",
+    "religion",
+    "sleightOfHand",
+    "stealth",
+    "survival"
   ];
   const savingThrows = [
     "Strength",
@@ -159,7 +159,7 @@ function DndSheet({fetchData,
   let topPositionSavingThrows = 26.3;
 
   const skillDivs = skills.map((skill) => {
-      const backgroundColor = characterSkills.includes(skill.toLowerCase()) ? 'white' : 'red';
+      const backgroundColor = characterSkills.includes(skill) ? 'white' : 'red';
       const style = {
         backgroundColor,
         borderRadius: '10px',
