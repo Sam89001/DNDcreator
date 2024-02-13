@@ -696,5 +696,38 @@ router.put('/SavingThrows/:id', async (req, res) => {
   }
 })
 
+router.put('/ProficiencySkills/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterSkillProficiencys } = req.body;
+
+    const characterData = {
+      characterSkillProficiencys
+    };
+
+    console.log(characterData)
+
+    const update = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+  }
+})
+
+
 
 module.exports = router;

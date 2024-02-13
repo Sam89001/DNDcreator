@@ -78,7 +78,7 @@ const CreateCharacterSchema = new mongoose.Schema({
     type: [String],  
     default: []
   },
-  characterSkills: {
+  characterSkillProficiencys: {
     type: [String],  
     default: []
   }

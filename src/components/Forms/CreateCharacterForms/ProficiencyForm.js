@@ -42,7 +42,7 @@ function ProficiencyForm({fetchData}) {
   };
 
   //Post Request
-  const updateProficiencys = async (e) => {
+  const updateSavingThrows = async (e) => {
     e.preventDefault();
     const { id, characterSavingThrowProficiencys } = data;
 
@@ -62,6 +62,27 @@ function ProficiencyForm({fetchData}) {
     }
   };
 
+  const updateSkills = async (e) => {
+    e.preventDefault();
+    const { id, characterSkillProficiencys } =  data;
+
+    try {
+      const response = await axios.put(`http://localhost:4000/CreateCharacter/ProficiencySkills/${id}`, {
+        id, characterSkillProficiencys
+      })
+
+      if (response.error) {
+        toast.error(response.data.error);
+      } else {
+        fetchData();
+        toast.success('Updated character details');
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
  return (
     <div className="row">
       <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right' style={{marginBottom: '25px'}}> 
@@ -76,105 +97,111 @@ function ProficiencyForm({fetchData}) {
 
       <div className='col-6' >
         <div className='row'>
-          <form>
+          <form onSubmit={updateSkills}>
 
             <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
               <div className='multichoice-edit-field' style={{zIndex: '4'}}>
                 <ul className={`list-dropdown ${skillsDropdownCheck ? 'active' : ''}`}>
-                    <li className='down-arrow-container' style={{ position: 'relative' }}>
-                      <img
+                <li className='down-arrow-container' style={{ position: 'relative' }}>
+                    <img
                         className={`img-fluid down-arrow ${skillsDropdownCheck ? 'active' : ''}`}
                         src={DownArrowImage}
                         alt="Character Image"
                         onClick={skillsToggleDropdown}
-                      />
-                    </li>
-                    <li className='list-item list-item-header '> Strength</li>
+                    />
+                </li>
+                <li className='list-item list-item-header '> Strength</li>
 
-                    <li className='list-item'>
-                      <input type="checkbox" id="athletics" name="athletics" />
-                      <label htmlFor="athletics">Athletics</label>
-                    </li>
+                {/* Strength Skills */}
+                <li className='list-item'>
+                    <input type="checkbox" id="athletics" name="athletics" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="athletics">Athletics</label>
+                </li>
 
-                    <li className='list-item list-item-header '> Dexterity</li>
+                <li className='list-item list-item-header '> Dexterity</li>
 
-                    <li className='list-item'>
-                      <input type="checkbox" id="acrobatics" name="acrobatics" />
-                      <label htmlFor="acrobatics">Acrobatics</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="sleightOfHand" name="sleightOfHand" />
-                      <label htmlFor="sleightOfHand">Sleight of Hand</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="stealth" name="stealth" />
-                      <label htmlFor="stealth">Stealth</label>
-                    </li>
+                {/* Dexterity Skills */}
+                <li className='list-item'>
+                    <input type="checkbox" id="acrobatics" name="acrobatics" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="acrobatics">Acrobatics</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="sleightOfHand" name="sleightOfHand" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="sleightOfHand">Sleight of Hand</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="stealth" name="stealth" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="stealth">Stealth</label>
+                </li>
 
-                    <li className='list-item list-item-header '> Intelligence</li>
+                {/* Intelligence Skills */}
+                <li className='list-item list-item-header '> Intelligence</li>
 
-                    <li className='list-item'>
-                      <input type="checkbox" id="arcana" name="arcana" />
-                      <label htmlFor="arcana">Arcana</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="history" name="history" />
-                      <label htmlFor="history">History</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="investigation" name="investigation" />
-                      <label htmlFor="investigation">Investigation</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="nature" name="nature" />
-                      <label htmlFor="nature">Nature</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="religion" name="religion" />
-                      <label htmlFor="religion">Religion</label>
-                    </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="arcana" name="arcana" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="arcana">Arcana</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="history" name="history" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="history">History</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="investigation" name="investigation" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="investigation">Investigation</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="nature" name="nature" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="nature">Nature</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="religion" name="religion" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="religion">Religion</label>
+                </li>
 
-                    <li className='list-item list-item-header '> Wisdom</li>
+                {/* Wisdom Skills */}
+                <li className='list-item list-item-header '> Wisdom</li>
 
-                    <li className='list-item'>
-                      <input type="checkbox" id="animalHandling" name="animalHandling" />
-                      <label htmlFor="animalHandling">Animal Handling</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="insight" name="insight" />
-                      <label htmlFor="insight">Insight</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="medicine" name="medicine" />
-                      <label htmlFor="medicine">Medicine</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="perception" name="perception" />
-                      <label htmlFor="perception">Perception</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="survival" name="survival" />
-                      <label htmlFor="survival">Survival</label>
-                    </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="animalHandling" name="animalHandling" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="animalHandling">Animal Handling</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="insight" name="insight" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="insight">Insight</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="medicine" name="medicine" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="medicine">Medicine</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="perception" name="perception" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="perception">Perception</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="survival" name="survival" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="survival">Survival</label>
+                </li>
 
-                    <li className='list-item list-item-header '> Charisma</li>
+                {/* Charisma Skills */}
+                <li className='list-item list-item-header '> Charisma</li>
 
-                    <li className='list-item'>
-                      <input type="checkbox" id="deception" name="deception" />
-                      <label htmlFor="deception">Deception</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="intimidation" name="intimidation" />
-                      <label htmlFor="intimidation">Intimidation</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="performance" name="performance" />
-                      <label htmlFor="performance">Performance</label>
-                    </li>
-                    <li className='list-item'>
-                      <input type="checkbox" id="persuasion" name="persuasion" />
-                      <label htmlFor="persuasion">Persuasion</label>
-                    </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="deception" name="deception" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="deception">Deception</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="intimidation" name="intimidation" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="intimidation">Intimidation</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="performance" name="performance" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="performance">Performance</label>
+                </li>
+                <li className='list-item'>
+                    <input type="checkbox" id="persuasion" name="persuasion" onChange={(e) => handleCheckboxChange(e, e.target.id, 'characterSkillProficiencys')} />
+                    <label htmlFor="persuasion">Persuasion</label>
+                </li>
+
                     
                 </ul>
               </div>
@@ -189,7 +216,7 @@ function ProficiencyForm({fetchData}) {
 
       <div className='col-6 '>
         <div className='row'>
-          <form onSubmit={updateProficiencys}>
+          <form onSubmit={updateSavingThrows}>
 
             <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
               <div className='multichoice-edit-field' style={{zIndex: '4'}}>

@@ -99,6 +99,7 @@ function LoadPlaySession() {
           characterPerception: characterData.character.characterPerception || '',
           characterHitDice: characterData.character.characterHitDice || ''
         });
+        setCharacterProfSkills(characterData.character.characterSkillsProficiencys || [])
         setCharacterSavingThrows(characterData.character.characterSavingThrowProficiencys || [])
         setCharacterPersonalityTraits(characterData.personalityTraits || []);
         setCharacterIdeals(characterData.ideals || []);

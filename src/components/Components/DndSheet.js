@@ -155,7 +155,7 @@ function DndSheet({fetchData,
     "Charisma",
   ];
 
-  let topPositionSkills = 40.8; 
+  let topPositionSkills = 40.9; 
   let topPositionSavingThrows = 26.3;
 
   const skillDivs = skills.map((skill) => {
@@ -164,7 +164,7 @@ function DndSheet({fetchData,
         backgroundColor,
         borderRadius: '10px',
         top: `${topPositionSkills}%`, // Set top position dynamically
-        left: '18%',
+        left: '17.5%',
         width: '1%',
         height: '0.8%',
         fontSize: '1vw'
@@ -182,7 +182,7 @@ function DndSheet({fetchData,
       backgroundColor,
       borderRadius: '10px',
       top: `${topPositionSavingThrows}%`, // Set top position dynamically
-      left: '18%',
+      left: '17.5%',
       width: '1%',
       height: '0.8%',
       fontSize: '1vw'
