@@ -319,7 +319,6 @@ function DndSheet({fetchData,
 
         {/* Attacks */}
         <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '49.5%', left: '38%', width: '27.5%', height: '7.5%', fontSize: '0.7vw' }}>
-            
           <div className='col-12' style={{marginBottom: '3px'}}>
               <div className='row'>
                   <div className='col-4 attack-first-field'>TEST</div>
@@ -327,28 +326,42 @@ function DndSheet({fetchData,
                   <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
               </div>
           </div>
-
-          <div className='col-12' style={{marginBottom: '3px'}}>
-              <div className='row'>
-                  <div className='col-4 attack-first-field'>TEST</div>
-                  <div className='col-2 attack-second-field' >TEST</div>
-                  <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
-              </div>
-          </div>
-
-          <div className='col-12' style={{marginBottom: '3px'}}>
-              <div className='row'>
-                  <div className='col-4 attack-first-field'>TEST</div>
-                  <div className='col-2 attack-second-field' >TEST</div>
-                  <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
-              </div>
-          </div>
-
         </div>
 
+        {/* Equipment */}
+        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '74.5%', left: '46%', width: '20%', height: '21%', fontSize: '0.7vw' }}>
+          <div className='col-12 equipment-container'>
+            <div className='row '>
+                <div className='col-6 equipment-title' >Equipment Title</div> 
+                <div className='col-4 d-flex align-items-center equipment-title' >Quantity:</div>
+                <div className='col-2 d-flex align-items-center justify-content-center equipment-title' >
+                  <button className='delete-property-button'>X</button>
+                </div>
+
+                <div className='col-6 equipment-field-container' >
+                  <div className='equipment-field'>
+                    James
+                  </div>
+                </div>
+
+                <div className='col-6 d-flex align-items-center equipment-field-container' >
+                  <div className='equipment-field'>
+                    Jonah
+                  </div>
+                </div>
+                
+                <div className='col-12 equipment-title' >Equipment Description:</div> 
+                <div className='col-12 equipment-field' style={{ padding: '0px 15px 0px 5px' }}>
+                  Jackson
+                </div>
+
+              </div>
+          </div>
+          
+        </div>
 
         {/* Features/Traits */}
-        <div className="absolute-div row dnd-sheet" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '46%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet-noflex" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '46%', fontSize: '0.7vw' }}>
           {characterTraits.map(trait => (
             <div value={trait._id} key={trait._id} className='col-12 trait-container' >
               <div className='row '>
@@ -421,7 +434,7 @@ function DndSheet({fetchData,
         </div>
 
         {/* Other Proficiency/Languages */}
-        <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '79%', left: '8%', width: '27%', height: '16.5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet-noflex" style={{ overflow: 'auto', top: '79%', left: '8%', width: '27%', height: '16.5%', fontSize: '0.7vw' }}>
           {characterLanguages.map(language => (
             <div value={language._id} key={language._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {language.characterLanguage}
