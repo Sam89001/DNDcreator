@@ -334,20 +334,25 @@ function DndSheet({fetchData,
         {skillDivs}
 
         {/* Attacks */}
-        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '49.5%', left: '38%', width: '27.5%', height: '7.5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', overflowX: 'hidden', top: '49.5%', left: '37.5%', width: '28%', height: '7.5%', fontSize: '0.7vw', maxHeight: '100px' }}>
           {characterAttacks.map(attack => (
-          <div value={attack._id} key={attack._id} className='col-12' style={{marginBottom: '3px'}}>
-              <div className='row'>
-                  <div className='col-4 attack-first-field'>{attack.characterAttackName}</div>
-                  <div className='col-2 attack-second-field' >{attack.characterAttackBonus}</div>
-                  <div className='col-3 col-sm-3 attack-third-field'>
-                    <div style={{width: '65%', overflowY: 'auto'}}>{attack.characterDamageType}</div>
-                    <button className='delete-property-button' style={{width: '30%'}} onClick={(e) => deleteAttack(e, attack._id)}>X</button>
-                  </div>
+            <div key={attack._id} style={{marginBottom: '5px'}}>
+              <div className="row" style={{paddingLeft: '12px'}}>
+                <div className='col-4 attack-first-field'>
+                  <div style={{ width: '85%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterAttackName}</div>
+                </div>
+                <div className='col-2 attack-second-field'>
+                  <div style={{ width: '85%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterAttackBonus}</div>
+                </div>
+                <div className='col-4 col-sm-3 attack-third-field'>
+                  <div style={{width: '80%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterDamageType}</div>
+                  <button className='delete-property-button' style={{width: '10%'}} onClick={(e) => deleteAttack(e, attack._id)}>X</button>
+                </div>
               </div>
-          </div>
+            </div>
           ))}
         </div>
+
 
         {/* Equipment */}
         <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '74.5%', left: '46%', width: '20%', height: '21%', fontSize: '0.7vw' }}>

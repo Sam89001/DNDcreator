@@ -10,6 +10,19 @@ import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
 function EquipmentForm() {
+  const { id: urlId } = useParams();
+  const [data, setData] = useState({
+    id: urlId,
+    characterEquipmentName: '',
+    characterEquipmentQuantity: '',
+    characterEquipmentDescription: '',
+  });
+
+   //Sets user change
+	const [selectedId, setSelectedId] = useState({
+		selectedId: ''
+	});
+
   return (
     <form>
     <div className='row'>

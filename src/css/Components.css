@@ -143,20 +143,17 @@
 .attack-first-field,
 .attack-second-field,
 .attack-third-field {
-  padding: 0px 0px 0px 2px;
   color: white;
   display: flex;
   align-items: center;
-  overflow-y: auto;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 0px;
 }
 
-.attack-first-field {
-  margin: 0px 15px 0px 5px;
-  padding: 0px 0px 0px 2px;
-}
-
+.attack-first-field,
 .attack-second-field {
-  margin: 0px 7px 0px 0px;
+  margin-right: 7px;
 }
 
 .attack-third-field {
