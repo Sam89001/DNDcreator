@@ -87,7 +87,7 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
 		} catch (error) {
 				console.log(error);
 		}
-	};
+	}; 
 
   return (
     <form onSubmit={handleSubmit}>

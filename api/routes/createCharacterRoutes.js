@@ -694,6 +694,57 @@ router.post('/UpdateAttack/:id', async (req, res) => {
   }
 })
 
+//Updates an Attack
+router.put('/ChangeAttack/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {  characterAttackName, characterAttackBonus,
+      characterDamageType } = req.body; 
+    const characterData = {  characterAttackName, characterAttackBonus,
+      characterDamageType } 
+
+    const update = await CreateCharacterAttackSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Deletes an Attack
+router.delete('/DeleteAttack/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deleted = await CreateCharacterAttackSchema.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Updates Character Saving Throws
 router.put('/SavingThrows/:id', async (req, res) => {
   try {

@@ -24,7 +24,7 @@ function DndSheet({fetchData,
   
   characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws, characterLanguages,
 
-  characterTraits,
+  characterTraits, characterAttacks,
 
   characterSavingThrows, characterSkills
   }) {
@@ -114,6 +114,22 @@ function DndSheet({fetchData,
 		e.preventDefault();
 		try {
 			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteTrait/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
+				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		} 
+	} 
+
+  const deleteAttack =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteAttack/${id}`);
 			if(response.error) {
 				toast.error(response.data.error);
 			} else {
@@ -319,13 +335,18 @@ function DndSheet({fetchData,
 
         {/* Attacks */}
         <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '49.5%', left: '38%', width: '27.5%', height: '7.5%', fontSize: '0.7vw' }}>
-          <div className='col-12' style={{marginBottom: '3px'}}>
+          {characterAttacks.map(attack => (
+          <div value={attack._id} key={attack._id} className='col-12' style={{marginBottom: '3px'}}>
               <div className='row'>
-                  <div className='col-4 attack-first-field'>TEST</div>
-                  <div className='col-2 attack-second-field' >TEST</div>
-                  <div className='col-4 col-sm-3 attack-third-field' >TEST</div>
+                  <div className='col-4 attack-first-field'>{attack.characterAttackName}</div>
+                  <div className='col-2 attack-second-field' >{attack.characterAttackBonus}</div>
+                  <div className='col-3 col-sm-3 attack-third-field'>
+                    <div style={{width: '65%', overflowY: 'auto'}}>{attack.characterDamageType}</div>
+                    <button className='delete-property-button' style={{width: '30%'}} onClick={(e) => deleteAttack(e, attack._id)}>X</button>
+                  </div>
               </div>
           </div>
+          ))}
         </div>
 
         {/* Equipment */}

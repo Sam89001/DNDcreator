@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function AttacksForm({characterAttacks, setCharacterAttacks}) {
+function AttacksForm({characterAttacks, setCharacterAttacks, fetchData}) {
   const { id: urlId } = useParams();
   const [data, setData] = useState({
     id: urlId,
@@ -40,8 +40,8 @@ function AttacksForm({characterAttacks, setCharacterAttacks}) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
 			await updateAttack();
 		} else {
-			//await updateExistingTrait(selectedTrait.selectedId, data.characterTraitTitle, 
-      //data.characterTraitAdditionalInfo, data.characterTraitDescription); 
+			await updateExistingAttack(selectedAttack.selectedId, data.characterAttackName, 
+      data.characterAttackBonus, data.characterDamageType); 
 		}
 	};
 
@@ -67,6 +67,26 @@ function AttacksForm({characterAttacks, setCharacterAttacks}) {
 			console.log(error)
 		}
 	}
+
+  //Put Request
+  const updateExistingAttack = async (id, characterAttackName, characterAttackBonus, characterDamageType) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeAttack/${id}`, {
+					id, characterAttackName, 
+          characterAttackBonus, 
+          characterDamageType
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					fetchData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	}; 
 
   return (
     <form onSubmit={handleSubmit}>
@@ -114,6 +134,9 @@ function AttacksForm({characterAttacks, setCharacterAttacks}) {
         <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
           <select className='create-character-field' style={{width: '75%'}} placeholder='Attack Name'>
             <option/>
+            {characterAttacks.map(attack => (
+						  <option key={attack._id} value={attack._id}>{attack.characterAttackName}</option>
+					  ))}
           </select>
 					<button className='create-character-button' type="submit" > Update</button>
         </div>

@@ -140,8 +140,6 @@
   word-break: break-all;
 }
 
-
-
 .attack-first-field,
 .attack-second-field,
 .attack-third-field {
@@ -149,6 +147,7 @@
   color: white;
   display: flex;
   align-items: center;
+  overflow-y: auto;
 }
 
 .attack-first-field {
@@ -158,5 +157,9 @@
 
 .attack-second-field {
   margin: 0px 7px 0px 0px;
+}
+
+.attack-third-field {
+  justify-content: space-between;
 }
 

@@ -223,7 +223,7 @@ function LoadPlaySession() {
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>
-                        <AttacksForm characterAttacks={characterAttacks} setcharacterAttacks={setCharacterAttacks} fetchData={fetchData}/>
+                        <AttacksForm characterAttacks={characterAttacks} setCharacterAttacks={setCharacterAttacks} fetchData={fetchData}/>
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>
