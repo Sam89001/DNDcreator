@@ -9,9 +9,67 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function AttacksForm() {
+function AttacksForm({characterAttacks, setCharacterAttacks}) {
+  const { id: urlId } = useParams();
+  const [data, setData] = useState({
+    id: urlId,
+    characterAttackName: '',
+    characterAttackBonus: '',
+    characterDamageType: '',
+  });
+  //Sets user change
+	const [selectedAttack, setSelectedAttack] = useState({
+		selectedId: ''
+	});
+
+  const handleSelectChange = (e) => {
+    const selectedId = e.target.value; 
+    setSelectedAttack({ selectedId: selectedId });
+    //finds and updates the fields
+    const loadedValue = characterAttacks.find(value => value._id === selectedId);
+    setData({
+      ...data,
+      characterAttackName: loadedValue ? loadedValue.characterAttackName : '',
+      characterAttackBonus: loadedValue ? loadedValue.characterAttackBonus : '',
+      characterDamageType: loadedValue ? loadedValue.characterDamageType : ''
+    });
+	};
+  const handleSubmit = async (e) => {
+		e.preventDefault();
+		if (!selectedAttack.selectedId) {
+			setData((prevData) => ({ ...prevData, id: urlId }));
+			await updateAttack();
+		} else {
+			//await updateExistingTrait(selectedTrait.selectedId, data.characterTraitTitle, 
+      //data.characterTraitAdditionalInfo, data.characterTraitDescription); 
+		}
+	};
+
+  //Post Request
+	const updateAttack =  async (e) => {
+		const {id, characterAttackName, characterAttackBonus,
+      characterDamageType } = data;
+		try {
+
+			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateAttack/${id}`, {
+				id, characterAttackName, characterAttackBonus,
+        characterDamageType
+			});
+
+			if (response.data.success) {
+				const newItem = response.data.newAttack;
+				setCharacterAttacks(prevAttack => [...prevAttack, newItem]);
+				toast.success('Updated character details');
+			} else {
+				toast.error('Failed to update character details');
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
     <div className='row'>
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div className="text-center form-titles">Add New Attack</div>
@@ -19,9 +77,30 @@ function AttacksForm() {
 
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div className='basic-field-container' style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-          <input className='create-character-field' style={{width: '55%'}} placeholder='Attack Name'/>
-          <input className='create-character-field' style={{width: '20%'}} placeholder='Atk Bonus'/>
-          <input className='create-character-field' style={{width: '20%'}} placeholder='Dmg Type'/>
+          <input className='create-character-field' style={{width: '55%'}} placeholder='Attack Name'
+          value={data.characterAttackName}
+          onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterAttackName: e.target.value,
+            }))
+          }/>
+          <input className='create-character-field' style={{width: '20%'}} placeholder='Atk Bonus'
+          value={data.characterAttackBonus}
+          onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterAttackBonus: e.target.value,
+            }))
+          }/>
+          <input className='create-character-field' style={{width: '20%'}} placeholder='Dmg Type'
+          value={data.characterDamageType}
+          onChange={(e) =>
+            setData((prevData) => ({
+              ...prevData,
+              characterDamageType: e.target.value,
+            }))
+          }/>
         </div>
       </div>
 

@@ -57,12 +57,14 @@ function LoadPlaySession() {
 		characterHitDice: '',
 	})
   
+  
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
   const [characterIdeals, setCharacterIdeals] = useState([]);
   const [characterBonds, setCharacterBonds] = useState([]);
   const [characterFlaws, setCharacterFlaws] = useState([]);
   const [characterLanguages, setCharacterLanguages] = useState([]);
   const [characterTraits, setCharacterTraits] = useState([]);
+  const [characterAttacks, setCharacterAttacks] = useState([]);
   const [characterSavingThrows, setCharacterSavingThrows] = useState([])
   const [characterProfSkills, setCharacterProfSkills] = useState([]) 
   
@@ -107,7 +109,7 @@ function LoadPlaySession() {
         setCharacterFlaws(characterData.flaws || []);
         setCharacterLanguages(characterData.languages || []);
         setCharacterTraits(characterData.traits || []);
-        
+        setCharacterAttacks(characterData.attacks || []);
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -173,6 +175,7 @@ function LoadPlaySession() {
             characterLanguages={characterLanguages}
 
             characterTraits={characterTraits}
+            characterAttacks={characterAttacks}
 
             characterSavingThrows={characterSavingThrows}
             characterSkills={characterProfSkills}
@@ -220,7 +223,7 @@ function LoadPlaySession() {
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>
-                        <AttacksForm/>
+                        <AttacksForm characterAttacks={characterAttacks} setcharacterAttacks={setCharacterAttacks} fetchData={fetchData}/>
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>

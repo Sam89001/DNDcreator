@@ -10,6 +10,7 @@ const CreateCharacterBondSchema = require('../models/CreateCharacterBondSchema')
 const CreateCharacterFlawSchema = require('../models/CreateCharacterFlawSchema')
 const CreateCharacterLanguageSchema = require('../models/CreateCharacterLanguageSchema')
 const CreateCharacterTraitSchema = require('../models/CreateCharacterTraitSchema')
+const CreateCharacterAttackSchema = require('../models/CreateCharacterAttackSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -43,6 +44,7 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterFlaw = await CreateCharacterFlawSchema.find({ characterId: characterId })
     const LoadCharacterLanguage = await CreateCharacterLanguageSchema.find({ characterId: characterId })
     const LoadCharacterTrait = await CreateCharacterTraitSchema.find({ characterId: characterId })
+    const LoadCharacterAttack = await CreateCharacterAttackSchema.find({ characterId: characterId })
     
 
     if (!LoadCharacters) {
@@ -57,7 +59,8 @@ router.get('/:characterId', async (req, res) => {
       bonds: LoadCharacterBonds,
       flaws: LoadCharacterFlaw,
       languages: LoadCharacterLanguage,
-      traits: LoadCharacterTrait
+      traits: LoadCharacterTrait,
+      attacks: LoadCharacterAttack
     };
     res.json(responseData);
   } catch (error) {
@@ -658,6 +661,34 @@ router.delete('/DeleteTrait/:id', async (req, res) => {
       success: 'Successfully deleted character data',
     });
 
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Creates an Attack
+router.post('/UpdateAttack/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterAttackName, characterAttackBonus,
+      characterDamageType } = req.body; 
+
+    const characterData = { characterId: id, characterAttackName: characterAttackName,
+      characterAttackBonus: characterAttackBonus, characterDamageType: characterDamageType } 
+
+    const update = await CreateCharacterAttackSchema.create(
+      characterData
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newAttack: update
+    });
   } catch (error) {
     console.log(error)
   }
