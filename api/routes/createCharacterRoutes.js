@@ -109,6 +109,16 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
       characterSpeed, characterXp, characterInspiration, characterProficiencyBonus, 
       characterPerception, characterHitDice } = req.body;
 
+      if (
+        isNaN(characterHp) || isNaN(characterAc) || isNaN(characterLevel) ||
+        isNaN(characterSpeed) || isNaN(characterXp) || isNaN(characterInspiration) ||
+        isNaN(characterProficiencyBonus) || isNaN(characterPerception) 
+      ) {
+        return res.json({
+          error: 'character Hp, AC, Level, Speed, XP, Inspiration, Proficiency Bonus and Perception must be numbers'
+        });
+      }
+
     const characterData = {
       characterName,
       characterClass,

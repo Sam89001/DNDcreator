@@ -14,13 +14,13 @@ const CreateCharacterSchema = new mongoose.Schema({
     type: String,
   },
   characterHp: {
-    type: String,
+    type: Number,
   },
   characterAc: {
-    type: String,
+    type: Number,
   },
   characterLevel: {
-    type: String,
+    type: Number,
   },
   characterRace: {
     type: String,
@@ -32,13 +32,13 @@ const CreateCharacterSchema = new mongoose.Schema({
     type: String,
   },
   characterSpeed: {
-    type: String,
+    type: Number,
   },
   characterInitiative: {
-    type: String,
+    type: Number,
   },
   characterXp: {
-    type: String,
+    type: Number,
   },
   characterProficiencys: {
     type: [String],  
@@ -63,13 +63,13 @@ const CreateCharacterSchema = new mongoose.Schema({
     type: Number,
   },
   characterInspiration: {
-    type: String,
+    type: Number,
   },
   characterProficiencyBonus: {
-    type: String,
+    type: Number,
   },
   characterPerception: {
-    type: String,
+    type: Number,
   },
   characterHitDice: {
     type: String,

@@ -44,6 +44,9 @@ function DndSheet({fetchData,
 		} 
 	} 
 
+  const profCheck = ["Strength", "Dexterity", "Constitution",
+      "Intelligence", "Wisdom", "Charisma"];
+
   const skills = [
     "acrobatics",
     "animalHandling",
@@ -79,10 +82,11 @@ function DndSheet({fetchData,
     characterIntelligence,
     characterWisdom,
     characterCharisma
-  ]
+  ];
 
   let topPositionSkills = 40.9; 
-  let topPositionSavingThrows = 26.3;
+  let topPositionSavingThrows = 26.3
+  let topPositionSavingThrowNumbers = 26.3;
   let topPositionSkillNumber = 23.1;
 
   const skillDivs = skills.map((skill) => {
@@ -116,8 +120,71 @@ function DndSheet({fetchData,
     };
     topPositionSavingThrows += 1.7;
     return (
-      <div key={savingThrow} className="absolute-div dnd-sheet" style={style}> 
+      <div className="absolute-div dnd-sheet" style={style}> 
       </div>
+    );
+  });
+
+  const savingThrowsNumbersDiv = skillNumber.map((num) => {
+    let output;
+    let finalOutput;
+    let pointer = 0;
+
+    if (num < 2) {
+      output = -5;
+    } else if (num < 4) {
+      output = -4;
+    } else if (num < 6) {
+      output = -3;
+    } else if (num < 8) {
+      output = -2;
+    } else if (num < 10) {
+      output = -1;
+    } else if (num < 12) {
+      output = 0;
+    } else if (num < 14) {
+      output = 1;
+    } else if (num < 16) {
+      output = 2;
+    } else if (num < 18) {
+      output = 3;
+    } else if (num < 20) {
+      output = 4;
+    } else if (num < 22) {
+      output = 5;
+    } else if (num < 24) {
+      output = 6;
+    } else if (num < 26) {
+      output = 7;
+    } else if (num < 28) {
+      output = 8;
+    } else if (num < 30) {
+      output = 9;
+    } else if (num >= 30) {
+      output = 10;
+    }
+
+    if (characterProficiencys.includes(profCheck[pointer])) {
+      finalOutput = output + characterProficiencyBonus
+    } else {
+      finalOutput = output
+    }
+
+    const style = {
+      top: `${topPositionSavingThrowNumbers}%`, // Set top position dynamically
+      left: '19.5%',
+      width: '2%',
+      height: '0.8%',
+      fontSize: '0.6vw',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingBottom: '8px'
+    };
+    topPositionSavingThrowNumbers += 1.7;
+    return (
+      <div className="absolute-div dnd-sheet" style={style}> 
+     {finalOutput}</div>
     );
   });
 
@@ -305,6 +372,7 @@ function DndSheet({fetchData,
 
         {/* Saving Throws */}
         {savingThrowsDiv}
+        {savingThrowsNumbersDiv}
 
         {/* Prof Skills */}
         {skillDivs}
