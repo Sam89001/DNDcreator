@@ -44,29 +44,35 @@ function DndSheet({fetchData,
 		} 
 	} 
 
+  let topPositionSkills = 40.9; 
+  let topPositionSkillsTwo = 40.9; 
+  let topPositionSavingThrows = 26.3
+  let topPositionSavingThrowNumbers = 26.3;
+  let topPositionSkillNumber = 23.1;
+
   const profCheck = [
     "strength", "dexterity", "constitution",
       "intelligence", "wisdom", "charisma"
   ];
   const skills = [
-    "acrobatics",
-    "animalHandling",
-    "arcana",
-    "athletics",
-    "deception",
-    "history",
-    "insight",
-    "intimidation",
-    "investigation",
-    "medicine",
-    "nature",
-    "perception",
-    "performance",
-    "persuasion",
-    "religion",
-    "sleightOfHand",
-    "stealth",
-    "survival"
+    { skill: "acrobatics", ability: "dexterity" },
+    { skill: "animalHandling", ability: "wisdom" },
+    { skill: "arcana", ability: "intelligence" },
+    { skill: "athletics", ability: "strength" },
+    { skill: "deception", ability: "charisma" },
+    { skill: "history", ability: "intelligence" },
+    { skill: "insight", ability: "wisdom" },
+    { skill: "intimidation", ability: "charisma" },
+    { skill: "investigation", ability: "intelligence" },
+    { skill: "medicine", ability: "wisdom" },
+    { skill: "nature", ability: "intelligence" },
+    { skill: "perception", ability: "wisdom" },
+    { skill: "performance", ability: "charisma" },
+    { skill: "persuasion", ability: "charisma" },
+    { skill: "religion", ability: "intelligence" },
+    { skill: "sleightOfHand", ability: "dexterity" },
+    { skill: "stealth", ability: "dexterity" },
+    { skill: "survival", ability: "wisdom" }
   ];
   const savingThrows = [
     "strength",
@@ -85,14 +91,74 @@ function DndSheet({fetchData,
     characterCharisma
   ];
 
-  let topPositionSkills = 40.9; 
-  let topPositionSavingThrows = 26.3
-  let topPositionSavingThrowNumbers = 26.3;
-  let topPositionSkillNumber = 23.1;
+  const skillDivs = skills.map((entry, index) => {
+    const { skill, ability } = entry;
+    let value;
+    let output;
+    let finalOutput;
 
-  const skillDivs = skills.map((skill) => {
-      const backgroundColor = characterSkills.includes(skill) ? 'white' : 'transparent';
-      const style = {
+    // Set Values
+    switch (ability) {
+        case "strength":
+            value = characterStrength;
+            break;
+        case "dexterity":
+            value = characterDexterity;
+            break;
+        case "constitution":
+            value = characterConstitution;
+            break;
+        case "intelligence":
+            value = characterIntelligence;
+            break;
+        case "wisdom":
+            value = characterWisdom;
+            break;
+        case "charisma":
+            value = characterCharisma;
+            break;
+        default:
+            value = 0;
+            break;
+    }
+
+    // Determine output based on value
+    if (value < 2) {
+        output = -5;
+    } else if (value < 4) {
+        output = -4;
+    } else if (value < 6) {
+        output = -3;
+    } else if (value < 8) {
+        output = -2;
+    } else if (value < 10) {
+        output = -1;
+    } else if (value < 12) {
+        output = 0;
+    } else if (value < 14) {
+        output = 1;
+    } else if (value < 16) {
+        output = 2;
+    } else if (value < 18) {
+        output = 3;
+    } else if (value < 20) {
+        output = 4;
+    } else if (value < 22) {
+        output = 5;
+    } else if (value < 24) {
+        output = 6;
+    } else if (value < 26) {
+        output = 7;
+    } else if (value < 28) {
+        output = 8;
+    } else if (value < 30) {
+        output = 9;
+    } else if (value >= 30) {
+        output = 10;
+    }
+
+    const backgroundColor = characterSkills.includes(skill) ? 'white' : 'red';
+    const skillStyle = {
         backgroundColor,
         borderRadius: '10px',
         top: `${topPositionSkills}%`, // Set top position dynamically
@@ -100,28 +166,34 @@ function DndSheet({fetchData,
         width: '1%',
         height: '0.8%',
         fontSize: '1vw'
-      };
-      const numberStyles = {
-        backgroundColor: 'red',
+    };
+
+    const numberStyles = {
         top: `${topPositionSkills}%`, // Set top position dynamically
         left: '19.5%',
         width: '2%',
         height: '0.8%',
         fontSize: '1vw'
-      };
-      topPositionSkills += 1.7;
+    };
 
-      return (
-        <div>
-          <div className="absolute-div dnd-sheet" style={style}> 
-          </div>
+    // Determine final output based on the background color
+    if (backgroundColor === 'white') {
+        finalOutput = output + characterProficiencyBonus;
+    } else {
+        finalOutput = output;
+    }
 
-          <div className="absolute-div dnd-sheet" style={numberStyles}>
-            {/* if white then add prof bonus */}
-            {/* if transparent output */}
-          </div>
+    // Adjust the top position for the next skill
+    topPositionSkills += 1.7;
+
+    return (
+        <div key={skill}>
+            <div className="absolute-div dnd-sheet" style={skillStyle}></div>
+            <div className="absolute-div dnd-sheet" style={numberStyles}>
+                {finalOutput}
+            </div>
         </div>
-      );
+    );
   });
 
   const savingThrowsDiv = savingThrows.map((savingThrow) => {
@@ -141,6 +213,7 @@ function DndSheet({fetchData,
       </div>
     );
   });
+
   const savingThrowsNumbersDiv = skillNumber.map((num) => {
     let output;
     let finalOutput;
