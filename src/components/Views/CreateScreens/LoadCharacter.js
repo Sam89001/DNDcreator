@@ -134,7 +134,7 @@ function LoadPlaySession() {
 
           {/* Character Sheet */}
   
-          <div className="col-5" style={{ color: 'white', padding: '30px 20px 20px 20px' }}>
+          <div className="col-5" style={{ color: 'white', padding: '10px 30px 30px 30px' }}>
             <DndSheet
             fetchData={fetchData}
             characterName={characterData ? characterData.characterName : ''}
@@ -192,9 +192,9 @@ function LoadPlaySession() {
               <div className='col-3'>
                 <div style={{paddingBottom: '30px'}}>
                   <SkillsForm updateCharacterSkills={updateCharacterSkills} />
-
-                  <LanguagesForm characterLanguages={characterLanguages} setCharacterLanguages={setCharacterLanguages} fetchData={fetchData}/>
                 </div>
+
+                <LanguagesForm characterLanguages={characterLanguages} setCharacterLanguages={setCharacterLanguages} fetchData={fetchData}/>
                 
               </div>
 
