@@ -45,22 +45,22 @@ const CreateCharacterSchema = new mongoose.Schema({
     default: []
   },
   characterStrength: {
-    type: String,
+    type: Number,
   },
   characterDexterity: {
-    type: String,
+    type: Number,
   },
   characterConstitution: {
-    type: String,
+    type: Number,
   },
   characterIntelligence: {
-    type: String,
+    type: Number,
   },
   characterWisdom: {
-    type: String,
+    type: Number,
   },
   characterCharisma: {
-    type: String,
+    type: Number,
   },
   characterInspiration: {
     type: String,

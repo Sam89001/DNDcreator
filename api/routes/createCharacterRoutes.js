@@ -155,6 +155,15 @@ router.put('/UpdateSkills/:id', async (req, res) => {
     const { characterStrength, characterDexterity, characterConstitution, characterIntelligence,
       characterWisdom, characterCharisma, characterProficiencys } = req.body;
 
+      if (
+        isNaN(characterStrength) || isNaN(characterDexterity) || isNaN(characterConstitution) ||
+        isNaN(characterIntelligence) || isNaN(characterWisdom) || isNaN(characterCharisma)
+      ) {
+        return res.json({
+          error: 'Skills must be numbers',
+        });
+      }
+
     const characterData = {
       characterStrength, characterDexterity, characterConstitution, characterIntelligence,
       characterWisdom, characterCharisma, characterProficiencys

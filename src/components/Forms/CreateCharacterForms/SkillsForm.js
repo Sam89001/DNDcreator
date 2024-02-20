@@ -34,26 +34,28 @@ function SkillsForm({updateCharacterSkills}) {
 
 	const updateSkills = async (e) => {
 		e.preventDefault();
-		const {id, characterStrength, characterDexterity, characterConstitution, characterIntelligence,
-		characterWisdom, characterCharisma, characterProficiencys} = data;
-
+		const { id, characterStrength, characterDexterity, characterConstitution, characterIntelligence,
+			characterWisdom, characterCharisma, characterProficiencys } = data;
+	
 		try {
 			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateSkills/${id}`, {
 				id, characterStrength, characterDexterity, characterConstitution, characterIntelligence,
 				characterWisdom, characterCharisma, characterProficiencys
-			})
-
-			if (response.error) {
+			});
+	
+			if (response.data.error) {
 				toast.error(response.data.error);
-			} else {
+			} else if (response.data.success) {
 				updateCharacterSkills(data);
 				setData((prevData) => ({ ...prevData, id: urlId }));
 				toast.success('Updated character details');
 			}
 		} catch (error) {
-			console.log(error)
+			console.error(error);
+			toast.error('Error updating character details. Please try again later.');
 		}
 	};
+	
 
 //HTML
   return (
