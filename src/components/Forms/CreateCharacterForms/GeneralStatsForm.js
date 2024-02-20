@@ -23,19 +23,24 @@ function GeneralStatsForm({updateCharacterData}) {
 		characterBackground: '',
 		characterAlignment: '',
 		characterSpeed: '',
-		characterXp: ''
+		characterXp: '',
+		characterInspiration: '',
+		characterProficiencyBonus: '',
+		characterPerception: '',
+		characterHitDice: '',
 	}) 
 
 	const updateGeneralStats = async (e) => {
 		e.preventDefault();
 		const { id, characterName, characterClass, characterHp, characterAc, characterLevel,
-			characterRace, characterBackground, characterAlignment, characterSpeed, characterXp } = data;
+			characterRace, characterBackground, characterAlignment, characterSpeed, characterXp,
+			characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice } = data;
 	
 		try {
 			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateGeneralStats/${id}`, {
 				id, characterName, characterClass, characterHp, characterAc, characterLevel,
 				characterRace, characterBackground, characterAlignment, characterSpeed,
-				characterXp
+				characterXp, characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice
 			});
 	
 			if (response.data.error) {
@@ -84,6 +89,16 @@ function GeneralStatsForm({updateCharacterData}) {
 						<input className='create-character-field create-character-small-field' placeholder='Level'
 						onChange={(e) => setData({ ...data, characterLevel: e.target.value })}/>
 					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='Inspiration'
+						onChange={(e) => setData({ ...data, characterInspiration: e.target.value })}/>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='Perception'
+						onChange={(e) => setData({ ...data, characterPerception: e.target.value })}/>
+					</div>
 				</div>
 
 				{/* Second Row*/}
@@ -112,6 +127,16 @@ function GeneralStatsForm({updateCharacterData}) {
 					<div className='create-character-container'>
 						<input className='create-character-field create-character-small-field' placeholder='Xp'
 						onChange={(e) => setData({ ...data, characterXp: e.target.value })}/>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='P-Bonus'
+						onChange={(e) => setData({ ...data, characterProficiencyBonus: e.target.value })}/>
+					</div>
+
+					<div className='create-character-container'>
+						<input className='create-character-field create-character-small-field' placeholder='Hit Dice'
+						onChange={(e) => setData({ ...data, characterHitDice: e.target.value })}/>
 					</div>
 
 					<div style={{width: '60px', textAlign: 'center'}}>

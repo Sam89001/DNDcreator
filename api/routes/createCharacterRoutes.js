@@ -106,9 +106,8 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
     const { id } = req.params;
     const { characterName, characterClass, characterHp, characterAc, 
       characterLevel, characterRace, characterBackground, characterAlignment, 
-      characterSpeed, characterXp } = req.body;
-    
-    console.log(id)
+      characterSpeed, characterXp, characterInspiration, characterProficiencyBonus, 
+      characterPerception, characterHitDice } = req.body;
 
     const characterData = {
       characterName,
@@ -120,10 +119,12 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
       characterBackground,
       characterAlignment,
       characterSpeed,
-      characterXp
+      characterXp,
+      characterInspiration,
+      characterProficiencyBonus,
+      characterPerception,
+      characterHitDice
     };
-
-    console.log(characterData)
 
     const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
       id,
@@ -132,13 +133,11 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
       },
       { new: true }
     );
-
     if (!updateGeneralStats) {
       return res.json({
         error: 'Error updating character data',
       });
     }
-
     return res.json({
       success: true,
     });
@@ -173,39 +172,6 @@ router.put('/UpdateSkills/:id', async (req, res) => {
       return res.json({
         error: 'Error updating character data',
       });
-    }
-
-    return res.json({
-      success: true,
-    });
-    
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-//Creates & Updates MiscStats
-router.put('/UpdateMiscStats/:id', async (req, res) => {
-  try {
-
-    const { id } = req.params;
-    const { characterInspiration, characterProficiencyBonus, 
-    characterPerception, characterHitDice } = req.body;    
-    const characterMiscData = { characterInspiration, characterProficiencyBonus, 
-    characterPerception, characterHitDice } 
-
-    const updateMiscStats = await CreateCharacterSchema.findByIdAndUpdate(
-      id,
-      {
-        $set: characterMiscData
-      },
-      { new: true }
-    );
-
-    if (!updateMiscStats) {
-      return res.json({
-        error: 'Error updating character data',
-      })
     }
 
     return res.json({

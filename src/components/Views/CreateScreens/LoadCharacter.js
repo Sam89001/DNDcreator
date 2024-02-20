@@ -4,7 +4,6 @@ import { UserContext } from '../../../context/userContext';
 //forms
 import GeneralStatsForm from '../../Forms/CreateCharacterForms/GeneralStatsForm';
 import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
-import MiscStatsForm from '../../Forms/CreateCharacterForms/MiscStatsForm';
 import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
 import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
 import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
@@ -41,6 +40,10 @@ function LoadPlaySession() {
     characterAc: '',
     characterInt: '',
     characterSpeed: '',
+		characterInspiration: '',
+		characterProficiencyBonus: '',
+		characterPerception: '',
+		characterHitDice: '',
 	}) 
   const [characterSkills, setCharacterSkills] = useState({
 		characterStrength: '',
@@ -50,13 +53,6 @@ function LoadPlaySession() {
 		characterWisdom: '',
 		characterCharisma: '',
 	}) 
-  const [characterMiscStats, setCharacterMiscStats] = useState({
-		characterInspiration: '',
-		characterProficiencyBonus: '',
-		characterPerception: '',
-		characterHitDice: '',
-	})
-  
   
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
   const [characterIdeals, setCharacterIdeals] = useState([]);
@@ -86,7 +82,11 @@ function LoadPlaySession() {
           characterAlignment: characterData.character.characterAlignment || '',
           characterSpeed: characterData.character.characterSpeed || '',
           characterXp: characterData.character.characterXp || '',
-          characterHP: characterData.character.characterHp || ''
+          characterHP: characterData.character.characterHp || '',
+          characterInspiration: characterData.character.characterInspiration || '',
+          characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
+          characterPerception: characterData.character.characterPerception || '',
+          characterHitDice: characterData.character.characterHitDice || ''
         });
         setCharacterSkills({
           characterStrength: characterData.character.characterStrength || '',
@@ -95,12 +95,6 @@ function LoadPlaySession() {
           characterIntelligence: characterData.character.characterIntelligence || '',
           characterWisdom: characterData.character.characterWisdom || '',
           characterCharisma: characterData.character.characterCharisma || ''
-        });
-        setCharacterMiscStats({
-          characterInspiration: characterData.character.characterInspiration || '',
-          characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
-          characterPerception: characterData.character.characterPerception || '',
-          characterHitDice: characterData.character.characterHitDice || ''
         });
         setCharacterProfSkills(characterData.character.characterSkillProficiencys || [])
         setCharacterSavingThrows(characterData.character.characterSavingThrowProficiencys || [])
@@ -129,9 +123,6 @@ function LoadPlaySession() {
     const updateCharacterSkills = (newSkillsData) => {
       setCharacterSkills(newSkillsData);
     }
-    const updateCharacterMisc = (newcharacterMiscStats) => {
-      setCharacterMiscStats(newcharacterMiscStats);
-    }
   
     return (
       <div style={{paddingBottom: '20px'}}>
@@ -158,17 +149,17 @@ function LoadPlaySession() {
             characterInt={characterData ? characterData.characterInitiative : ''}
             characterSpeed={characterData ? characterData.characterSpeed: ''}
             characterHP={characterData ? characterData.characterHp: ''}
+            characterInspiration={characterData ? characterData.characterInspiration : ''}
+            characterProficiencyBonus={characterData ? characterData.characterProficiencyBonus : ''}
+            characterPerception={characterData ? characterData.characterPerception : ''}
+            characterHitDice={characterData ? characterData.characterHitDice : ''}
 
             characterStrength={characterSkills ? characterSkills.characterStrength : ''}
             characterDexterity={characterSkills ? characterSkills.characterDexterity : ''}
             characterConstitution={characterSkills ? characterSkills.characterConstitution : ''}
             characterIntelligence={characterSkills ? characterSkills.characterIntelligence : ''}
             characterWisdom={characterSkills ? characterSkills.characterWisdom : ''}
-            characterCharisma={characterSkills ? characterSkills.characterCharisma : ''}
-            characterInspiration={characterMiscStats ? characterMiscStats.characterInspiration : ''}
-            characterProficiencyBonus={characterMiscStats ? characterMiscStats.characterProficiencyBonus : ''}
-            characterPerception={characterMiscStats ? characterMiscStats.characterPerception : ''}
-            characterHitDice={characterMiscStats ? characterMiscStats.characterHitDice : ''}
+            characterCharisma={characterSkills ? characterSkills.characterCharisma : ''}   
 
             characterPersonalityTraits={characterPersonalityTraits}
             characterIdeals={characterIdeals}
@@ -189,9 +180,10 @@ function LoadPlaySession() {
   
           <div className="col-7" style={{ color: 'white' }}>
 
-            <div className='w-100 d-flex align-items-center'>
+          <div className='w-100 d-flex align-items-center justify-content-between'>
               <header className="form-header">Create Your Character</header>
-            </div>
+              <header className="navbar-text">Next Page &gt;</header>
+          </div>
   
             <div className='row'>
 
@@ -200,9 +192,10 @@ function LoadPlaySession() {
               <div className='col-3'>
                 <div style={{paddingBottom: '30px'}}>
                   <SkillsForm updateCharacterSkills={updateCharacterSkills} />
+
+                  <LanguagesForm characterLanguages={characterLanguages} setCharacterLanguages={setCharacterLanguages} fetchData={fetchData}/>
                 </div>
                 
-                <MiscStatsForm updateCharacterMisc={updateCharacterMisc}/>
               </div>
 
               {/* Other Stats */}
@@ -256,10 +249,6 @@ function LoadPlaySession() {
 
                       <div className='col-12'>
                        <FlawsForm characterFlaws={characterFlaws} setCharacterFlaws={setCharacterFlaws} fetchData={fetchData}/>
-                      </div>
-
-                      <div className='col-12' style={{paddingBottom: '5px'}}>
-                        <LanguagesForm characterLanguages={characterLanguages} setCharacterLanguages={setCharacterLanguages} fetchData={fetchData}/>
                       </div>
 
                     </div>
