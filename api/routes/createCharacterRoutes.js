@@ -11,6 +11,8 @@ const CreateCharacterFlawSchema = require('../models/CreateCharacterFlawSchema')
 const CreateCharacterLanguageSchema = require('../models/CreateCharacterLanguageSchema')
 const CreateCharacterTraitSchema = require('../models/CreateCharacterTraitSchema')
 const CreateCharacterAttackSchema = require('../models/CreateCharacterAttackSchema')
+const CreateChatacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
+const CreateCharacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -45,6 +47,7 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterLanguage = await CreateCharacterLanguageSchema.find({ characterId: characterId })
     const LoadCharacterTrait = await CreateCharacterTraitSchema.find({ characterId: characterId })
     const LoadCharacterAttack = await CreateCharacterAttackSchema.find({ characterId: characterId })
+    const LoadCharacterEquipment = await CreateCharacterEquipmentSchema.find({ characterId: characterId })
     
 
     if (!LoadCharacters) {
@@ -60,7 +63,8 @@ router.get('/:characterId', async (req, res) => {
       flaws: LoadCharacterFlaw,
       languages: LoadCharacterLanguage,
       traits: LoadCharacterTrait,
-      attacks: LoadCharacterAttack
+      attacks: LoadCharacterAttack,
+      equipment: LoadCharacterEquipment
     };
     res.json(responseData);
   } catch (error) {
@@ -745,6 +749,54 @@ router.delete('/DeleteAttack/:id', async (req, res) => {
   }
 })
 
+//Creates Equipment
+router.post('/UpdateEquipment/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterEquipmentName, characterEquipmentQuantity,
+      characterEquipmentDescription } = req.body; 
+
+    const characterData = { characterId: id, characterEquipmentName: characterEquipmentName,
+      characterEquipmentQuantity: characterEquipmentQuantity, characterEquipmentDescription: characterEquipmentDescription } 
+
+    const update = await CreateCharacterEquipmentSchema.create(
+      characterData
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newEquipment: update
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Deletes Equipment
+router.delete('/DeleteEquipment/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deleted = await CreateCharacterEquipmentSchema.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Updates Character Saving Throws
 router.put('/SavingThrows/:id', async (req, res) => {
   try {
@@ -777,7 +829,7 @@ router.put('/SavingThrows/:id', async (req, res) => {
   } catch (error) {
   }
 })
-
+//Updates Character Skills
 router.put('/ProficiencySkills/:id', async (req, res) => {
   try {
     const { id } = req.params;

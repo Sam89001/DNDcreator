@@ -65,6 +65,7 @@ function LoadPlaySession() {
   const [characterLanguages, setCharacterLanguages] = useState([]);
   const [characterTraits, setCharacterTraits] = useState([]);
   const [characterAttacks, setCharacterAttacks] = useState([]);
+  const [characterEquipment, setCharacterEquipment] = useState([]);
   const [characterSavingThrows, setCharacterSavingThrows] = useState([])
   const [characterProfSkills, setCharacterProfSkills] = useState([]) 
   
@@ -110,6 +111,7 @@ function LoadPlaySession() {
         setCharacterLanguages(characterData.languages || []);
         setCharacterTraits(characterData.traits || []);
         setCharacterAttacks(characterData.attacks || []);
+        setCharacterEquipment(characterData.equipment|| []);
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -176,6 +178,7 @@ function LoadPlaySession() {
 
             characterTraits={characterTraits}
             characterAttacks={characterAttacks}
+            characterEquipment={characterEquipment}
 
             characterSavingThrows={characterSavingThrows}
             characterSkills={characterProfSkills}
@@ -227,7 +230,7 @@ function LoadPlaySession() {
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>
-                        <EquipmentForm/>
+                        <EquipmentForm characterEquipment={characterEquipment} setCharacterEquipment={setCharacterEquipment} fetchData={fetchData}/>
                       </div>
 
                       <div className='col-12' style={{paddingBottom: '10px'}}>

@@ -24,7 +24,7 @@ function DndSheet({fetchData,
   
   characterPersonalityTraits, characterIdeals, characterBonds, characterFlaws, characterLanguages,
 
-  characterTraits, characterAttacks,
+  characterTraits, characterAttacks, characterEquipment,
 
   characterSavingThrows, characterSkills
   }) {
@@ -134,6 +134,21 @@ function DndSheet({fetchData,
 				toast.error(response.data.error);
 			} else {
 				//Calls the get request
+				fetchData();
+				toast.success('Successfully deleted');
+			}
+		} catch (error) {
+			console.log(error)
+		} 
+	} 
+
+  const deleteEquipment =  async (e, id) => {
+		e.preventDefault();
+		try {
+			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteEquipment/${id}`);
+			if(response.error) {
+				toast.error(response.data.error);
+			} else {
 				fetchData();
 				toast.success('Successfully deleted');
 			}
@@ -355,35 +370,37 @@ function DndSheet({fetchData,
 
 
         {/* Equipment */}
-        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '74.5%', left: '46%', width: '20%', height: '21%', fontSize: '0.7vw' }}>
-          <div className='col-12 equipment-container'>
-            <div className='row '>
-                <div className='col-6 equipment-title' >Equipment Title</div> 
-                <div className='col-4 d-flex align-items-center equipment-title' >Quantity:</div>
-                <div className='col-2 d-flex align-items-center justify-content-center equipment-title' >
-                  <button className='delete-property-button'>X</button>
-                </div>
-
-                <div className='col-6 equipment-field-container' >
-                  <div className='equipment-field'>
-                    James
+        <div className="absolute-div dnd-sheet-noflex row" style={{ paddingRight: '8px', overflowY: 'auto', top: '74.5%', left: '46%', width: '21%', height: '21%', fontSize: '0.7vw' }}>
+          {characterEquipment.map(equipment => (
+            <div key={equipment._id} className='col-12 equipment-container'>
+              <div className='row '>
+                  <div className='col-6 equipment-title' >Equipment Title</div> 
+                  <div className='col-4 d-flex align-items-center equipment-title' >Quantity:</div>
+                  <div className='col-2 d-flex align-items-center justify-content-center equipment-title' >
+                    <button className='delete-property-button' 
+                    onClick={(e) => deleteEquipment(e, equipment._id)}>X</button>
                   </div>
-                </div>
 
-                <div className='col-6 d-flex align-items-center equipment-field-container' >
-                  <div className='equipment-field'>
-                    Jonah
+                  <div className='col-6 equipment-field-container' >
+                    <div className='equipment-field'>
+                      {equipment.characterEquipmentName}
+                    </div>
                   </div>
-                </div>
-                
-                <div className='col-12 equipment-title' >Equipment Description:</div> 
-                <div className='col-12 equipment-field' style={{ padding: '0px 15px 0px 5px' }}>
-                  Jackson
-                </div>
 
-              </div>
-          </div>
-          
+                  <div className='col-6 d-flex align-items-center equipment-field-container' >
+                    <div className='equipment-field'>
+                    {equipment.characterEquipmentQuantity} 
+                    </div>
+                  </div>
+                  
+                  <div className='col-12 equipment-title' >Equipment Description:</div> 
+                  <div className='col-12 equipment-field' style={{ padding: '0px 15px 0px 5px' }}>
+                    {equipment.characterEquipmentDescription}
+                  </div>
+
+                </div>
+            </div>
+          ))}
         </div>
 
         {/* Features/Traits */}
