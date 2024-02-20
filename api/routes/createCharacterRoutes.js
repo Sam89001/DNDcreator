@@ -777,6 +777,37 @@ router.post('/UpdateEquipment/:id', async (req, res) => {
   }
 })
 
+//Updates Equipment
+router.put('/ChangeEquipment/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {  characterEquipmentName, characterEquipmentQuantity,
+      characterEquipmentDescription } = req.body; 
+    const characterData = {  characterEquipmentName, characterEquipmentQuantity,
+      characterEquipmentDescription } 
+
+    const update = await CreateCharacterEquipmentSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Deletes Equipment
 router.delete('/DeleteEquipment/:id', async (req, res) => {
   try{

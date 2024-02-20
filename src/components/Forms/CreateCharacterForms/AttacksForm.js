@@ -126,11 +126,14 @@ function AttacksForm({characterAttacks, setCharacterAttacks, fetchData}) {
 
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-          <select className='create-character-field' style={{width: '75%'}} placeholder='Attack Name'>
+          <select className='create-character-field' style={{width: '75%'}} 
+            placeholder='Attack Name' onChange={handleSelectChange}>
+
             <option/>
             {characterAttacks.map(attack => (
 						  <option key={attack._id} value={attack._id}>{attack.characterAttackName}</option>
 					  ))}
+            
           </select>
 					<button className='create-character-button' type="submit" > Update</button>
         </div>

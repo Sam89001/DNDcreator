@@ -368,7 +368,6 @@ function DndSheet({fetchData,
           ))}
         </div>
 
-
         {/* Equipment */}
         <div className="absolute-div dnd-sheet-noflex row" style={{ paddingRight: '8px', overflowY: 'auto', top: '74.5%', left: '46%', width: '21%', height: '21%', fontSize: '0.7vw' }}>
           {characterEquipment.map(equipment => (

@@ -40,8 +40,8 @@ function EquipmentForm({setCharacterEquipment, characterEquipment, fetchData}) {
 			setData((prevData) => ({ ...prevData, id: urlId }));
 			await updateEquipment();
 		} else {
-			//await updateExistingEquipmentk(selectedId.selectedId, data.characterEquipmentName, 
-      //data.characterEquipmentQuantity, data.characterEquipmentDescription); 
+			await updateExistingEquipment(selectedId.selectedId, data.characterEquipmentName, 
+      data.characterEquipmentQuantity, data.characterEquipmentDescription); 
 		}
 	};
 
@@ -67,6 +67,27 @@ function EquipmentForm({setCharacterEquipment, characterEquipment, fetchData}) {
 			console.log(error)
 		}
 	}
+
+  //Put Request
+  const updateExistingEquipment = async (id, characterEquipmentName, characterEquipmentQuantity, characterEquipmentDescription) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeEquipment/${id}`, {
+					id, characterEquipmentName, 
+          characterEquipmentQuantity, 
+          characterEquipmentDescription
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					fetchData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	}; 
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -115,8 +136,14 @@ function EquipmentForm({setCharacterEquipment, characterEquipment, fetchData}) {
 
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div style={{width: '100%', display: 'flex', justifyContent: 'space-between'}}>
-          <select className='create-character-field' style={{width: '75%'}} placeholder='Attack Name'>
+          <select className='create-character-field' style={{width: '75%'}} 
+          placeholder='Attack Name' onChange={handleSelectChange}>
+
             <option/>
+            {characterEquipment.map(equipment => (
+						  <option key={equipment._id} value={equipment._id}>{equipment.characterEquipmentName}</option>
+					  ))}
+
           </select>
 					<button className='create-character-button' type="submit" > Update</button>
         </div>
