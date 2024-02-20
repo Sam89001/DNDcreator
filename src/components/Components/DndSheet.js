@@ -29,123 +29,10 @@ function DndSheet({fetchData,
   characterSavingThrows, characterSkills
   }) {
 
-  //Delete Request
-	const deletePersonalityTrait =  async (e, id) => {
+  const deleteItem =  async (e, id, address) => {
 		e.preventDefault();
 		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeletePersonalityTrait/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-  const deleteIdeal =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteIdeal/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		}
-	}
-
-  const deleteBond =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteBond/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		} 
-	} 
-
-  const deleteFlaw =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteFlaw/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		} 
-	} 
-
-  const deleteLanguage =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteLanguage/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		} 
-	} 
-
-  const deleteTrait =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteTrait/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		} 
-	} 
-
-  const deleteAttack =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteAttack/${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else {
-				//Calls the get request
-				fetchData();
-				toast.success('Successfully deleted');
-			}
-		} catch (error) {
-			console.log(error)
-		} 
-	} 
-
-  const deleteEquipment =  async (e, id) => {
-		e.preventDefault();
-		try {
-			const response = await axios.delete(`http://localhost:4000/CreateCharacter/DeleteEquipment/${id}`);
+			const response = await axios.delete(address + `${id}`);
 			if(response.error) {
 				toast.error(response.data.error);
 			} else {
@@ -361,7 +248,8 @@ function DndSheet({fetchData,
                 </div>
                 <div className='col-4 col-sm-3 attack-third-field'>
                   <div style={{width: '80%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterDamageType}</div>
-                  <button className='delete-property-button' style={{width: '10%'}} onClick={(e) => deleteAttack(e, attack._id)}>X</button>
+                  <button className='delete-property-button' style={{width: '10%'}} 
+                  onClick={(e) => deleteItem(e, attack._id, 'http://localhost:4000/CreateCharacter/DeleteAttack/')}>X</button>
                 </div>
               </div>
             </div>
@@ -377,7 +265,7 @@ function DndSheet({fetchData,
                   <div className='col-4 d-flex align-items-center equipment-title' >Quantity:</div>
                   <div className='col-2 d-flex align-items-center justify-content-center equipment-title' >
                     <button className='delete-property-button' 
-                    onClick={(e) => deleteEquipment(e, equipment._id)}>X</button>
+                    onClick={(e) => deleteItem(e, equipment._id, 'http://localhost:4000/CreateCharacter/DeleteEquipment/')}>X</button>
                   </div>
 
                   <div className='col-6 equipment-field-container' >
@@ -410,7 +298,7 @@ function DndSheet({fetchData,
                 <div className='col-5 trait-title' >Trait Title</div> 
                 <div className='col-5 d-flex align-items-center trait-title' >Other Trait Info:</div>
                 <div className='col-2 d-flex align-items-center justify-content-center trait-title' >
-                  <button className='delete-property-button' onClick={(e) => deleteTrait(e, trait._id)}>X</button>
+                  <button className='delete-property-button' onClick={(e) => deleteItem(e, trait._id, 'http://localhost:4000/CreateCharacter/DeleteTrait/')}>X</button>
                 </div>
 
                 <div className='col-5 trait-field-container' >
@@ -440,7 +328,7 @@ function DndSheet({fetchData,
           {characterPersonalityTraits.map(trait => (
             <div value={trait._id} key={trait._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {trait.characterPersonalityTrait}
-              <button className='delete-property-button' onClick={(e) => deletePersonalityTrait(e, trait._id)}>X</button>
+              <button className='delete-property-button' onClick={(e) => deleteItem(e, trait._id, 'http://localhost:4000/CreateCharacter/DeletePersonalityTrait/')}>X</button>
             </div>
           ))}
         </div>
@@ -450,7 +338,7 @@ function DndSheet({fetchData,
           {characterIdeals.map(ideal => (
             <div value={ideal._id} key={ideal._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {ideal.characterIdeal}
-              <button className='delete-property-button' onClick={(e) => deleteIdeal(e, ideal._id)} >X</button>
+              <button className='delete-property-button' onClick={(e) => deleteItem(e, ideal._id, 'http://localhost:4000/CreateCharacter/DeleteIdeal/')} >X</button>
             </div>
           ))}
         </div>
@@ -460,7 +348,7 @@ function DndSheet({fetchData,
           {characterBonds.map(bond => (
             <div value={bond._id} key={bond._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {bond.characterBond}
-              <button className='delete-property-button' onClick={(e) => deleteBond(e, bond._id)} >X</button>
+              <button className='delete-property-button' onClick={(e) => deleteItem(e, bond._id, 'http://localhost:4000/CreateCharacter/DeleteBond/')} >X</button>
             </div>
           ))}
         </div>
@@ -470,7 +358,7 @@ function DndSheet({fetchData,
           {characterFlaws.map(flaw => (
             <div value={flaw._id} key={flaw._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {flaw.characterFlaw}
-              <button className='delete-property-button' onClick={(e) => deleteFlaw(e, flaw._id)} >X</button>
+              <button className='delete-property-button' onClick={(e) => deleteItem(e, flaw._id, 'http://localhost:4000/CreateCharacter/DeleteFlaw/')} >X</button>
             </div>
           ))}
         </div>
@@ -480,7 +368,7 @@ function DndSheet({fetchData,
           {characterLanguages.map(language => (
             <div value={language._id} key={language._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               {language.characterLanguage}
-              <button className='delete-property-button' onClick={(e) => deleteLanguage(e, language._id)} >X</button>
+              <button className='delete-property-button' onClick={(e) => deleteItem(e, language._id, 'http://localhost:4000/CreateCharacter/DeleteLanguage/')} >X</button>
             </div>
           ))}
         </div>
