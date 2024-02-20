@@ -18,7 +18,7 @@ function DndSheet({fetchData,
   characterHP,
   
   characterStrength, characterDexterity, characterConstitution, characterIntelligence, 
-  characterWisdom, characterCharisma,
+  characterWisdom, characterCharisma, characterProficiencys,
   
   characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice, 
   
@@ -72,17 +72,26 @@ function DndSheet({fetchData,
     "Wisdom",
     "Charisma",
   ];
+  const skillNumber = [
+    characterStrength,
+    characterDexterity,
+    characterConstitution,
+    characterIntelligence,
+    characterWisdom,
+    characterCharisma
+  ]
 
   let topPositionSkills = 40.9; 
   let topPositionSavingThrows = 26.3;
+  let topPositionSkillNumber = 23.1;
 
   const skillDivs = skills.map((skill) => {
-      const backgroundColor = characterSkills.includes(skill) ? 'white' : 'red';
+      const backgroundColor = characterSkills.includes(skill) ? 'white' : 'transparent';
       const style = {
         backgroundColor,
         borderRadius: '10px',
         top: `${topPositionSkills}%`, // Set top position dynamically
-        left: '17.5%',
+        left: '17.7%',
         width: '1%',
         height: '0.8%',
         fontSize: '1vw'
@@ -95,12 +104,12 @@ function DndSheet({fetchData,
   });
 
   const savingThrowsDiv = savingThrows.map((savingThrow) => {
-    const backgroundColor = characterSavingThrows.includes(savingThrow.toLowerCase()) ? 'white' : 'red';
+    const backgroundColor = characterSavingThrows.includes(savingThrow.toLowerCase()) ? 'white' : 'transparent';
     const style = {
       backgroundColor,
       borderRadius: '10px',
       top: `${topPositionSavingThrows}%`, // Set top position dynamically
-      left: '17.5%',
+      left: '17.7%',
       width: '1%',
       height: '0.8%',
       fontSize: '1vw'
@@ -112,6 +121,68 @@ function DndSheet({fetchData,
     );
   });
 
+  const numbers = skillNumber.map((num) => {
+    const profCheck = ["Strength", "Dexterity", "Constitution",
+      "Intelligence", "Wisdom", "Charisma"];
+    let output;
+    let pointer = 0;
+
+    if (num < 2) {
+      output = -5;
+    } else if (num < 4) {
+      output = -4;
+    } else if (num < 6) {
+      output = -3;
+    } else if (num < 8) {
+      output = -2;
+    } else if (num < 10) {
+      output = -1;
+    } else if (num < 12) {
+      output = 0;
+    } else if (num < 14) {
+      output = 1;
+    } else if (num < 16) {
+      output = 2;
+    } else if (num < 18) {
+      output = 3;
+    } else if (num < 20) {
+      output = 4;
+    } else if (num < 22) {
+      output = 5;
+    } else if (num < 24) {
+      output = 6;
+    } else if (num < 26) {
+      output = 7;
+    } else if (num < 28) {
+      output = 8;
+    } else if (num < 30) {
+      output = 9;
+    } else if (num >= 30) {
+      output = 10;
+    }
+
+    if (characterProficiencys.includes(profCheck[pointer])) {
+      console.log("adding proficiency to " + output);
+    }
+
+    const style = {
+      top: `${topPositionSkillNumber}%`, // Set top position dynamically
+      left: '9%',
+      width: '4%',
+      height: '2%',
+      fontSize: '0.7vw',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    };
+    topPositionSkillNumber += 9.1;
+
+    return (
+      <div className="absolute-div dnd-sheet" style={style}>
+        {output}
+      </div>
+    );
+  });
 
 	return (
     <div>
@@ -172,10 +243,31 @@ function DndSheet({fetchData,
           <div>{characterSpeed}</div>
         </div>
 
-        {/* Speed */}
+        {/* HP */}
         <div className="absolute-div dnd-sheet" style={{ top: '24%', left: '48%',  width: '6%', height: '2.5%', fontSize: '0.7vw' }}>
           <div>{characterHP}</div>
         </div>
+
+        {/* Inspiration */}
+        <div className="absolute-div dnd-sheet" style={{  top: '16.5%', left: '17.5%', width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
+          <div>{characterInspiration}</div>
+        </div>
+
+        {/* Proficiency Bonus */}
+        <div className="absolute-div dnd-sheet" style={{  top: '21%', left: '17.5%', width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
+          <div>{characterProficiencyBonus}</div>
+        </div>
+
+        {/* Perception */}
+        <div className="absolute-div dnd-sheet" style={{ top: '74.5%', left: '7%', width: '3%', height: '2%', fontSize: '0.7vw' }}>
+          <div>{characterPerception}</div>
+        </div>
+
+        {/* Hit Dice */}
+        <div className="absolute-div dnd-sheet" style={{ top: '42%', left: '39%', width: '9%', height: '2.5%', fontSize: '0.9vw' }}>
+          <div>{characterHitDice}</div>
+        </div>
+
 
         {/* Skills */}
 
@@ -209,25 +301,7 @@ function DndSheet({fetchData,
           <div>{characterCharisma}</div>
         </div>
 
-        {/* Inspiration */}
-        <div className="absolute-div dnd-sheet" style={{  top: '16.5%', left: '17.5%', width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
-          <div>{characterInspiration}</div>
-        </div>
-
-        {/* Proficiency Bonus */}
-        <div className="absolute-div dnd-sheet" style={{  top: '21%', left: '17.5%', width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
-          <div>{characterProficiencyBonus}</div>
-        </div>
-
-        {/* Perception */}
-        <div className="absolute-div dnd-sheet" style={{ top: '74.5%', left: '7%', width: '3%', height: '2%', fontSize: '0.7vw' }}>
-          <div>{characterPerception}</div>
-        </div>
-
-        {/* Hit Dice */}
-        <div className="absolute-div dnd-sheet" style={{ top: '42%', left: '39%', width: '9%', height: '2.5%', fontSize: '0.9vw' }}>
-          <div>{characterHitDice}</div>
-        </div>
+        {numbers}
 
         {/* Saving Throws */}
         {savingThrowsDiv}

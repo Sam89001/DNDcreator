@@ -52,6 +52,7 @@ function LoadPlaySession() {
 		characterIntelligence: '',
 		characterWisdom: '',
 		characterCharisma: '',
+    characterProficiencys: []
 	}) 
   
   const [characterPersonalityTraits, setCharacterPersonalityTraits] = useState([]);
@@ -94,7 +95,8 @@ function LoadPlaySession() {
           characterConstitution: characterData.character.characterConstitution || '',
           characterIntelligence: characterData.character.characterIntelligence || '',
           characterWisdom: characterData.character.characterWisdom || '',
-          characterCharisma: characterData.character.characterCharisma || ''
+          characterCharisma: characterData.character.characterCharisma || '',
+          characterProficiencys: characterData.character.characterProficiencys || []
         });
         setCharacterProfSkills(characterData.character.characterSkillProficiencys || [])
         setCharacterSavingThrows(characterData.character.characterSavingThrowProficiencys || [])
@@ -159,7 +161,8 @@ function LoadPlaySession() {
             characterConstitution={characterSkills ? characterSkills.characterConstitution : ''}
             characterIntelligence={characterSkills ? characterSkills.characterIntelligence : ''}
             characterWisdom={characterSkills ? characterSkills.characterWisdom : ''}
-            characterCharisma={characterSkills ? characterSkills.characterCharisma : ''}   
+            characterCharisma={characterSkills ? characterSkills.characterCharisma : ''}
+            characterProficiencys={characterSkills.characterProficiencys}            
 
             characterPersonalityTraits={characterPersonalityTraits}
             characterIdeals={characterIdeals}
