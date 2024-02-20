@@ -45,7 +45,7 @@ function DndSheet({fetchData,
 	} 
 
   let topPositionSkills = 40.9; 
-  let topPositionSkillsTwo = 40.9; 
+  let topPositionSkillsTwo = 40.4; 
   let topPositionSavingThrows = 26.3
   let topPositionSavingThrowNumbers = 26.3;
   let topPositionSkillNumber = 23.1;
@@ -169,11 +169,11 @@ function DndSheet({fetchData,
     };
 
     const numberStyles = {
-        top: `${topPositionSkills}%`, // Set top position dynamically
+        top: `${topPositionSkillsTwo}%`, // Set top position dynamically
         left: '19.5%',
         width: '2%',
         height: '0.8%',
-        fontSize: '1vw'
+        fontSize: '0.7vw'
     };
 
     // Determine final output based on the background color
@@ -185,6 +185,7 @@ function DndSheet({fetchData,
 
     // Adjust the top position for the next skill
     topPositionSkills += 1.7;
+    topPositionSkillsTwo += 1.7;
 
     return (
         <div key={skill}>
