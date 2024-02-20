@@ -44,8 +44,8 @@ function DndSheet({fetchData,
 		} 
 	} 
 
-  const profCheck = ["Strength", "Dexterity", "Constitution",
-      "Intelligence", "Wisdom", "Charisma"];
+  const profCheck = ["strength", "dexterity", "constitution",
+      "intelligence", "wisdom", "charisma"];
 
   const skills = [
     "acrobatics",
@@ -68,12 +68,12 @@ function DndSheet({fetchData,
     "survival"
   ];
   const savingThrows = [
-    "Strength",
-    "Dexterity",
-    "Constitution",
-    "Intelligence",
-    "Wisdom",
-    "Charisma",
+    "strength",
+    "dexterity",
+    "constitution",
+    "intelligence",
+    "wisdom",
+    "charisma",
   ];
   const skillNumber = [
     characterStrength,
@@ -164,7 +164,7 @@ function DndSheet({fetchData,
       output = 10;
     }
 
-    if (characterProficiencys.includes(profCheck[pointer])) {
+    if (characterSavingThrows.includes(profCheck[pointer])) {
       finalOutput = output + characterProficiencyBonus
     } else {
       finalOutput = output
@@ -182,6 +182,8 @@ function DndSheet({fetchData,
       paddingBottom: '8px'
     };
     topPositionSavingThrowNumbers += 1.7;
+    pointer += 1;
+
     return (
       <div className="absolute-div dnd-sheet" style={style}> 
      {finalOutput}</div>
