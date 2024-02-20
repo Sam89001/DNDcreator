@@ -44,9 +44,10 @@ function DndSheet({fetchData,
 		} 
 	} 
 
-  const profCheck = ["strength", "dexterity", "constitution",
-      "intelligence", "wisdom", "charisma"];
-
+  const profCheck = [
+    "strength", "dexterity", "constitution",
+      "intelligence", "wisdom", "charisma"
+  ];
   const skills = [
     "acrobatics",
     "animalHandling",
@@ -100,9 +101,25 @@ function DndSheet({fetchData,
         height: '0.8%',
         fontSize: '1vw'
       };
+      const numberStyles = {
+        backgroundColor: 'red',
+        top: `${topPositionSkills}%`, // Set top position dynamically
+        left: '19.5%',
+        width: '2%',
+        height: '0.8%',
+        fontSize: '1vw'
+      };
       topPositionSkills += 1.7;
+
       return (
-        <div key={skill} className="absolute-div dnd-sheet" style={style}> 
+        <div>
+          <div className="absolute-div dnd-sheet" style={style}> 
+          </div>
+
+          <div className="absolute-div dnd-sheet" style={numberStyles}>
+            {/* if white then add prof bonus */}
+            {/* if transparent output */}
+          </div>
         </div>
       );
   });
@@ -124,7 +141,6 @@ function DndSheet({fetchData,
       </div>
     );
   });
-
   const savingThrowsNumbersDiv = skillNumber.map((num) => {
     let output;
     let finalOutput;
