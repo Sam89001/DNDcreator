@@ -188,7 +188,7 @@ function DndSheet({fetchData,
     topPositionSkillsTwo += 1.7;
 
     return (
-        <div key={skill}>
+        <div >
             <div className="absolute-div dnd-sheet" style={skillStyle}></div>
             <div className="absolute-div dnd-sheet" style={numberStyles}>
                 {finalOutput}

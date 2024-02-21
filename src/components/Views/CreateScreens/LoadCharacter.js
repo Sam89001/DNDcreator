@@ -17,6 +17,7 @@ import FeaturesTraitsForm from '../../Forms/CreateCharacterForms/FeatureTraitsFo
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
@@ -25,7 +26,29 @@ import DndSheet from '../../Components/DndSheet'
 
 function LoadPlaySession() {
   const { user } = useContext(UserContext);
-  const [characters, setCharacters] = useState();  
+  const navigate = useNavigate();
+  const [characterId, setUserId] = useState({
+    Id: ''
+  })
+
+  const nextPage = async () => {
+    try {
+      const sentId = characterId.Id ; // Accessing the userId from the state object
+      console.log("This is the id: " + sentId); 
+      const response = await axios.get(`http://localhost:4000/CreateCharacter/NextPage/${sentId}`);
+      if (!response) {
+        toast.error('An error occurred while fetching data.');
+        return; 
+      }
+      const id = response.data.mongoId._id;
+      console.log("Mongo ID:", id); 
+      navigate(`/LoadCharacter/${id}/2`);
+    } catch (error) {
+      console.log(error);
+      toast.error('An error occurred. Please try again later.');
+    }
+  };
+
   const [characterData, setCharacterData] = useState({
 		characterName: '',
 		characterClass: '',
@@ -69,6 +92,7 @@ function LoadPlaySession() {
     const fetchData = async () => {
       try {
         const characterId = window.location.pathname.split('/').pop();
+        setUserId({Id: characterId })
         const response = await axios.get('/CreateCharacter/' + characterId);
         const characterData = response.data;
 
@@ -185,7 +209,7 @@ function LoadPlaySession() {
 
           <div className='w-100 d-flex align-items-center justify-content-between'>
               <header className="form-header">Create Your Character</header>
-              <header className="navbar-text">Next Page &gt;</header>
+              <header className="navbar-text" onClick={nextPage} >Next Page &gt;</header>
           </div>
   
             <div className='row'>

@@ -96,7 +96,7 @@ function ProficiencyForm({fetchData}) {
               <div className='multichoice-edit-field' style={{zIndex: '4'}}> 
                 <ul className={`list-dropdown ${skillsDropdownCheck ? 'active' : ''}`}> 
                 <li className='down-arrow-container' style={{ position: 'relative' }}> 
-                    <div class='proficiency-titles'>Skills</div>
+                    <div className='proficiency-titles'>Skills</div>
                     <img
                         className={`img-fluid down-arrow ${skillsDropdownCheck ? 'active' : ''}`}
                         src={DownArrowImage}
@@ -216,7 +216,7 @@ function ProficiencyForm({fetchData}) {
               <div className='multichoice-edit-field' style={{zIndex: '4'}}>
                 <ul className={`list-dropdown ${savingThrowDropdownCheck ? 'active' : ''}`}>
                       <li className='down-arrow-container' style={{position: 'relative'}}>
-                        <div class='proficiency-titles'> Saving Throws </div>
+                        <div className='proficiency-titles'> Saving Throws </div>
                         <img className={`img-fluid down-arrow ${savingThrowDropdownCheck ? 'active' : ''}`} src={DownArrowImage} 
                         alt="Character Image" onClick={savingThrowToggleDropdown}/>
                       </li>

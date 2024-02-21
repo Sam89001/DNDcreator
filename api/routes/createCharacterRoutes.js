@@ -11,7 +11,6 @@ const CreateCharacterFlawSchema = require('../models/CreateCharacterFlawSchema')
 const CreateCharacterLanguageSchema = require('../models/CreateCharacterLanguageSchema')
 const CreateCharacterTraitSchema = require('../models/CreateCharacterTraitSchema')
 const CreateCharacterAttackSchema = require('../models/CreateCharacterAttackSchema')
-const CreateChatacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
 const CreateCharacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
 
 //Load all characters
@@ -32,6 +31,31 @@ router.get('/', async (req, res) => {
     return res.json({
       error: 'Internal server error'
     });
+  }
+});
+
+//Page Navigation
+router.get('/NextPage/:sentId', async (req, res) => {
+  try {
+    const sentId = req.params.sentId; 
+    console.log(sentId)
+    const characterId = await CreateCharacterSchema.findById(sentId);
+
+    if (!characterId) {
+      return res.json({
+        error: 'Error in navigation',
+      });
+    }
+
+    console.log( "This is the characterID" + characterId);
+    return res.status(200).json({
+      success: true,
+      mongoId: characterId
+    });
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 });
 

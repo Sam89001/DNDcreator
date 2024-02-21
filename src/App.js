@@ -5,6 +5,7 @@ import Home from './components/Views/Home';
 import AccountEdit from './components/Views/AccountEdit';
 import ChooseCharacter from './components/Views/ChooseScreens/ChooseCharacter';
 import LoadCharacter from './components/Views/CreateScreens/LoadCharacter'
+import LoadCharacterPageTwo from './components/Views/CreateScreens/LoadCharacterTwo'
 import ChoosePlaySession from './components/Views/ChooseScreens/ChoosePlaySession';
 import ChooseSession from './components/Views/ChooseScreens/ChooseSession';
 import { UserContextProvider } from './context/userContext';
@@ -36,6 +37,7 @@ function App() {
                 <Route path="AccountEdit" element={<AccountEdit/>}/>
                 <Route path="ChooseCharacter" element={<ChooseCharacter/>}/>
                 <Route path="LoadCharacter/:id" element={<LoadCharacter/>}/>
+                <Route path="LoadCharacter/:id/2" element={<LoadCharacterPageTwo/>}/>
                 <Route path="ChoosePlaySession" element={<ChoosePlaySession/>}/>
                 <Route path="ChooseSession" element={<ChooseSession/>}/>
               </Route>
