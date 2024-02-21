@@ -85,14 +85,7 @@ function ProficiencyForm({fetchData}) {
 
  return (
     <div className="row">
-      <div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-right' style={{marginBottom: '10px'}}> 
-				<div className="text-center form-titles">Skills</div>
-			</div>    
-
-			<div className='col-6 d-flex align-items-center justify-content-center skill-section-margin form-title-border-left' style={{marginBottom: '10px'}}> 
-				<div className="text-center form-titles" >Saving Throws</div>
-			</div>
-
+      
       {/* Skills List */}
 
       <div className='col-6' >
@@ -100,9 +93,10 @@ function ProficiencyForm({fetchData}) {
           <form onSubmit={updateSkills}>
 
             <div className='col-12 d-flex align-items-center justify-content-center skill-section-margin'>
-              <div className='multichoice-edit-field' style={{zIndex: '4'}}>
-                <ul className={`list-dropdown ${skillsDropdownCheck ? 'active' : ''}`}>
-                <li className='down-arrow-container' style={{ position: 'relative' }}>
+              <div className='multichoice-edit-field' style={{zIndex: '4'}}> 
+                <ul className={`list-dropdown ${skillsDropdownCheck ? 'active' : ''}`}> 
+                <li className='down-arrow-container' style={{ position: 'relative' }}> 
+                    <div class='proficiency-titles'>Skills</div>
                     <img
                         className={`img-fluid down-arrow ${skillsDropdownCheck ? 'active' : ''}`}
                         src={DownArrowImage}
@@ -222,6 +216,7 @@ function ProficiencyForm({fetchData}) {
               <div className='multichoice-edit-field' style={{zIndex: '4'}}>
                 <ul className={`list-dropdown ${savingThrowDropdownCheck ? 'active' : ''}`}>
                       <li className='down-arrow-container' style={{position: 'relative'}}>
+                        <div class='proficiency-titles'> Saving Throws </div>
                         <img className={`img-fluid down-arrow ${savingThrowDropdownCheck ? 'active' : ''}`} src={DownArrowImage} 
                         alt="Character Image" onClick={savingThrowToggleDropdown}/>
                       </li>

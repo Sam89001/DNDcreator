@@ -157,7 +157,7 @@ function DndSheet({fetchData,
         output = 10;
     }
 
-    const backgroundColor = characterSkills.includes(skill) ? 'white' : 'red';
+    const backgroundColor = characterSkills.includes(skill) ? 'white' : 'transparent';
     const skillStyle = {
         backgroundColor,
         borderRadius: '10px',
