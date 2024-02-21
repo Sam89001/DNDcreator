@@ -54,7 +54,7 @@ return (
 
 		<div className='row' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
-			<div className="col-5" style={{ color: 'white', padding: '10px 30px 30px 30px' }}>
+			<div className="col-5" style={{ color: 'white', padding: '10px 0px 0px 30px' }}>
 				<DndSheetTwo fetchData={fetchData}/>
       </div>
 
