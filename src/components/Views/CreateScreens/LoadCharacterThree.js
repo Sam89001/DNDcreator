@@ -7,7 +7,7 @@ import Navbar from '../../Layouts/Navbar';
 import { UserContext } from '../../../context/userContext';
 
 //Components
-import DndSheet from '../../Components/DndSheet'
+import DndSheetThree from '../../Components/DndSheetThree'
 
 function LoadCharacterPageThree() {
 	const { user } = useContext(UserContext);
@@ -56,20 +56,21 @@ return (
 		<div className='row' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 30px 30px 30px' }}>
+				<DndSheetThree fetchData={fetchData}/>
       </div>
 
 			<div className="col-7" style={{ color: 'white' }}>
 
-			<div className='w-100 d-flex align-items-center justify-content-between'>
-				<header className="form-header">Create Your Character</header>
-				<div className="d-flex">
-					<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/2')} >&lt; Previous Page </header>
+				<div className='w-100 d-flex align-items-center justify-content-between'>
+					<header className="form-header">Create Your Character</header>
+					<div className="d-flex">
+						<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/2')} >&lt; Previous Page </header>
+					</div>
 				</div>
-			</div>
 
+				<div className="row">
 
-
-
+				</div>
 
 			</div>
 

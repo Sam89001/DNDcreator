@@ -7,7 +7,7 @@ import Navbar from '../../Layouts/Navbar';
 import { UserContext } from '../../../context/userContext';
 
 //Components
-import DndSheet from '../../Components/DndSheet'
+import DndSheetTwo from '../../Components/DndSheetTwo'
 
 function LoadCharacterPageTwo() {
 	const { user } = useContext(UserContext);
@@ -35,7 +35,6 @@ function LoadCharacterPageTwo() {
     }
   };
 
-
 	const fetchData = async () => {
 		try {
 			const characterId = window.location.pathname.split('/')[2];
@@ -56,21 +55,21 @@ return (
 		<div className='row' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 30px 30px 30px' }}>
+				<DndSheetTwo fetchData={fetchData}/>
       </div>
 
 			<div className="col-7" style={{ color: 'white' }}>
-
-			<div className='w-100 d-flex align-items-center justify-content-between'>
-				<header className="form-header">Create Your Character</header>
-				<div className="d-flex">
-					<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id)} style={{paddingRight: '10px'}}>&lt; Previous Page </header>
-					<header className="navbar-text" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/3')} style={{paddingLeft: '10px'}}>Next Page &gt;</header>
+				<div className='w-100 d-flex align-items-center justify-content-between'>
+					<header className="form-header">Create Your Character</header>
+					<div className="d-flex">
+						<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id)} style={{paddingRight: '10px'}}>&lt; Previous Page </header>
+						<header className="navbar-text" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/3')} style={{paddingLeft: '10px'}}>Next Page &gt;</header>
+					</div>
 				</div>
-			</div>
 
+				<div className="row">
 
-
-
+				</div>
 
 			</div>
 

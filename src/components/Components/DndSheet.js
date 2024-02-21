@@ -188,12 +188,12 @@ function DndSheet({fetchData,
     topPositionSkillsTwo += 1.7;
 
     return (
-        <div >
-            <div className="absolute-div dnd-sheet" style={skillStyle}></div>
-            <div className="absolute-div dnd-sheet" style={numberStyles}>
-                {finalOutput}
-            </div>
+      <div >
+        <div className="absolute-div dnd-sheet" style={skillStyle}></div>
+        <div className="absolute-div dnd-sheet" style={numberStyles}>
+          {finalOutput}
         </div>
+      </div>
     );
   });
 
