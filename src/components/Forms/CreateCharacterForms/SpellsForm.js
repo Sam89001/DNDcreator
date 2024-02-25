@@ -56,6 +56,27 @@ return (
 						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"/>
 					</div>
 
+					<div className='drop-down-spells-field'>
+						<div className="spells-field">
+							<div style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Duration"/>
+						</div>
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="School"/>
+						</div>
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"/>
+						</div>
+
+					</div>
+
 				</div>
 
 
