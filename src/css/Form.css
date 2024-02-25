@@ -4,7 +4,8 @@
 .skills-field,
 .create-character-multichoice-field,
 .edit-character-field,
-.description-field {
+.description-field,
+.field-style {
     background-color: var(--inputGrey);
     border: none;
     color: white;
@@ -255,3 +256,19 @@
   height: 100%; 
 }
 
+/* Spells */
+
+.field-style {
+  height: 40px;
+  padding: 10px 5px 10px 5px;
+}
+
+.spells-field {
+  padding: 0px 0px 10px 0px;
+}
+
+.spell-description {
+  font-size: 16px;
+  min-height: 100px;
+  max-height: 160px;
+}
