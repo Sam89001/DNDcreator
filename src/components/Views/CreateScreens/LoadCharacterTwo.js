@@ -8,6 +8,7 @@ import { UserContext } from '../../../context/userContext';
 
 //Components
 import DndSheetTwo from '../../Components/DndSheetTwo'
+import SpellsForm from '../../Forms/CreateCharacterForms/SpellsForm';
 
 function LoadCharacterPageTwo() {
 	const { user } = useContext(UserContext);
@@ -16,6 +17,18 @@ function LoadCharacterPageTwo() {
 	const [characterId, setUserId] = useState({
     Id: ''
   })
+
+	const fetchData = async () => {
+		try {
+			const characterId = window.location.pathname.split('/')[2];
+			setUserId({Id: characterId })
+			getCharacterData(characterId);
+		} catch (error) {
+			console.log(error)
+		}
+	}; useEffect(() => {
+		fetchData();
+	}, []);
 
 	const nextPage = async (value) => {
     try {
@@ -35,16 +48,18 @@ function LoadCharacterPageTwo() {
     }
   };
 
-	const fetchData = async () => {
+	const getCharacterData = async (characterId) => {
 		try {
-			const characterId = window.location.pathname.split('/')[2];
-        setUserId({Id: characterId })
+			const sentId = characterId ;
+			const number = '2'
+			const response = await axios.get('/CreateCharacter/' + number + '/' + sentId);
+			const characterData = response.data;
+			console.log('This is the character data:', JSON.stringify(characterData, null, 2));
+
 		} catch (error) {
-			console.log(error)
+
 		}
-	}; useEffect(() => {
-		fetchData();
-	}, []);
+	}
 
 return (
   <div style={{paddingBottom: '20px'}}>
@@ -52,13 +67,13 @@ return (
       <Navbar navigationTitle="Character Menu" navigationTitleLink="/ChooseCharacter" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
     </nav>
 
-		<div className='row' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
+		<div className='row' style={{ paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 0px 0px 30px' }}>
 				<DndSheetTwo fetchData={fetchData}/>
       </div>
 
-			<div className="col-7" style={{ color: 'white' }}>
+			<div className="col-7" style={{color: 'white', maxHeight: '830px' }}>
 				<div className='w-100 d-flex align-items-center justify-content-between'>
 					<header className="form-header">Create Your Character</header>
 					<div className="d-flex">
@@ -67,8 +82,8 @@ return (
 					</div>
 				</div>
 
-				<div className="row">
-
+				<div style={{overflowY: 'auto', paddingBottom: '20px'}}>
+					<SpellsForm/>
 				</div>
 
 			</div>

@@ -17,6 +17,18 @@ function LoadCharacterPageThree() {
     Id: ''
   })
 
+  const fetchData = async () => {
+		try {
+			const characterId = window.location.pathname.split('/')[2];
+			setUserId({Id: characterId })
+			getCharacterData(characterId);
+		} catch (error) {
+			console.log(error)
+		}
+	}; useEffect(() => {
+		fetchData();
+	}, []);
+
 	const nextPage = async (value) => {
     try {
       const sentId = characterId.Id ; // Accessing the userId from the state object
@@ -35,17 +47,19 @@ function LoadCharacterPageThree() {
     }
   };
 
-
-	const fetchData = async () => {
+	const getCharacterData = async (characterId) => {
 		try {
-			const characterId = window.location.pathname.split('/')[2];
-        setUserId({Id: characterId })
+			const sentId = characterId ;
+			const number = '2'
+			const response = await axios.get('/CreateCharacter/' + number + '/' + sentId);
+			const characterData = response.data;
+			console.log('This is the character data:', JSON.stringify(characterData, null, 2));
+
 		} catch (error) {
-			console.log(error)
+
 		}
-	}; useEffect(() => {
-		fetchData();
-	}, []);
+	}
+
 
 return (
   <div style={{paddingBottom: '20px'}}>

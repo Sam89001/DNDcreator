@@ -49,9 +49,7 @@ return (
     <div>john</div>
   </div>
 
-
-
-	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>
+	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '90%'}}/>
 </div>
 )
 
