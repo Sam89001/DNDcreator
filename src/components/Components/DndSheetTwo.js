@@ -29,6 +29,27 @@ const deleteItem =  async (e, id, address) => {
 return (
 <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
+	{/* Spellcasting Class */}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '8.2%', left: '8%', width: '20%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>john</div>
+  </div>
+
+	{/* Spellcasting Ability */}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '45%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>john</div>
+  </div>
+
+	{/* Spellcasting DC */}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '60.8%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>john</div>
+  </div>
+
+	{/* Spellcasting Atk Bonus */}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '77%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>john</div>
+  </div>
+
+
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>
 </div>
