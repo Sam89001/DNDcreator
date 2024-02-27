@@ -10,6 +10,10 @@ const CreateCharacterSpellSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  characterSpellLevel: {
+    type: String,
+    required: true,
+  },
   characterSpellCastTime: {
     type: String,
     required: true,
