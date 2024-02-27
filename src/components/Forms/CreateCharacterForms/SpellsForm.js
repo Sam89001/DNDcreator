@@ -50,7 +50,7 @@ return (
 				{/* Cantrips */}
 				<div className='col-12' style={{paddingBottom: '20px'}}>
 					<form>
-					<div className="spells-field"> Cantrips</div>
+					<div className="spells-field form-titles"> Cantrips</div>
 
 					<div className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"/>
@@ -69,8 +69,7 @@ return (
 
 					<div className={`drop-down-spells-field ${dropdownStates['0'] ? 'active' : ''}`}>
 						<div className={`spells-expand-box `} >
-							<div style={{width: '48%', marginRight: '10px'}}>Additional Fields
-							</div>
+							<div className='form-titles' style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
 							<img
               className={`spell-arrow ${dropdownStates['0'] ? 'active' : ''}`}
               src={DownArrowImage}
@@ -91,6 +90,14 @@ return (
 							<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"/>
 						</div>
 					</div>
+
+					<div className="spells-field form-titles"> Edit Cantrip</div>
+
+					<select className='edit-character-field' style={{height: '35px'}}>
+						<option></option>
+						<option>Robert</option>
+					</select>
+
 					</form>
 				</div>
 

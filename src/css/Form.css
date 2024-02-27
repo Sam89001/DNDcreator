@@ -290,7 +290,6 @@
   transform-origin: center;
 }
 
-
 .spell-arrow.active {
   transform:  rotate(180deg);
 }
@@ -298,6 +297,7 @@
 .drop-down-spells-field {
   overflow-y: hidden;
   height: 40px;
+  margin-bottom: 10px;
 }
 
 .drop-down-spells-field.active {
