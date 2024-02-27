@@ -12,7 +12,17 @@ import {toast} from 'react-hot-toast';
 //User
 import { UserContext } from '../../../context/userContext';
 
+//Images
+import DownArrowImage from '../../../images/Down Arrow.png'
+
 function SpellsForm() {
+	const [dropdownStates, setDropdownStates] = useState([]);
+
+  const toggleDropdown = (index) => {
+    const updatedStates = [...dropdownStates];
+    updatedStates[index] = !updatedStates[index];
+    setDropdownStates(updatedStates);
+  };
 
 return (
 	<div className="row" style={{minWidth: '1300px', paddingLeft: '10px', paddingTop: '10px'}}>
@@ -38,6 +48,52 @@ return (
 				</div>
 
 				{/* Cantrips */}
+				<div className='col-12' style={{paddingBottom: '20px'}}>
+					<div className="spells-field"> Cantrips</div>
+
+					<div className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"/>
+					</div>
+					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"/>
+					</div>
+
+					<div className="spells-field">
+						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"/>
+					</div>
+
+					<div className={`drop-down-spells-field ${dropdownStates['0'] ? 'active' : ''}`}>
+						<div className={`spells-expand-box `} >
+							<div style={{width: '48%', marginRight: '10px'}}>Additional Fields
+							</div>
+							<img
+              className={`spell-arrow ${dropdownStates['0'] ? 'active' : ''}`}
+              src={DownArrowImage}
+              onClick={() => toggleDropdown('0')}
+            	/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Duration"/>
+						</div>
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="School"/>
+						</div>
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"/>
+						</div>
+					</div>
+				</div>
+
+				{/* Cantrips */}
 				<div className='col-12'>
 					<div className="spells-field"> Cantrips</div>
 
@@ -56,9 +112,15 @@ return (
 						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"/>
 					</div>
 
-					<div className='drop-down-spells-field'>
-						<div className="spells-field">
-							<div style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
+					<div className={`drop-down-spells-field ${dropdownStates['1'] ? 'active' : ''}`}>
+						<div className={`spells-expand-box `} >
+							<div style={{width: '48%', marginRight: '10px'}}>Additional Fields
+							</div>
+							<img
+              className={`spell-arrow ${dropdownStates['1'] ? 'active' : ''}`}
+              src={DownArrowImage}
+              onClick={() => toggleDropdown('1')}
+            	/>
 						</div>
 
 						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
@@ -74,11 +136,8 @@ return (
 						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 							<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"/>
 						</div>
-
 					</div>
-
 				</div>
-
 
 			</div>
 		</div>

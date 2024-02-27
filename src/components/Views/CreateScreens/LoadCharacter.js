@@ -209,7 +209,7 @@ function LoadPlaySession() {
 
           <div className='w-100 d-flex align-items-center justify-content-between'>
               <header className="form-header">Create Your Character</header>
-              <header className="navbar-text" onClick={nextPage} >Next Page &gt;</header>
+              <header className="navbar-text" onClick={nextPage} >Spells Page &gt;</header>
           </div>
   
             <div className='row'>
