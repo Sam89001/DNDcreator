@@ -1003,5 +1003,42 @@ router.post('/UpdateSpells/:characterId', async (req, res) => {
   }
 })
 
+//Updates a spell
+router.put('/ChangeSpells/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {  characterSpellName, characterSpellLevel,
+      characterSpellCastTime, characterSpellRangeArea,
+			characterSpellDescription, characterSpellDuration,
+			characterSpellSave, characterSpellSchool, characterSpellDamage } = req.body; 
+
+    const characterData = {  characterSpellName, characterSpellLevel,
+      characterSpellCastTime, characterSpellRangeArea,
+			characterSpellDescription, characterSpellDuration,
+			characterSpellSave, characterSpellSchool, characterSpellDamage } 
+
+    const update = await CreateCharacterSpellSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
 
 module.exports = router;

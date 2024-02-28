@@ -15,7 +15,8 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function SpellsForm({propId}) {
+function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFunction, 
+	loadCharacterSpells, setLoadCharacterSpells}) {
 
 
 	//Dropdown Code
@@ -50,6 +51,7 @@ function SpellsForm({propId}) {
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
+				updateCharacterSpellcastingFunction(characterSpellcasting)
 				toast.success('Updated character details');
 			}
 		} catch (error) {
@@ -82,8 +84,7 @@ function SpellsForm({propId}) {
     setSelectedId({ selectedId: selectedId });
     //finds and updates the fields
 
-    //const loadedValue = characterEquipment.find(value => value._id === selectedId);
-		/*
+  	const loadedValue = loadCharacterSpells.find(value => value._id === selectedId);
     setCharacterSpells({
       ...characterSpells,
       characterSpellName: loadedValue ? loadedValue.characterSpellName : '',
@@ -95,20 +96,20 @@ function SpellsForm({propId}) {
 			characterSpellSave: loadedValue ? loadedValue.characterSpellSave : '',
       characterSpellSchool: loadedValue ? loadedValue.characterSpellSchool : '',
       characterSpellDamage: loadedValue ? loadedValue.characterSpellDamage : '',
-    }); */
+    }); 
 	};
   const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!selectedId.selectedId) {
 			await updateSpells();
 		} else {
-			/*
+			
 			await updateExistingSpells(selectedId.selectedId, characterSpells.characterSpellName, 
 				characterSpells.characterSpellLevel, characterSpells.characterSpellCastTime,
 				characterSpells.characterSpellRangeArea, characterSpells.characterSpellDescription,
 				characterSpells.characterSpellDuration, characterSpells.characterSpellSave,
 				characterSpells.characterSpellSchool, characterSpells.characterSpellDamage); 
-				*/
+			
 		}
 	}; 
 
@@ -129,7 +130,7 @@ function SpellsForm({propId}) {
 
 			if (response.data.success) {
 				const newItem = response.data.newSpells;
-				//setCharacterEquipment(prev => [...prev, newItem]);
+				setLoadCharacterSpells(prev => [...prev, newItem]);
 				toast.success('Updated character details');
 			} else {
 				toast.error('Failed to update character details');
@@ -138,6 +139,30 @@ function SpellsForm({propId}) {
 			console.log(error)
 		}
 	}
+
+	//Put Request
+	const updateExistingSpells = async (id, characterSpellName, characterSpellLevel,
+		characterSpellCastTime, characterSpellRangeArea,
+		characterSpellDescription, characterSpellDuration,
+		characterSpellSave, characterSpellSchool, characterSpellDamage) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeSpells/${id}`, {
+					id, characterSpellName, characterSpellLevel,
+					characterSpellCastTime, characterSpellRangeArea,
+					characterSpellDescription, characterSpellDuration,
+					characterSpellSave, characterSpellSchool, characterSpellDamage
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					getCharacterData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	}; 
 
 return (
 	<div className="row" style={{minWidth: '1300px', paddingLeft: '10px', paddingTop: '5px', flexWrap: 'nowrap'}}>
@@ -282,9 +307,11 @@ return (
 
 					<div className="spells-field form-titles"> Edit Cantrip</div>
 
-					<select className='spell-edit-character-field' style={{height: '35px'}}>
-						<option></option>
-						<option>Robert</option>
+					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange}>
+						<option/>
+						{loadCharacterSpells.map(spell => (
+						  <option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+					  ))}
 					</select>
 
 					<button className='create-character-button' type="submit"
@@ -353,9 +380,9 @@ return (
 
 					<div className="spells-field form-titles"> Edit Cantrip</div>
 
-					<select className='edit-character-field' style={{height: '35px'}}>
-						<option></option>
-						<option>Robert</option>
+					<select className='edit-character-field' style={{height: '35px'}} onChange={handleSelectChange}>
+						<option/>
+						
 					</select>
 
 					</form>
@@ -408,8 +435,7 @@ return (
 					<div className="spells-field form-titles"> Edit Cantrip</div>
 
 					<select className='edit-character-field' style={{height: '35px'}}>
-						<option></option>
-						<option>Robert</option>
+						<option/>
 					</select>
 
 					</form>

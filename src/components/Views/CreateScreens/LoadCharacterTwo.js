@@ -48,6 +48,14 @@ function LoadCharacterPageTwo() {
     }
   };
 
+	const [updateCharacterSpellcasting, setUpdateCharacterSpellcasting] = useState({
+		characterSpellcastingClass: '',
+		characterSpellcastingAbility: '',
+		characterSpellSaveDC: '',
+		characterSpellAttackBonus: ''
+	});
+	const [loadCharacterSpells, setLoadCharacterSpells] = useState([]);
+
 	const getCharacterData = async (characterId) => {
 		try {
 			const sentId = characterId ;
@@ -56,9 +64,20 @@ function LoadCharacterPageTwo() {
 			const characterData = response.data;
 			console.log('This is the character data:', JSON.stringify(characterData, null, 2));
 
-		} catch (error) {
+			setUpdateCharacterSpellcasting({
+				characterSpellcastingClass: characterData.character.characterSpellcastingClass,
+				characterSpellcastingClass: characterData.character.characterSpellcastingAbility,
+				characterSpellcastingClass: characterData.character.characterSpellSaveDC,
+				characterSpellcastingClass: characterData.character.characterSpellAttackBonus,
+			})
+			setLoadCharacterSpells(characterData.spells || [])
 
+		} catch (error) {
+			console.log(error)
 		}
+	}
+	const updateCharacterSpellcastingFunction = (newCharacterData) => {
+		setUpdateCharacterSpellcasting(newCharacterData);
 	}
 
 return (
@@ -70,7 +89,7 @@ return (
 		<div className='row' style={{ paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 0px 0px 30px' }}>
-				<DndSheetTwo fetchData={fetchData}/>
+				<DndSheetTwo getCharacterData={getCharacterData}/>
       </div>
 
 			<div className="col-7" style={{color: 'white', maxHeight: '830px' }}>
@@ -83,7 +102,9 @@ return (
 				</div>
 
 				<div style={{overflowY: 'auto', paddingBottom: '20px'}}>
-					<SpellsForm propId={characterId}/>
+					<SpellsForm propId={characterId} updateCharacterSpellcastingFunction={updateCharacterSpellcastingFunction}
+					getCharacterData={getCharacterData} loadCharacterSpells={loadCharacterSpells}
+					setLoadCharacterSpells={setLoadCharacterSpells}/>
 				</div>
 
 			</div>
