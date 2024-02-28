@@ -892,6 +892,7 @@ router.put('/SavingThrows/:id', async (req, res) => {
   } catch (error) {
   }
 })
+
 //Updates Character Skills
 router.put('/ProficiencySkills/:id', async (req, res) => {
   try {
@@ -925,6 +926,47 @@ router.put('/ProficiencySkills/:id', async (req, res) => {
   }
 })
 
+//Creates & Updates Spell General Stats
+router.put('/UpdateGeneralSpellInfo/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterSpellcastingClass, characterSpellcastingAbility,
+      characterSpellSaveDC, characterSpellAttackBonus } = req.body;
+
+      if (
+        isNaN(characterSpellSaveDC) 
+      ) {
+        return res.json({
+          error: 'character Spell Save DC must be a number'
+        });
+      }
+
+    const characterData = {
+      characterSpellcastingClass, characterSpellcastingAbility,
+      characterSpellSaveDC, characterSpellAttackBonus
+    };
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
 
 
 module.exports = router;

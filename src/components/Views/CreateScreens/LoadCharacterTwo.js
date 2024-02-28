@@ -83,7 +83,7 @@ return (
 				</div>
 
 				<div style={{overflowY: 'auto', paddingBottom: '20px'}}>
-					<SpellsForm/>
+					<SpellsForm propId={characterId}/>
 				</div>
 
 			</div>

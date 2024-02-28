@@ -15,14 +15,53 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function SpellsForm() {
-	const [dropdownStates, setDropdownStates] = useState([]);
+function SpellsForm({propId}) {
 
+
+	//Dropdown Code
+	const [dropdownStates, setDropdownStates] = useState([]);
   const toggleDropdown = (index) => {
     const updatedStates = [...dropdownStates];
     updatedStates[index] = !updatedStates[index];
     setDropdownStates(updatedStates);
   };
+
+	//Stores Character Id
+	const characterId = propId.Id
+
+
+	//Updates and Store General Spellcasting Information
+	const [characterSpellcasting, setCharacterSpellcasting] = useState({
+		characterSpellcastingClass: '',
+		characterSpellcastingAbility: '',
+		characterSpellSaveDC: '',
+		characterSpellAttackBonus: ''
+	});
+	const updateGeneralStats = async (e) => {
+		e.preventDefault();
+		const { characterSpellcastingClass, characterSpellcastingAbility,
+			characterSpellSaveDC, characterSpellAttackBonus } = characterSpellcasting;
+	
+		try {
+			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateGeneralSpellInfo/${characterId}`, {
+				characterSpellcastingClass, characterSpellcastingAbility,
+				characterSpellSaveDC, characterSpellAttackBonus
+			});
+	
+			if (response.data.error) {
+				toast.error(response.data.error);
+			} else {
+				toast.success('Updated character details');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	//Updates and Stores Spell Information
+	const [characterSpells, setCharacterSpells] = useState({
+
+	});
 
 return (
 	<div className="row" style={{minWidth: '1300px', paddingLeft: '10px', paddingTop: '5px', flexWrap: 'nowrap'}}>
@@ -30,23 +69,36 @@ return (
 			<div className='row'>
 
 				{/* General Spell Stats */}
+				
 				<div className='col-12' style={{paddingBottom: '20px'}}>
+					<form onSubmit={updateGeneralStats}>
 					<div className="spells-field spell-form-titles"> Spellcasting Info</div>
 
 					<div className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Spellcaster Class"/>
+						<input className='field-style' style={{width: '100%'}} placeholder="Spellcaster Class"
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingClass: e.target.value })}/>
 					</div>
 
 					<div className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Spellcasting Ability"/>
+						<input className='field-style' style={{width: '100%'}} placeholder="Spellcasting Ability"
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingAbility: e.target.value })}/>
 					</div>
 
 					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Spellsave DC"/>
+						<input className='field-style' style={{width: '100%'}} placeholder="Spellsave DC"
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellSaveDC: e.target.value })}/>
 					</div>
+
 					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Spell ATK Bonus"/>
+						<input className='field-style' style={{width: '100%'}} placeholder="Spell ATK Bonus"
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellAttackBonus: e.target.value })}/>
 					</div>
+
+					<div className="spells-field">
+						<button className='create-character-button' type="submit" > Update</button>
+					</div>
+
+					</form>
 				</div>
 
 				{/* Cantrips */}

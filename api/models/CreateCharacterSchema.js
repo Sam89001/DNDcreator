@@ -81,6 +81,18 @@ const CreateCharacterSchema = new mongoose.Schema({
   characterSkillProficiencys: {
     type: [String],  
     default: []
+  },
+  characterSpellcastingClass: {
+    type: String,
+  },
+  characterSpellcastingAbility: {
+    type: String,
+  },
+  characterSpellSaveDC: {
+    type: String,
+  },
+  characterSpellAttackBonus: {
+    type: String,
   }
 
 })
