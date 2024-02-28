@@ -19,24 +19,20 @@ const CreateCharacterSpellSchema = new mongoose.Schema({
     required: true,
   },
   characterSpellRangeArea: {
-    type: String,
-    required: true,
+    type: String
   },
   characterSpellDescription: {
     type: String,
     required: true,
   },
   characterSpellDuration: {
-    type: String,
-    required: true,
+    type: String
   },
   characterSpellSave: {
-    type: String,
-    required: true,
+    type: String
   },
   characterSpellSchool: {
-    type: String,
-    required: true,
+    type: String
   },
   characterSpellDamage: {
     type: String,

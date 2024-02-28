@@ -12,6 +12,7 @@ const CreateCharacterLanguageSchema = require('../models/CreateCharacterLanguage
 const CreateCharacterTraitSchema = require('../models/CreateCharacterTraitSchema')
 const CreateCharacterAttackSchema = require('../models/CreateCharacterAttackSchema')
 const CreateCharacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
+const CreateCharacterSpellSchema = require('../models/CreateCharacterSpellSchema');
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -101,9 +102,9 @@ router.get('/:characterId', async (req, res) => {
 
 router.get('/:number/:sentId', async (req, res) => {
   try {
-    const number = req.params.number; 
     const sentId = req.params.sentId; 
     const LoadCharacters = await CreateCharacterSchema.findById(sentId);
+    const LoadSpells = await CreateCharacterSpellSchema.find({ characterId: sentId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -112,6 +113,7 @@ router.get('/:number/:sentId', async (req, res) => {
     }
     const responseData = {
       character: LoadCharacters,
+      spells: LoadSpells 
     };
     res.json(responseData);
   } catch (error) {
@@ -967,6 +969,39 @@ router.put('/UpdateGeneralSpellInfo/:characterId', async (req, res) => {
   }
 
 });
+
+//Creates a new spell
+router.post('/UpdateSpells/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterSpellName, characterSpellLevel,
+      characterSpellCastTime, characterSpellRangeArea,
+			characterSpellDescription, characterSpellDuration,
+			characterSpellSave, characterSpellSchool, characterSpellDamage } = req.body; 
+
+    const characterData = { characterId: characterId, characterSpellName: characterSpellName,
+      characterSpellLevel: characterSpellLevel, characterSpellCastTime: characterSpellCastTime,
+      characterSpellRangeArea: characterSpellRangeArea, characterSpellDescription: characterSpellDescription,
+      characterSpellDuration: characterSpellDuration, characterSpellSave: characterSpellSave, 
+      characterSpellSchool: characterSpellSchool, characterSpellDamage: characterSpellDamage} 
+
+    const update = await CreateCharacterSpellSchema.create(
+      characterData
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newSpells: update
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 
 module.exports = router;
