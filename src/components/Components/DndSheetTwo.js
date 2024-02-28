@@ -9,7 +9,8 @@ import DndSheetImage from '../../images/sheet2.png'
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function DndSheetTwo({fetchData}) {
+function DndSheetTwo({getCharacterData, characterSpellcastingClass, characterSpellcastingAbility,
+	characterSpellSaveDC, characterSpellAttackBonus}) {
 
 const deleteItem =  async (e, id, address) => {
 	e.preventDefault();
@@ -18,7 +19,7 @@ const deleteItem =  async (e, id, address) => {
 		if(response.error) {
 			toast.error(response.data.error);
 		} else {
-			fetchData();
+			getCharacterData();
 			toast.success('Successfully deleted');
 		}
 	} catch (error) {
@@ -31,22 +32,22 @@ return (
 
 	{/* Spellcasting Class */}
 	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '8.2%', left: '8%', width: '20%', height: '2.5%', fontSize: '1.1vw' }}>
-    <div>john</div>
+    <div>{characterSpellcastingClass}</div>
   </div>
 
 	{/* Spellcasting Ability */}
-	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '45%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
-    <div>john</div>
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '43%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>{characterSpellcastingAbility}</div>
   </div>
 
 	{/* Spellcasting DC */}
-	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '60.8%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
-    <div>john</div>
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '58%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>{characterSpellSaveDC}</div>
   </div>
 
 	{/* Spellcasting Atk Bonus */}
-	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '77%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
-    <div>john</div>
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '73%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+    <div>{characterSpellAttackBonus}</div>
   </div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '90%'}}/>

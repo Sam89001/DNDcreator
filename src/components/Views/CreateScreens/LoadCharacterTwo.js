@@ -66,9 +66,9 @@ function LoadCharacterPageTwo() {
 
 			setUpdateCharacterSpellcasting({
 				characterSpellcastingClass: characterData.character.characterSpellcastingClass,
-				characterSpellcastingClass: characterData.character.characterSpellcastingAbility,
-				characterSpellcastingClass: characterData.character.characterSpellSaveDC,
-				characterSpellcastingClass: characterData.character.characterSpellAttackBonus,
+				characterSpellcastingAbility: characterData.character.characterSpellcastingAbility,
+				characterSpellSaveDC: characterData.character.characterSpellSaveDC,
+				characterSpellAttackBonus: characterData.character.characterSpellAttackBonus,
 			})
 			setLoadCharacterSpells(characterData.spells || [])
 
@@ -89,7 +89,12 @@ return (
 		<div className='row' style={{ paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 0px 0px 30px' }}>
-				<DndSheetTwo getCharacterData={getCharacterData}/>
+				<DndSheetTwo getCharacterData={getCharacterData}
+					characterSpellcastingClass={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingClass : ''}
+					characterSpellcastingAbility={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingAbility : ''}
+					characterSpellSaveDC={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSaveDC : ''}
+					characterSpellAttackBonus={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellAttackBonus : ''}
+				/>
       </div>
 
 			<div className="col-7" style={{color: 'white', maxHeight: '830px' }}>

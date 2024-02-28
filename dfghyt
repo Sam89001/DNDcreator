@@ -1,0 +1,183 @@
+[33m1a55b80[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m some of sheet is displaying
+[33mdb181b0[m working put request
+[33m65ce033[m working post request
+[33m55b0da5[m working database request
+[33m6889a7a[m added example spell slot
+[33m9cd816f[m finalised stylings for spells
+[33mda881d8[m created model
+[33m3b5bf0e[m finished dropdown
+[33md7452a8[m workingo out styling
+[33mbac7dd1[m more ui
+[33mfa364d8[m adding ui
+[33m4da2e88[m adding fields
+[33m1a2f530[m fixes
+[33m4f2d252[m adjusted sizing
+[33m97f7c52[m added sheets for page 2 and 3
+[33mb301214[m all pages loading in
+[33m032108a[m navigaate working
+[33ma4464bc[m changed some visuals
+[33mba05a12[m fully working and designed
+[33m877107e[m fully working skills
+[33mc7221d8[m blocking for skills working
+[33m0ecf025[m working saving throws
+[33mf26c9b5[m working semi code
+[33m1230136[m working validation for numbers
+[33m40f58d5[m character sheet proficiencys automatically updating
+[33m6ea3c7a[m more visuals improvements
+[33m490a091[m adjusted front end visuals
+[33m7c9c145[m efficiency improvements
+[33m95515ae[m fully working page 1
+[33mfb14a19[m working equipment field
+[33m29500d6[m updates
+[33m2be1011[m fully working attack however visuals are off
+[33m496acdc[m working post request
+[33m5f6b9e3[m visuals completed for equipment
+[33mc6cc4d7[m completed visuals for attacks
+[33macbd477[m fixed a small error
+[33md99e09c[m fully working skills
+[33m7413156[m post request working for skills but not displaying on sheet
+[33m4295c34[m more efficient code
+[33m55d9323[m fixed transform issue
+[33m3d637f4[m working section for saving throws, but currently unsure how to check checkboxes
+[33m13f5c8d[m fully working saving throws section
+[33m7ef0dfb[m working proficiency field for saving throws
+[33m3ba1b00[m added visuals to character sheet
+[33m39066ef[m working saving throws database request
+[33m9518430[m working on field submission but practicing smarter coding
+[33m4a05f06[m html restructuring
+[33ma3f8f8c[m added all the value populations
+[33mcaead06[m half way through adding to all
+[33m43915df[m slowly adding in field population after selection
+[33mb85ad3e[m now updates fields upon change
+[33m86a3fc2[m fixed some minor visual issues
+[33m15e5daa[m optimised trait
+[33m0dc97ec[m visual updates
+[33m6aa5ba8[m Working Trait field
+[33mba8db79[m post request is working
+[33m98d7a38[m final design decided
+[33mbc4360a[m designed format for new input field
+[33m1a7583a[m fully working languages section
+[33mbb4fe73[m Added working post and delete for language
+[33m56892ec[m working on adding languages section
+[33m734dd59[m working drop down list
+[33m00b72dc[m correct form visuals
+[33m0e28420[m adding new form visuals
+[33m484a956[m optimised Structure
+[33m3896ffd[m list updates
+[33ma1fe933[m working dropdown
+[33m9f5f996[m working dropdown lists
+[33meb68123[m working on finishing list
+[33m8164474[m adjusted some sizing
+[33mc181688[m working flaws section
+[33m76ffeaf[m working delete and post request for character flaws
+[33m97c30bd[m fixed an issue
+[33md7b981e[m working bonds section
+[33md88b951[m implemented new model and dnd sheet
+[33mb2ec83a[m fully working ideal box
+[33md399c7b[m added working delete route and button
+[33m3a390d2[m now loads in the sheet
+[33mf452374[m post ideal is working
+[33m1f2a263[m working on adding ideals
+[33mf348f4b[m implementing new sections
+[33m1be2358[m fixed some problems and optimised css
+[33m3e1dc2a[m fully working
+[33m1fd3ad8[m working delete request
+[33m004510f[m fixed code
+[33m30a59b6[m working update
+[33meb19158[m successfully updating to db but not to sheet
+[33m064911e[m working!
+[33m663ef54[m working except for the data, the id is returning as undefined
+[33mafcbb2d[m working on request
+[33m6a85ddd[m improved code
+[33m1cd299d[m styling applied
+[33m758d738[m working map
+[33m3b04c89[m added a second get request for the personality traits
+[33m9a01ccb[m working post request, but not successfully loading in all entries
+[33mc7dafea[m worked on adding character sheet and completed form code
+[33mdf30e22[m fully working misc data field
+[33m828776a[m successfully updates on sheet but dosent change on refresh
+[33mb56b9d6[m successfully updates in database misc stats, but dosent update on sheet
+[33m47fde60[m updated stats sheet in prep
+[33m7271f96[m fully working skill
+[33md680aac[m fixed weird error
+[33m8bac34e[m updating in database but not on sheet
+[33m4f190fe[m worked on new fields
+[33m2cc15ba[m started working on more input fields
+[33mcd748e5[m fixed refresh bug
+[33mc72544f[m minor fixes, missing validation
+[33m44693f0[m one working field
+[33mdd90c31[m more visual updates
+[33m517ca7e[m worked visually on some fields
+[33m95613c1[m started working on fields and implementing them into character sheet
+[33m6ecc9c1[m optimisation
+[33m959414d[m successfully getting the correct data
+[33m2516e6f[m removed redundant code and added new graphics
+[33m70bbe1c[m fully working
+[33m7b68eba[m successfully loading in from static adress
+[33m539d73b[m working on get request
+[33mc8b9aa7[m fixed non asynchronous request on header
+[33m8d03128[m fixed database issues
+[33m50c909c[m successfully posting to the database
+[33me47c027[m adjusted views and links
+[33mc4bc59a[m made css more efficient, fixed styling
+[33m7b9d77e[m fully working unstyled popup
+[33m91d9748[m working pop up
+[33m13fda59[m pop up semi working
+[33mb1dca0e[m more on pop ups
+[33mfa61a0f[m implementing pop up
+[33m9064777[m added more fields
+[33m049564a[m more ui updates
+[33m6d46c54[m started working on form visuals
+[33m37a8ecc[m fixed some html issues
+[33m4084780[m added css
+[33ma1801e9[m added data validation
+[33mbd90437[m added new controller and put request to successfully update data
+[33me62dae1[m populates fields with user data
+[33mfb65035[m fixed some visual issues
+[33m29d129e[m added 2 new views
+[33m607b05e[m created new view with component
+[33m7aece2d[m added new view without working form
+[33m5bf7f73[m added new view
+[33mfcbf23c[m added route but no authentication
+[33m9ce9059[m successfully loads users name
+[33m673598c[m created profile for jsonwebtoken
+[33m607ef5c[m created a json web token but untested as to whether it is correctly working
+[33maea3121[m implemented middleware
+[33m73fe5f9[m installed cookie parser and json web token
+[33me8e7615[m correct notifications displayed
+[33mc8e0277[m fixed formatting and changed anchor tags
+[33maa9bcf0[m added correct formatting and images
+[33m7d9987f[m created home screen with templates
+[33m5a3b9a2[m updated and fixed home screen
+[33mb7c19a4[m login working and created
+[33m9091127[m implemented bcrypt
+[33m2bb1204[m imported into controller
+[33m2953258[m created bcrypt middlewar
+[33ma3ae6ca[m added correct field types
+[33mc2c1bb5[m fixed data validation
+[33mc7bc377[m implemented hot toast notifications
+[33m2e3f514[m successfully posting to database
+[33me4d7dca[m code complete but cors error is occuring
+[33m1f233f7[m post request added but not tested
+[33m03286eb[m removed read me
+[33m3cf04af[m started working on post
+[33ma754fa8[m Merge branch 'master' of https://github.com/Sam89001/DNDcreator
+[33mbdae9d4[m correct gitignore
+[33m4d389fe[m Delete api/node_modules directory
+[33mfce74c9[m Delete api/.env
+[33mceef615[m added correct database connection
+[33ma576b77[m controller successfully working
+[33mffdfe13[m set up cors middleware
+[33m99f5dea[m file layout updates
+[33mcb7916c[m started working on log in system
+[33m40b2133[m fixed random styling issues
+[33macca201[m fixed some issues with views
+[33m2a78482[m starting template for react router
+[33mcc1efc8[m css efficiency improvements
+[33mbad4433[m added navbar layout
+[33m3eaa227[m file pathing updates
+[33mf924da0[m actually added components
+[33m7e8e8b8[m all files
+[33m360461d[m all files
+[33m1258e3e[m added login screen
+[33md11f980[m Initialize project using Create React App
