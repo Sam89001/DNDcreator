@@ -8,9 +8,9 @@ import OptionChoice from '../Components/OptionChoice';
 import { UserContext } from '../../context/userContext';
 
 //images
-import CreateCharacterImage from '../../images/dungeons-and-dragons.jpg'
-import PlaySessionImage from '../../images/play-a-session.jpg'
-import HostSessionImage from '../../images/host-a-session.jpg'
+import CreateCharacterImage from '../../images/PlaySession.png'
+import PlaySessionImage from '../../images/PlaySession.png'
+import HostSessionImage from '../../images/PlaySession.png'
 
 //Dependencies
 import React, { useContext } from 'react';

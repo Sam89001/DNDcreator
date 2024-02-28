@@ -18,7 +18,7 @@ function OptionChoice({ title, imageUrl, link }) {
 					</div>
 
 					<div className="col-12 d-flex justify-content-center">
-						<img className="img-fluid" src={imageUrl} style={{ maxWidth: '200px' }}/>
+						<img className="img-fluid" src={imageUrl} style={{ maxWidth: '250px' }}/>
 					</div>
 
         </div>
