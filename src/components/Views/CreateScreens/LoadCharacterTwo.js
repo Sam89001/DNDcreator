@@ -94,6 +94,7 @@ return (
 					characterSpellcastingAbility={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingAbility : ''}
 					characterSpellSaveDC={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSaveDC : ''}
 					characterSpellAttackBonus={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellAttackBonus : ''}
+					loadCharacterSpells={loadCharacterSpells}
 				/>
       </div>
 

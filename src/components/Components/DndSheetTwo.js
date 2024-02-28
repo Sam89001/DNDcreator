@@ -10,7 +10,7 @@ import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
 function DndSheetTwo({getCharacterData, characterSpellcastingClass, characterSpellcastingAbility,
-	characterSpellSaveDC, characterSpellAttackBonus}) {
+	characterSpellSaveDC, characterSpellAttackBonus, loadCharacterSpells}) {
 
 const deleteItem =  async (e, id, address) => {
 	e.preventDefault();
@@ -49,6 +49,17 @@ return (
 	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '73%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
     <div>{characterSpellAttackBonus}</div>
   </div>
+
+  <div className="absolute-div dnd-sheet-noflex" style={{  backgroundColor: 'transparent', top: '23.3%', left: '5%', width: '25%', height: '13%', fontSize: '0.59vw' }}>
+    
+		{loadCharacterSpells.map(spell => (
+			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+				<button className='delete-property-button' style={{width: '10%'}} 
+				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+			</div>
+		))}
+  
+	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '90%'}}/>
 </div>
