@@ -590,6 +590,149 @@ return (
 					</form>
 				</div>
 
+				{/* Spell Slot 2 */}
+				<div className='col-12' style={{paddingBottom: '20px'}}>
+					<form onSubmit={(e) => handleSubmit(e, 'spellSlot2')}>
+
+					<div className="spells-field spell-form-titles"> Spell Slot 2</div>
+
+					<div className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"
+						value={characterSpells.spellSlot2.characterSpellName}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot2: {
+											...prevCharacterSpells.spellSlot2,
+											characterSpellName: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"
+						value={characterSpells.spellSlot2.characterSpellCastTime}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot2: {
+											...prevCharacterSpells.spellSlot2,
+											characterSpellCastTime: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"
+							value={characterSpells.spellSlot2.characterSpellDamage}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot2: {
+												...prevCharacterSpells.spellSlot2,
+												characterSpellDamage: e.target.value,
+										}
+								}))
+							}/>
+					</div>
+
+					<div className="spells-field">
+						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"
+						value={characterSpells.spellSlot2.characterSpellDescription}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot2: {
+											...prevCharacterSpells.spellSlot2,
+											characterSpellDescription: e.target.value,
+									}
+							}))
+						}/>
+					</div>					
+
+					<div className={`drop-down-spells-field ${dropdownStates['2'] ? 'active' : ''}`}>
+						<div className={`spells-expand-box `} >
+							<div className='form-titles' style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
+							<img
+              className={`spell-arrow ${dropdownStates['2'] ? 'active' : ''}`}
+              src={DownArrowImage}
+              onClick={() => toggleDropdown('2')} />
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Duration"
+							value={characterSpells.spellSlot2.characterSpellDuration}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot2: {
+												...prevCharacterSpells.spellSlot2,
+												characterSpellDuration: e.target.value,
+										}
+								}))
+							}/>
+						</div>	
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"
+							value={characterSpells.spellSlot2.characterSpellSave}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot2: {
+												...prevCharacterSpells.spellSlot2,
+												characterSpellSave: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="School"
+							value={characterSpells.spellSlot2.characterSpellSchool}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot2: {
+												...prevCharacterSpells.spellSlot2,
+												characterSpellSchool: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"
+							value={characterSpells.spellSlot2.characterSpellRangeArea}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot2: {
+												...prevCharacterSpells.spellSlot2,
+												characterSpellRangeArea: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+					</div>
+
+					<div className="spells-field form-titles"> Edit Spell</div>
+
+					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('spellSlot2')}>
+							<option/>
+							{loadCharacterSpells
+									.filter(spell => spell.characterSpellLevel === '2')
+									.map(spell => (
+											<option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+									))}
+					</select>
+
+					<button className='create-character-button' type="submit"> Update</button>
+
+					</form>
+				</div>
 
 			</div>
 		</div>
@@ -597,13 +740,443 @@ return (
 		<div className='col-3' style={{marginRight: '10px'}}>
 			<div className='row'>
 
+				{/* Spell Slot 3 */}
+				<div className='col-12' style={{paddingBottom: '20px'}}>
+					<form onSubmit={(e) => handleSubmit(e, 'spellSlot3')}>
+
+					<div className="spells-field spell-form-titles"> Spell Slot 3</div>
+
+					<div className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"
+						value={characterSpells.spellSlot3.characterSpellName}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot3: {
+											...prevCharacterSpells.spellSlot3,
+											characterSpellName: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"
+						value={characterSpells.spellSlot3.characterSpellCastTime}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot3: {
+											...prevCharacterSpells.spellSlot3,
+											characterSpellCastTime: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"
+							value={characterSpells.spellSlot3.characterSpellDamage}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot3: {
+												...prevCharacterSpells.spellSlot3,
+												characterSpellDamage: e.target.value,
+										}
+								}))
+							}/>
+					</div>
+
+					<div className="spells-field">
+						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"
+						value={characterSpells.spellSlot3.characterSpellDescription}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot3: {
+											...prevCharacterSpells.spellSlot3,
+											characterSpellDescription: e.target.value,
+									}
+							}))
+						}/>
+					</div>					
+
+					<div className={`drop-down-spells-field ${dropdownStates['3'] ? 'active' : ''}`}>
+						<div className={`spells-expand-box `} >
+							<div className='form-titles' style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
+							<img
+              className={`spell-arrow ${dropdownStates['3'] ? 'active' : ''}`}
+              src={DownArrowImage}
+              onClick={() => toggleDropdown('3')} />
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Duration"
+							value={characterSpells.spellSlot3.characterSpellDuration}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot3: {
+												...prevCharacterSpells.spellSlot3,
+												characterSpellDuration: e.target.value,
+										}
+								}))
+							}/>
+						</div>	
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"
+							value={characterSpells.spellSlot3.characterSpellSave}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot3: {
+												...prevCharacterSpells.spellSlot3,
+												characterSpellSave: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="School"
+							value={characterSpells.spellSlot3.characterSpellSchool}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot3: {
+												...prevCharacterSpells.spellSlot3,
+												characterSpellSchool: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"
+							value={characterSpells.spellSlot3.characterSpellRangeArea}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot3: {
+												...prevCharacterSpells.spellSlot3,
+												characterSpellRangeArea: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+					</div>
+
+					<div className="spells-field form-titles"> Edit Spell</div>
+
+					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('spellSlot3')}>
+							<option/>
+							{loadCharacterSpells
+									.filter(spell => spell.characterSpellLevel === '3')
+									.map(spell => (
+											<option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+									))}
+					</select>
+
+					<button className='create-character-button' type="submit"> Update</button>
+
+					</form>
+				</div>
+
+				{/* Spell Slot 4 */}
+				<div className='col-12' style={{paddingBottom: '20px'}}>
+					<form onSubmit={(e) => handleSubmit(e, 'spellSlot4')}>
+
+					<div className="spells-field spell-form-titles"> Spell Slot 4</div>
+
+					<div className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"
+						value={characterSpells.spellSlot4.characterSpellName}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot4: {
+											...prevCharacterSpells.spellSlot4,
+											characterSpellName: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"
+						value={characterSpells.spellSlot4.characterSpellCastTime}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot4: {
+											...prevCharacterSpells.spellSlot4,
+											characterSpellCastTime: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"
+							value={characterSpells.spellSlot4.characterSpellDamage}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot4: {
+												...prevCharacterSpells.spellSlot4,
+												characterSpellDamage: e.target.value,
+										}
+								}))
+							}/>
+					</div>
+
+					<div className="spells-field">
+						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"
+						value={characterSpells.spellSlot4.characterSpellDescription}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot4: {
+											...prevCharacterSpells.spellSlot4,
+											characterSpellDescription: e.target.value,
+									}
+							}))
+						}/>
+					</div>					
+
+					<div className={`drop-down-spells-field ${dropdownStates['4'] ? 'active' : ''}`}>
+						<div className={`spells-expand-box `} >
+							<div className='form-titles' style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
+							<img
+              className={`spell-arrow ${dropdownStates['4'] ? 'active' : ''}`}
+              src={DownArrowImage}
+              onClick={() => toggleDropdown('4')} />
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Duration"
+							value={characterSpells.spellSlot4.characterSpellDuration}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot4: {
+												...prevCharacterSpells.spellSlot4,
+												characterSpellDuration: e.target.value,
+										}
+								}))
+							}/>
+						</div>	
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"
+							value={characterSpells.spellSlot4.characterSpellSave}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot4: {
+												...prevCharacterSpells.spellSlot4,
+												characterSpellSave: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="School"
+							value={characterSpells.spellSlot4.characterSpellSchool}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot4: {
+												...prevCharacterSpells.spellSlot4,
+												characterSpellSchool: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"
+							value={characterSpells.spellSlot4.characterSpellRangeArea}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot4: {
+												...prevCharacterSpells.spellSlot4,
+												characterSpellRangeArea: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+					</div>
+
+					<div className="spells-field form-titles"> Edit Spell</div>
+
+					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('spellSlot4')}>
+							<option/>
+							{loadCharacterSpells
+									.filter(spell => spell.characterSpellLevel === '4')
+									.map(spell => (
+											<option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+									))}
+					</select>
+
+					<button className='create-character-button' type="submit"> Update</button>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div className='col-3' style={{marginRight: '10px'}}>
+			<div className='row'>
 				
-			</div>
-		</div>
+				{/* Spell Slot 5 */}
+				<div className='col-12' style={{paddingBottom: '20px'}}>
+					<form onSubmit={(e) => handleSubmit(e, 'spellSlot5')}>
 
-		<div className='col-3' style={{marginRight: '10px'}}>
-			<div className='row'>
+					<div className="spells-field spell-form-titles"> Spell Slot 5</div>
 
+					<div className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"
+						value={characterSpells.spellSlot5.characterSpellName}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot5: {
+											...prevCharacterSpells.spellSlot5,
+											characterSpellName: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"
+						value={characterSpells.spellSlot5.characterSpellCastTime}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot5: {
+											...prevCharacterSpells.spellSlot5,
+											characterSpellCastTime: e.target.value,
+									}
+							}))
+						}/>
+					</div>
+
+					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+						<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"
+							value={characterSpells.spellSlot5.characterSpellDamage}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot5: {
+												...prevCharacterSpells.spellSlot5,
+												characterSpellDamage: e.target.value,
+										}
+								}))
+							}/>
+					</div>
+
+					<div className="spells-field">
+						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"
+						value={characterSpells.spellSlot5.characterSpellDescription}
+						onChange={(e) =>
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									spellSlot5: {
+											...prevCharacterSpells.spellSlot5,
+											characterSpellDescription: e.target.value,
+									}
+							}))
+						}/>
+					</div>					
+
+					<div className={`drop-down-spells-field ${dropdownStates['5'] ? 'active' : ''}`}>
+						<div className={`spells-expand-box `} >
+							<div className='form-titles' style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
+							<img
+              className={`spell-arrow ${dropdownStates['5'] ? 'active' : ''}`}
+              src={DownArrowImage}
+              onClick={() => toggleDropdown('5')} />
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Duration"
+							value={characterSpells.spellSlot5.characterSpellDuration}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot5: {
+												...prevCharacterSpells.spellSlot5,
+												characterSpellDuration: e.target.value,
+										}
+								}))
+							}/>
+						</div>	
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"
+							value={characterSpells.spellSlot5.characterSpellSave}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot5: {
+												...prevCharacterSpells.spellSlot5,
+												characterSpellSave: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="School"
+							value={characterSpells.spellSlot5.characterSpellSchool}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot5: {
+												...prevCharacterSpells.spellSlot5,
+												characterSpellSchool: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+
+						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
+							<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"
+							value={characterSpells.spellSlot5.characterSpellRangeArea}
+							onChange={(e) =>
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										spellSlot5: {
+												...prevCharacterSpells.spellSlot5,
+												characterSpellRangeArea: e.target.value,
+										}
+								}))
+							}/>
+						</div>
+					</div>
+
+					<div className="spells-field form-titles"> Edit Spell</div>
+
+					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('spellSlot5')}>
+							<option/>
+							{loadCharacterSpells
+									.filter(spell => spell.characterSpellLevel === '5')
+									.map(spell => (
+											<option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+									))}
+					</select>
+
+					<button className='create-character-button' type="submit"> Update</button>
+
+					</form>
+				</div>
 
 			</div>
 		</div>
