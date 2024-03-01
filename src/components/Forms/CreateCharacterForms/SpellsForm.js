@@ -427,10 +427,12 @@ return (
 					<div className="spells-field form-titles"> Edit Cantrip</div>
 
 					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('cantrips')}>
-						<option/>
-						{loadCharacterSpells.map(spell => (
-						  <option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
-					  ))}
+							<option/>
+							{loadCharacterSpells
+									.filter(spell => spell.characterSpellLevel === '0')
+									.map(spell => (
+											<option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+									))}
 					</select>
 
 					<button className='create-character-button' type="submit"> Update</button>
@@ -575,10 +577,12 @@ return (
 					<div className="spells-field form-titles"> Edit Spell</div>
 
 					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('spellSlot1')}>
-						<option/>
-						{loadCharacterSpells.map(spell => (
-						  <option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
-					  ))}
+							<option/>
+							{loadCharacterSpells
+									.filter(spell => spell.characterSpellLevel === '1')
+									.map(spell => (
+											<option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
+									))}
 					</select>
 
 					<button className='create-character-button' type="submit"> Update</button>
