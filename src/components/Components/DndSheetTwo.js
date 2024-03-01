@@ -53,7 +53,7 @@ return (
   </div>
 
 	{/* Cantrips */}
-  <div className="absolute-div dnd-sheet-noflex" style={{  overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '23.3%', left: '5%', width: '26.5%', height: '13%', fontSize: '0.59vw' }}>
+  <div className="absolute-div dnd-sheet-noflex" style={{  overflowY: 'auto', paddingRight: '15px', top: '23.3%', left: '5%', width: '26.5%', height: '13%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '0')
 		.map(spell => (
@@ -65,7 +65,7 @@ return (
 	</div>
 
 	{/* Spell Slot 1*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'red', top: '45%', left: '6.5%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '45%', left: '6.5%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '1')
 		.map(spell => (
@@ -77,7 +77,7 @@ return (
 	</div>
 
 	{/* Spell Slot 2*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '71.7%', left: '6.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '71.7%', left: '6.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '2')
 		.map(spell => (
@@ -89,7 +89,7 @@ return (
 	</div>
 
 	{/* Spell Slot 3*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '22%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '3')
 		.map(spell => (
@@ -101,7 +101,7 @@ return (
 	</div>
 
 	{/* Spell Slot 4*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '50.3%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '50.3%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '4')
 		.map(spell => (
@@ -113,7 +113,7 @@ return (
 	</div>
 
 	{/* Spell Slot 5*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '79%', left: '34.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '79%', left: '34.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '5')
 		.map(spell => (
@@ -125,7 +125,7 @@ return (
 	</div>
 
 	{/* Spell Slot 6*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '22%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '6')
 		.map(spell => (
@@ -137,7 +137,7 @@ return (
 	</div>
 
 	{/* Spell Slot 7*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '43.5%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '43.5%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '7')
 		.map(spell => (
@@ -149,7 +149,7 @@ return (
 	</div>
 	
 	{/* Spell Slot 8*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '65%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '65%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '8')
 		.map(spell => (
@@ -161,7 +161,7 @@ return (
 	</div>
 
 	{/* Spell Slot 9*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', backgroundColor: 'transparent', top: '82.5%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '82.5%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '9')
 		.map(spell => (
