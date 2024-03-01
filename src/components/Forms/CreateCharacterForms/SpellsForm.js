@@ -18,7 +18,6 @@ import DownArrowImage from '../../../images/Down Arrow.png'
 function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFunction, 
 	loadCharacterSpells, setLoadCharacterSpells}) {
 
-
 	//Dropdown Code
 	const [dropdownStates, setDropdownStates] = useState([]);
   const toggleDropdown = (index) => {
@@ -66,59 +65,78 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
 		selectedId: ''
 	});
 	const [characterSpells, setCharacterSpells] = useState({
-		characterSpellName: '',
-		characterSpellLevel: '',
-		characterSpellCastTime: '',
-		characterSpellRangeArea: '',
-		characterSpellDescription: '',
-		characterSpellDuration: '',
-		characterSpellSave: '',
-		characterSpellSchool: '',
-		characterSpellDamage: '',
+		cantrips: {
+			characterSpellName: '',
+			characterSpellLevel: '0',
+			characterSpellCastTime: '',
+			characterSpellRangeArea: '',
+			characterSpellDescription: '',
+			characterSpellDuration: '',
+			characterSpellSave: '',
+			characterSpellSchool: '',
+			characterSpellDamage: '',
+		},
+		spellSlot1: {
+			characterSpellName: '',
+			characterSpellLevel: '1',
+			characterSpellCastTime: '',
+			characterSpellRangeArea: '',
+			characterSpellDescription: '',
+			characterSpellDuration: '',
+			characterSpellSave: '',
+			characterSpellSchool: '',
+			characterSpellDamage: '',
+		}
 
 	});
 
 	//Handles Selection
-	const handleSelectChange = (e) => {
+	const handleSelectChange = (spellLevel) => (e) => {
     const selectedId = e.target.value; 
     setSelectedId({ selectedId: selectedId });
-    //finds and updates the fields
 
-  	const loadedValue = loadCharacterSpells.find(value => value._id === selectedId);
-    setCharacterSpells({
-      ...characterSpells,
-      characterSpellName: loadedValue ? loadedValue.characterSpellName : '',
-      characterSpellLevel: loadedValue ? loadedValue.characterSpellLevel : '',
-      characterSpellCastTime: loadedValue ? loadedValue.characterSpellCastTime : '',
-			characterSpellRangeArea: loadedValue ? loadedValue.characterSpellRangeArea : '',
-      characterSpellDescription: loadedValue ? loadedValue.characterSpellDescription : '',
-      characterSpellDuration: loadedValue ? loadedValue.characterSpellDuration : '',
-			characterSpellSave: loadedValue ? loadedValue.characterSpellSave : '',
-      characterSpellSchool: loadedValue ? loadedValue.characterSpellSchool : '',
-      characterSpellDamage: loadedValue ? loadedValue.characterSpellDamage : '',
-    }); 
+    const loadedValue = loadCharacterSpells.find(value => value._id === selectedId);
+    
+    const updatedSpellData = {
+        ...characterSpells,
+        [spellLevel]: {
+            ...characterSpells[spellLevel],
+            characterSpellName: loadedValue ? loadedValue.characterSpellName : '',
+            characterSpellLevel: loadedValue ? loadedValue.characterSpellLevel : '',
+            characterSpellCastTime: loadedValue ? loadedValue.characterSpellCastTime : '',
+            characterSpellRangeArea: loadedValue ? loadedValue.characterSpellRangeArea : '',
+            characterSpellDescription: loadedValue ? loadedValue.characterSpellDescription : '',
+            characterSpellDuration: loadedValue ? loadedValue.characterSpellDuration : '',
+            characterSpellSave: loadedValue ? loadedValue.characterSpellSave : '',
+            characterSpellSchool: loadedValue ? loadedValue.characterSpellSchool : '',
+            characterSpellDamage: loadedValue ? loadedValue.characterSpellDamage : '',
+        }
+    };
+    setCharacterSpells(updatedSpellData);
 	};
-  const handleSubmit = async (e) => {
+
+  const handleSubmit = async (e, spellLevel) => {
 		e.preventDefault();
+
 		if (!selectedId.selectedId) {
-			await updateSpells();
+			await updateSpells(spellLevel);
 		} else {
 			
-			await updateExistingSpells(selectedId.selectedId, characterSpells.characterSpellName, 
-				characterSpells.characterSpellLevel, characterSpells.characterSpellCastTime,
-				characterSpells.characterSpellRangeArea, characterSpells.characterSpellDescription,
-				characterSpells.characterSpellDuration, characterSpells.characterSpellSave,
-				characterSpells.characterSpellSchool, characterSpells.characterSpellDamage); 
+			await updateExistingSpells(selectedId.selectedId, characterSpells.cantrips.characterSpellName, 
+				characterSpells.cantrips.characterSpellLevel, characterSpells.cantrips.characterSpellCastTime,
+				characterSpells.cantrips.characterSpellRangeArea, characterSpells.cantrips.characterSpellDescription,
+				characterSpells.cantrips.characterSpellDuration, characterSpells.cantrips.characterSpellSave,
+				characterSpells.cantrips.characterSpellSchool, characterSpells.cantrips.characterSpellDamage); 
 			
 		}
 	}; 
 
 	//Post Request
-	 const updateSpells =  async (e) => {
+	 const updateSpells =  async (spellLevel) => {
 		const {characterSpellName, characterSpellLevel,
       characterSpellCastTime, characterSpellRangeArea,
 			characterSpellDescription, characterSpellDuration,
-			characterSpellSave, characterSpellSchool, characterSpellDamage } = characterSpells;
+			characterSpellSave, characterSpellSchool, characterSpellDamage } = characterSpells[spellLevel];
 		try {
 
 			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateSpells/${characterId}`, {
@@ -203,52 +221,65 @@ return (
 
 				{/* Cantrips */}
 				<div className='col-12' style={{paddingBottom: '20px'}}>
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={(e) => handleSubmit(e, 'cantrips')}>
+
 					<div className="spells-field spell-form-titles"> Cantrips</div>
 
 					<div className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"
-						value={characterSpells.characterSpellName}
+						value={characterSpells.cantrips.characterSpellName}
 						onChange={(e) =>
-							setCharacterSpells((prevCharacterSpell) => ({
-								...prevCharacterSpell,
-								characterSpellName: e.target.value,
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									cantrips: {
+											...prevCharacterSpells.cantrips,
+											characterSpellName: e.target.value,
+									}
 							}))
 						}/>
 					</div>
 
 					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"
-						value={characterSpells.characterSpellCastTime}
+						value={characterSpells.cantrips.characterSpellCastTime}
 						onChange={(e) =>
-							setCharacterSpells((prevCharacterSpell) => ({
-								...prevCharacterSpell,
-								characterSpellCastTime: e.target.value,
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									cantrips: {
+											...prevCharacterSpells.cantrips,
+											characterSpellCastTime: e.target.value,
+									}
 							}))
 						}/>
 					</div>
 
 					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"
-							value={characterSpells.characterSpellDamage}
+							value={characterSpells.cantrips.characterSpellDamage}
 							onChange={(e) =>
-								setCharacterSpells((prevCharacterSpell) => ({
-									...prevCharacterSpell,
-									characterSpellDamage: e.target.value,
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										cantrips: {
+												...prevCharacterSpells.cantrips,
+												characterSpellDamage: e.target.value,
+										}
 								}))
-						}/>
+							}/>
 					</div>
 
 					<div className="spells-field">
 						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"
-						value={characterSpells.characterSpellDescription}
+						value={characterSpells.cantrips.characterSpellDescription}
 						onChange={(e) =>
-							setCharacterSpells((prevCharacterSpell) => ({
-								...prevCharacterSpell,
-								characterSpellDescription: e.target.value,
+							setCharacterSpells((prevCharacterSpells) => ({
+									...prevCharacterSpells,
+									cantrips: {
+											...prevCharacterSpells.cantrips,
+											characterSpellDescription: e.target.value,
+									}
 							}))
 						}/>
-					</div>
+					</div>					
 
 					<div className={`drop-down-spells-field ${dropdownStates['0'] ? 'active' : ''}`}>
 						<div className={`spells-expand-box `} >
@@ -261,44 +292,56 @@ return (
 
 						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
 							<input className='field-style' style={{width: '100%'}} placeholder="Duration"
-							value={characterSpells.characterSpellDuration}
+							value={characterSpells.cantrips.characterSpellDuration}
 							onChange={(e) =>
-								setCharacterSpells((prevCharacterSpell) => ({
-									...prevCharacterSpell,
-									characterSpellDuration: e.target.value,
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										cantrips: {
+												...prevCharacterSpells.cantrips,
+												characterSpellDuration: e.target.value,
+										}
 								}))
 							}/>
-						</div>
+						</div>	
 
 						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"
-							value={characterSpells.characterSpellSave}
+							value={characterSpells.cantrips.characterSpellSave}
 							onChange={(e) =>
-								setCharacterSpells((prevCharacterSpell) => ({
-									...prevCharacterSpell,
-									characterSpellSave: e.target.value,
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										cantrips: {
+												...prevCharacterSpells.cantrips,
+												characterSpellSave: e.target.value,
+										}
 								}))
 							}/>
 						</div>
 
 						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
 							<input className='field-style' style={{width: '100%'}} placeholder="School"
-							value={characterSpells.characterSpellSchool}
+							value={characterSpells.cantrips.characterSpellSchool}
 							onChange={(e) =>
-								setCharacterSpells((prevCharacterSpell) => ({
-									...prevCharacterSpell,
-									characterSpellSchool: e.target.value,
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										cantrips: {
+												...prevCharacterSpells.cantrips,
+												characterSpellSchool: e.target.value,
+										}
 								}))
 							}/>
 						</div>
 
 						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 							<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"
-							value={characterSpells.characterSpellRangeArea}
+							value={characterSpells.cantrips.characterSpellRangeArea}
 							onChange={(e) =>
-								setCharacterSpells((prevCharacterSpell) => ({
-									...prevCharacterSpell,
-									characterSpellRangeArea: e.target.value,
+								setCharacterSpells((prevCharacterSpells) => ({
+										...prevCharacterSpells,
+										cantrips: {
+												...prevCharacterSpells.cantrips,
+												characterSpellRangeArea: e.target.value,
+										}
 								}))
 							}/>
 						</div>
@@ -306,20 +349,14 @@ return (
 
 					<div className="spells-field form-titles"> Edit Cantrip</div>
 
-					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange}>
+					<select className='spell-edit-character-field' style={{height: '35px'}} onChange={handleSelectChange('cantrips')}>
 						<option/>
 						{loadCharacterSpells.map(spell => (
 						  <option key={spell._id} value={spell._id}>{spell.characterSpellName}</option>
 					  ))}
 					</select>
 
-					<button className='create-character-button' type="submit"
-						onClick={() =>
-							setCharacterSpells((prevCharacterSpell) => ({
-								...prevCharacterSpell,
-								characterSpellLevel: '0', 
-							}))
-						}> Update</button>
+					<button className='create-character-button' type="submit"> Update</button>
 
 					</form>
 				</div>
@@ -330,62 +367,6 @@ return (
 		<div className='col-3' style={{marginRight: '10px'}}>
 			<div className='row'>
 
-				{/* Spell Slot 1 */}
-				<div className='col-12' style={{paddingBottom: '15px'}}>
-					<form>
-					<div className="spells-field justify-content-between"> 
-						<div className='spell-form-titles'>Spell Slot 1</div>
-						<input className='field-style' style={{width: '35%', borderRadius: '15px'}} placeholder="Total Slots"/>
-					</div>
-
-					<div className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Spell Name"/>
-					</div>
-
-					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Cast Time"/>
-					</div>
-					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
-						<input className='field-style' style={{width: '100%'}} placeholder="Range/Area"/>
-					</div>
-
-					<div className="spells-field">
-						<textarea className='field-style spell-description' style={{width: '100%'}} placeholder="Spell Description"/>
-					</div>
-
-					<div className={`drop-down-spells-field ${dropdownStates['1'] ? 'active' : ''}`}>
-						<div className={`spells-expand-box `} >
-							<div className='form-titles' style={{width: '48%', marginRight: '10px'}}>Additional Fields</div>
-							<img
-              className={`spell-arrow ${dropdownStates['1'] ? 'active' : ''}`}
-              src={DownArrowImage}
-              onClick={() => toggleDropdown('1')} />
-						</div>
-
-						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
-							<input className='field-style' style={{width: '100%'}} placeholder="Duration"/>
-						</div>
-						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
-							<input className='field-style' style={{width: '100%'}} placeholder="Attack/Save"/>
-						</div>
-
-						<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
-							<input className='field-style' style={{width: '100%'}} placeholder="School"/>
-						</div>
-						<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
-							<input className='field-style' style={{width: '100%'}} placeholder="Dmg/Effect"/>
-						</div>
-					</div>
-
-					<div className="spells-field form-titles"> Edit Cantrip</div>
-
-					<select className='edit-character-field' style={{height: '35px'}} onChange={handleSelectChange}>
-						<option/>
-						
-					</select>
-
-					</form>
-				</div>
 
 			</div>
 		</div>
