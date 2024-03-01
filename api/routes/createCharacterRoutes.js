@@ -1003,6 +1003,26 @@ router.post('/UpdateSpells/:characterId', async (req, res) => {
   }
 })
 
+//Deletes a spell
+router.delete('/DeleteSpell/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deleted = await CreateCharacterSpellSchema.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Updates a spell
 router.put('/ChangeSpells/:id', async (req, res) => {
   try {

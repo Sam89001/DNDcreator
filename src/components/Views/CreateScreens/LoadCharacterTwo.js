@@ -13,6 +13,7 @@ import SpellsForm from '../../Forms/CreateCharacterForms/SpellsForm';
 function LoadCharacterPageTwo() {
 	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
+	
 
 	const [characterId, setUserId] = useState({
     Id: ''
@@ -90,6 +91,7 @@ return (
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 0px 0px 30px' }}>
 				<DndSheetTwo getCharacterData={getCharacterData}
+					propId={characterId} 
 					characterSpellcastingClass={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingClass : ''}
 					characterSpellcastingAbility={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingAbility : ''}
 					characterSpellSaveDC={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSaveDC : ''}

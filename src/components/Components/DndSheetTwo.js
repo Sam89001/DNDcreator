@@ -9,8 +9,10 @@ import DndSheetImage from '../../images/sheet2.png'
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
-function DndSheetTwo({getCharacterData, characterSpellcastingClass, characterSpellcastingAbility,
+function DndSheetTwo({getCharacterData, propId, characterSpellcastingClass, characterSpellcastingAbility,
 	characterSpellSaveDC, characterSpellAttackBonus, loadCharacterSpells}) {
+
+const characterId = propId.Id
 
 const deleteItem =  async (e, id, address) => {
 	e.preventDefault();
@@ -19,7 +21,7 @@ const deleteItem =  async (e, id, address) => {
 		if(response.error) {
 			toast.error(response.data.error);
 		} else {
-			getCharacterData();
+			getCharacterData(characterId);
 			toast.success('Successfully deleted');
 		}
 	} catch (error) {
