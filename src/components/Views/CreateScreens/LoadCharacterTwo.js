@@ -108,8 +108,10 @@ return (
 				</div>
 
 				<div style={{overflowY: 'auto', paddingBottom: '20px'}}>
-					<SpellsForm propId={characterId} updateCharacterSpellcastingFunction={updateCharacterSpellcastingFunction}
-					getCharacterData={getCharacterData} loadCharacterSpells={loadCharacterSpells}
+					<SpellsForm propId={characterId} 
+					updateCharacterSpellcastingFunction={updateCharacterSpellcastingFunction}
+					getCharacterData={getCharacterData} 
+					loadCharacterSpells={loadCharacterSpells}
 					setLoadCharacterSpells={setLoadCharacterSpells}/>
 				</div>
 
