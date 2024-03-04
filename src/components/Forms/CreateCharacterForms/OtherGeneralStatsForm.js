@@ -166,7 +166,13 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
             placeholder="Description"/>
 					</div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
+          <div className='col-8' style={{paddingBottom: '10px'}}>
+            <select className='edit-character-field' id='characterPersonalityEdit'>
+              <option/>		
+            </select>
+          </div>
+
+          <div className='col-4' style={{paddingBottom: '10px'}}>
             <button className='create-character-button' type="submit" > Update</button>
           </div>
 
