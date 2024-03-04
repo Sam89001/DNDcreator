@@ -13,7 +13,6 @@ import SpellsForm from '../../Forms/CreateCharacterForms/SpellsForm';
 function LoadCharacterPageTwo() {
 	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
-	
 
 	const [characterId, setUserId] = useState({
     Id: ''

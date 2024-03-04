@@ -8,6 +8,7 @@ import { UserContext } from '../../../context/userContext';
 
 //Components
 import DndSheetThree from '../../Components/DndSheetThree'
+import OtherGeneralStatsForm from '../../Forms/CreateCharacterForms/OtherGeneralStatsForm';
 
 function LoadCharacterPageThree() {
 	const { user } = useContext(UserContext);
@@ -83,6 +84,15 @@ return (
 				</div>
 
 				<div className="row">
+
+					<div className='col-8'>
+						<OtherGeneralStatsForm
+						propId={characterId} />
+					</div>
+
+					<div className='col-4'> Test
+
+					</div>
 
 				</div>
 

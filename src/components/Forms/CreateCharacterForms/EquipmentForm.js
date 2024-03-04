@@ -92,6 +92,7 @@ function EquipmentForm({setCharacterEquipment, characterEquipment, fetchData}) {
   return (
     <form onSubmit={handleSubmit}>
     <div className='row'>
+      
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <div className="text-center form-titles">Add New Equipment</div>
       </div>
