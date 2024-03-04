@@ -58,9 +58,44 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
 		}
 	}
 
-	//Updates and Stores Spell Information
+	//Updates and Store Total Spell Slots
+	const [characterSpellSlots, setCharacterSpellSlots] = useState({
+		characterSpellSlot1: '',
+		characterSpellSlot2: '',
+		characterSpellSlot3: '',
+		characterSpellSlot4: '',
+		characterSpellSlot5: '',
+		characterSpellSlot6: '',
+		characterSpellSlot7: '',
+		characterSpellSlot8: '',
+		characterSpellSlot9: '',
+	});
+	
+	const updateSpellSlots = async (e) => {
+		e.preventDefault();
+		const { characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
+			characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,
+		  characterSpellSlot8, characterSpellSlot9} = characterSpellSlots;
+	
+		try {
+			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateTotalSpellSlots/${characterId}`, {
+				characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
+				characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,
+				characterSpellSlot8, characterSpellSlot9
+			});
+	
+			if (response.data.error) {
+				toast.error(response.data.error);
+			} else {
+				//updateCharacterSpellcastingFunction(characterSpellcasting)
+				toast.success('Updated character details');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-	//Sets user change
+	//Updates and Stores Spell Information
 	const [selectedId, setSelectedId] = useState({
 		selectedId: ''
 	});
@@ -298,7 +333,7 @@ return (
 
 				{/* Total Spell Stats */}
 				<div className='col-12' style={{paddingBottom: '5px'}}>
-					<form>
+					<form onSubmit={updateSpellSlots}>
 						<div className="spell-form-titles"> Total Spell Slots</div>
 
 						<div className='row'>

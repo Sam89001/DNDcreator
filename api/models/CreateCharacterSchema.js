@@ -93,6 +93,33 @@ const CreateCharacterSchema = new mongoose.Schema({
   },
   characterSpellAttackBonus: {
     type: String,
+  },
+  characterSpellSlot1: {
+    type: Number
+  },
+  characterSpellSlot2: {
+    type: Number
+  },
+  characterSpellSlot3: {
+    type: Number
+  },
+  characterSpellSlot4: {
+    type: Number
+  },
+  characterSpellSlot5: {
+    type: Number
+  },
+  characterSpellSlot6: {
+    type: Number
+  },
+  characterSpellSlot7: {
+    type: Number
+  },
+  characterSpellSlot8: {
+    type: Number
+  },
+  characterSpellSlot9: {
+    type: Number
   }
 
 })

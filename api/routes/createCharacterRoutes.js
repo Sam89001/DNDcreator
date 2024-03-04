@@ -970,6 +970,54 @@ router.put('/UpdateGeneralSpellInfo/:characterId', async (req, res) => {
 
 });
 
+//Creates & Updates Spell Slots
+router.put('/UpdateTotalSpellSlots/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
+			characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,
+		  characterSpellSlot8, characterSpellSlot9 } = req.body;
+
+      if (
+
+        isNaN(characterSpellSlot1) || isNaN( characterSpellSlot2) || isNaN( characterSpellSlot3)
+        || isNaN( characterSpellSlot4) || isNaN( characterSpellSlot5) || isNaN( characterSpellSlot6)
+        || isNaN( characterSpellSlot7) || isNaN( characterSpellSlot8) || isNaN( characterSpellSlot9)
+
+      ) {
+        return res.json({
+          error: 'character Spell Save DC must be a number'
+        });
+      }
+
+    const characterData = {
+      characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
+			characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,
+		  characterSpellSlot8, characterSpellSlot9
+    };
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
+
 //Creates a new spell
 router.post('/UpdateSpells/:characterId', async (req, res) => {
   try {
