@@ -48,6 +48,16 @@ function LoadCharacterPageThree() {
     }
   };
 
+	const [updateCharacterStats, setUpdateCharacterStats] = useState({
+		characterName: '',
+		characterAge: '',
+		characterEyes: '',
+		characterHair: '',
+		characterHeight: '',
+		characterSkin: '',
+		characterWeight: '',
+	})
+
 	const getCharacterData = async (characterId) => {
 		try {
 			const sentId = characterId ;
@@ -56,9 +66,22 @@ function LoadCharacterPageThree() {
 			const characterData = response.data;
 			console.log('This is the character data:', JSON.stringify(characterData, null, 2));
 
+			setUpdateCharacterStats({
+				characterName: characterData.character.characterName,
+				characterAge: characterData.character.characterAge,
+				characterEyes: characterData.character.characterEyes,
+				characterHair: characterData.character.characterHair,
+				characterHeight: characterData.character.characterHeight,
+				characterSkin: characterData.character.characterSkin,
+				characterWeight: characterData.character.characterWeight,
+			})
+
 		} catch (error) {
 
 		}
+	}
+	const updateCharacterStatsFunction = (newCharacterData) => {
+		setUpdateCharacterStats(newCharacterData);
 	}
 
 
@@ -71,7 +94,15 @@ return (
 		<div className='row' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 30px 30px 30px' }}>
-				<DndSheetThree fetchData={fetchData}/>
+				<DndSheetThree 
+				propId={characterId} 
+				characterName={updateCharacterStats ? updateCharacterStats.characterName : ''}
+				characterAge={updateCharacterStats ? updateCharacterStats.characterAge : ''}
+				characterEyes={updateCharacterStats ? updateCharacterStats.characterEyes : ''}
+				characterHair={updateCharacterStats ? updateCharacterStats.characterHair : ''}
+				characterHeight={updateCharacterStats ? updateCharacterStats.characterHeight : ''}
+				characterSkin={updateCharacterStats ? updateCharacterStats.characterSkin : ''}
+				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}/>
       </div>
 
 			<div className="col-7" style={{ color: 'white' }}>
@@ -79,7 +110,7 @@ return (
 				<div className='w-100 d-flex align-items-center justify-content-between'>
 					<header className="form-header">Create Your Character</header>
 					<div className="d-flex">
-						<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/2')} >&lt; Previous Page </header>
+						<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/2')} >&lt; Spells Page </header>
 					</div>
 				</div>
 
@@ -87,7 +118,8 @@ return (
 
 					<div className='col-8'>
 						<OtherGeneralStatsForm
-						propId={characterId} />
+						propId={characterId} 
+						updateCharacterStatsFunction={updateCharacterStatsFunction}/>
 					</div>
 
 					<div className='col-4'> Test

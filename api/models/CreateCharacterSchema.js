@@ -120,6 +120,24 @@ const CreateCharacterSchema = new mongoose.Schema({
   },
   characterSpellSlot9: {
     type: Number
+  },
+  characterAge: {
+    type: Number,
+  },
+  characterHeight: {
+    type: String
+  },
+  characterWeight: {
+    type: String
+  },
+  characterEyes: {
+    type: String
+  },
+  characterSkin: {
+    type: String
+  },
+  characterHair: {
+    type: String
   }
 
 })

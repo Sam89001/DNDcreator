@@ -1107,6 +1107,47 @@ router.put('/ChangeSpells/:id', async (req, res) => {
   }
 })
 
+//Updates Other General Stats
+router.put('/UpdateOtherGeneralStats/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterAge, characterHeight, characterWeight,
+      characterEyes, characterSkin, characterHair } = req.body;
+
+      if (
+        isNaN(characterAge) 
+      ) {
+        return res.json({
+          error: 'character Spell Save DC must be a number'
+        });
+      }
+
+    const characterData = {
+      characterAge, characterHeight, characterWeight,
+			  characterEyes, characterSkin, characterHair
+    };
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
 
 
 module.exports = router;

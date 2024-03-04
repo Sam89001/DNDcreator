@@ -130,8 +130,8 @@ return (
 				<div className='w-100 d-flex align-items-center justify-content-between'>
 					<header className="form-header">Create Your Character</header>
 					<div className="d-flex">
-						<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id)} style={{paddingRight: '10px'}}>&lt; Previous Page </header>
-						<header className="navbar-text" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/3')} style={{paddingLeft: '10px'}}>Next Page &gt;</header>
+						<header className="navbar-text mr-3" onClick={() => nextPage('/LoadCharacter/' + characterId.Id)} style={{paddingRight: '10px'}}>&lt; General Stats Page </header>
+						<header className="navbar-text" onClick={() => nextPage('/LoadCharacter/' + characterId.Id + '/3')} style={{paddingLeft: '10px'}}> Appearence Page &gt;</header>
 					</div>
 				</div>
 

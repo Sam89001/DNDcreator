@@ -15,7 +15,7 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function OtherGeneralStatsForm({propId,}) {
+function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
 
   const characterId = propId.Id
 
@@ -27,11 +27,32 @@ function OtherGeneralStatsForm({propId,}) {
 		characterSkin: '',
 		characterHair: ''
 	});
+  const updateGeneralOtherStats = async (e) => {
+		e.preventDefault();
+		const { characterAge, characterHeight, characterWeight,
+			characterEyes, characterSkin, characterHair } = characterOtherStats;
+	
+		try {
+			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateOtherGeneralStats/${characterId}`, {
+				characterAge, characterHeight, characterWeight,
+			  characterEyes, characterSkin, characterHair
+			});
+	
+			if (response.data.error) {
+				toast.error(response.data.error);
+			} else {
+				updateCharacterStatsFunction(characterOtherStats)
+				toast.success('Updated character details');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
   return (
     <div className='row'>
       <div className='col-12' style={{paddingBottom: '10px'}}>
-        <form>
+        <form onSubmit={updateGeneralOtherStats}>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Age"
