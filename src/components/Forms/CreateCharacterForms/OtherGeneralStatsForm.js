@@ -124,7 +124,52 @@ function OtherGeneralStatsForm({propId,}) {
         </div>
       </div>
 
-      <div className='col-8'></div>
+      <div className='col-8'>
+        <div className='row'>
+
+          {/* Treasure */}
+          <div className='col-12' style={{paddingBottom: '2px'}}>
+            <div className="text-center form-titles">Add New Treasure</div>
+          </div>
+
+          <div className='col-8' style={{paddingBottom: '10px'}}>
+					  <input className='field-style' style={{width: '100%'}} placeholder="Name"/>
+					</div>
+
+          <div className='col-4' style={{paddingBottom: '10px'}}>
+					  <input className='field-style' style={{width: '100%'}} placeholder="Name"/>
+					</div>
+
+          <div className='col-12' style={{paddingBottom: '10px'}}>
+					  <textarea className='field-style description-field' style={{width: '100%'}} 
+            placeholder="Description"/>
+					</div>
+
+          <div className='col-12' style={{paddingBottom: '10px'}}>
+            <button className='create-character-button' type="submit" > Update</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div className='col-12'>
+        <div className='row'>
+
+          <div className='col-12' style={{paddingBottom: '2px'}}>
+            <div className="text-center form-titles">Backstory</div>
+          </div>
+
+          <div className='col-12' style={{paddingBottom: '10px'}}>
+					  <textarea className='field-style description-field' style={{width: '100%'}} 
+            placeholder="Description"/>
+					</div>
+
+          <div className='col-12' style={{paddingBottom: '10px'}}>
+            <button className='create-character-button' type="submit" > Update</button>
+          </div>
+
+        </div>
+      </div>
 
     </div>
   )
