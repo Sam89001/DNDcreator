@@ -55,7 +55,8 @@
 }
 
 .form-titles,
-.spell-form-titles {
+.spell-form-titles,
+.spell-form-label {
   color: var(--textGrey);
 }
 
@@ -273,6 +274,12 @@
   font-size: 1.3vw;
 }
 
+.spell-form-label {
+  font-size: 0.9vw;
+  display: block;
+  margin-bottom: 5px;
+}
+
 .field-style {
   height: 35px;
   padding: 10px 5px 10px 5px;
@@ -292,6 +299,10 @@
 .spell-edit-character-field {
   margin-right: 15px;
   width: 75%
+}
+
+.total-spell-slots-layout {
+  padding: 5px;
 }
 
 .spells-expand-box {

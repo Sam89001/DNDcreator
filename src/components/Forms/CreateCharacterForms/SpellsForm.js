@@ -260,21 +260,21 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
 	}; 
 
 return (
-	<div className="row" style={{minWidth: '1300px', paddingLeft: '10px', paddingTop: '5px', flexWrap: 'nowrap'}}>
+	<div className="row" style={{minWidth: '1300px', paddingLeft: '10px', flexWrap: 'nowrap'}}>
 		<div className='col-3' style={{marginRight: '10px'}}>
 			<div className='row'>
 
 				{/* General Spell Stats */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
 					<form onSubmit={updateGeneralStats}>
 					<div className="spells-field spell-form-titles"> Spellcasting Info</div>
 
-					<div className="spells-field">
+					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spellcaster Class"
 						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingClass: e.target.value })}/>
 					</div>
 
-					<div className="spells-field">
+					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spellcasting Ability"
 						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingAbility: e.target.value })}/>
 					</div>
@@ -296,8 +296,68 @@ return (
 					</form>
 				</div>
 
+				{/* Total Spell Stats */}
+				<div className='col-12' style={{paddingBottom: '5px'}}>
+					<form>
+						<div className="spell-form-titles"> Total Spell Slots</div>
+
+						<div className='row'>
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 1</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 1"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 2</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 2"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 3</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 3"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 4</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 4"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 5</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 5"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 6</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 6"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 7</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 7"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 8</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 8"></input>
+							</div>
+
+							<div className='col-2 total-spell-slots-layout'>
+								<label className='spell-form-label'>Slot 9</label>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 9"></input>
+							</div>
+
+							<div className='col-6 total-spell-slots-layout'>
+
+							</div>
+
+						</div>
+
+					</form>
+				</div>
+
 				{/* Cantrips */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingLeft: '5px', paddingRight: '5px'}}>
 					<form onSubmit={(e) => handleSubmit(e, 'cantrips')}>
 
 					<div className="spells-field spell-form-titles"> Cantrips</div>
@@ -591,7 +651,7 @@ return (
 				</div>
 
 				{/* Spell Slot 2 */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingBottom: '10px'}}>
 					<form onSubmit={(e) => handleSubmit(e, 'spellSlot2')}>
 
 					<div className="spells-field spell-form-titles"> Spell Slot 2</div>
@@ -885,7 +945,7 @@ return (
 				</div>
 
 				{/* Spell Slot 4 */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingBottom: '10px'}}>
 					<form onSubmit={(e) => handleSubmit(e, 'spellSlot4')}>
 
 					<div className="spells-field spell-form-titles"> Spell Slot 4</div>
@@ -1179,7 +1239,7 @@ return (
 				</div>
 
 				{/* Spell Slot 6 */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingBottom: '10px'}}>
 					<form onSubmit={(e) => handleSubmit(e, 'spellSlot6')}>
 
 					<div className="spells-field spell-form-titles"> Spell Slot 6</div>
@@ -1473,7 +1533,7 @@ return (
 				</div>
 
 				{/* Spell Slot 8 */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingBottom: '10px'}}>
 					<form onSubmit={(e) => handleSubmit(e, 'spellSlot8')}>
 
 					<div className="spells-field spell-form-titles"> Spell Slot 8</div>
@@ -1621,7 +1681,7 @@ return (
 			<div className='row'>
 
 					{/* Spell Slot 9 */}
-				<div className='col-12' style={{paddingBottom: '20px'}}>
+				<div className='col-12' style={{paddingBottom: '10px'}}>
 					<form onSubmit={(e) => handleSubmit(e, 'spellSlot9')}>
 
 					<div className="spells-field spell-form-titles"> Spell Slot 9</div>
