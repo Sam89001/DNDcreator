@@ -53,7 +53,16 @@ function LoadCharacterPageTwo() {
 		characterSpellcastingClass: '',
 		characterSpellcastingAbility: '',
 		characterSpellSaveDC: '',
-		characterSpellAttackBonus: ''
+		characterSpellAttackBonus: '',
+		characterSpellSlot1: '',
+		characterSpellSlot2: '',
+		characterSpellSlot3: '',
+		characterSpellSlot4: '',
+		characterSpellSlot5: '',
+		characterSpellSlot6: '',
+		characterSpellSlot7: '',
+		characterSpellSlot8: '',
+		characterSpellSlot9: '',
 	});
 	const [loadCharacterSpells, setLoadCharacterSpells] = useState([]);
 
@@ -70,6 +79,15 @@ function LoadCharacterPageTwo() {
 				characterSpellcastingAbility: characterData.character.characterSpellcastingAbility,
 				characterSpellSaveDC: characterData.character.characterSpellSaveDC,
 				characterSpellAttackBonus: characterData.character.characterSpellAttackBonus,
+				characterSpellSlot1: characterData.character.characterSpellSlot1,
+				characterSpellSlot2: characterData.character.characterSpellSlot2,
+				characterSpellSlot3: characterData.character.characterSpellSlot3,
+				characterSpellSlot4: characterData.character.characterSpellSlot4,
+				characterSpellSlot5: characterData.character.characterSpellSlot5,
+				characterSpellSlot6: characterData.character.characterSpellSlot6,
+				characterSpellSlot7: characterData.character.characterSpellSlot7,
+				characterSpellSlot8: characterData.character.characterSpellSlot8,
+				characterSpellSlot9: characterData.character.characterSpellSlot9,
 			})
 			setLoadCharacterSpells(characterData.spells || [])
 
@@ -96,6 +114,15 @@ return (
 					characterSpellcastingAbility={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingAbility : ''}
 					characterSpellSaveDC={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSaveDC : ''}
 					characterSpellAttackBonus={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellAttackBonus : ''}
+					characterSpellSlot1={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot1 : ''}
+					characterSpellSlot2={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot2 : ''}
+					characterSpellSlot3={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot3 : ''}
+					characterSpellSlot4={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot4 : ''}
+					characterSpellSlot5={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot5 : ''}
+					characterSpellSlot6={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot6 : ''}
+					characterSpellSlot7={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot7 : ''}
+					characterSpellSlot8={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot8 : ''}
+					characterSpellSlot9={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellSlot9 : ''}
 					loadCharacterSpells={loadCharacterSpells}
 				/>
       </div>

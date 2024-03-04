@@ -65,6 +65,10 @@ return (
 	</div>
 
 	{/* Spell Slot 1*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '39.5%', left: '8%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>1</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '45%', left: '6.5%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '1')
@@ -77,6 +81,10 @@ return (
 	</div>
 
 	{/* Spell Slot 2*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '68.5%', left: '8%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>2</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '71.7%', left: '6.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '2')
@@ -89,6 +97,10 @@ return (
 	</div>
 
 	{/* Spell Slot 3*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '18.5%', left: '36%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>2</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '3')
@@ -101,6 +113,10 @@ return (
 	</div>
 
 	{/* Spell Slot 4*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '47%', left: '36%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>2</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '50.3%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '4')
@@ -113,6 +129,10 @@ return (
 	</div>
 
 	{/* Spell Slot 5*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '75.5%', left: '36%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>2</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '79%', left: '34.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '5')
@@ -125,6 +145,10 @@ return (
 	</div>
 
 	{/* Spell Slot 6*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '18.5%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>2</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '6')
@@ -137,6 +161,10 @@ return (
 	</div>
 
 	{/* Spell Slot 7*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '40%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>1</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '43.5%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '7')
@@ -149,6 +177,10 @@ return (
 	</div>
 	
 	{/* Spell Slot 8*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '61%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>1</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '65%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '8')
@@ -161,6 +193,10 @@ return (
 	</div>
 
 	{/* Spell Slot 9*/}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'red', top: '79%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+    <div>1</div>
+  </div>
+
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '82.5%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '9')

@@ -86,7 +86,7 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
-				//updateCharacterSpellcastingFunction(characterSpellcasting)
+				updateCharacterSpellcastingFunction(characterSpellSlots)
 				toast.success('Updated character details');
 			}
 		} catch (error) {
@@ -227,7 +227,6 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
         }
     }));
 	};
-
   const handleSubmit = async (e, spellLevel) => {
 		e.preventDefault();
 
@@ -268,7 +267,6 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
 			console.log(error)
 		}
 	}
-
 	//Put Request
 	const updateExistingSpells = async (id, characterSpellName, characterSpellLevel,
 		characterSpellCastTime, characterSpellRangeArea,
