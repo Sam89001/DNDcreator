@@ -11,8 +11,8 @@ import {toast} from 'react-hot-toast'
 
 function DndSheetThree({propId, getCharacterData,
 
-	characterAge, characterEyes, characterHair, characterHeight,
-	characterSkin, characterWeight}) {
+	characterName, characterAge, characterEyes, characterHair, 
+	characterHeight, characterSkin, characterWeight}) {
 
 	const characterId = propId.Id
 
@@ -33,6 +33,11 @@ function DndSheetThree({propId, getCharacterData,
 	
 return (
 <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
+
+	{/* Name */}
+	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '9%', width: '30%', height: '3%', fontSize: '1.1vw' }}>
+    <div>{characterName}</div>
+  </div>
 
 	{/* Age*/}
 	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '6%', left: '42%', width: '12%', height: '2%', fontSize: '0.8vw' }}>

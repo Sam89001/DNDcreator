@@ -173,7 +173,28 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
         </div>
       </div>
 
-      <div className='col-12'>
+      {/* Appearence */}
+      <div className='col-4'>
+        <div className='row'>
+
+          <div className='col-12' style={{paddingBottom: '2px'}}>
+            <div className="text-center form-titles">Appearence (Text)</div>
+          </div>
+
+          <div className='col-12' style={{paddingBottom: '10px'}}>
+					  <textarea className='field-style description-field' style={{width: '100%'}} 
+            placeholder="Description"/>
+					</div>
+
+          <div className='col-12' style={{paddingBottom: '10px'}}>
+            <button className='create-character-button' type="submit" > Update</button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Backstory */}
+      <div className='col-8'>
         <div className='row'>
 
           <div className='col-12' style={{paddingBottom: '2px'}}>
