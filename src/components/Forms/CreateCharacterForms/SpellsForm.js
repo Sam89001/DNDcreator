@@ -347,8 +347,8 @@ return (
 								<input className='field-style' style={{width: '100%'}} placeholder="Slot 9"></input>
 							</div>
 
-							<div className='col-6 total-spell-slots-layout'>
-
+							<div className='col-6 total-spell-slots-layout' style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
+									<button className='create-character-button' type="submit" style={{ height: '50%' }}>Update</button>
 							</div>
 
 						</div>
