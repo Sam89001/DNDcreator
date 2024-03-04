@@ -70,18 +70,17 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcastingFuncti
 		characterSpellSlot8: '',
 		characterSpellSlot9: '',
 	});
-	
 	const updateSpellSlots = async (e) => {
 		e.preventDefault();
 		const { characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
 			characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,
-		  characterSpellSlot8, characterSpellSlot9} = characterSpellSlots;
+		  characterSpellSlot8, characterSpellSlot9 } = characterSpellSlots;
 	
 		try {
 			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateTotalSpellSlots/${characterId}`, {
 				characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
-				characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,
-				characterSpellSlot8, characterSpellSlot9
+				characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, 
+				characterSpellSlot7, characterSpellSlot8, characterSpellSlot9
 			});
 	
 			if (response.data.error) {
@@ -339,47 +338,56 @@ return (
 						<div className='row'>
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 1</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 1"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 1"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot1: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 2</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 2"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 2"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot2: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 3</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 3"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 3"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot3: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 4</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 4"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 4"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot4: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 5</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 5"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 5"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot5: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 6</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 6"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 6"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot6: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 7</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 7"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 7"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot7: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 8</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 8"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 8"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot8: e.target.value })}/>
 							</div>
 
 							<div className='col-2 total-spell-slots-layout'>
 								<label className='spell-form-label'>Slot 9</label>
-								<input className='field-style' style={{width: '100%'}} placeholder="Slot 9"></input>
+								<input className='field-style' style={{width: '100%'}} placeholder="Slot 9"
+								onChange={(e) => setCharacterSpellSlots({ ...characterSpellSlots, characterSpellSlot9: e.target.value })}/>
 							</div>
 
 							<div className='col-6 total-spell-slots-layout' style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end' }}>
