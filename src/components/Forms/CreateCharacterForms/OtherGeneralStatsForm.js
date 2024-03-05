@@ -15,7 +15,9 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharacterData}) {
+function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharacterData,
+
+}) {
 
   const characterId = propId.Id
 
@@ -27,7 +29,6 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 		characterSkin: '',
 		characterHair: ''
 	});
-  
   const [characterInfo, setCharacterInfo] = useState({
     characterAppearence: {
       appearence: ''
@@ -36,7 +37,18 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
       backstory: ''
     }
   });
+  const [characterTreasure, setCharacterTreasure] = useState({
+    characterTreasureName: '',
+    characterTreasureQuantity: '',
+    characterTreasureDescription: '',
+  });
+  const [selectedId, setSelectedId] = useState({
+		treasureSelectedId: {
+      selectedId: ''
+    },
+	});
 
+  //General Stats Post
   const updateGeneralOtherStats = async (e) => {
 		e.preventDefault();
 		const { characterAge, characterHeight, characterWeight,
@@ -58,7 +70,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			console.log(error);
 		}
 	}
-
+  //Other General Stats Post
   const update = async (e, contentInfo, address) => {
 		e.preventDefault();	
 		try {
@@ -74,6 +86,40 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			}
 		} catch (error) {
 			console.log(error);
+		}
+	}
+
+  //Treasure Functions
+  
+  const handleSubmitTreasure = async (e) => {
+		e.preventDefault();
+		if (!selectedId.selectedId) {
+			await updateTreasure();
+		} else {
+			//await updateExistingTreasure(selectedId.selectedId, characterTreasure.characterTreasureName, 
+      //characterTreasure.characterTreasureQuantity, characterTreasure.characterTreasureDescription); 
+		}
+	};
+   //Treasure Post Request
+	const updateTreasure = async (e) => {
+		const { characterTreasureName, characterTreasureQuantity,
+      characterTreasureDescription } = characterTreasure;
+		try {
+
+			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateTreasure/${characterId}`, {
+				characterTreasureName, characterTreasureQuantity,
+        characterTreasureDescription
+			});
+
+			if (response.data.success) {
+				const newItem = response.data.newTreasure;
+				//setCharacterTreasure(prev => [...prev, newItem]);
+				toast.success('Updated character details');
+			} else {
+				toast.error('Failed to update character details');
+			}
+		} catch (error) {
+			console.log(error)
 		}
 	}
 
@@ -178,37 +224,59 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 
       {/* Treasure */}
       <div className='col-8'>
+      <form onSubmit={handleSubmitTreasure}>
         <div className='row'>
 
-          
-          <div className='col-12' style={{paddingBottom: '2px'}}>
-            <div className="text-center form-titles">Add New Treasure</div>
+            <div className='col-12' style={{paddingBottom: '2px'}}>
+              <div className="text-center form-titles">Add New Treasure</div>
+            </div>
+
+            <div className='col-8' style={{paddingBottom: '10px'}}>
+              <input className='field-style' style={{width: '100%'}} placeholder="Name"
+              value={characterTreasure.characterTreasureName}
+              onChange={(e) =>
+                setCharacterTreasure((prevCharacterTreasure) => ({
+                  ...prevCharacterTreasure,
+                  characterTreasureName: e.target.value,
+                }))
+              }/>
+            </div>
+
+            <div className='col-4' style={{paddingBottom: '10px'}}>
+              <input className='field-style' style={{width: '100%'}} placeholder="Quantity"
+              value={characterTreasure.characterTreasureQuantity}
+              onChange={(e) =>
+                setCharacterTreasure((prevCharacterTreasure) => ({
+                  ...prevCharacterTreasure,
+                  characterTreasureQuantity: e.target.value,
+                }))
+              }/>
+            </div>
+
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <textarea className='field-style spell-description-field-treasure' style={{width: '100%'}} 
+              placeholder="Description"
+              value={characterTreasure.characterTreasureDescription}
+              onChange={(e) =>
+                setCharacterTreasure((prevCharacterTreasure) => ({
+                  ...prevCharacterTreasure,
+                  characterTreasureDescription: e.target.value,
+                }))
+              }/>
+            </div>
+
+            <div className='col-8' style={{paddingBottom: '10px'}}>
+              <select className='edit-character-field' id='characterPersonalityEdit'>
+                <option/>		
+              </select>
+            </div>
+
+            <div className='col-4' style={{paddingBottom: '10px'}}>
+              <button className='create-character-button' type="submit" > Update</button>
+            </div>
+
           </div>
-
-          <div className='col-8' style={{paddingBottom: '10px'}}>
-					  <input className='field-style' style={{width: '100%'}} placeholder="Name"/>
-					</div>
-
-          <div className='col-4' style={{paddingBottom: '10px'}}>
-					  <input className='field-style' style={{width: '100%'}} placeholder="Name"/>
-					</div>
-
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <textarea className='field-style spell-description-field-treasure' style={{width: '100%'}} 
-            placeholder="Description"/>
-					</div>
-
-          <div className='col-8' style={{paddingBottom: '10px'}}>
-            <select className='edit-character-field' id='characterPersonalityEdit'>
-              <option/>		
-            </select>
-          </div>
-
-          <div className='col-4' style={{paddingBottom: '10px'}}>
-            <button className='create-character-button' type="submit" > Update</button>
-          </div>
-
-        </div>
+        </form>
       </div>
 
       {/* Appearence */}

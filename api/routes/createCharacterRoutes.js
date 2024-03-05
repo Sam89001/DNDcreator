@@ -13,6 +13,7 @@ const CreateCharacterTraitSchema = require('../models/CreateCharacterTraitSchema
 const CreateCharacterAttackSchema = require('../models/CreateCharacterAttackSchema')
 const CreateCharacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
 const CreateCharacterSpellSchema = require('../models/CreateCharacterSpellSchema');
+const CreateCharacterTreasureSchema = require('../models/CreateCharacterTreasureSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -71,7 +72,6 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterTrait = await CreateCharacterTraitSchema.find({ characterId: characterId })
     const LoadCharacterAttack = await CreateCharacterAttackSchema.find({ characterId: characterId })
     const LoadCharacterEquipment = await CreateCharacterEquipmentSchema.find({ characterId: characterId })
-    
 
     if (!LoadCharacters) {
       return res.json({
@@ -103,6 +103,7 @@ router.get('/:number/:sentId', async (req, res) => {
     const sentId = req.params.sentId; 
     const LoadCharacters = await CreateCharacterSchema.findById(sentId);
     const LoadSpells = await CreateCharacterSpellSchema.find({ characterId: sentId })
+    const LoadTreasure = await CreateCharacterTreasureSchema.find({ characterId: sentId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -111,7 +112,8 @@ router.get('/:number/:sentId', async (req, res) => {
     }
     const responseData = {
       character: LoadCharacters,
-      spells: LoadSpells 
+      spells: LoadSpells,
+      treasure: LoadTreasure
     };
     res.json(responseData);
   } catch (error) {
@@ -1215,5 +1217,32 @@ router.put('/UpdateBackstory/:characterId', async (req, res) => {
 
 });
 
+//Creates Treasure
+router.post('/UpdateTreasure/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterTreasureName, characterTreasureQuantity,
+      characterTreasureDescription } = req.body; 
+
+    const characterData = { characterId: characterId, characterTreasureName: characterTreasureName,
+    characterTreasureQuantity: characterTreasureQuantity, characterTreasureDescription: characterTreasureDescription } 
+
+    const update = await CreateCharacterTreasureSchema.create(
+      characterData
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newTreasure: update
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;
