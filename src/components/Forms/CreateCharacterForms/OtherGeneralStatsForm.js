@@ -334,113 +334,122 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
         <div className='row'>
 
           {/* Ally/Organisation */}
+          <div className='col-12'>
           <form onSubmit={(e) => handleSubmit(e, '1', 'UpdateOrganisation')}>
+            <div className='row'>
 
-          <div className='col-12' style={{paddingBottom: '2px'}}>
-            <div className="text-center form-titles">Add New Ally/Organisation</div>
+              <div className='col-12' style={{paddingBottom: '2px'}}>
+                <div className="text-center form-titles">Add New Ally/Organisation</div>
+              </div>
+
+                <div className='col-12' style={{paddingBottom: '10px'}}>
+                  <input className='field-style' style={{width: '100%'}} placeholder="Name"
+                    value={characterOrganisation.characterOrganisation.characterOrganisationName}
+                    onChange={(e) =>
+                      setCharacterOrganisation((prevCharacterOrganisation) => ({
+                        ...prevCharacterOrganisation,
+                        characterOrganisation: {
+                          ...prevCharacterOrganisation.characterOrganisation,
+                          characterOrganisationName: e.target.value,
+                        },
+                      }))
+                    }/>
+                </div>
+
+                <div className='col-12' style={{paddingBottom: '10px'}}>
+                  <textarea className='field-style description-field' style={{width: '100%'}} 
+                  placeholder="Description"
+                  value={characterOrganisation.characterOrganisation.characterOrganisationDescription}
+                    onChange={(e) =>
+                      setCharacterOrganisation((prevCharacterOrganisation) => ({
+                        ...prevCharacterOrganisation,
+                        characterOrganisation: {
+                          ...prevCharacterOrganisation.characterOrganisation,
+                          characterOrganisationDescription: e.target.value,
+                        },
+                      }))
+                    }/>
+                </div>
+
+                <div className='col-8' style={{paddingBottom: '10px'}}>
+                  <select className='edit-character-field'
+                  onChange={(e) => handleSelectChange(e, 'AllyOrganisationSelectedId')}>
+                    <option/>
+                    {updateCharacterOrganisation
+                    .filter(organisation => organisation.type === 'Organisation')
+                    .map(organisation => (
+                      <option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
+                    ))}
+
+                  </select>
+                </div>
+
+                <div className='col-4' style={{paddingBottom: '10px'}}>
+                  <button className='create-character-button' type="submit" > Update</button>
+                </div>
+
+            </div>
+          </form>
           </div>
 
-            <div className='col-12' style={{paddingBottom: '10px'}}>
-              <input className='field-style' style={{width: '100%'}} placeholder="Name"
-                value={characterOrganisation.characterOrganisation.characterOrganisationName}
-                onChange={(e) =>
-                  setCharacterOrganisation((prevCharacterOrganisation) => ({
-                    ...prevCharacterOrganisation,
-                    characterOrganisation: {
-                      ...prevCharacterOrganisation.characterOrganisation,
-                      characterOrganisationName: e.target.value,
-                    },
-                  }))
-                }/>
-            </div>
-
-            <div className='col-12' style={{paddingBottom: '10px'}}>
-              <textarea className='field-style description-field' style={{width: '100%'}} 
-              placeholder="Description"
-              value={characterOrganisation.characterOrganisation.characterOrganisationDescription}
-                onChange={(e) =>
-                  setCharacterOrganisation((prevCharacterOrganisation) => ({
-                    ...prevCharacterOrganisation,
-                    characterOrganisation: {
-                      ...prevCharacterOrganisation.characterOrganisation,
-                      characterOrganisationDescription: e.target.value,
-                    },
-                  }))
-                }/>
-            </div>
-
-            <div className='col-8' style={{paddingBottom: '10px'}}>
-              <select className='edit-character-field'
-              onChange={(e) => handleSelectChange(e, 'AllyOrganisationSelectedId')}>
-                <option/>
-                {updateCharacterOrganisation
-                .filter(organisation => organisation.type === 'Organisation')
-                .map(organisation => (
-                  <option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
-                ))}
-
-              </select>
-            </div>
-
-            <div className='col-4' style={{paddingBottom: '10px'}}>
-              <button className='create-character-button' type="submit" > Update</button>
-            </div>
-          </form>
-
           {/* Symbols */}
-          <form onSubmit={(e) => handleSubmit(e, '2', 'UpdateSymbol')}>
+          <div className='col-12'>
+            <form onSubmit={(e) => handleSubmit(e, '2', 'UpdateSymbol')}>
+              <div className='row'>
 
-            <div className='col-12' style={{paddingBottom: '2px'}}>
-              <div className="text-center form-titles">Add New Symbol</div>
-            </div>
+                <div className='col-12' style={{paddingBottom: '2px'}}>
+                  <div className="text-center form-titles">Add New Symbol</div>
+                </div>
 
-            <div className='col-12' style={{paddingBottom: '10px'}}>
-              <input className='field-style' style={{width: '100%'}} placeholder="Name"
-                value={characterOrganisation.characterSymbol.characterSymbolName}
-                onChange={(e) =>
-                  setCharacterOrganisation((prevCharacterOrganisation) => ({
-                    ...prevCharacterOrganisation,
-                    characterSymbol: {
-                      ...prevCharacterOrganisation.characterSymbol,
-                      characterSymbolName: e.target.value,
-                    },
-                  }))
-                }/>
-            </div>
+                <div className='col-12' style={{paddingBottom: '10px'}}>
+                  <input className='field-style' style={{width: '100%'}} placeholder="Name"
+                    value={characterOrganisation.characterSymbol.characterSymbolName}
+                    onChange={(e) =>
+                      setCharacterOrganisation((prevCharacterOrganisation) => ({
+                        ...prevCharacterOrganisation,
+                        characterSymbol: {
+                          ...prevCharacterOrganisation.characterSymbol,
+                          characterSymbolName: e.target.value,
+                        },
+                      }))
+                    }/>
+                </div>
 
-            <div className='col-12' style={{paddingBottom: '10px'}}>
-              <textarea className='field-style description-field' style={{width: '100%'}} 
-              placeholder="Description"
-              value={characterOrganisation.characterSymbol.characterSymbolDescription}
-                onChange={(e) =>
-                  setCharacterOrganisation((prevCharacterOrganisation) => ({
-                    ...prevCharacterOrganisation,
-                    characterSymbol: {
-                      ...prevCharacterOrganisation.characterSymbol,
-                      characterSymbolDescription: e.target.value,
-                    },
-                  }))
-                }/>
-            </div>
+                <div className='col-12' style={{paddingBottom: '10px'}}>
+                  <textarea className='field-style description-field' style={{width: '100%'}} 
+                  placeholder="Description"
+                  value={characterOrganisation.characterSymbol.characterSymbolDescription}
+                    onChange={(e) =>
+                      setCharacterOrganisation((prevCharacterOrganisation) => ({
+                        ...prevCharacterOrganisation,
+                        characterSymbol: {
+                          ...prevCharacterOrganisation.characterSymbol,
+                          characterSymbolDescription: e.target.value,
+                        },
+                      }))
+                    }/>
+                </div>
 
-            <div className='col-8' style={{paddingBottom: '10px'}}>
-              <select className='edit-character-field'
-              onChange={(e) => handleSelectChange(e, 'SymbolSelectedId')}>
-              <option/>
-              {updateCharacterOrganisation
-                .filter(organisation => organisation.type === 'Symbol')
-                .map(organisation => (
-                  <option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
-                ))}
-               
-              </select>
-            </div>
+                <div className='col-8' style={{paddingBottom: '10px'}}>
+                  <select className='edit-character-field'
+                  onChange={(e) => handleSelectChange(e, 'SymbolSelectedId')}>
+                  <option/>
+                  {updateCharacterOrganisation
+                    .filter(organisation => organisation.type === 'Symbol')
+                    .map(organisation => (
+                      <option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
+                    ))}
+                  
+                  </select>
+                </div>
 
-            <div className='col-4' style={{paddingBottom: '10px'}}>
-              <button className='create-character-button' type="submit" > Update</button>
-            </div>
+                <div className='col-4' style={{paddingBottom: '10px'}}>
+                  <button className='create-character-button' type="submit" > Update</button>
+                </div>
 
-          </form>
+              </div>
+            </form>
+          </div>
 
         </div>
       </div>
