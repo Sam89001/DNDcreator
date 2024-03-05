@@ -1309,6 +1309,36 @@ router.post('/UpdateOrganisation/:characterId', async (req, res) => {
   }
 })
 
+//Updates Organisation
+router.put('/ChangeOrganisation/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterOrganisationName, characterOrganisationDescription } = req.body; 
+
+    const characterData = { characterOrganisationName, characterOrganisationDescription } 
+
+    const update = await CreateCharacterOrganisationSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Creates Symbol
 router.post('/UpdateSymbol/:characterId', async (req, res) => {
   try {
@@ -1330,6 +1360,36 @@ router.post('/UpdateSymbol/:characterId', async (req, res) => {
     return res.status(200).json({
       success: true,
       newOrganisation: update
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Updates Symbol
+router.put('/ChangeSymbol/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterOrganisationName, characterOrganisationDescription } = req.body; 
+
+    const characterData = { characterOrganisationName, characterOrganisationDescription } 
+
+    const update = await CreateCharacterOrganisationSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
     });
   } catch (error) {
     console.log(error)

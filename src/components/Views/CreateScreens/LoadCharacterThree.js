@@ -60,6 +60,7 @@ function LoadCharacterPageThree() {
 		characterBackstory: '',
 	})
 	const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
+	const [updateCharacterOrganisation, setUpdateCharacterOrganisation] = useState([])
 
 	const getCharacterData = async (characterId) => {
 		try {
@@ -81,6 +82,7 @@ function LoadCharacterPageThree() {
 				characterBackstory: characterData.character.characterBackstory,
 			})
 			setUpdateCharacterTreasure(characterData.treasure || []);
+			setUpdateCharacterOrganisation(characterData.organisation || []);
 		} catch (error) {
 			console.log(error)
 		}
@@ -130,7 +132,9 @@ return (
 						getCharacterData={getCharacterData}
 						updateCharacterStatsFunction={updateCharacterStatsFunction}
 						updateCharacterTreasure={updateCharacterTreasure} 
-						setUpdateCharacterTreasure={setUpdateCharacterTreasure}/>
+						setUpdateCharacterTreasure={setUpdateCharacterTreasure}
+						updateCharacterOrganisation={updateCharacterOrganisation}
+						setUpdateCharacterOrganisation={setUpdateCharacterOrganisation}/>
 					</div>
 
 					<div className='col-4'> Test

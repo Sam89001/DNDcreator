@@ -16,11 +16,14 @@ import { UserContext } from '../../../context/userContext';
 import DownArrowImage from '../../../images/Down Arrow.png'
 
 function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharacterData,
-  updateCharacterTreasure, setUpdateCharacterTreasure
+  updateCharacterTreasure, setUpdateCharacterTreasure,
+
+  updateCharacterOrganisation, setUpdateCharacterOrganisation,
 }) {
 
   const characterId = propId.Id
 
+ 
   const [characterOtherStats, setCharacterOtherStats] = useState({
 		characterAge: '',
 		characterHeight: '',
@@ -63,6 +66,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
       selectedId: ''
     }
 	});
+  
 
   //General Stats Post
   const updateGeneralOtherStats = async (e) => {
@@ -130,28 +134,36 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 	};
 
   //Ally/Org/Symbol Functions
-  const handleSelectChange = (e, x) => {
-    const selectedId = e.target.value; 
-    if (x == 2) {
+  const handleSelectChange = (e, fieldType) => {
+    if (fieldType == 'AllyOrganisationSelectedId') {
+      let selectedId = e.target.value 
       setSelectedId({ AllyOrganisationSelectedId: { selectedId } });
 
-      const loadedValue = updateCharacterTreasure.find(value => value._id === selectedId);
-      setCharacterTreasure({
-        ...characterTreasure,
-        characterTreasureName: loadedValue ? loadedValue.characterTreasureName : '',
-        characterTreasureQuantity: loadedValue ? loadedValue.characterTreasureQuantity : '',
-        characterTreasureDescription: loadedValue ? loadedValue.characterTreasureDescription : ''
-      });
-    } else {
-      setSelectedId({ SymbolSelectedId: { selectedId } });
+      const loadedValue = updateCharacterOrganisation.find(value => value._id === selectedId);
+      setCharacterOrganisation((prevCharacterOrganisation) => ({
+        ...prevCharacterOrganisation,
+        characterOrganisation: {
+          ...prevCharacterOrganisation.characterOrganisation,
+          characterOrganisationName: loadedValue ? loadedValue.characterOrganisationName : '',
+          characterOrganisationDescription: loadedValue ? loadedValue.characterOrganisationDescription : '',
+        },
+      }));
 
-      const loadedValue = updateCharacterTreasure.find(value => value._id === selectedId);
-      setCharacterTreasure({
-        ...characterTreasure,
-        characterTreasureName: loadedValue ? loadedValue.characterTreasureName : '',
-        characterTreasureQuantity: loadedValue ? loadedValue.characterTreasureQuantity : '',
-        characterTreasureDescription: loadedValue ? loadedValue.characterTreasureDescription : ''
-      });
+    } else if (fieldType == 'SymbolSelectedId') {
+      let selectedId = e.target.value 
+      setSelectedId({ SymbolSelectedId: { selectedId } });
+      const loadedValue = updateCharacterOrganisation.find(value => value._id === selectedId);
+
+      console.log(loadedValue)
+      setCharacterOrganisation((prevCharacterOrganisation) => ({
+        ...prevCharacterOrganisation,
+        characterSymbol: {
+          ...prevCharacterOrganisation.characterSymbol,
+          characterSymbolName: loadedValue ? loadedValue.characterOrganisationName : '',
+          characterSymbolDescription: loadedValue ? loadedValue.characterOrganisationDescription : '',
+        }
+      }))
+      
     }
 	};
   const handleSubmit = async (e, y, address ) => {
@@ -163,10 +175,10 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
           characterOrganisation.characterOrganisation.characterOrganisationDescription, 
           address);
       } else {
-        //await updateExistingSymbolOrg(selectedId.AllyOrganisationSelectedId.selectedId, 
-          //characterOrganisation.characterOrganisation.characterOrganisationName,
-          //characterOrganisation.characterOrganisation.characterOrganisationDescription,
-           //'ChangeOrganisation'); 
+        await updateExistingSymbolOrg(selectedId.AllyOrganisationSelectedId.selectedId, 
+          characterOrganisation.characterOrganisation.characterOrganisationName,
+          characterOrganisation.characterOrganisation.characterOrganisationDescription,
+          'ChangeOrganisation'); 
       }
 
     } else if (y == 2) {
@@ -176,8 +188,10 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
           characterOrganisation.characterSymbol.characterSymbolDescription, 
           address);
       } else {
-        //await updateExistingSymbolOrg(selectedId.AllyOrganisationSelectedId.selectedId, 
-          //characterOrganisation.characterOrganisation.characterOrganisationName, 'ChangeSymbol'); 
+        await updateExistingSymbolOrg(selectedId.SymbolSelectedId.selectedId, 
+          characterOrganisation.characterSymbol.characterSymbolName, 
+          characterOrganisation.characterSymbol.characterSymbolDescription, 
+          'ChangeSymbol'); 
       }
 
     }
@@ -185,10 +199,6 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 
   //SymbolOrg Post Request
 	const updateSymbolOrg = async (characterOrganisationName, characterOrganisationDescription, address) => {
-
-    console.log(characterOrganisationName)
-    console.log(characterOrganisationDescription)
-    console.log(address)
 	
 		try {
 			const response = await axios.post(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, {
@@ -196,8 +206,8 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			});
 
 			if (response.data.success) {
-				const newItem = response.data.newItem;
-				//setUpdateCharacterTreasure(prev => [...prev, newItem]);
+				const newItem = response.data.newOrganisation;
+				setUpdateCharacterOrganisation(prev => [...prev, newItem]);
 				toast.success('Updated character details');
 			} else {
 				toast.error('Failed to update character details');
@@ -206,6 +216,31 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			console.log(error)
 		}
 	}
+  //SymbolOrg Put Request
+  const updateExistingSymbolOrg = async (id, characterOrganisationName, 
+    characterOrganisationDescription, address) => {
+
+      console.log(id)
+      console.log(characterOrganisationName)
+      console.log(characterOrganisationDescription)
+      console.log( address)
+
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/${address}/${id}`, {
+					id, characterOrganisationName, 
+          characterOrganisationDescription
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					getCharacterData(characterId);
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	};
 
    //Treasure Post Request
 	const updateTreasure = async (e) => {
@@ -242,7 +277,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 				if (response.error) {
 					toast.error(response.data.error);
 				} else {
-					getCharacterData();
+					getCharacterData(characterId);
 					toast.success('Updated character details');
 				}
 		} catch (error) {
@@ -335,8 +370,15 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             </div>
 
             <div className='col-8' style={{paddingBottom: '10px'}}>
-              <select className='edit-character-field' id='characterPersonalityEdit'>
-                <option/>		
+              <select className='edit-character-field'
+              onChange={(e) => handleSelectChange(e, 'AllyOrganisationSelectedId')}>
+                <option/>
+                {updateCharacterOrganisation
+                .filter(organisation => organisation.type === 'Organisation')
+                .map(organisation => (
+                  <option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
+                ))}
+
               </select>
             </div>
 
@@ -382,8 +424,15 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             </div>
 
             <div className='col-8' style={{paddingBottom: '10px'}}>
-              <select className='edit-character-field' id='characterPersonalityEdit'>
-                <option/>		
+              <select className='edit-character-field'
+              onChange={(e) => handleSelectChange(e, 'SymbolSelectedId')}>
+              <option/>
+              {updateCharacterOrganisation
+                .filter(organisation => organisation.type === 'Symbol')
+                .map(organisation => (
+                  <option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
+                ))}
+               
               </select>
             </div>
 
@@ -441,7 +490,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 
             <div className='col-8' style={{paddingBottom: '10px'}}>
               <select className='edit-character-field' id='characterPersonalityEdit'
-                placeholder='Attack Name' onChange={handleSelectChangeTreasure}>
+               onChange={handleSelectChangeTreasure}>
 
                   <option/>
                   {updateCharacterTreasure.map(treasure => (
