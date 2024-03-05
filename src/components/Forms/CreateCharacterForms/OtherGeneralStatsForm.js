@@ -27,6 +27,16 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
 		characterSkin: '',
 		characterHair: ''
 	});
+  
+  const [characterInfo, setCharacterInfo] = useState({
+    characterAppearence: {
+      appearence: ''
+    },
+    characterBackstory: {
+      backstory: ''
+    }
+  });
+
   const updateGeneralOtherStats = async (e) => {
 		e.preventDefault();
 		const { characterAge, characterHeight, characterWeight,
@@ -42,6 +52,23 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
 				toast.error(response.data.error);
 			} else {
 				updateCharacterStatsFunction(characterOtherStats)
+				toast.success('Updated character details');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+  const update = async (e, contentInfo, address) => {
+		e.preventDefault();	
+		try {
+			const response = await axios.put(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, {
+				contentInfo
+			});
+	
+			if (response.data.error) {
+				toast.error(response.data.error);
+			} else {
 				toast.success('Updated character details');
 			}
 		} catch (error) {
@@ -182,19 +209,25 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
       {/* Appearence */}
       <div className='col-4'>
         <div className='row'>
+          <form onSubmit={(e) => update(e, characterInfo.characterAppearence.appearence, 'UpdateAppearence')}>
 
-          <div className='col-12' style={{paddingBottom: '2px'}}>
-            <div className="text-center form-titles">Appearence (Text)</div>
-          </div>
+            <div className='col-12' style={{paddingBottom: '2px'}}>
+              <div className="text-center form-titles">Appearence (Text)</div>
+            </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <textarea className='field-style description-field' style={{width: '100%'}} 
-            placeholder="Description"/>
-					</div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <textarea className='field-style description-field' style={{width: '100%'}} 
+              placeholder="Description"
+              onChange={(e) => {
+                setCharacterInfo({ ...characterInfo, characterAppearence: { ...characterInfo.characterAppearence, appearence: e.target.value }})
+              }}/>
+            </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-            <button className='create-character-button' type="submit" > Update</button>
-          </div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <button className='create-character-button' type="submit" > Update</button>
+            </div>
+
+          </form>
 
         </div>
       </div>
@@ -202,19 +235,25 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
       {/* Backstory */}
       <div className='col-8'>
         <div className='row'>
+          <form onSubmit={(e) => update(e, characterInfo.characterBackstory.backstory, 'UpdateBackstory')}>
 
-          <div className='col-12' style={{paddingBottom: '2px'}}>
-            <div className="text-center form-titles">Backstory</div>
-          </div>
+            <div className='col-12' style={{paddingBottom: '2px'}}>
+              <div className="text-center form-titles">Backstory</div>
+            </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <textarea className='field-style description-field' style={{width: '100%'}} 
-            placeholder="Description"/>
-					</div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <textarea className='field-style description-field' style={{width: '100%'}} 
+              placeholder="Description"
+              onChange={(e) => {
+                setCharacterInfo({ ...characterInfo, characterBackstory: { ...characterInfo.characterBackstory, backstory: e.target.value }})
+              }}/>
+            </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-            <button className='create-character-button' type="submit" > Update</button>
-          </div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <button className='create-character-button' type="submit" > Update</button>
+            </div>
+
+          </form>
 
         </div>
       </div>

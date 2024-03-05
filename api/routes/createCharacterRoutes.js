@@ -39,7 +39,6 @@ router.get('/', async (req, res) => {
 router.get('/NextPage/:sentId', async (req, res) => {
   try {
     const sentId = req.params.sentId; 
-    console.log(sentId)
     const characterId = await CreateCharacterSchema.findById(sentId);
 
     if (!characterId) {
@@ -48,7 +47,6 @@ router.get('/NextPage/:sentId', async (req, res) => {
       });
     }
 
-    console.log( "This is the characterID" + characterId);
     return res.status(200).json({
       success: true,
       mongoId: characterId
@@ -1125,6 +1123,74 @@ router.put('/UpdateOtherGeneralStats/:characterId', async (req, res) => {
     const characterData = {
       characterAge, characterHeight, characterWeight,
 			  characterEyes, characterSkin, characterHair
+    };
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
+
+//Updates Text Appearence
+router.put('/UpdateAppearence/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { contentInfo } = req.body;
+
+    characterTextAppearence = contentInfo
+
+    const characterData = {
+      characterTextAppearence
+    };
+
+    const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+    if (!updateGeneralStats) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+  }
+
+});
+
+//Updates Backstory
+router.put('/UpdateBackstory/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { contentInfo } = req.body;
+
+    characterBackstory = contentInfo
+
+    const characterData = {
+      characterBackstory
     };
 
     const updateGeneralStats = await CreateCharacterSchema.findByIdAndUpdate(

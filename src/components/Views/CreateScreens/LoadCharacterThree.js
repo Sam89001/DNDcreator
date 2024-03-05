@@ -96,6 +96,7 @@ return (
 			<div className="col-5" style={{ color: 'white', padding: '10px 30px 30px 30px' }}>
 				<DndSheetThree 
 				propId={characterId} 
+				getCharacterData={getCharacterData}
 				characterName={updateCharacterStats ? updateCharacterStats.characterName : ''}
 				characterAge={updateCharacterStats ? updateCharacterStats.characterAge : ''}
 				characterEyes={updateCharacterStats ? updateCharacterStats.characterEyes : ''}
@@ -119,6 +120,7 @@ return (
 					<div className='col-8'>
 						<OtherGeneralStatsForm
 						propId={characterId} 
+						getCharacterData={getCharacterData}
 						updateCharacterStatsFunction={updateCharacterStatsFunction}/>
 					</div>
 

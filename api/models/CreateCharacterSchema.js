@@ -138,6 +138,12 @@ const CreateCharacterSchema = new mongoose.Schema({
   },
   characterHair: {
     type: String
+  },
+  characterTextAppearence: {
+    type: String
+  },
+  characterBackstory: {
+    type: String
   }
 
 })
