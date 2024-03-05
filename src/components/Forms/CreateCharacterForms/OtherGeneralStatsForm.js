@@ -217,7 +217,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             </div>
 
             <div className='col-12' style={{paddingBottom: '10px'}}>
-              <textarea className='field-style description-field' style={{width: '100%'}} 
+              <textarea className='field-style spell-description-field' style={{width: '100%'}} 
               placeholder="Description"
               onChange={(e) => {
                 setCharacterInfo({ ...characterInfo, characterAppearence: { ...characterInfo.characterAppearence, appearence: e.target.value }})
@@ -243,7 +243,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             </div>
 
             <div className='col-12' style={{paddingBottom: '10px'}}>
-              <textarea className='field-style description-field' style={{width: '100%'}} 
+              <textarea className='field-style spell-description-field' style={{width: '100%'}} 
               placeholder="Description"
               onChange={(e) => {
                 setCharacterInfo({ ...characterInfo, characterBackstory: { ...characterInfo.characterBackstory, backstory: e.target.value }})

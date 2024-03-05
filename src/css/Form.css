@@ -210,12 +210,16 @@
   padding: 3px 3px 3px 10px;
 }
 
-.description-field {
+.description-field,
+.spell-description-field {
   width: 100%;
-  min-height: 60px;
-  max-height: 100px;
   font-size: 15px;
   padding: 3px 3px 3px 10px;
+}
+
+.description-field {
+  min-height: 60px;
+  max-height: 100px;
 }
 
 .create-character-container {
@@ -294,6 +298,10 @@
   font-size: 16px;
   min-height: 100px;
   max-height: 160px;
+}
+.spell-description-field {
+  min-height: 150px;
+  max-height: 250px;
 }
 
 .spell-edit-character-field {
