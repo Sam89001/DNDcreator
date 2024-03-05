@@ -80,11 +80,9 @@ function LoadCharacterPageThree() {
 				characterTextAppearence: characterData.character.characterTextAppearence,
 				characterBackstory: characterData.character.characterBackstory,
 			})
-
 			setUpdateCharacterTreasure(characterData.treasure || []);
-
 		} catch (error) {
-
+			console.log(error)
 		}
 	}
 	const updateCharacterStatsFunction = (newCharacterData) => {

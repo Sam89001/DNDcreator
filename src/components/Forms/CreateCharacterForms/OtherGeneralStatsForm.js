@@ -106,11 +106,11 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
   
   const handleSubmitTreasure = async (e) => {
 		e.preventDefault();
-		if (!selectedId.selectedId) {
+		if (!selectedId.treasureSelectedId.selectedId) {
 			await updateTreasure();
 		} else {
-			//await updateExistingTreasure(selectedId.selectedId, characterTreasure.characterTreasureName, 
-      //characterTreasure.characterTreasureQuantity, characterTreasure.characterTreasureDescription); 
+			await updateExistingTreasure(selectedId.treasureSelectedId.selectedId, characterTreasure.characterTreasureName, 
+      characterTreasure.characterTreasureQuantity, characterTreasure.characterTreasureDescription); 
 		}
 	};
    //Treasure Post Request
@@ -135,6 +135,27 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			console.log(error)
 		}
 	}
+
+  //Treasure Put Request
+  const updateExistingTreasure = async (id, characterTreasureName, 
+    characterTreasureQuantity, characterTreasureDescription) => {
+		try {
+				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeTreasure/${id}`, {
+					id, characterTreasureName, 
+          characterTreasureQuantity, 
+          characterTreasureDescription
+				});
+
+				if (response.error) {
+					toast.error(response.data.error);
+				} else {
+					getCharacterData();
+					toast.success('Updated character details');
+				}
+		} catch (error) {
+				console.log(error);
+		}
+	}; 
 
   return (
     <div className='row'>

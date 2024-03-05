@@ -1245,4 +1245,38 @@ router.post('/UpdateTreasure/:characterId', async (req, res) => {
   }
 })
 
+//Updates Equipment
+router.put('/ChangeTreasure/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterTreasureName, 
+      characterTreasureQuantity, 
+      characterTreasureDescription } = req.body; 
+
+    const characterData = { characterTreasureName, 
+      characterTreasureQuantity, 
+      characterTreasureDescription } 
+
+    const update = await CreateCharacterTreasureSchema.findByIdAndUpdate(
+      id,
+      {
+        $set: characterData
+      },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 module.exports = router;
