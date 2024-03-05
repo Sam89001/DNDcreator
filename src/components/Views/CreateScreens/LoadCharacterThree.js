@@ -56,6 +56,8 @@ function LoadCharacterPageThree() {
 		characterHeight: '',
 		characterSkin: '',
 		characterWeight: '',
+		characterTextAppearence: '',
+		characterBackstory: '',
 	})
 
 	const getCharacterData = async (characterId) => {
@@ -74,6 +76,8 @@ function LoadCharacterPageThree() {
 				characterHeight: characterData.character.characterHeight,
 				characterSkin: characterData.character.characterSkin,
 				characterWeight: characterData.character.characterWeight,
+				characterTextAppearence: characterData.character.characterTextAppearence,
+				characterBackstory: characterData.character.characterBackstory,
 			})
 
 		} catch (error) {
@@ -103,7 +107,9 @@ return (
 				characterHair={updateCharacterStats ? updateCharacterStats.characterHair : ''}
 				characterHeight={updateCharacterStats ? updateCharacterStats.characterHeight : ''}
 				characterSkin={updateCharacterStats ? updateCharacterStats.characterSkin : ''}
-				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}/>
+				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}
+				characterTextAppearence={updateCharacterStats ? updateCharacterStats.characterTextAppearence : ''}
+				characterBackstory={updateCharacterStats ? updateCharacterStats.characterBackstory : ''}/>
       </div>
 
 			<div className="col-7" style={{ color: 'white' }}>

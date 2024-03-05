@@ -12,7 +12,9 @@ import {toast} from 'react-hot-toast'
 function DndSheetThree({propId, getCharacterData,
 
 	characterName, characterAge, characterEyes, characterHair, 
-	characterHeight, characterSkin, characterWeight}) {
+	characterHeight, characterSkin, characterWeight,
+
+	characterTextAppearence, characterBackstory}) {
 
 	const characterId = propId.Id
 
@@ -67,6 +69,16 @@ return (
 	{/* Hair */}
 	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '9.5%', left: '73%', width: '11%', height: '2%', fontSize: '0.8vw' }}>
     <div>{characterHair}</div>
+  </div>
+
+	{/* Character Appearence */}
+	<div className="absolute-div dnd-sheet-noflex" style={{  backgroundColor: 'transparent', top: '16.5%', left: '7%', width: '24.5%', height: '28%', fontSize: '0.8vw' }}>
+    <div>{characterTextAppearence}</div>
+  </div>
+
+	{/* Character Backstory */}
+	<div className="absolute-div dnd-sheet-noflex" style={{  backgroundColor: 'transparent', top: '49%', left: '7%', width: '24.5%', height: '47%', fontSize: '0.8vw' }}>
+    <div>{characterBackstory}</div>
   </div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>

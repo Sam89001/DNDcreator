@@ -15,7 +15,7 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
+function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharacterData}) {
 
   const characterId = propId.Id
 
@@ -69,6 +69,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction}) {
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
+        getCharacterData()
 				toast.success('Updated character details');
 			}
 		} catch (error) {
