@@ -304,6 +304,11 @@
   max-height: 250px;
 }
 
+.spell-description-field-treasure {
+  min-height: 250px;
+  max-height: 350px;
+}
+
 .spell-edit-character-field {
   margin-right: 15px;
   width: 75%

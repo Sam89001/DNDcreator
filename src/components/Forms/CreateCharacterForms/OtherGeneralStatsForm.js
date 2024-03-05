@@ -79,6 +79,8 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 
   return (
     <div className='row'>
+
+      {/* General Stats */}
       <div className='col-12' style={{paddingBottom: '10px'}}>
         <form onSubmit={updateGeneralOtherStats}>
 
@@ -119,6 +121,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
         </form>
       </div>
 
+      {/* Ally/Org/Symbol */}
       <div className='col-4'>
         <div className='row'>
 
@@ -173,10 +176,11 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
         </div>
       </div>
 
+      {/* Treasure */}
       <div className='col-8'>
         <div className='row'>
 
-          {/* Treasure */}
+          
           <div className='col-12' style={{paddingBottom: '2px'}}>
             <div className="text-center form-titles">Add New Treasure</div>
           </div>
@@ -190,7 +194,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 					</div>
 
           <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <textarea className='field-style description-field' style={{width: '100%'}} 
+					  <textarea className='field-style spell-description-field-treasure' style={{width: '100%'}} 
             placeholder="Description"/>
 					</div>
 
