@@ -59,6 +59,7 @@ function LoadCharacterPageThree() {
 		characterTextAppearence: '',
 		characterBackstory: '',
 	})
+	const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
 
 	const getCharacterData = async (characterId) => {
 		try {
@@ -79,6 +80,8 @@ function LoadCharacterPageThree() {
 				characterTextAppearence: characterData.character.characterTextAppearence,
 				characterBackstory: characterData.character.characterBackstory,
 			})
+
+			setUpdateCharacterTreasure(characterData.treasure || []);
 
 		} catch (error) {
 
@@ -127,7 +130,9 @@ return (
 						<OtherGeneralStatsForm
 						propId={characterId} 
 						getCharacterData={getCharacterData}
-						updateCharacterStatsFunction={updateCharacterStatsFunction}/>
+						updateCharacterStatsFunction={updateCharacterStatsFunction}
+						updateCharacterTreasure={updateCharacterTreasure} 
+						setUpdateCharacterTreasure={setUpdateCharacterTreasure}/>
 					</div>
 
 					<div className='col-4'> Test

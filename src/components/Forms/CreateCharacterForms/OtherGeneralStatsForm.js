@@ -16,7 +16,7 @@ import { UserContext } from '../../../context/userContext';
 import DownArrowImage from '../../../images/Down Arrow.png'
 
 function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharacterData,
-
+  updateCharacterTreasure, setUpdateCharacterTreasure
 }) {
 
   const characterId = propId.Id
@@ -90,6 +90,19 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 	}
 
   //Treasure Functions
+  const handleSelectChangeTreasure = (e) => {
+    const selectedId = e.target.value; 
+    setSelectedId({ treasureSelectedId: { selectedId } });
+
+    //finds and updates the fields
+    const loadedValue = updateCharacterTreasure.find(value => value._id === selectedId);
+    setCharacterTreasure({
+      ...characterTreasure,
+      characterTreasureName: loadedValue ? loadedValue.characterTreasureName : '',
+      characterTreasureQuantity: loadedValue ? loadedValue.characterTreasureQuantity : '',
+      characterTreasureDescription: loadedValue ? loadedValue.characterTreasureDescription : ''
+    });
+	};
   
   const handleSubmitTreasure = async (e) => {
 		e.preventDefault();
@@ -113,7 +126,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 
 			if (response.data.success) {
 				const newItem = response.data.newTreasure;
-				//setCharacterTreasure(prev => [...prev, newItem]);
+				setUpdateCharacterTreasure(prev => [...prev, newItem]);
 				toast.success('Updated character details');
 			} else {
 				toast.error('Failed to update character details');
@@ -266,8 +279,14 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             </div>
 
             <div className='col-8' style={{paddingBottom: '10px'}}>
-              <select className='edit-character-field' id='characterPersonalityEdit'>
-                <option/>		
+              <select className='edit-character-field' id='characterPersonalityEdit'
+                placeholder='Attack Name' onChange={handleSelectChangeTreasure}>
+
+                  <option/>
+                  {updateCharacterTreasure.map(treasure => (
+                    <option key={treasure._id} value={treasure._id}>{treasure.characterTreasureName}</option>
+                  ))}
+
               </select>
             </div>
 
