@@ -14,6 +14,7 @@ const CreateCharacterAttackSchema = require('../models/CreateCharacterAttackSche
 const CreateCharacterEquipmentSchema = require('../models/CreateCharacterEquipmentSchema');
 const CreateCharacterSpellSchema = require('../models/CreateCharacterSpellSchema');
 const CreateCharacterTreasureSchema = require('../models/CreateCharacterTreasureSchema')
+const CreateCharacterOrganisationSchema = require('../models/CreateCharacterOrganisationSchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -104,6 +105,7 @@ router.get('/:number/:sentId', async (req, res) => {
     const LoadCharacters = await CreateCharacterSchema.findById(sentId);
     const LoadSpells = await CreateCharacterSpellSchema.find({ characterId: sentId })
     const LoadTreasure = await CreateCharacterTreasureSchema.find({ characterId: sentId })
+    const LoadOrganisation = await CreateCharacterOrganisationSchema.find({ characterId: sentId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -113,7 +115,8 @@ router.get('/:number/:sentId', async (req, res) => {
     const responseData = {
       character: LoadCharacters,
       spells: LoadSpells,
-      treasure: LoadTreasure
+      treasure: LoadTreasure,
+      organisation: LoadOrganisation
     };
     res.json(responseData);
   } catch (error) {
@@ -1245,7 +1248,7 @@ router.post('/UpdateTreasure/:characterId', async (req, res) => {
   }
 })
 
-//Updates Equipment
+//Updates Treasure
 router.put('/ChangeTreasure/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -1273,6 +1276,60 @@ router.put('/ChangeTreasure/:id', async (req, res) => {
 
     return res.json({
       success: true,
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Creates Organisation
+router.post('/UpdateOrganisation/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterOrganisationName, characterOrganisationDescription } = req.body; 
+
+    const characterData = { characterId: characterId, type: 'Organisation', characterOrganisationName: characterOrganisationName,
+      characterOrganisationDescription: characterOrganisationDescription } 
+
+    const update = await CreateCharacterOrganisationSchema.create(
+      characterData
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newOrganisation: update
+    });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Creates Symbol
+router.post('/UpdateSymbol/:characterId', async (req, res) => {
+  try {
+    const { characterId } = req.params;
+    const { characterOrganisationName, characterOrganisationDescription } = req.body; 
+
+    const characterData = { characterId: characterId, type: 'Symbol', characterOrganisationName: characterOrganisationName,
+      characterOrganisationDescription: characterOrganisationDescription } 
+
+    const update = await CreateCharacterOrganisationSchema.create(
+      characterData
+    );
+
+    if (!update) {
+      return res.json({
+        error: 'Error updating character data',
+      })
+    }
+    return res.status(200).json({
+      success: true,
+      newOrganisation: update
     });
   } catch (error) {
     console.log(error)

@@ -42,10 +42,26 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
     characterTreasureQuantity: '',
     characterTreasureDescription: '',
   });
+  const [characterOrganisation, setCharacterOrganisation] = useState({
+    characterOrganisation: {
+      characterOrganisationName: '',
+      characterOrganisationDescription: ''
+    },
+    characterSymbol: {
+      characterSymbolName: '',
+      characterSymbolDescription: ''
+    }
+  });
   const [selectedId, setSelectedId] = useState({
 		treasureSelectedId: {
       selectedId: ''
     },
+    AllyOrganisationSelectedId: {
+      selectedId: ''
+    },
+    SymbolSelectedId: {
+      selectedId: ''
+    }
 	});
 
   //General Stats Post
@@ -103,7 +119,6 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
       characterTreasureDescription: loadedValue ? loadedValue.characterTreasureDescription : ''
     });
 	};
-  
   const handleSubmitTreasure = async (e) => {
 		e.preventDefault();
 		if (!selectedId.treasureSelectedId.selectedId) {
@@ -113,6 +128,85 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
       characterTreasure.characterTreasureQuantity, characterTreasure.characterTreasureDescription); 
 		}
 	};
+
+  //Ally/Org/Symbol Functions
+  const handleSelectChange = (e, x) => {
+    const selectedId = e.target.value; 
+    if (x == 2) {
+      setSelectedId({ AllyOrganisationSelectedId: { selectedId } });
+
+      const loadedValue = updateCharacterTreasure.find(value => value._id === selectedId);
+      setCharacterTreasure({
+        ...characterTreasure,
+        characterTreasureName: loadedValue ? loadedValue.characterTreasureName : '',
+        characterTreasureQuantity: loadedValue ? loadedValue.characterTreasureQuantity : '',
+        characterTreasureDescription: loadedValue ? loadedValue.characterTreasureDescription : ''
+      });
+    } else {
+      setSelectedId({ SymbolSelectedId: { selectedId } });
+
+      const loadedValue = updateCharacterTreasure.find(value => value._id === selectedId);
+      setCharacterTreasure({
+        ...characterTreasure,
+        characterTreasureName: loadedValue ? loadedValue.characterTreasureName : '',
+        characterTreasureQuantity: loadedValue ? loadedValue.characterTreasureQuantity : '',
+        characterTreasureDescription: loadedValue ? loadedValue.characterTreasureDescription : ''
+      });
+    }
+	};
+  const handleSubmit = async (e, y, address ) => {
+		e.preventDefault();
+    if (y == 1) {
+
+      if (!selectedId.AllyOrganisationSelectedId.selectedId) {
+        await updateSymbolOrg(characterOrganisation.characterOrganisation.characterOrganisationName, 
+          characterOrganisation.characterOrganisation.characterOrganisationDescription, 
+          address);
+      } else {
+        //await updateExistingSymbolOrg(selectedId.AllyOrganisationSelectedId.selectedId, 
+          //characterOrganisation.characterOrganisation.characterOrganisationName,
+          //characterOrganisation.characterOrganisation.characterOrganisationDescription,
+           //'ChangeOrganisation'); 
+      }
+
+    } else if (y == 2) {
+
+      if (!selectedId.SymbolSelectedId.selectedId) {
+        await updateSymbolOrg(characterOrganisation.characterSymbol.characterSymbolName, 
+          characterOrganisation.characterSymbol.characterSymbolDescription, 
+          address);
+      } else {
+        //await updateExistingSymbolOrg(selectedId.AllyOrganisationSelectedId.selectedId, 
+          //characterOrganisation.characterOrganisation.characterOrganisationName, 'ChangeSymbol'); 
+      }
+
+    }
+	};
+
+  //SymbolOrg Post Request
+	const updateSymbolOrg = async (characterOrganisationName, characterOrganisationDescription, address) => {
+
+    console.log(characterOrganisationName)
+    console.log(characterOrganisationDescription)
+    console.log(address)
+	
+		try {
+			const response = await axios.post(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, {
+				characterOrganisationName, characterOrganisationDescription
+			});
+
+			if (response.data.success) {
+				const newItem = response.data.newItem;
+				//setUpdateCharacterTreasure(prev => [...prev, newItem]);
+				toast.success('Updated character details');
+			} else {
+				toast.error('Failed to update character details');
+			}
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
    //Treasure Post Request
 	const updateTreasure = async (e) => {
 		const { characterTreasureName, characterTreasureQuantity,
@@ -135,7 +229,6 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			console.log(error)
 		}
 	}
-
   //Treasure Put Request
   const updateExistingTreasure = async (id, characterTreasureName, 
     characterTreasureQuantity, characterTreasureDescription) => {
@@ -206,52 +299,99 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
         <div className='row'>
 
           {/* Ally/Organisation */}
+          <form onSubmit={(e) => handleSubmit(e, '1', 'UpdateOrganisation')}>
+
           <div className='col-12' style={{paddingBottom: '2px'}}>
             <div className="text-center form-titles">Add New Ally/Organisation</div>
           </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <input className='field-style' style={{width: '100%'}} placeholder="Name"/>
-					</div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <input className='field-style' style={{width: '100%'}} placeholder="Name"
+                value={characterOrganisation.characterOrganisation.characterOrganisationName}
+                onChange={(e) =>
+                  setCharacterOrganisation((prevCharacterOrganisation) => ({
+                    ...prevCharacterOrganisation,
+                    characterOrganisation: {
+                      ...prevCharacterOrganisation.characterOrganisation,
+                      characterOrganisationName: e.target.value,
+                    },
+                  }))
+                }/>
+            </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <textarea className='field-style description-field' style={{width: '100%'}} 
-            placeholder="Description"/>
-					</div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <textarea className='field-style description-field' style={{width: '100%'}} 
+              placeholder="Description"
+              value={characterOrganisation.characterOrganisation.characterOrganisationDescription}
+                onChange={(e) =>
+                  setCharacterOrganisation((prevCharacterOrganisation) => ({
+                    ...prevCharacterOrganisation,
+                    characterOrganisation: {
+                      ...prevCharacterOrganisation.characterOrganisation,
+                      characterOrganisationDescription: e.target.value,
+                    },
+                  }))
+                }/>
+            </div>
 
-          <div className='col-8' style={{paddingBottom: '10px'}}>
-            <select className='edit-character-field' id='characterPersonalityEdit'>
-              <option/>		
-            </select>
-          </div>
+            <div className='col-8' style={{paddingBottom: '10px'}}>
+              <select className='edit-character-field' id='characterPersonalityEdit'>
+                <option/>		
+              </select>
+            </div>
 
-          <div className='col-4' style={{paddingBottom: '10px'}}>
-            <button className='create-character-button' type="submit" > Update</button>
-          </div>
+            <div className='col-4' style={{paddingBottom: '10px'}}>
+              <button className='create-character-button' type="submit" > Update</button>
+            </div>
+          </form>
 
           {/* Symbols */}
-          <div className='col-12' style={{paddingBottom: '2px'}}>
-            <div className="text-center form-titles">Add New Symbol</div>
-          </div>
+          <form onSubmit={(e) => handleSubmit(e, '2', 'UpdateSymbol')}>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <input className='field-style' style={{width: '100%'}} placeholder="Name"/>
-					</div>
+            <div className='col-12' style={{paddingBottom: '2px'}}>
+              <div className="text-center form-titles">Add New Symbol</div>
+            </div>
 
-          <div className='col-12' style={{paddingBottom: '10px'}}>
-					  <textarea className='field-style description-field' style={{width: '100%'}} 
-            placeholder="Description"/>
-					</div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <input className='field-style' style={{width: '100%'}} placeholder="Name"
+                value={characterOrganisation.characterSymbol.characterSymbolName}
+                onChange={(e) =>
+                  setCharacterOrganisation((prevCharacterOrganisation) => ({
+                    ...prevCharacterOrganisation,
+                    characterSymbol: {
+                      ...prevCharacterOrganisation.characterSymbol,
+                      characterSymbolName: e.target.value,
+                    },
+                  }))
+                }/>
+            </div>
 
-          <div className='col-8' style={{paddingBottom: '10px'}}>
-            <select className='edit-character-field' id='characterPersonalityEdit'>
-              <option/>		
-            </select>
-          </div>
+            <div className='col-12' style={{paddingBottom: '10px'}}>
+              <textarea className='field-style description-field' style={{width: '100%'}} 
+              placeholder="Description"
+              value={characterOrganisation.characterSymbol.characterSymbolDescription}
+                onChange={(e) =>
+                  setCharacterOrganisation((prevCharacterOrganisation) => ({
+                    ...prevCharacterOrganisation,
+                    characterSymbol: {
+                      ...prevCharacterOrganisation.characterSymbol,
+                      characterSymbolDescription: e.target.value,
+                    },
+                  }))
+                }/>
+            </div>
 
-          <div className='col-4' style={{paddingBottom: '10px'}}>
-            <button className='create-character-button' type="submit" > Update</button>
-          </div>
+            <div className='col-8' style={{paddingBottom: '10px'}}>
+              <select className='edit-character-field' id='characterPersonalityEdit'>
+                <option/>		
+              </select>
+            </div>
+
+            <div className='col-4' style={{paddingBottom: '10px'}}>
+              <button className='create-character-button' type="submit" > Update</button>
+            </div>
+
+          </form>
 
         </div>
       </div>
