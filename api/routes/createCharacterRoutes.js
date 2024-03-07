@@ -3,6 +3,9 @@ const cors = require('cors');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/'})
+
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
 const CreateCharacterIdealSchema = require('../models/CreateCharacterIdealSchema')
@@ -1391,6 +1394,16 @@ router.put('/ChangeSymbol/:id', async (req, res) => {
     return res.json({
       success: true,
     });
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+//Uploads Image
+router.post('UploadProfileImage/:characterId', upload.single('avatar'), function (req, res, next) {
+  try {
+    const { characterId } = req.params;
+
   } catch (error) {
     console.log(error)
   }

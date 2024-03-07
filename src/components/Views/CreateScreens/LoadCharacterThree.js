@@ -9,6 +9,7 @@ import { UserContext } from '../../../context/userContext';
 //Components
 import DndSheetThree from '../../Components/DndSheetThree'
 import OtherGeneralStatsForm from '../../Forms/CreateCharacterForms/OtherGeneralStatsForm';
+import ImageUploadForm from '../../Forms/ImageUploadForm';
 
 function LoadCharacterPageThree() {
 	const { user } = useContext(UserContext);
@@ -137,7 +138,10 @@ return (
 						setUpdateCharacterOrganisation={setUpdateCharacterOrganisation}/>
 					</div>
 
-					<div className='col-4'> Test
+					<div className='col-4'> 
+					 <ImageUploadForm
+					 propId={characterId} 
+					 propAddress={'UploadProfileImage'}/>
 
 					</div>
 
