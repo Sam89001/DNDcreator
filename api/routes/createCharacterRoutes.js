@@ -1411,7 +1411,7 @@ router.put('/ChangeSymbol/:id', async (req, res) => {
   }
 })
 
-//Uploads Image
+//Uploads Profile Image
 router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (req, res) => {
   try {
     const { characterId } = req.params;
@@ -1425,6 +1425,39 @@ router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (r
     const updatedCharacterImage = await CreateCharacterSchema.findByIdAndUpdate(
       characterId,
       { characterProfileImageAddress: imageUrl },
+      { new: true }
+    );
+
+    if (!updatedCharacterImage) {
+      return res.json({
+        error: 'Error uploading Image',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: true });
+  }
+});
+
+//Uploads Body Image
+router.put('/UploadBodyImage/:characterId', upload.single('avatar'), async (req, res) => {
+  try {
+    const { characterId } = req.params;
+
+    if (!req.file) {
+      return res.json({ error: true });
+    }
+
+    const imageUrl = 'uploads/' + req.file.filename;
+
+    const updatedCharacterImage = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      { characterBodyImageAddress: imageUrl },
       { new: true }
     );
 
