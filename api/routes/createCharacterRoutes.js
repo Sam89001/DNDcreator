@@ -1416,7 +1416,7 @@ router.post('/UploadProfileImage/:characterId', upload.single('avatar'), (req, r
     if (req.file) {
       res.json({ success: true });
     } else {
-      res.status(400).json({ error: true });
+      res.json({ error: true });
     }
   } catch (error) {
     console.log(error);

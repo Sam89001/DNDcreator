@@ -31,6 +31,7 @@ function ImageUploadForm({ propId, propAddress }) {
             setFile(null);
             setPreviewURL('');
             toast.error(`Please select an image with dimensions less than ${maxWidth} x ${maxHeight} pixels.`);
+            e.target.value = null;
           } else {
             setFile(selectedFile);
             setPreviewURL(reader.result);
@@ -71,17 +72,27 @@ function ImageUploadForm({ propId, propAddress }) {
 
   return (
     <div style={{ height: '100%', overflow: 'hidden' }}>
-      <form onSubmit={upload} style={{ height: '100%' }}>
+      <form onSubmit={upload} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <input type='file' name='avatar' onChange={handleFileChange} />
-        <div className='d-flex flex-grow-1' style={{ maxHeight: 'calc(100% - 40px)', overflowY: 'auto' }}>
+        <div className='d-flex flex-grow-1' style={{ maxHeight: 'calc(100% - 80px)', overflowY: 'auto', marginTop: '10px' }}>
           {previewURL && (
-            <img className='img-fluid' src={previewURL} alt="Preview" style={{ width: '100%', height: 'auto', marginTop: '10px' }} />
+            <img className='img-fluid' src={previewURL} alt="Preview" style={{ width: '100%', height: 'auto' }} />
           )}
         </div>
-        <button className='image-upload-button' type="submit">Upload</button>
+        <div className='d-flex justify-content-between'>
+          <button className='image-upload-button' type="submit" style={{width: '70%', marginTop: '10px'}}>Upload</button>
+
+          <button onClick={(e) => { 
+            e.target.closest('form').querySelector('input[type="file"]').value = null;
+            setFile(null); 
+            setPreviewURL(''); 
+          }}
+          className='image-upload-button' style={{width: '25%', marginTop: '10px'}}
+          type="button" >Clear</button>
+
+        </div>
       </form>
     </div>
-
   );
 }
 
