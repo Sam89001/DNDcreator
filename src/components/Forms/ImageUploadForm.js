@@ -6,7 +6,7 @@ import {toast} from 'react-hot-toast';
 import React, { useState } from 'react';
 	
 
-function ImageUploadForm({propId, propAddress, propMaxWidth, propMaxHeight }) {
+function ImageUploadForm({getCharacterData, propId, propAddress, propMaxWidth, propMaxHeight }) {
   const characterId = propId.Id;
   const address = propAddress;
   const maxWidth = propMaxWidth;
@@ -49,17 +49,20 @@ function ImageUploadForm({propId, propAddress, propMaxWidth, propMaxHeight }) {
     e.preventDefault();
     const formData = new FormData();
     formData.append('avatar', file);
-
+  
     try {
-      const response = await axios.post(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, formData, {
+      const response = await axios.put(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
-
+  
       if (response.data.success) {
         setFile(null);
         setPreviewURL('');
+  
+        getCharacterData(characterId);
+  
         toast.success('Uploaded Image!');
       } else {
         toast.error('Failed to upload image.');
@@ -68,6 +71,7 @@ function ImageUploadForm({propId, propAddress, propMaxWidth, propMaxHeight }) {
       console.error(error);
     }
   };
+  
 
   return (
     <div style={{ height: '100%', overflow: 'hidden' }}>

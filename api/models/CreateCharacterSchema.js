@@ -144,6 +144,14 @@ const CreateCharacterSchema = new mongoose.Schema({
   },
   characterBackstory: {
     type: String
+  },
+  characterProfileImageAddress: {
+    type: String,
+    required: true
+  },
+  characterBodyImageAddress: {
+    type: String,
+    required: true
   }
 
 })

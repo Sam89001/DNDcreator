@@ -1410,14 +1410,32 @@ router.put('/ChangeSymbol/:id', async (req, res) => {
 })
 
 //Uploads Image
-router.post('/UploadProfileImage/:characterId', upload.single('avatar'), (req, res) => {
+router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (req, res) => {
   try {
     const { characterId } = req.params;
-    if (req.file) {
-      res.json({ success: true });
-    } else {
-      res.json({ error: true });
+
+    if (!req.file) {
+      return res.json({ error: true });
     }
+
+    const imageUrl = req.file.path;
+
+    const updatedCharacterImage = await CreateCharacterSchema.findByIdAndUpdate(
+      characterId,
+      { characterProfileImageAddress: imageUrl },
+      { new: true }
+    );
+
+    if (!updatedCharacterImage) {
+      return res.json({
+        error: 'Error uploading Image',
+      })
+    }
+
+    return res.json({
+      success: true,
+    });
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true });

@@ -142,6 +142,7 @@ return (
 					
 						<div className='d-flex' style={{ maxHeight: '225px', height: '100%', backgroundColor: 'var(--inputGrey)', marginBottom: '10px', padding: '5px' }}>
 							<ImageUploadForm 
+							getCharacterData={getCharacterData}
 							propId={characterId} 
 							propAddress={'UploadProfileImage'}
 							propMaxWidth={'1000'}
@@ -150,6 +151,7 @@ return (
 
 					 <div style={{maxHeight: '475px', height: '100%', backgroundColor: 'var(--inputGrey)', padding: '5px'}}>
 							<ImageUploadForm
+							getCharacterData={getCharacterData}
 							propId={characterId} 
 							propAddress={'UploadBodyImage'}
 							propMaxWidth={'1600'}
