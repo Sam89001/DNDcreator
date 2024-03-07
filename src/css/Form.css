@@ -73,16 +73,22 @@
   border-left: 1px var(--textGrey) solid;
 }
 
-.create-character-button {
+.create-character-button,
+.image-upload-button {
   font-size: 15px;
 	border-radius: 20px;
   border: none;
   padding: 5px 10px 5px 10px;
   color: var(--textGrey);
+}
+
+.create-character-button {
+  color: var(--textGrey);
   background-color: var(--inputGrey);
 }
 
-.create-character-button:hover {
+.create-character-button:hover,
+.image-upload-button:hover {
 	color: var(--textLightGrey);
   background-color: var(--textGrey);
 }
@@ -346,4 +352,10 @@
 .drop-down-spells-field.active {
   overflow-y: visible;
   height: 130px;
+}
+
+/* Image Uploading */
+
+.image-upload-button {
+  background-color: var(--backgroundGrey)
 }

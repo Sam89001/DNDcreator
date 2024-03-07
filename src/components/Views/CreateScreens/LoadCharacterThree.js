@@ -127,7 +127,7 @@ return (
 
 				<div className="row">
 
-					<div className='col-8'>
+					<div className='col-9'>
 						<OtherGeneralStatsForm
 						propId={characterId} 
 						getCharacterData={getCharacterData}
@@ -138,10 +138,18 @@ return (
 						setUpdateCharacterOrganisation={setUpdateCharacterOrganisation}/>
 					</div>
 
-					<div className='col-4'> 
-					 <ImageUploadForm
-					 propId={characterId} 
-					 propAddress={'UploadProfileImage'}/>
+					<div className='col-3'> 
+						<div style={{height: '30%',  backgroundColor: 'var(--inputGrey)', marginBottom: '10px'}}>
+							<ImageUploadForm
+							propId={characterId} 
+							propAddress={'UploadProfileImage'}/>
+					 </div>
+
+					 <div style={{height: '65%',  backgroundColor: 'var(--inputGrey)'}}>
+							<ImageUploadForm
+							propId={characterId} 
+							propAddress={'UploadBodyImage'}/>
+					 </div>
 
 					</div>
 

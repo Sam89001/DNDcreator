@@ -22,6 +22,7 @@ function ImageUploadForm({propId, propAddress}) {
     const formData = new FormData();
     formData.append('avatar', file);
 
+
 		try {
 			const response = await axios.post(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, formData, {
         headers: {
@@ -41,8 +42,9 @@ function ImageUploadForm({propId, propAddress}) {
 
   return (
     <div>
-      <form onSubmit={{upload}} >
+      <form onSubmit={upload} >
         <input type='file' name='avatar' onChange={handleFileChange}/>
+        <button className='image-upload-button' type="submit">Upload</button>
       </form>
     </div>
   )

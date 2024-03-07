@@ -2,9 +2,19 @@ const express = require('express');
 const cors = require('cors');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-
 const multer = require('multer')
-const upload = multer({ dest: 'uploads/'})
+const path = require('path'); 
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); 
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+});
+const upload = multer({ storage: storage });
 
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
 const CreateCharacterPersonalitySchema = require('../models/CreateCharacterPeronalitySchema')
@@ -1400,13 +1410,18 @@ router.put('/ChangeSymbol/:id', async (req, res) => {
 })
 
 //Uploads Image
-router.post('UploadProfileImage/:characterId', upload.single('avatar'), function (req, res, next) {
+router.post('/UploadProfileImage/:characterId', upload.single('avatar'), (req, res) => {
   try {
     const { characterId } = req.params;
-
+    if (req.file) {
+      res.json({ success: true });
+    } else {
+      res.status(400).json({ error: true });
+    }
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).json({ error: true });
   }
-})
+});
 
 module.exports = router;
