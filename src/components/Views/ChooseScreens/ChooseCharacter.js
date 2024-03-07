@@ -78,7 +78,7 @@ function ChooseCharacter() {
               key={character._id}
               title={character.characterName}
               link={`/LoadCharacter/${character._id}`}
-              image={TempImage}
+              image={character.characterProfileImageAddress ? character.characterProfileImageAddress : TempImage}
             />
             ))}
             

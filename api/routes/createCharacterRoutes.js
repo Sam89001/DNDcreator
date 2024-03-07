@@ -8,12 +8,13 @@ const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/'); 
+    cb(null, path.join(__dirname, '../../public/uploads/')); // Adjust the path as needed
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });
+
 const upload = multer({ storage: storage });
 
 const CreateCharacterSchema = require('../models/CreateCharacterSchema');
@@ -34,6 +35,7 @@ router.get('/', async (req, res) => {
   try {
 		const userId = req.query.userId; 
     const LoadCharacters = await CreateCharacterSchema.find({ userId });
+
 
     if (!LoadCharacters || LoadCharacters.length < 1) {
       return res.json({
@@ -1418,7 +1420,7 @@ router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (r
       return res.json({ error: true });
     }
 
-    const imageUrl = req.file.path;
+    const imageUrl = 'uploads/' + req.file.filename;
 
     const updatedCharacterImage = await CreateCharacterSchema.findByIdAndUpdate(
       characterId,

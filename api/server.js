@@ -4,6 +4,7 @@
   const cors = require('cors');
   const dotenv = require('dotenv').config();
   const cookieParser = require('cookie-parser');
+  const path = require('path');
   
   const App = express();
 
@@ -36,6 +37,9 @@
   App.use('/', require('./routes/loginRoutes'));
   App.use('/Home', require('./routes/homeRoutes'));
   App.use('/CreateCharacter', require('./routes/createCharacterRoutes'));
+
+  // Serve static files from the public directory
+  App.use(express.static(path.join(__dirname, 'public')));
   
   // Port
   const port = process.env.PORT || 4000; // Utilizing process.env.PORT if available
