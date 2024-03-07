@@ -356,6 +356,16 @@
 
 /* Image Uploading */
 
+.image-upload-input {
+  cursor: pointer; 
+  font-size: 1rem; 
+  color: #fff; 
+  border: none; 
+  border-radius: 5px; 
+  color: var(--textGrey);
+  background-color: var(--backgroundGrey)
+}
+
 .image-upload-button {
   background-color: var(--backgroundGrey)
 }

@@ -141,13 +141,19 @@ return (
 					<div className='col-3'> 
 					
 						<div className='d-flex' style={{ maxHeight: '225px', height: '100%', backgroundColor: 'var(--inputGrey)', marginBottom: '10px', padding: '5px' }}>
-							<ImageUploadForm propId={characterId} propAddress={'UploadProfileImage'}/>
+							<ImageUploadForm 
+							propId={characterId} 
+							propAddress={'UploadProfileImage'}
+							propMaxWidth={'1000'}
+							propMaxHeight={'1000'}/>
 						</div>
 
 					 <div style={{maxHeight: '475px', height: '100%', backgroundColor: 'var(--inputGrey)', padding: '5px'}}>
 							<ImageUploadForm
 							propId={characterId} 
-							propAddress={'UploadBodyImage'}/>
+							propAddress={'UploadBodyImage'}
+							propMaxWidth={'1600'}
+							propMaxHeight={'1600'}/>
 					 </div>
 
 					</div>

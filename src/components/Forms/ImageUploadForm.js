@@ -6,16 +6,15 @@ import {toast} from 'react-hot-toast';
 import React, { useState } from 'react';
 	
 
-function ImageUploadForm({ propId, propAddress }) {
+function ImageUploadForm({propId, propAddress, propMaxWidth, propMaxHeight }) {
   const characterId = propId.Id;
   const address = propAddress;
+  const maxWidth = propMaxWidth;
+  const maxHeight = propMaxHeight;
 
   const [file, setFile] = useState(null);
   const [previewURL, setPreviewURL] = useState('');
   
-  const maxWidth = 1000;
-  const maxHeight = 1000;
-
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
 
@@ -73,7 +72,7 @@ function ImageUploadForm({ propId, propAddress }) {
   return (
     <div style={{ height: '100%', overflow: 'hidden' }}>
       <form onSubmit={upload} style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-        <input type='file' name='avatar' onChange={handleFileChange} />
+        <input className='image-upload-input' type='file' name='avatar' onChange={handleFileChange} />
         <div className='d-flex flex-grow-1' style={{ maxHeight: 'calc(100% - 80px)', overflowY: 'auto', marginTop: '10px' }}>
           {previewURL && (
             <img className='img-fluid' src={previewURL} alt="Preview" style={{ width: '100%', height: 'auto' }} />
