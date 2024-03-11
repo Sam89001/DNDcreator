@@ -89,12 +89,14 @@ function LoadCharacterPageThree() {
 				characterBodyImage: characterData.character.characterBodyImageAddress,
 				characterBackstory: characterData.character.characterBackstory,
 			})
+
 			setUpdateCharacterTreasure(characterData.treasure || []);
 			setUpdateCharacterOrganisation(characterData.organisation || []);
 		} catch (error) {
 			console.log(error)
 		}
 	}
+
 	const updateCharacterStatsFunction = (newCharacterData) => {
 		setUpdateCharacterStats(newCharacterData);
 	}
@@ -122,9 +124,8 @@ return (
 				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}
 				characterTextAppearence={updateCharacterStats ? updateCharacterStats.characterTextAppearence : ''}
 				characterBackstory={updateCharacterStats ? updateCharacterStats.characterBackstory : ''}
-				profileImage={updateCharacterStats ? updateCharacterStats.characterFaceImage : QuestionMarkImage}
-				bodyImage={updateCharacterStats ? updateCharacterStats.characterBodyImage : QuestionMarkImage}
-				QuestionMarkImage={QuestionMarkImage}
+				profileImage={"/" + updateCharacterStats.characterFaceImage}
+				bodyImage={ "/" + updateCharacterStats.characterBodyImage}
 				characterOrganisationSymbol={updateCharacterOrganisation ? updateCharacterOrganisation : ''}
 				characterTreasure={updateCharacterTreasure ? updateCharacterTreasure : ''}/>
 				

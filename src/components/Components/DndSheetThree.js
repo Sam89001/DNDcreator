@@ -16,7 +16,7 @@ function DndSheetThree({propId, getCharacterData, updateCharacterOrganisation,
 	characterName, characterAge, characterEyes, characterHair, 
 	characterHeight, characterSkin, characterWeight,
 	characterTextAppearence, characterBackstory,
-	profileImage, bodyImage, QuestionMarkImage,
+	profileImage, bodyImage, 
 	characterOrganisationSymbol, characterTreasure}) {
 
 	const characterId = propId.Id
@@ -209,13 +209,13 @@ return (
 
 			<div className='col-6'>
 				<div className='relative-div d-flex' style={{backgroundColor: 'blue', maxHeight: '150px', maxWidth: '150px'}}>
-					<img className="img-fluid" src={profileImage || QuestionMarkImage} alt="Face Image" />
+					<img className="img-fluid" src={profileImage === "" ? QuestionMarkImage : profileImage || QuestionMarkImage} />
 				</div>
 			</div>
 
 			<div className='col-6'>
 				<div className='relative-div d-flex' style={{backgroundColor: 'blue', maxHeight: '150px', maxWidth: '150px'}}>
-					<img className="img-fluid" src={bodyImage || QuestionMarkImage} alt="Body Image" />
+					<img className="img-fluid" src={bodyImage === "" ? QuestionMarkImage : bodyImage || QuestionMarkImage} />
 				</div>
 			</div>
 		
