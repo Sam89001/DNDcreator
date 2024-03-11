@@ -1424,6 +1424,7 @@ router.delete('/DeleteOrganisation/:id', async (req, res) => {
     }
     return res.json({
       success: 'Successfully deleted character data',
+      deletedItemType: deleted.type
     });
 
   } catch (error) {

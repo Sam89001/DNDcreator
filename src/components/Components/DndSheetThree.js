@@ -52,9 +52,16 @@ function DndSheetThree({propId, getCharacterData, updateCharacterOrganisation,
 			const response = await axios.delete(address + `${id}`);
 			if(response.error) {
 				toast.error(response.data.error);
-			} else {
+			} else if (response.data.success){
 				getCharacterData(characterId);
-				toast.success('Successfully deleted');
+				const responseItem = response.data.deletedItemType;
+				
+				if (responseItem === 'Symbol') {
+					setCharacterSymbol({})
+					toast.success('Successfully deleted Symbol');
+				} else {
+					toast.success('Successfully deleted Organisation');
+				}
 			}
 		} catch (error) {
 			console.log(error)
