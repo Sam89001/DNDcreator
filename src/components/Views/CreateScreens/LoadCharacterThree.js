@@ -105,6 +105,7 @@ return (
 				<DndSheetThree 
 				propId={characterId} 
 				getCharacterData={getCharacterData}
+				updateCharacterOrganisation={updateCharacterOrganisation}
 				characterName={updateCharacterStats ? updateCharacterStats.characterName : ''}
 				characterAge={updateCharacterStats ? updateCharacterStats.characterAge : ''}
 				characterEyes={updateCharacterStats ? updateCharacterStats.characterEyes : ''}

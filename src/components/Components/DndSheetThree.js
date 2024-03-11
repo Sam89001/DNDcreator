@@ -8,21 +8,47 @@ import DndSheetImage from '../../images/sheet3.png'
 //Dependencies
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
+import React, { useState } from 'react';
 
-function DndSheetThree({propId, getCharacterData,
+function DndSheetThree({propId, getCharacterData, updateCharacterOrganisation,
 
 	characterName, characterAge, characterEyes, characterHair, 
 	characterHeight, characterSkin, characterWeight,
-
 	characterTextAppearence, characterBackstory,
-
 	characterOrganisationSymbol, }) {
 
 	const characterId = propId.Id
 
+	const [characterSymbol, setCharacterSymbol] = useState({
+		characterSymbolName: '',
+		characterSymbolDescription: ''
+  });
+	const [selectedId, setSelectedId] = useState({
+    selectedId: ''
+	});
+
+	const handleSelectChange = (e) => {
+    const selectedId = e.target.value; 
+    setSelectedId({ selectedId: selectedId });
+
+    //finds and updates the fields
+    const loadedValue = updateCharacterOrganisation.find(value => value._id === selectedId);
+    setCharacterSymbol({
+      ...characterSymbol,
+      characterSymbolName: loadedValue ? loadedValue.characterOrganisationName : '',
+      characterSymbolDescription: loadedValue ? loadedValue.characterOrganisationDescription : ''
+    });
+	};
+
 	const deleteItem =  async (e, id, address) => {
 		e.preventDefault();
 		try {
+
+			if (id === '') {
+				toast.error('Please Select an item to delete');
+				return;
+			}
+
 			const response = await axios.delete(address + `${id}`);
 			if(response.error) {
 				toast.error(response.data.error);
@@ -88,7 +114,7 @@ return (
     {characterOrganisationSymbol
 		.filter(organisation => organisation.type === 'Organisation')
 		.map(organisation => (
-			<div className='col-12' style={{padding: '5px 15px 0px 5px'}}>
+			<div key={organisation._id} className='col-12' style={{padding: '5px 15px 0px 5px'}}>
 
 				<div className='equipment-title d-flex justify-content-between'> {/* Assuming 'd-flex' sets display: flex */}
 					Organisation Name
@@ -108,6 +134,29 @@ return (
 		))}
 
   </div>
+
+	{/* Character Symbol*/}
+	<div className="absolute-div dnd-sheet-noflex " style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '19.3%', left: '65%', 
+	width: '21.5%', height: '16.5%', fontSize: '0.6vw', padding: '0px' }}>
+	
+		<select className='edit-character-field' style={{marginBottom: '5px'}} onChange={handleSelectChange}>
+			<option/>
+			{characterOrganisationSymbol
+				.filter(organisation => organisation.type === 'Symbol')
+				.map(organisation => ( 
+					<option key={organisation._id} value={organisation._id}>{organisation.characterOrganisationName}</option>
+			))}
+		</select>
+			
+		<div className='equipment-title d-flex justify-content-between'>Symbol Description
+			<button className='delete-property-button' style={{width: '10%'}} 
+				onClick={(e) => deleteItem(e, selectedId.selectedId, 'http://localhost:4000/CreateCharacter/DeleteOrganisation/')}>
+				X
+			</button>
+		</div>
+	
+		<div style={{padding: '0px 0px 10px 10px', wordWrap: 'break-word'}}>{characterSymbol.characterSymbolDescription || ''}</div>
+	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>
 </div>
