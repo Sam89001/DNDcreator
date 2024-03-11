@@ -11,6 +11,9 @@ import DndSheetThree from '../../Components/DndSheetThree'
 import OtherGeneralStatsForm from '../../Forms/CreateCharacterForms/OtherGeneralStatsForm';
 import ImageUploadForm from '../../Forms/ImageUploadForm';
 
+//Images
+import QuestionMarkImage from '../../../images/Question Mark Graphic.png'
+
 function LoadCharacterPageThree() {
 	const { user } = useContext(UserContext);
 	const navigate = useNavigate();
@@ -58,6 +61,8 @@ function LoadCharacterPageThree() {
 		characterSkin: '',
 		characterWeight: '',
 		characterTextAppearence: '',
+		characterFaceImage: '',
+		characterBodyImage: '',
 		characterBackstory: '',
 	})
 	const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
@@ -80,6 +85,8 @@ function LoadCharacterPageThree() {
 				characterSkin: characterData.character.characterSkin,
 				characterWeight: characterData.character.characterWeight,
 				characterTextAppearence: characterData.character.characterTextAppearence,
+				characterFaceImage: characterData.character.characterProfileImageAddress,
+				characterBodyImage: characterData.character.characterBodyImageAddress,
 				characterBackstory: characterData.character.characterBackstory,
 			})
 			setUpdateCharacterTreasure(characterData.treasure || []);
@@ -115,8 +122,12 @@ return (
 				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}
 				characterTextAppearence={updateCharacterStats ? updateCharacterStats.characterTextAppearence : ''}
 				characterBackstory={updateCharacterStats ? updateCharacterStats.characterBackstory : ''}
+				profileImage={updateCharacterStats ? updateCharacterStats.characterFaceImage : QuestionMarkImage}
+				bodyImage={updateCharacterStats ? updateCharacterStats.characterBodyImage : QuestionMarkImage}
+				QuestionMarkImage={QuestionMarkImage}
 				characterOrganisationSymbol={updateCharacterOrganisation ? updateCharacterOrganisation : ''}
 				characterTreasure={updateCharacterTreasure ? updateCharacterTreasure : ''}/>
+				
 				
       </div>
 

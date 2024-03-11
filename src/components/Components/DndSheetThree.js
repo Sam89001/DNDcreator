@@ -4,6 +4,7 @@ import '../../css/Components.css';
 
 //Images
 import DndSheetImage from '../../images/sheet3.png'
+import QuestionMarkImage from '../../images/Question Mark Graphic.png'
 
 //Dependencies
 import axios from 'axios';
@@ -15,6 +16,7 @@ function DndSheetThree({propId, getCharacterData, updateCharacterOrganisation,
 	characterName, characterAge, characterEyes, characterHair, 
 	characterHeight, characterSkin, characterWeight,
 	characterTextAppearence, characterBackstory,
+	profileImage, bodyImage, QuestionMarkImage,
 	characterOrganisationSymbol, characterTreasure}) {
 
 	const characterId = propId.Id
@@ -196,6 +198,27 @@ return (
 				</div>
 			))}
 
+		</div>
+	</div>
+	
+	{/* Character Images*/}
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '48%', left: '36%', 
+	width: '52%', height: '25%', fontSize: '0.6vw', padding: '0px' }}>
+
+		<div className='row'>
+
+			<div className='col-6'>
+				<div className='relative-div d-flex' style={{backgroundColor: 'blue', maxHeight: '150px', maxWidth: '150px'}}>
+					<img className="img-fluid" src={profileImage || QuestionMarkImage} alt="Face Image" />
+				</div>
+			</div>
+
+			<div className='col-6'>
+				<div className='relative-div d-flex' style={{backgroundColor: 'blue', maxHeight: '150px', maxWidth: '150px'}}>
+					<img className="img-fluid" src={bodyImage || QuestionMarkImage} alt="Body Image" />
+				</div>
+			</div>
+		
 		</div>
 	</div>
 
