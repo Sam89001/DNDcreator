@@ -208,14 +208,14 @@ return (
 		<div className='row'>
 
 			<div className='col-6'>
-				<div className='relative-div d-flex' style={{backgroundColor: 'blue', maxHeight: '150px', maxWidth: '150px'}}>
+				<div className='relative-div d-flex' style={{ maxHeight: '130px', maxWidth: '130px'}}>
 					<img className="img-fluid" src={profileImage === "" ? QuestionMarkImage : profileImage || QuestionMarkImage} />
 				</div>
 			</div>
 
 			<div className='col-6'>
-				<div className='relative-div d-flex' style={{backgroundColor: 'blue', maxHeight: '150px', maxWidth: '150px'}}>
-					<img className="img-fluid" src={bodyImage === "" ? QuestionMarkImage : bodyImage || QuestionMarkImage} />
+				<div className='relative-div d-flex' style={{ maxHeight: '130px', maxWidth: '90px'}} >
+					<img className="img-fluid" src={bodyImage === "" ? QuestionMarkImage : bodyImage || QuestionMarkImage} style={{maxWidth: '100%'}}/>
 				</div>
 			</div>
 		
