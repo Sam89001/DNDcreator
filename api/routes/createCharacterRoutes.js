@@ -1297,6 +1297,26 @@ router.put('/ChangeTreasure/:id', async (req, res) => {
   }
 })
 
+//Deletes Treasure
+router.delete('/DeleteTreasure/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deleted = await CreateCharacterTreasureSchema.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Creates Organisation
 router.post('/UpdateOrganisation/:characterId', async (req, res) => {
   try {
@@ -1424,7 +1444,7 @@ router.delete('/DeleteOrganisation/:id', async (req, res) => {
     }
     return res.json({
       success: 'Successfully deleted character data',
-      deletedItemType: deleted.type
+      deletedItemType: deleted
     });
 
   } catch (error) {

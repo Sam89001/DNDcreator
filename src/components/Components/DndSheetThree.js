@@ -15,7 +15,7 @@ function DndSheetThree({propId, getCharacterData, updateCharacterOrganisation,
 	characterName, characterAge, characterEyes, characterHair, 
 	characterHeight, characterSkin, characterWeight,
 	characterTextAppearence, characterBackstory,
-	characterOrganisationSymbol, }) {
+	characterOrganisationSymbol, characterTreasure}) {
 
 	const characterId = propId.Id
 
@@ -40,33 +40,38 @@ function DndSheetThree({propId, getCharacterData, updateCharacterOrganisation,
     });
 	};
 
-	const deleteItem =  async (e, id, address) => {
-		e.preventDefault();
-		try {
+	const deleteItem = async (e, id, address) => {
+    e.preventDefault();
+    try {
+      if (id === '') {
+        toast.error('Please Select an item to delete');
+        return;
+      }
 
-			if (id === '') {
-				toast.error('Please Select an item to delete');
-				return;
-			}
+      const response = await axios.delete(address + `${id}`);
+      if (response.error) {
+        toast.error(response.data.error);
+      } else if (response.data.success) {
+        getCharacterData(characterId);
 
-			const response = await axios.delete(address + `${id}`);
-			if(response.error) {
-				toast.error(response.data.error);
-			} else if (response.data.success){
-				getCharacterData(characterId);
-				const responseItem = response.data.deletedItemType;
-				
-				if (responseItem === 'Symbol') {
-					setCharacterSymbol({})
-					toast.success('Successfully deleted Symbol');
+				if (response.data.deletedItemType) {
+        	const responseItem = response.data.deletedItemType.type;
+					if (responseItem === 'Symbol') {
+						setCharacterSymbol({});
+						toast.success('Successfully deleted symbol');
+					} else if (responseItem === 'Organisation') {
+						toast.success('Successfully deleted organisation');
+					}
 				} else {
-					toast.success('Successfully deleted Organisation');
+					toast.success('Successfully deleted item');
 				}
-			}
-		} catch (error) {
-			console.log(error)
-		} 
-	}
+				
+      }
+    } catch (error) {
+        console.log(error);
+    }
+	};
+
 	
 return (
 <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
@@ -123,7 +128,7 @@ return (
 		.map(organisation => (
 			<div key={organisation._id} className='col-12' style={{padding: '5px 15px 0px 5px'}}>
 
-				<div className='equipment-title d-flex justify-content-between'> {/* Assuming 'd-flex' sets display: flex */}
+				<div className='equipment-title d-flex justify-content-between'> 
 					Organisation Name
 					<button className='delete-property-button' style={{width: '10%'}} 
 						onClick={(e) => deleteItem(e, organisation._id, 'http://localhost:4000/CreateCharacter/DeleteOrganisation/')}>
@@ -143,7 +148,7 @@ return (
   </div>
 
 	{/* Character Symbol*/}
-	<div className="absolute-div dnd-sheet-noflex " style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '19.3%', left: '65%', 
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '19.3%', left: '65%', 
 	width: '21.5%', height: '16.5%', fontSize: '0.6vw', padding: '0px' }}>
 	
 		<select className='edit-character-field' style={{marginBottom: '5px'}} onChange={handleSelectChange}>
@@ -163,6 +168,36 @@ return (
 		</div>
 	
 		<div style={{padding: '0px 0px 10px 10px', wordWrap: 'break-word'}}>{characterSymbol.characterSymbolDescription || ''}</div>
+	</div>
+
+	{/* Character Treasure*/}
+	<div className="absolute-div dnd-sheet-noflex" 
+	style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '48%', left: '36%', width: '52%', height: '26%', fontSize: '0.6vw' }}>
+		<div className='row'>
+			
+
+			{characterTreasure.map(treasure => (
+				<div className='col-12'> 
+					<div> 
+						<div className='equipment-title'>Treasure Name </div>
+						<div className='equipment-title'>Treasure Quantity </div>
+						<button className='delete-property-button' style={{width: '10%'}} 
+							onClick={(e) => deleteItem(e, treasure._id, 'http://localhost:4000/CreateCharacter/DeleteTreasure/')}>
+							X
+						</button>
+					</div>
+
+					<div>
+						<div>{treasure.characterTreasureName}</div>
+						<div>{treasure.characterTreasureQuantity}</div>
+					</div>
+
+					<div className='equipment-title d-flex '>Treasure Description </div>
+					<div>{treasure.characterTreasureDescription}</div>
+				</div>
+			))}
+
+		</div>
 	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>

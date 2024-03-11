@@ -115,7 +115,8 @@ return (
 				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}
 				characterTextAppearence={updateCharacterStats ? updateCharacterStats.characterTextAppearence : ''}
 				characterBackstory={updateCharacterStats ? updateCharacterStats.characterBackstory : ''}
-				characterOrganisationSymbol={updateCharacterOrganisation ? updateCharacterOrganisation : ''}/>
+				characterOrganisationSymbol={updateCharacterOrganisation ? updateCharacterOrganisation : ''}
+				characterTreasure={updateCharacterTreasure ? updateCharacterTreasure : ''}/>
 				
       </div>
 
