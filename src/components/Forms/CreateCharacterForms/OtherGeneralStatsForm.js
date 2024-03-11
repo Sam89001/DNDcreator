@@ -101,7 +101,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
-        getCharacterData()
+        getCharacterData(characterId)
 				toast.success('Updated character details');
 			}
 		} catch (error) {

@@ -172,9 +172,8 @@ return (
 
 	{/* Character Treasure*/}
 	<div className="absolute-div dnd-sheet-noflex" 
-	style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '48%', left: '36%', width: '52%', height: '26%', fontSize: '0.6vw' }}>
+	style={{ overflow: 'auto', backgroundColor: 'transparent', top: '77%', left: '36%', width: '52%', height: '19%', fontSize: '0.6vw' }}>
 		<div className='row'>
-			
 
 			{characterTreasure.map(treasure => (
 				<div className='col-12'> 
