@@ -89,11 +89,21 @@ return (
 		.filter(organisation => organisation.type === 'Organisation')
 		.map(organisation => (
 			<div className='col-12' style={{padding: '5px 15px 0px 5px'}}>
-				<div className='equipment-title'>Organisation Name</div>
+
+				<div className='equipment-title d-flex justify-content-between'> {/* Assuming 'd-flex' sets display: flex */}
+					Organisation Name
+					<button className='delete-property-button' style={{width: '10%'}} 
+						onClick={(e) => deleteItem(e, organisation._id, 'http://localhost:4000/CreateCharacter/DeleteOrganisation/')}>
+						X
+					</button>
+				</div>
+
 				<div style={{padding: '0px 0px 10px 10px', overflowX: 'auto'}}>{organisation.characterOrganisationName}</div>
 
 				<div className='equipment-title'>Organisation Description</div>
-				<div style={{padding: '0px 0px 10px 10px', borderBottom: 'solid 1px var(--lightBackgroundGrey)', wordWrap: 'break-word'}}>{organisation.characterOrganisationDescription}</div>
+				<div style={{padding: '0px 0px 10px 10px', borderBottom: 'solid 1px var(--lightBackgroundGrey)', wordWrap: 'break-word'}}>
+					{organisation.characterOrganisationDescription}</div>
+
 			</div>
 		))}
 

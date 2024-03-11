@@ -1411,6 +1411,26 @@ router.put('/ChangeSymbol/:id', async (req, res) => {
   }
 })
 
+//Deletes a Organisation & Symbol
+router.delete('/DeleteOrganisation/:id', async (req, res) => {
+  try{
+    const { id } = req.params;
+  
+    const deleted = await CreateCharacterOrganisationSchema.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.json({
+        error: 'Error deleting character data',
+      })
+    }
+    return res.json({
+      success: 'Successfully deleted character data',
+    });
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Uploads Profile Image
 router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (req, res) => {
   try {
