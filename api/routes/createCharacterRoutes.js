@@ -3,6 +3,7 @@ const cors = require('cors');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const multer = require('multer')
+const fs = require('fs');
 const path = require('path'); 
 
 
@@ -1462,17 +1463,26 @@ router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (r
     }
 
     const imageUrl = 'uploads/' + req.file.filename;
+    const character = await CreateCharacterSchema.findById(characterId);
+    if (!character) {
+      return res.json({ error: 'Character not found' });
+    }
+    const oldImagePath = character.characterProfileImageAddress;
 
-    const updatedCharacterImage = await CreateCharacterSchema.findByIdAndUpdate(
+    const updatedCharacter = await CreateCharacterSchema.findByIdAndUpdate(
       characterId,
       { characterProfileImageAddress: imageUrl },
       { new: true }
     );
 
-    if (!updatedCharacterImage) {
+    if (!updatedCharacter) {
       return res.json({
-        error: 'Error uploading Image',
-      })
+        error: 'Error updating character'
+      });
+    }
+
+    if (oldImagePath) {
+      fs.unlinkSync(path.join(__dirname, '../../public/', oldImagePath));
     }
 
     return res.json({
@@ -1481,7 +1491,6 @@ router.put('/UploadProfileImage/:characterId', upload.single('avatar'), async (r
 
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: true });
   }
 });
 
@@ -1496,6 +1505,12 @@ router.put('/UploadBodyImage/:characterId', upload.single('avatar'), async (req,
 
     const imageUrl = 'uploads/' + req.file.filename;
 
+    const character = await CreateCharacterSchema.findById(characterId);
+    if (!character) {
+      return res.json({ error: 'Character not found' });
+    }
+    const oldBodyImagePath = character.characterBodyImageAddress;
+
     const updatedCharacterImage = await CreateCharacterSchema.findByIdAndUpdate(
       characterId,
       { characterBodyImageAddress: imageUrl },
@@ -1505,7 +1520,11 @@ router.put('/UploadBodyImage/:characterId', upload.single('avatar'), async (req,
     if (!updatedCharacterImage) {
       return res.json({
         error: 'Error uploading Image',
-      })
+      });
+    }
+
+    if (oldBodyImagePath) {
+      fs.unlinkSync(path.join(__dirname, '../../public/', oldBodyImagePath));
     }
 
     return res.json({
@@ -1517,5 +1536,6 @@ router.put('/UploadBodyImage/:characterId', upload.single('avatar'), async (req,
     res.status(500).json({ error: true });
   }
 });
+
 
 module.exports = router;
