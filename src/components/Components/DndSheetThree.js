@@ -14,7 +14,9 @@ function DndSheetThree({propId, getCharacterData,
 	characterName, characterAge, characterEyes, characterHair, 
 	characterHeight, characterSkin, characterWeight,
 
-	characterTextAppearence, characterBackstory}) {
+	characterTextAppearence, characterBackstory,
+
+	characterOrganisationSymbol, }) {
 
 	const characterId = propId.Id
 
@@ -79,6 +81,22 @@ return (
 	{/* Character Backstory */}
 	<div className="absolute-div dnd-sheet-noflex" style={{  backgroundColor: 'transparent', top: '49%', left: '7%', width: '24.5%', height: '47%', fontSize: '0.8vw' }}>
     <div>{characterBackstory}</div>
+  </div>
+
+	{/* Character Organisation */}
+	<div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '16.5%', left: '37%', width: '27%', height: '28%', fontSize: '0.6vw' }}>
+    {characterOrganisationSymbol
+		.filter(organisation => organisation.type === 'Organisation')
+		.map(organisation => (
+			<div className='col-12' style={{padding: '5px 15px 0px 5px'}}>
+				<div className='equipment-title'>Organisation Name</div>
+				<div style={{padding: '0px 0px 10px 10px', overflowX: 'auto'}}>{organisation.characterOrganisationName}</div>
+
+				<div className='equipment-title'>Organisation Description</div>
+				<div style={{padding: '0px 0px 10px 10px', borderBottom: 'solid 1px var(--lightBackgroundGrey)', wordWrap: 'break-word'}}>{organisation.characterOrganisationDescription}</div>
+			</div>
+		))}
+
   </div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>

@@ -113,7 +113,9 @@ return (
 				characterSkin={updateCharacterStats ? updateCharacterStats.characterSkin : ''}
 				characterWeight={updateCharacterStats ? updateCharacterStats.characterWeight : ''}
 				characterTextAppearence={updateCharacterStats ? updateCharacterStats.characterTextAppearence : ''}
-				characterBackstory={updateCharacterStats ? updateCharacterStats.characterBackstory : ''}/>
+				characterBackstory={updateCharacterStats ? updateCharacterStats.characterBackstory : ''}
+				characterOrganisationSymbol={updateCharacterOrganisation ? updateCharacterOrganisation : ''}/>
+				
       </div>
 
 			<div className="col-7" style={{ color: 'white' }}>
