@@ -201,27 +201,27 @@ return (
 
 		</div>
 	</div>
-
 	
 	{/* Character Images*/}
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '48%', left: '36%', 
 	width: '52%', height: '25%', fontSize: '0.6vw', padding: '0px' }}>
 
-		<div className='row'>
-
-			<div className='col-6'>
-				<div className='relative-div d-flex' style={{ maxHeight: '130px', maxWidth: '130px'}}>
-					<img className="img-fluid" src={profileImage === "" ? QuestionMarkImage : profileImage || QuestionMarkImage} />
+		<div className="row">
+				<div className='col-7 d-flex flex-column align-items-center'>
+						<div className='equipment-title d-block'>Profile Image </div>
+						<div className='relative-div d-flex justify-content-center' style={{ maxHeight: '130px', maxWidth: '130px'}}>
+								<img className="img-fluid" src={profileImage === "" ? QuestionMarkImage : profileImage || QuestionMarkImage} />
+						</div>
 				</div>
-			</div>
 
-			<div className='col-6'>
-				<div className='relative-div d-flex' style={{ maxHeight: '130px', maxWidth: '90px'}} >
-					<img className="img-fluid" src={bodyImage === "" ? QuestionMarkImage : bodyImage || QuestionMarkImage} style={{maxWidth: '100%'}}/>
+				<div className='col-5 d-flex flex-column align-items-center'>
+						<div className='equipment-title d-block' >Body Image </div>
+						<div className='relative-div d-flex justify-content-center' style={{ maxHeight: '130px', maxWidth: '90px'}} >
+								<img className="img-fluid" src={bodyImage === "" ? QuestionMarkImage : bodyImage || QuestionMarkImage} style={{maxWidth: '100%'}}/>
+						</div>
 				</div>
-			</div>
-		
 		</div>
+		
 	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>
