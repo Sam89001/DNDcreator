@@ -474,13 +474,13 @@ function DndSheet({fetchData,
           {characterAttacks.map(attack => (
             <div key={attack._id} style={{marginBottom: '5px'}}>
               <div className="row" style={{paddingLeft: '12px'}}>
-                <div className='col-4 attack-first-field'>
+                <div className='col-4 attack-first-field hover-red'>
                   <div style={{ width: '85%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterAttackName}</div>
                 </div>
-                <div className='col-2 attack-second-field'>
+                <div className='col-2 attack-second-field hover-red'>
                   <div style={{ width: '85%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterAttackBonus}</div>
                 </div>
-                <div className='col-4 col-sm-3 attack-third-field'>
+                <div className='col-4 col-sm-3 attack-third-field hover-red'>
                   <div style={{width: '80%', overflowX: 'auto', whiteSpace: 'nowrap'}}>{attack.characterDamageType}</div>
                   <button className='delete-property-button' style={{width: '10%'}} 
                   onClick={(e) => deleteItem(e, attack._id, 'http://localhost:4000/CreateCharacter/DeleteAttack/')}>X</button>
@@ -493,7 +493,7 @@ function DndSheet({fetchData,
         {/* Equipment */}
         <div className="absolute-div dnd-sheet-noflex row" style={{ paddingRight: '8px', overflowY: 'auto', top: '74.5%', left: '46%', width: '21%', height: '21%', fontSize: '0.7vw' }}>
           {characterEquipment.map(equipment => (
-            <div key={equipment._id} className='col-12 equipment-container'>
+            <div key={equipment._id} className='col-12 equipment-container hover-red'>
               <div className='row '>
                   <div className='col-6 equipment-title' >Equipment Title</div> 
                   <div className='col-4 d-flex align-items-center equipment-title' >Quantity:</div>
@@ -527,7 +527,7 @@ function DndSheet({fetchData,
         {/* Features/Traits */}
         <div className="absolute-div row dnd-sheet-noflex" style={{ paddingRight: '20px', overflow: 'auto', top: '48.5%', left: '68%', width: '30%', height: '46%', fontSize: '0.7vw' }}>
           {characterTraits.map(trait => (
-            <div value={trait._id} key={trait._id} className='col-12 trait-container' >
+            <div value={trait._id} key={trait._id} className='col-12 trait-container hover-red' >
               <div className='row '>
                 <div className='col-5 trait-title' >Trait Title</div> 
                 <div className='col-5 d-flex align-items-center trait-title' >Other Trait Info:</div>

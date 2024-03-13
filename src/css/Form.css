@@ -120,6 +120,7 @@
   padding-right: 20px;
 }
 .multiple-property-container:hover {
+  cursor: pointer;
   background-color: rgb(75, 5, 5);
 }
 

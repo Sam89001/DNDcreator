@@ -50,6 +50,13 @@
     color: white; /* Adjust the variable name as needed */
 }
 
+/* Universal */
+
+.hover-red:hover {
+  cursor: pointer;
+  background-color: rgb(75, 5, 5)
+}
+
 /* Select Characters */
 
 .character-select-box {

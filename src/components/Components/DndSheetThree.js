@@ -128,21 +128,23 @@ return (
     {characterOrganisationSymbol
 		.filter(organisation => organisation.type === 'Organisation')
 		.map(organisation => (
-			<div key={organisation._id} className='col-12' style={{padding: '5px 15px 0px 5px'}}>
+			<div key={organisation._id} className='col-12 ' style={{padding: '5px 15px 0px 5px'}}>
 
-				<div className='equipment-title d-flex justify-content-between'> 
-					Organisation Name
-					<button className='delete-property-button' style={{width: '10%'}} 
-						onClick={(e) => deleteItem(e, organisation._id, 'http://localhost:4000/CreateCharacter/DeleteOrganisation/')}>
-						X
-					</button>
+				<div className='hover-red'> 
+					<div className='equipment-title d-flex justify-content-between'> 
+						Organisation Name
+						<button className='delete-property-button' style={{width: '10%'}} 
+							onClick={(e) => deleteItem(e, organisation._id, 'http://localhost:4000/CreateCharacter/DeleteOrganisation/')}>
+							X
+						</button>
+					</div>
+
+					<div style={{padding: '0px 0px 10px 10px', overflowX: 'auto'}}>{organisation.characterOrganisationName}</div>
+
+					<div className='equipment-title'>Organisation Description</div>
+					<div style={{padding: '0px 0px 10px 10px', borderBottom: 'solid 1px var(--lightBackgroundGrey)', wordWrap: 'break-word'}}>
+						{organisation.characterOrganisationDescription}</div>
 				</div>
-
-				<div style={{padding: '0px 0px 10px 10px', overflowX: 'auto'}}>{organisation.characterOrganisationName}</div>
-
-				<div className='equipment-title'>Organisation Description</div>
-				<div style={{padding: '0px 0px 10px 10px', borderBottom: 'solid 1px var(--lightBackgroundGrey)', wordWrap: 'break-word'}}>
-					{organisation.characterOrganisationDescription}</div>
 
 			</div>
 		))}
@@ -178,7 +180,7 @@ return (
 		<div className='row'>
 
 			{characterTreasure.map(treasure => (
-				<div className='col-12' style={{borderBottom: '1px solid var(--lightBackgroundGrey)', marginBottom: '15px'}}> 
+				<div className='col-12 hover-red' style={{borderBottom: '1px solid var(--lightBackgroundGrey)', marginBottom: '15px'}}> 
 					
 					<div className='equipment-title' style={{display: 'inline-block', width: '55%', marginRight: '10px'}}>Treasure Name </div>
 					<div className='equipment-title' style={{display: 'inline-block', width: '30%'}}>Treasure Quantity </div>
@@ -221,7 +223,7 @@ return (
 						</div>
 				</div>
 		</div>
-		
+
 	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '95%'}}/>

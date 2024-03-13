@@ -60,7 +60,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '0')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -76,7 +76,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '1')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -92,7 +92,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '2')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -108,7 +108,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '3')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -124,7 +124,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '4')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -140,7 +140,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '5')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -156,7 +156,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '6')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -172,7 +172,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '7')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -188,7 +188,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '8')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
@@ -204,7 +204,7 @@ return (
 		{loadCharacterSpells
 		.filter(spell => spell.characterSpellLevel === '9')
 		.map(spell => (
-			<div className='d-flex justify-content-between' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
+			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
 				<button className='delete-property-button' style={{width: '10%'}} 
 				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
 			</div>
