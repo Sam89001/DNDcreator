@@ -178,28 +178,30 @@ return (
 		<div className='row'>
 
 			{characterTreasure.map(treasure => (
-				<div className='col-12'> 
-					<div> 
-						<div className='equipment-title'>Treasure Name </div>
-						<div className='equipment-title'>Treasure Quantity </div>
-						<button className='delete-property-button' style={{width: '10%'}} 
-							onClick={(e) => deleteItem(e, treasure._id, 'http://localhost:4000/CreateCharacter/DeleteTreasure/')}>
+				<div className='col-12' style={{borderBottom: '1px solid var(--lightBackgroundGrey)', marginBottom: '15px'}}> 
+					
+					<div className='equipment-title' style={{display: 'inline-block', width: '55%', marginRight: '10px'}}>Treasure Name </div>
+					<div className='equipment-title' style={{display: 'inline-block', width: '30%'}}>Treasure Quantity </div>
+					<button className='delete-property-button' style={{display: 'inline-block', width: '10%'}} 
+						onClick={(e) => deleteItem(e, treasure._id, 'http://localhost:4000/CreateCharacter/DeleteTreasure/')}>
 							X
-						</button>
-					</div>
+					</button>
+					
 
-					<div>
-						<div>{treasure.characterTreasureName}</div>
-						<div>{treasure.characterTreasureQuantity}</div>
+					<div style={{padding: '0px 0px 5px 10px'}}> 
+						<div style={{display: 'inline-block', width: '57%', marginRight: '10px'}}>{treasure.characterTreasureName}</div>
+						<div style={{display: 'inline-block', width: '30%'}}>{treasure.characterTreasureQuantity}</div>
 					</div>
 
 					<div className='equipment-title d-flex '>Treasure Description </div>
-					<div>{treasure.characterTreasureDescription}</div>
+
+					<div style={{padding: '0px 0px 10px 10px', wordWrap: 'break-word', width: '90%'}}>{treasure.characterTreasureDescription}</div>
 				</div>
 			))}
 
 		</div>
 	</div>
+
 	
 	{/* Character Images*/}
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '48%', left: '36%', 
