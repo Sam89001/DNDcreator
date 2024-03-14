@@ -107,7 +107,7 @@ return (
 		<div className='row' style={{ paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}>
 
 			<div className="col-5" style={{ color: 'white', padding: '10px 0px 0px 30px' }}>
-				<DndSheetTwo getCharacterData={getCharacterData}
+				<DndSheetTwo getCharacterData={getCharacterData} 
 					propId={characterId} 
 					characterSpellcastingClass={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingClass : ''}
 					characterSpellcastingAbility={updateCharacterSpellcasting ? updateCharacterSpellcasting.characterSpellcastingAbility : ''}
@@ -137,6 +137,7 @@ return (
 
 				<div style={{overflowY: 'auto', paddingBottom: '20px'}}>
 					<SpellsForm propId={characterId} 
+					updateCharacterSpellcasting={updateCharacterSpellcasting}
 					updateCharacterSpellcastingFunction={updateCharacterSpellcastingFunction}
 					getCharacterData={getCharacterData} 
 					loadCharacterSpells={loadCharacterSpells}

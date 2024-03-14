@@ -45,7 +45,6 @@ function GeneralStatsForm({updateCharacterData, characterData}) {
 	const characterPbonusRef = useRef(null);
 	const characterHitDiceRef = useRef(null);
 
-	
 	useEffect(() => {
 		characterNameRef.current.value = characterData.characterName;
 		characterClassRef.current.value = characterData.characterClass;
