@@ -82,7 +82,7 @@ function ChooseCharacter() {
               if (user && user.id) {
                   getCharacters(user.id);
               }
-              closePopUp()
+              closeDeletePopUp()
               toast.success('Successfully deleted');
           }
       } catch (error) {
