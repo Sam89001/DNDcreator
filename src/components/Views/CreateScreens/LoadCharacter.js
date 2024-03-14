@@ -233,7 +233,8 @@ function LoadPlaySession() {
                   {/* Top */}
       
                   <div className='col-12' style={{paddingBottom: '20px'}}>
-                    <GeneralStatsForm updateCharacterData={updateCharacterData}/>
+                    <GeneralStatsForm updateCharacterData={updateCharacterData}
+                    characterData={characterData}/>
                   </div>
 
                   {/* Left Side */}
