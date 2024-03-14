@@ -22,6 +22,10 @@ function ChooseCharacter() {
   const { user } = useContext(UserContext);
   const [popUp, setPopUp] = useState(false);
   const [deletePopUp, setDeletePopUp] = useState(false);
+  const [deletePopUpId, setDeletePopUpId] = useState({
+    selectedId: ''
+  })
+
   const [characters, setCharacters] = useState([]);  
 
   //Pop Ups
@@ -32,39 +36,58 @@ function ChooseCharacter() {
   const closePopUp = () => {
     setPopUp(false)
   }
-  const openDeletePopUp = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const openDeletePopUp = (e, id) => {
+    e.preventDefault()
     setDeletePopUp(true);
+    setDeletePopUpId({
+      selectedId: id
+    })
   }
   const closeDeletePopUp = () => {
     setDeletePopUp(false)
   }
 
+  const getCharacters = async (userId) => {
+    try {
+        const response = await axios.get('/CreateCharacter/', {
+            params: {
+                userId: userId,
+            },
+        });
+        const characterData = response.data;
+        setCharacters(characterData);
+    } catch (err) {
+        console.error('Error fetching character data:', err);
+        toast.error('Error fetching character data');
+    }
+  };
+
   //Get Request
   useEffect(() => {
-    // Check if user and user.id are present before making the API request
-    if (user && user.id) {
-      axios
-        .get('/CreateCharacter/', {
-          params: {
-            userId: user.id,
-          },
-        })
-        .then((response) => {
-          const characterData = response.data;
-          setCharacters(characterData);
-        })
-        .catch((err) => {
-          console.error('Error fetching character data:', err);
-          toast.error('Error fetching character data');
-        });
-    }
+      if (user && user.id) {
+          getCharacters(user.id);
+      }
   }, [user]);
 
   //Delete Request
-  function deleteCharacter () {
-    alert("Test")
+  const deleteCharacter = async (e) => {
+      e.preventDefault();
+      const characterId = deletePopUpId.selectedId
+      console.log("This is the Id " + characterId)
+      try {
+          const response = await axios.delete('http://localhost:4000/CreateCharacter/DeleteCharacter/' + `${characterId}`);
+          if (response.error) {
+              toast.error(response.data.error);
+          } else {
+              if (user && user.id) {
+                  getCharacters(user.id);
+              }
+              closePopUp()
+              toast.success('Successfully deleted');
+          }
+      } catch (error) {
+          console.log(error)
+      }
   }
 
   return (
@@ -77,8 +100,6 @@ function ChooseCharacter() {
         <header className="header text-center">Choose Your Character</header>
       </div>
 
-      {/*<h1>{!!user && (user.id)}</h1>*/}
-
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center" >
           <div className="row h-100 w-100 d-flex" >  
@@ -89,6 +110,7 @@ function ChooseCharacter() {
             {Array.isArray(characters) && characters.length > 0 && characters.map((character) => (
             <LoadItem
               key={character._id}
+              id={character._id}
               title={character.characterName}
               link={`/LoadCharacter/${character._id}`}
               image={character.characterProfileImageAddress ? character.characterProfileImageAddress : TempImage}

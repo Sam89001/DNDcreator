@@ -10,11 +10,11 @@
   transform: translate(-50%, -50%);
 
   /* Styling */
-  background-color: var(--textGrey);
   border-radius: 10px;
 }
 
 .pop-up-styling {
+  background-color: var(--textGrey);
   height: 500px;
   width: 500px;
 }
@@ -55,23 +55,23 @@
 }
 
 .delete-pop-up {
-  height: 150px;
-  width: 300px;
+  height: 200px;
+  width: 400px;
+  background-color: var(--lightBackgroundGrey);
 }
 
 .delete-pop-up-button {
-  max-height: 30px;
-  padding: 0;
+  max-height: 40px;
+  padding: 15px;
   border: none;
   background: none;
-  color: white;
   text-align: center;
-  font-size: 1.1vw;
+  font-size: 1.5vw;
   line-height: 15px;
 }
 
 .delete-pop-up-button:hover {
-  font-size: 1.3vw;
+  font-size: 1.7vw;
   line-height: 15px;
   text-align: center;
 }
