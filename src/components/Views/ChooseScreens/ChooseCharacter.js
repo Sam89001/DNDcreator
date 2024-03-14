@@ -64,7 +64,7 @@ function ChooseCharacter() {
 
   //Delete Request
   function deleteCharacter () {
-
+    alert("Test")
   }
 
   return (
@@ -101,7 +101,7 @@ function ChooseCharacter() {
       </div>
 
       {popUp && <PopUp closePopUp={closePopUp} popUpTitle='Create Your Character' formType='createCharacterForm' />}
-      {deletePopUp && <DeletePopUp closeDeletePopUp={closeDeletePopUp} deleteFunction={deleteCharacter}/>}
+      {deletePopUp && <DeletePopUp closeDeletePopUp={closeDeletePopUp} deleteCharacter={deleteCharacter}/>}
     </div>
   );
 }
