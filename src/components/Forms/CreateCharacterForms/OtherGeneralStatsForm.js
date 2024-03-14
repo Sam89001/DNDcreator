@@ -2,7 +2,7 @@ import '../../../css/Form.css';
 import '../../../css/Site.css';
 
 //States
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 //Dependencies
@@ -15,7 +15,7 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharacterData,
+function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacterStats, getCharacterData,
   updateCharacterTreasure, setUpdateCharacterTreasure,
 
   updateCharacterOrganisation, setUpdateCharacterOrganisation,
@@ -67,6 +67,47 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
     }
 	});
   
+  const characterAgeRef = useRef(null);
+	const characterHeightRef = useRef(null);
+	const characterWeightRef = useRef(null);
+	const characterEyesRef = useRef(null);
+	const characterSkinRef = useRef(null);
+	const characterHairRef = useRef(null);
+	const characterAppearenceRef = useRef(null);
+	const characterBackstoryRef = useRef(null);
+
+  //Sets Form Existing Information
+	useEffect(() => {
+		characterAgeRef.current.value = updateCharacterStats.characterAge;
+		characterHeightRef.current.value = updateCharacterStats.characterHeight;
+		characterWeightRef.current.value = updateCharacterStats.characterWeight;
+		characterEyesRef.current.value = updateCharacterStats.characterEyes;
+		characterSkinRef.current.value = updateCharacterStats.characterSkin;
+		characterHairRef.current.value = updateCharacterStats.characterHair;
+		characterAppearenceRef.current.value = updateCharacterStats.characterTextAppearence;
+		characterBackstoryRef.current.value = updateCharacterStats.characterBackstory;
+
+		setCharacterOtherStats(prevData => ({
+				...prevData,
+				characterAge: updateCharacterStats.characterAge,
+				characterHeight: updateCharacterStats.characterHeight,
+				characterWeight: updateCharacterStats.characterWeight,
+				characterEyes: updateCharacterStats.characterEyes,
+        characterSkin: updateCharacterStats.characterSkin,
+        characterHair: updateCharacterStats.characterHair,
+		}));
+    setCharacterInfo(prevData => ({
+      ...prevData,
+      characterAppearence: {
+        ...prevData.characterAppearence,
+        appearence: updateCharacterStats.characterTextAppearence
+      },
+      characterBackstory: {
+        ...prevData.characterBackstory,
+        backstory: updateCharacterStats.characterBackstory
+      }
+    }));
+	}, [updateCharacterStats]);
 
   //General Stats Post
   const updateGeneralOtherStats = async (e) => {
@@ -83,7 +124,15 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
-				updateCharacterStatsFunction(characterOtherStats)
+				setUpdateCharacterStats(prevState => ({
+					...prevState,
+          characterAge,
+          characterEyes,
+          characterHair,
+          characterHeight,
+          characterSkin,
+          characterWeight
+				}));
 				toast.success('Updated character details');
 			}
 		} catch (error) {
@@ -294,31 +343,37 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Age"
+            ref={characterAgeRef}
 						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterAge: e.target.value })}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Height"
+            ref={characterHeightRef}
 						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterHeight: e.target.value })}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Weight"
+            ref={characterWeightRef}
 						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterWeight: e.target.value })}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Eyes"
+            ref={characterEyesRef}
 						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterEyes: e.target.value })}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Skin"
+            ref={characterSkinRef}
 						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterSkin: e.target.value })}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Hair"
+            ref={characterHairRef}
 						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterHair: e.target.value })}/>
 					</div>
 
@@ -529,6 +584,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             <div className='col-12' style={{paddingBottom: '10px'}}>
               <textarea className='field-style spell-description-field' style={{width: '100%'}} 
               placeholder="Description"
+              ref={characterAppearenceRef}
               onChange={(e) => {
                 setCharacterInfo({ ...characterInfo, characterAppearence: { ...characterInfo.characterAppearence, appearence: e.target.value }})
               }}/>
@@ -555,6 +611,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStatsFunction, getCharact
             <div className='col-12' style={{paddingBottom: '10px'}}>
               <textarea className='field-style spell-description-field' style={{width: '100%'}} 
               placeholder="Description"
+              ref={characterBackstoryRef}
               onChange={(e) => {
                 setCharacterInfo({ ...characterInfo, characterBackstory: { ...characterInfo.characterBackstory, backstory: e.target.value }})
               }}/>

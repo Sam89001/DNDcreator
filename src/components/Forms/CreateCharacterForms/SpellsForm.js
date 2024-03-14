@@ -70,7 +70,7 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setU
 					characterSpellcastingAbility,
 					characterSpellSaveDC,
 					characterSpellAttackBonus
-			}));
+				}));
 				toast.success('Updated character details');
 			}
 		} catch (error) {

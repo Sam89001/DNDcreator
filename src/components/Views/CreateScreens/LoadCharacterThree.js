@@ -97,11 +97,6 @@ function LoadCharacterPageThree() {
 		}
 	}
 
-	const updateCharacterStatsFunction = (newCharacterData) => {
-		setUpdateCharacterStats(newCharacterData);
-	}
-
-
 return (
   <div style={{paddingBottom: '20px'}}>
 		<nav className='navigation-bar'>
@@ -147,7 +142,8 @@ return (
 						<OtherGeneralStatsForm
 						propId={characterId} 
 						getCharacterData={getCharacterData}
-						updateCharacterStatsFunction={updateCharacterStatsFunction}
+						updateCharacterStats={updateCharacterStats}
+						setUpdateCharacterStats={setUpdateCharacterStats}
 						updateCharacterTreasure={updateCharacterTreasure} 
 						setUpdateCharacterTreasure={setUpdateCharacterTreasure}
 						updateCharacterOrganisation={updateCharacterOrganisation}
