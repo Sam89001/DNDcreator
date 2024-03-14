@@ -94,9 +94,6 @@ function LoadCharacterPageTwo() {
 			console.log(error)
 		}
 	}
-	const updateCharacterSpellcastingFunction = (newCharacterData) => {
-		setUpdateCharacterSpellcasting(newCharacterData);
-	}
 
 return (
   <div style={{paddingBottom: '20px'}}>
@@ -138,7 +135,7 @@ return (
 				<div style={{overflowY: 'auto', paddingBottom: '20px'}}>
 					<SpellsForm propId={characterId} 
 					updateCharacterSpellcasting={updateCharacterSpellcasting}
-					updateCharacterSpellcastingFunction={updateCharacterSpellcastingFunction}
+					setUpdateCharacterSpellcasting={setUpdateCharacterSpellcasting}
 					getCharacterData={getCharacterData} 
 					loadCharacterSpells={loadCharacterSpells}
 					setLoadCharacterSpells={setLoadCharacterSpells}/>

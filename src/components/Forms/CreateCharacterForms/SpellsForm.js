@@ -15,7 +15,7 @@ import { UserContext } from '../../../context/userContext';
 //Images
 import DownArrowImage from '../../../images/Down Arrow.png'
 
-function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, updateCharacterSpellcastingFunction, 
+function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setUpdateCharacterSpellcasting, 
 	loadCharacterSpells, setLoadCharacterSpells}) {
 
 	//Dropdown Code
@@ -64,7 +64,13 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, upda
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
-				updateCharacterSpellcastingFunction(characterSpellcasting)
+				setUpdateCharacterSpellcasting(prevState => ({
+					...prevState,
+					characterSpellcastingClass,
+					characterSpellcastingAbility,
+					characterSpellSaveDC,
+					characterSpellAttackBonus
+			}));
 				toast.success('Updated character details');
 			}
 		} catch (error) {
@@ -100,7 +106,18 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, upda
 			if (response.data.error) {
 				toast.error(response.data.error);
 			} else {
-				updateCharacterSpellcastingFunction(characterSpellSlots)
+				setUpdateCharacterSpellcasting(prevState => ({
+					...prevState,
+					characterSpellSlot1,
+					characterSpellSlot2,
+					characterSpellSlot3,
+					characterSpellSlot4,
+					characterSpellSlot5,
+					characterSpellSlot6,
+					characterSpellSlot7,
+					characterSpellSlot8,
+					characterSpellSlot9
+				}));
 				toast.success('Updated character details');
 			}
 		} catch (error) {
