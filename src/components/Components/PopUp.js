@@ -27,7 +27,7 @@ function PopUp({closePopUp, popUpTitle, formType}) {
 
   return (
     <div className='pop-up-overlay'>
-      <div className="pop-up">
+      <div className="pop-up pop-up-styling">
 
         <div className='pop-up-header'>
           <div className='row'>

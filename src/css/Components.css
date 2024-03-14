@@ -1,10 +1,9 @@
 /* Popup */
 
-.pop-up {
-    /* Position */
+.pop-up,
+.delete-pop-up {
+  /* Position */
   z-index: 10;
-  height: 500px;
-  width: 500px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,6 +12,11 @@
   /* Styling */
   background-color: var(--textGrey);
   border-radius: 10px;
+}
+
+.pop-up-styling {
+  height: 500px;
+  width: 500px;
 }
 
 .pop-up-header {
@@ -48,6 +52,28 @@
 
 .pop-up-button:hover {
     color: white; /* Adjust the variable name as needed */
+}
+
+.delete-pop-up {
+  height: 150px;
+  width: 300px;
+}
+
+.delete-pop-up-button {
+  max-height: 30px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: white;
+  text-align: center;
+  font-size: 1.1vw;
+  line-height: 15px;
+}
+
+.delete-pop-up-button:hover {
+  font-size: 1.3vw;
+  line-height: 15px;
+  text-align: center;
 }
 
 /* Universal */

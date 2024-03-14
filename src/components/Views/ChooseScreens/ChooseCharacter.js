@@ -7,6 +7,7 @@ import Navbar from '../../Layouts/Navbar';
 import Create from '../../Components/Create'
 import LoadItem from '../../Components/LoadItem';
 import PopUp from '../../Components/PopUp';
+import DeletePopUp from '../../Components/DeletePopUp';
 import { UserContext } from '../../../context/userContext';
 
 //Dependencies
@@ -20,6 +21,7 @@ import TempImage from '../../../images/Question Mark Graphic.png'
 function ChooseCharacter() {
   const { user } = useContext(UserContext);
   const [popUp, setPopUp] = useState(false);
+  const [deletePopUp, setDeletePopUp] = useState(false);
   const [characters, setCharacters] = useState([]);  
 
   //Pop Ups
@@ -30,9 +32,16 @@ function ChooseCharacter() {
   const closePopUp = () => {
     setPopUp(false)
   }
+  const openDeletePopUp = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDeletePopUp(true);
+  }
+  const closeDeletePopUp = () => {
+    setDeletePopUp(false)
+  }
 
   //Get Request
-
   useEffect(() => {
     // Check if user and user.id are present before making the API request
     if (user && user.id) {
@@ -53,6 +62,10 @@ function ChooseCharacter() {
     }
   }, [user]);
 
+  //Delete Request
+  function deleteCharacter () {
+
+  }
 
   return (
     <div>
@@ -79,6 +92,7 @@ function ChooseCharacter() {
               title={character.characterName}
               link={`/LoadCharacter/${character._id}`}
               image={character.characterProfileImageAddress ? character.characterProfileImageAddress : TempImage}
+              openDeletePopUp={openDeletePopUp}
             />
             ))}
             
@@ -87,6 +101,7 @@ function ChooseCharacter() {
       </div>
 
       {popUp && <PopUp closePopUp={closePopUp} popUpTitle='Create Your Character' formType='createCharacterForm' />}
+      {deletePopUp && <DeletePopUp closeDeletePopUp={closeDeletePopUp} deleteFunction={deleteCharacter}/>}
     </div>
   );
 }
