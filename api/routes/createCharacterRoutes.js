@@ -179,7 +179,7 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
 
       if (
         isNaN(characterHp) || isNaN(characterAc) || isNaN(characterLevel) ||
-        isNaN(characterSpeed) || isNaN(characterXp) || isNaN(characterInspiration) ||
+        isNaN(characterXp) || isNaN(characterInspiration) ||
         isNaN(characterProficiencyBonus) || isNaN(characterPerception) 
       ) {
         return res.json({

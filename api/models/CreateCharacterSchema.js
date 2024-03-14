@@ -32,7 +32,7 @@ const CreateCharacterSchema = new mongoose.Schema({
     type: String,
   },
   characterSpeed: {
-    type: Number,
+    type: String,
   },
   characterInitiative: {
     type: Number,
