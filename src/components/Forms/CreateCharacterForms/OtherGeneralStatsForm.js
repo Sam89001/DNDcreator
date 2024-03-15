@@ -78,17 +78,17 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
 
   //Sets Form Existing Information
 	useEffect(() => {
-		characterAgeRef.current.value = updateCharacterStats.characterAge;
-		characterHeightRef.current.value = updateCharacterStats.characterHeight;
-		characterWeightRef.current.value = updateCharacterStats.characterWeight;
-		characterEyesRef.current.value = updateCharacterStats.characterEyes;
-		characterSkinRef.current.value = updateCharacterStats.characterSkin;
-		characterHairRef.current.value = updateCharacterStats.characterHair;
-		characterAppearenceRef.current.value = updateCharacterStats.characterTextAppearence;
-		characterBackstoryRef.current.value = updateCharacterStats.characterBackstory;
+		characterAgeRef.current.value = updateCharacterStats.characterAge || '';
+		characterHeightRef.current.value = updateCharacterStats.characterHeight || '';
+		characterWeightRef.current.value = updateCharacterStats.characterWeight || '';
+		characterEyesRef.current.value = updateCharacterStats.characterEyes || '';
+		characterSkinRef.current.value = updateCharacterStats.characterSkin || '';
+		characterHairRef.current.value = updateCharacterStats.characterHair || '';
+		characterAppearenceRef.current.value = updateCharacterStats.characterTextAppearence || '';
+		characterBackstoryRef.current.value = updateCharacterStats.characterBackstory || '';
 
-		setCharacterOtherStats(prevData => ({
-				...prevData,
+		setCharacterOtherStats(prevStats => ({
+				...prevStats,
 				characterAge: updateCharacterStats.characterAge,
 				characterHeight: updateCharacterStats.characterHeight,
 				characterWeight: updateCharacterStats.characterWeight,

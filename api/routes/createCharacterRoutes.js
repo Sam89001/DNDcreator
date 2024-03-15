@@ -1071,6 +1071,15 @@ router.put('/UpdateTotalSpellSlots/:characterId', async (req, res) => {
         });
       }
 
+      if (characterSpellSlot1.length > 4 || characterSpellSlot2.length > 4 || characterSpellSlot3.length > 4 || 
+        characterSpellSlot4.length > 4 || characterSpellSlot5.length > 4 || characterSpellSlot6.length > 4 ||
+        characterSpellSlot7.length > 4 || characterSpellSlot8.length > 4 || characterSpellSlot9.length > 4
+        ) {
+          return res.json({
+            error: 'character Spell Slots cannot exceed 4 numbers'
+          });
+        }
+
     const characterData = {
       characterSpellSlot1, characterSpellSlot2, characterSpellSlot3,
 			characterSpellSlot4, characterSpellSlot5, characterSpellSlot6, characterSpellSlot7,

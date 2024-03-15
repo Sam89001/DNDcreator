@@ -127,22 +127,22 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setU
 
 	//Sets Form Existing Spellcasting Information
 	useEffect(() => {
-		characterSpellcasterClassRef.current.value = updateCharacterSpellcasting.characterSpellcastingClass;
-		characterSpellcasterAbilityRef.current.value = updateCharacterSpellcasting.characterSpellcastingAbility;
-		characterSpellsaveDcRef.current.value = updateCharacterSpellcasting.characterSpellSaveDC;
-		characterSpellAttackBonusRef.current.value = updateCharacterSpellcasting.characterSpellAttackBonus;
-		characterSpellSlot1Ref.current.value = updateCharacterSpellcasting.characterSpellSlot1;
-		characterSpellSlot2Ref.current.value = updateCharacterSpellcasting.characterSpellSlot2;
-		characterSpellSlot3Ref.current.value = updateCharacterSpellcasting.characterSpellSlot3;
-		characterSpellSlot4Ref.current.value = updateCharacterSpellcasting.characterSpellSlot4;
-		characterSpellSlot5Ref.current.value = updateCharacterSpellcasting.characterSpellSlot5;
-		characterSpellSlot6Ref.current.value = updateCharacterSpellcasting.characterSpellSlot6;
-		characterSpellSlot7Ref.current.value = updateCharacterSpellcasting.characterSpellSlot7;
-		characterSpellSlot8Ref.current.value = updateCharacterSpellcasting.characterSpellSlot8;
-		characterSpellSlot9Ref.current.value = updateCharacterSpellcasting.characterSpellSlot9;
+		characterSpellcasterClassRef.current.value = updateCharacterSpellcasting.characterSpellcastingClass || '';
+		characterSpellcasterAbilityRef.current.value = updateCharacterSpellcasting.characterSpellcastingAbility || '';
+		characterSpellsaveDcRef.current.value = updateCharacterSpellcasting.characterSpellSaveDC || '';
+		characterSpellAttackBonusRef.current.value = updateCharacterSpellcasting.characterSpellAttackBonus || '';
+		characterSpellSlot1Ref.current.value = updateCharacterSpellcasting.characterSpellSlot1 || '';
+		characterSpellSlot2Ref.current.value = updateCharacterSpellcasting.characterSpellSlot2 || '';
+		characterSpellSlot3Ref.current.value = updateCharacterSpellcasting.characterSpellSlot3 || '';
+		characterSpellSlot4Ref.current.value = updateCharacterSpellcasting.characterSpellSlot4 || '';
+		characterSpellSlot5Ref.current.value = updateCharacterSpellcasting.characterSpellSlot5 || '';
+		characterSpellSlot6Ref.current.value = updateCharacterSpellcasting.characterSpellSlot6 || '';
+		characterSpellSlot7Ref.current.value = updateCharacterSpellcasting.characterSpellSlot7 || '';
+		characterSpellSlot8Ref.current.value = updateCharacterSpellcasting.characterSpellSlot8 || '';
+		characterSpellSlot9Ref.current.value = updateCharacterSpellcasting.characterSpellSlot9 || '';
 
-		setCharacterSpellcasting(prevData => ({
-				...prevData,
+		setCharacterSpellcasting(prevSpells => ({
+				...prevSpells,
 				characterSpellcastingClass: updateCharacterSpellcasting.characterSpellcastingClass,
 				characterSpellcastingAbility: updateCharacterSpellcasting.characterSpellcastingAbility,
 				characterSpellSaveDC: updateCharacterSpellcasting.characterSpellSaveDC,
