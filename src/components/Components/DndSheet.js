@@ -610,15 +610,18 @@ function DndSheet({fetchData,
         </div>
 
         {/* Other Proficiency/Languages */}
-        <div className="absolute-div dnd-sheet-noflex" style={{ overflow: 'auto', top: '79%', left: '7.5%', width: '26%', height: '16.5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet-noflex" style={{ overflowX: 'auto', paddingRight: '10px', paddingLeft: '10px', top: '79%', left: '7.3%', width: '27%', height: '16.5%', fontSize: '0.7vw' }}>
           <div className='row'>
-          {characterLanguages.map(language => (
-            <div value={language._id} key={language._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {language.characterLanguage}
-              <button className='delete-property-button' onClick={(e) => deleteItem(e, language._id, 'http://localhost:4000/CreateCharacter/DeleteLanguage/')} >X</button>
-            </div>
-          ))}
-          </div>
+            {characterLanguages.map(language => (
+              <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={language._id}>
+                <div value={language._id} key={language._id} style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
+                  {language.characterLanguage}
+                </div>
+                <button className='delete-property-button' style={{ marginLeft: '5px', paddingBottom: '10px' }}
+                onClick={(e) => deleteItem(e, language._id, 'http://localhost:4000/CreateCharacter/DeleteLanguage/')} >X</button>
+              </div>
+            ))} 
+          </div>     
         </div>
         
         {/* image */}
