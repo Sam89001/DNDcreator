@@ -560,31 +560,38 @@ function DndSheet({fetchData,
         {/* Personality Trait */}
         <div className="absolute-div row dnd-sheet" style={{ overflowX: 'auto', paddingRight: '10px', top: '17.5%', left: '69%', width: '26.5%', height: '6%', fontSize: '0.7vw' }}>
           {characterPersonalityTraits.map(trait => (
-            <div className='col-12 hover-red d-flex align-items-center' key={trait._id}>
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={trait._id}>
               <div value={trait._id} style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
                 {trait.characterPersonalityTrait}
               </div>
-              <button className='delete-property-button' style={{ marginLeft: '5px', paddingBottom: '10px' }} onClick={(e) => deleteItem(e, trait._id, 'http://localhost:4000/CreateCharacter/DeletePersonalityTrait/')}>X</button>
+              <button className='delete-property-button' style={{ marginLeft: '5px', paddingBottom: '10px' }} 
+              onClick={(e) => deleteItem(e, trait._id, 'http://localhost:4000/CreateCharacter/DeletePersonalityTrait/')}>X</button>
             </div>
           ))}
         </div>
 
         {/* Ideals */}
-        <div className="absolute-div row dnd-sheet" style={{  overflow: 'auto', top: '26%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet" style={{ overflowX: 'auto', paddingRight: '10px', top: '26%', left: '69%', width: '26.5%', height: '4.5%', fontSize: '0.7vw' }}>
           {characterIdeals.map(ideal => (
-            <div value={ideal._id} key={ideal._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {ideal.characterIdeal}
-              <button className='delete-property-button' onClick={(e) => deleteItem(e, ideal._id, 'http://localhost:4000/CreateCharacter/DeleteIdeal/')} >X</button>
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={ideal._id}> 
+              <div value={ideal._id} key={ideal._id} style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
+                {ideal.characterIdeal}
+              </div>
+              <button className='delete-property-button' style={{ marginLeft: '5px', paddingBottom: '10px' }}
+              onClick={(e) => deleteItem(e, ideal._id, 'http://localhost:4000/CreateCharacter/DeleteIdeal/')} >X</button>
             </div>
           ))}
         </div>
 
         {/* Bonds */}
-        <div className="absolute-div row dnd-sheet" style={{  overflow: 'auto', top: '33%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet" style={{ overflowX: 'auto', paddingRight: '10px', top: '33%', left: '69%', width: '26.5%', height: '4.5%', fontSize: '0.7vw' }}>
           {characterBonds.map(bond => (
-            <div value={bond._id} key={bond._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {bond.characterBond}
-              <button className='delete-property-button' onClick={(e) => deleteItem(e, bond._id, 'http://localhost:4000/CreateCharacter/DeleteBond/')} >X</button>
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={bond._id}> 
+              <div value={bond._id} key={bond._id}  style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
+                {bond.characterBond}
+              </div>
+              <button className='delete-property-button' style={{ marginLeft: '5px', paddingBottom: '10px' }}
+              onClick={(e) => deleteItem(e, bond._id, 'http://localhost:4000/CreateCharacter/DeleteBond/')} >X</button>
             </div>
           ))}
         </div>
