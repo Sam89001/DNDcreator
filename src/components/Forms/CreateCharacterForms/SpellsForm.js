@@ -372,25 +372,29 @@ return (
 					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spellcaster Class"
 						ref={characterSpellcasterClassRef}
-						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingClass: e.target.value })}/>
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingClass: e.target.value })}
+						onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
 					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spellcasting Ability"
 						ref={characterSpellcasterAbilityRef}
-						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingAbility: e.target.value })}/>
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellcastingAbility: e.target.value })}
+						onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
 					<div style={{display: 'inline-block', width: '48%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spellsave DC"
 						ref={characterSpellsaveDcRef}
-						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellSaveDC: e.target.value })}/>
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellSaveDC: e.target.value })}
+						onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
 					<div style={{display: 'inline-block', width: '48%'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Spell ATK Bonus"
 						ref={characterSpellAttackBonusRef}
-						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellAttackBonus: e.target.value })}/>
+						onChange={(e) => setCharacterSpellcasting({ ...characterSpellcasting, characterSpellAttackBonus: e.target.value })}
+						onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
 					<div className="spells-field">
