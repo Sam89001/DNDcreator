@@ -587,7 +587,7 @@ function DndSheet({fetchData,
         <div className="absolute-div row dnd-sheet" style={{ overflowX: 'auto', paddingRight: '10px', top: '33%', left: '69%', width: '26.5%', height: '4.5%', fontSize: '0.7vw' }}>
           {characterBonds.map(bond => (
             <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={bond._id}> 
-              <div value={bond._id} key={bond._id}  style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
+              <div value={bond._id} key={bond._id} style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
                 {bond.characterBond}
               </div>
               <button className='delete-property-button' style={{ marginLeft: '5px', paddingBottom: '10px' }}
@@ -597,11 +597,14 @@ function DndSheet({fetchData,
         </div>
 
         {/* Flaws */}
-        <div className="absolute-div row dnd-sheet" style={{ overflow: 'auto', top: '40%', left: '70%', width: '24%', height: '5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div row dnd-sheet" style={{ overflowX: 'auto', paddingRight: '10px', top: '40%', left: '69%', width: '26.5%', height: '4.5%', fontSize: '0.7vw' }}>
           {characterFlaws.map(flaw => (
-            <div value={flaw._id} key={flaw._id} className='col-12 multiple-property-container' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              {flaw.characterFlaw}
-              <button className='delete-property-button' onClick={(e) => deleteItem(e, flaw._id, 'http://localhost:4000/CreateCharacter/DeleteFlaw/')} >X</button>
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={flaw._id}>
+              <div value={flaw._id} key={flaw._id} style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '10px' }}>
+                {flaw.characterFlaw}
+              </div>
+              <button className='delete-property-button'  style={{ marginLeft: '5px', paddingBottom: '10px' }}
+              onClick={(e) => deleteItem(e, flaw._id, 'http://localhost:4000/CreateCharacter/DeleteFlaw/')} >X</button>
             </div>
           ))}
         </div>
