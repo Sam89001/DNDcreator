@@ -36,22 +36,22 @@ return (
 <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
 	{/* Spellcasting Class */}
-	<div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '8.2%', left: '8%', width: '25%', height: '5%', fontSize: '1.1vw' }}>
+	<div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '15px', whiteSpace: 'nowrap', top: '8.2%', left: '8%', width: '25%', height: '5%', fontSize: '1.1vw' }}>
     <div>{characterSpellcastingClass}</div>
   </div>
 
 	{/* Spellcasting Ability */}
-	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '43%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+	<div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap',  top: '7.2%', left: '42.5%', width: '9.2%', height: '5%', fontSize: '1.1vw' }}>
     <div>{characterSpellcastingAbility}</div>
   </div>
 
 	{/* Spellcasting DC */}
-	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '58%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+	<div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '7.2%', left: '57%', width: '9%', height: '5%', fontSize: '1.1vw' }}>
     <div>{characterSpellSaveDC}</div>
   </div>
 
 	{/* Spellcasting Atk Bonus */}
-	<div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '7.7%', left: '73%', width: '9%', height: '2.5%', fontSize: '1.1vw' }}>
+	<div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '7.2%', left: '72.5%', width: '9%', height: '5%', fontSize: '1.1vw' }}>
     <div>{characterSpellAttackBonus}</div>
   </div>
 
