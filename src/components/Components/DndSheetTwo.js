@@ -201,14 +201,19 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '43.5%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '7')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'> 
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '7')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+					{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+						onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 	
 	{/* Spell Slot 8*/}
@@ -217,14 +222,19 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '65%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '8')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'> 
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '8')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+					{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+						onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 9*/}
@@ -233,14 +243,19 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '82.5%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '9')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '9')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+						{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+						onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '90%'}}/>
