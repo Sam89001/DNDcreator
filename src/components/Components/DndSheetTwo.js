@@ -57,14 +57,18 @@ return (
 
 	{/* Cantrips */}
   <div className="absolute-div dnd-sheet-noflex" style={{  overflowY: 'auto', paddingRight: '15px', top: '23.3%', left: '5%', width: '26.5%', height: '13%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '0')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '0')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}>
+					<div  style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+					{spell.characterSpellName}</div>
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}} 
+					onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 1*/}
@@ -72,15 +76,20 @@ return (
     <div>{characterSpellSlot1}</div>
   </div>
 
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '45%', left: '6.5%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '1')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowX: 'auto', paddingRight: '15px', top: '45%', left: '6.5%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '1')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+						{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}} 
+					onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 2*/}
@@ -89,14 +98,19 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '71.7%', left: '6.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '2')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '2')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+						{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+					onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 3*/}
@@ -105,14 +119,18 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '3')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '3')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+					{spell.characterSpellName}</div>
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+					onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		 </div>
 	</div>
 
 	{/* Spell Slot 4*/}
@@ -121,14 +139,18 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '50.3%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '4')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '4')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}>
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }} >
+						{spell.characterSpellName}</div>
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+					onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 5*/}
@@ -137,14 +159,19 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '79%', left: '34.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '5')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '5')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}>
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
+					{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+						onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 6*/}
@@ -153,14 +180,19 @@ return (
   </div>
 
 	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
-		{loadCharacterSpells
-		.filter(spell => spell.characterSpellLevel === '6')
-		.map(spell => (
-			<div className='d-flex justify-content-between hover-red' key={spell._id} style={{display: 'block', width: '100%'}} >{spell.characterSpellName}
-				<button className='delete-property-button' style={{width: '10%'}} 
-				onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
-			</div>
-		))}
+		<div className='row'>
+			{loadCharacterSpells
+			.filter(spell => spell.characterSpellLevel === '6')
+			.map(spell => (
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }} >
+					{spell.characterSpellName}</div>
+
+					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
+					onClick={(e) => deleteItem(e, spell._id, 'http://localhost:4000/CreateCharacter/DeleteSpell/')}>X</button>
+				</div>
+			))}
+		</div>
 	</div>
 
 	{/* Spell Slot 7*/}
