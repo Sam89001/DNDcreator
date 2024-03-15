@@ -17,33 +17,39 @@ function ImageUploadForm({getCharacterData, propId, propAddress, propMaxWidth, p
   
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-
+  
     if (selectedFile) {
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-
-        const img = new Image();
-        img.onload = () => {
-
-          if (img.width > maxWidth || img.height > maxHeight) {
-            setFile(null);
-            setPreviewURL('');
-            toast.error(`Please select an image with dimensions less than ${maxWidth} x ${maxHeight} pixels.`);
-            e.target.value = null;
-          } else {
-            setFile(selectedFile);
-            setPreviewURL(reader.result);
-          }
+      if (selectedFile.type === "image/jpeg" || selectedFile.type === "image/png") {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const img = new Image();
+          img.onload = () => {
+            if (img.width > maxWidth || img.height > maxHeight) {
+              setFile(null);
+              setPreviewURL('');
+              toast.error(`Please select an image with dimensions less than ${maxWidth} x ${maxHeight} pixels.`);
+              e.target.value = null;
+            } else {
+              setFile(selectedFile);
+              setPreviewURL(reader.result);
+            }
+          };
+          img.src = reader.result;
         };
-        img.src = reader.result;
-      };
-      reader.readAsDataURL(selectedFile);
+        reader.readAsDataURL(selectedFile);
+      } else {
+        // File format is not supported
+        setFile(null);
+        setPreviewURL('');
+        toast.error("Please select a JPEG or PNG image file.");
+        e.target.value = null;
+      }
     } else {
       setFile(null);
       setPreviewURL('');
     }
   };
+  
 
   const upload = async (e) => {
     e.preventDefault();
