@@ -232,6 +232,15 @@ router.put('/UpdateGeneralStats/:id', async (req, res) => {
         });
       }
 
+      if (characterAc.length > 4 || characterHp.length > 5 || characterLevel.length > 4
+        || characterInspiration.length > 4 || characterInspiration.length > 4 || characterProficiencyBonus.length > 4 ||
+        characterPerception.length > 4)
+        {
+          return res.json({
+            error: 'character Hp, AC, Level, Inspiration, Proficiency Bonus and Perception must not leave boundaries'
+          });
+      }
+
     const characterData = {
       characterName,
       characterClass,
@@ -284,6 +293,14 @@ router.put('/UpdateSkills/:id', async (req, res) => {
       ) {
         return res.json({
           error: 'Skills must be numbers',
+        });
+      }
+
+      if ( characterStrength.length > 3 || characterDexterity.length > 3 || characterConstitution.length > 3 ||
+        characterIntelligence.length > 3 || characterWisdom.length > 3 || characterCharisma.length > 3
+      ){
+        return res.json({
+          error: 'Skills must not exceed 3 digits',
         });
       }
 
