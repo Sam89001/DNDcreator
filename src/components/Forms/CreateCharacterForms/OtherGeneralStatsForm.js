@@ -344,37 +344,43 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Age"
             ref={characterAgeRef}
-						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterAge: e.target.value })}/>
+						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterAge: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Height"
             ref={characterHeightRef}
-						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterHeight: e.target.value })}/>
+						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterHeight: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Weight"
             ref={characterWeightRef}
-						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterWeight: e.target.value })}/>
+						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterWeight: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Eyes"
             ref={characterEyesRef}
-						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterEyes: e.target.value })}/>
+						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterEyes: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Skin"
             ref={characterSkinRef}
-						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterSkin: e.target.value })}/>
+						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterSkin: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
           <div style={{display: 'inline-block', width: '31%', marginRight: '10px'}} className="spells-field">
 						<input className='field-style' style={{width: '100%'}} placeholder="Hair"
             ref={characterHairRef}
-						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterHair: e.target.value })}/>
+						onChange={(e) => setCharacterOtherStats({ ...characterOtherStats, characterHair: e.target.value })}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}/>
 					</div>
 
           <div className="d-flex align-items-center spells-field">
@@ -400,6 +406,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
                 <div className='col-12' style={{paddingBottom: '10px'}}>
                   <input className='field-style' style={{width: '100%'}} placeholder="Name"
                     value={characterOrganisation.characterOrganisation.characterOrganisationName}
+                    onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
                     onChange={(e) =>
                       setCharacterOrganisation((prevCharacterOrganisation) => ({
                         ...prevCharacterOrganisation,
@@ -459,6 +466,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
                 <div className='col-12' style={{paddingBottom: '10px'}}>
                   <input className='field-style' style={{width: '100%'}} placeholder="Name"
                     value={characterOrganisation.characterSymbol.characterSymbolName}
+                    onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
                     onChange={(e) =>
                       setCharacterOrganisation((prevCharacterOrganisation) => ({
                         ...prevCharacterOrganisation,
@@ -521,6 +529,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
             <div className='col-8' style={{paddingBottom: '10px'}}>
               <input className='field-style' style={{width: '100%'}} placeholder="Name"
               value={characterTreasure.characterTreasureName}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
               onChange={(e) =>
                 setCharacterTreasure((prevCharacterTreasure) => ({
                   ...prevCharacterTreasure,
@@ -532,6 +541,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
             <div className='col-4' style={{paddingBottom: '10px'}}>
               <input className='field-style' style={{width: '100%'}} placeholder="Quantity"
               value={characterTreasure.characterTreasureQuantity}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
               onChange={(e) =>
                 setCharacterTreasure((prevCharacterTreasure) => ({
                   ...prevCharacterTreasure,
