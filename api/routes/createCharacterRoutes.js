@@ -1123,6 +1123,13 @@ router.post('/UpdateSpells/:characterId', async (req, res) => {
       characterSpellDuration: characterSpellDuration, characterSpellSave: characterSpellSave, 
       characterSpellSchool: characterSpellSchool, characterSpellDamage: characterSpellDamage} 
 
+      if (characterSpellName === "" || characterSpellLevel === "" || characterSpellCastTime === "" ||
+      characterSpellDescription === "" || characterSpellDamage === "") {
+      return res.json({
+        error: 'Please include a Spell Name, Level, Description, and Cast Time',
+      });
+    }
+
     const update = await CreateCharacterSpellSchema.create(
       characterData
     );
@@ -1175,6 +1182,12 @@ router.put('/ChangeSpells/:id', async (req, res) => {
 			characterSpellDescription, characterSpellDuration,
 			characterSpellSave, characterSpellSchool, characterSpellDamage } 
 
+      if (characterSpellName === '' || characterSpellLevel === '' || characterSpellCastTime === '' ||
+      characterSpellDescription === '' || characterSpellDamage === '') {
+      return res.json({
+        error: 'Please include a Spell Name, Level, Description, and Cast Time',
+      });
+    }
     const update = await CreateCharacterSpellSchema.findByIdAndUpdate(
       id,
       {
@@ -1186,7 +1199,7 @@ router.put('/ChangeSpells/:id', async (req, res) => {
     if (!update) {
       return res.json({
         error: 'Error updating character data',
-      })
+      });
     }
 
     return res.json({

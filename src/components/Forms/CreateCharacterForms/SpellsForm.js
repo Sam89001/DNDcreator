@@ -329,7 +329,7 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setU
 				setLoadCharacterSpells(prev => [...prev, newItem]);
 				toast.success('Updated character details');
 			} else {
-				toast.error('Failed to update character details');
+				toast.error(response.data.error);
 			}
 		} catch (error) {
 			console.log(error)
@@ -348,7 +348,7 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setU
 					characterSpellSave, characterSpellSchool, characterSpellDamage
 				});
 
-				if (response.error) {
+				if (response.data.error) {
 					toast.error(response.data.error);
 				} else {
 					getCharacterData(characterId);
