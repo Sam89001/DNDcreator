@@ -21,7 +21,7 @@ function LoadItem({ title, link, image, id, openDeletePopUp }) {
 						</div>
 						
 						<div className="col-12" style={{ paddingBottom: '30px' }}>
-							<div className="selection-box-text">{title}</div>
+							<div className="selection-box-text" >{title}</div>
 						</div>
 
 						

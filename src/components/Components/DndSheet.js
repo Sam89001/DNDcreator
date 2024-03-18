@@ -348,37 +348,37 @@ function DndSheet({fetchData,
       <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
         {/* Character Name */}
-        <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '15px', top: '7%', left: '10%', width: '25%', height: '5%', fontSize: '1.1vw' }}>
+        <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '15px', whiteSpace: 'nowrap', top: '7%', left: '10%', width: '25%', height: '5%', fontSize: '1.1vw' }}>
           <div>{characterName}</div>
         </div>
 
         {/* Class */}
-        <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', top: '5.7%', left: '44%',  width: '12%', height: '4%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '5.7%', left: '44%',  width: '12%', height: '4%', fontSize: '0.7vw' }}>
           <div>{characterClass}</div>
         </div>
 
         {/* Level */}
-        <div className="absolute-div dnd-sheet" style={{  top: '5.7%', left: '57%',  width: '3%', height: '2.5%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet" style={{  top: '5.7%', left: '57%',  width: '3%', whiteSpace: 'nowrap', height: '2.5%', fontSize: '0.7vw' }}>
           <div>({characterLevel})</div>
         </div>
 
         {/* Background */}
-        <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '10px', top: '5.7%', left: '62%',  width: '14%', height: '4%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '5.7%', left: '62%',  width: '14%', height: '4%', fontSize: '0.7vw' }}>
           <div>{characterBackground}</div>
         </div>
 
         {/* Player Name */}
-        <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', top: '5.7%', left: '77.5%', width: '14%', height: '4%',  fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '5.7%', left: '77.5%', width: '14%', height: '4%',  fontSize: '0.7vw' }}>
           <div>{characterUser}</div>
         </div>
 
         {/* Race */}
-        <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', top: '9%', left: '44%',  width: '16%', height: '4%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '44%',  width: '16%', height: '4%', fontSize: '0.7vw' }}>
           <div>{characterRace}</div>
         </div>
 
         {/* Alignment */}
-        <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', top: '9%', left: '62%', width: '14%', height: '4%', fontSize: '0.7vw' }}>
+        <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '62%', width: '14%', height: '4%', fontSize: '0.7vw' }}>
           <div>{characterAlignment}</div>
         </div>
 

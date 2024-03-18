@@ -75,17 +75,5 @@
     height: 375px;
 }
 
-.selection-box {
-    background-color: var(--inputGrey);
-    width: 275px;
-    height: 325px;
-    border-radius: 20px;
-    transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
-}
 
-.selection-box-text {
-    font: 400 24px 'Grenze Gotisch', sans-serif;
-    color: var( --textLightGrey);
-    cursor: pointer;
-}
 
