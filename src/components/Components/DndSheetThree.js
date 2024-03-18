@@ -124,7 +124,7 @@ return (
   </div>
 
 	{/* Character Organisation */}
-	<div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '16.5%', left: '37%', width: '27%', height: '28%', fontSize: '0.6vw' }}>
+	<div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '16.5%', left: '37%', width: '27%', height: '28%', fontSize: '0.6vw' }}>
     {characterOrganisationSymbol
 		.filter(organisation => organisation.type === 'Organisation')
 		.map(organisation => (
@@ -182,8 +182,8 @@ return (
 			{characterTreasure.map(treasure => (
 				<div className='col-12 hover-red' style={{borderBottom: '1px solid var(--lightBackgroundGrey)', marginBottom: '15px'}}> 
 					
-					<div className='equipment-title' style={{display: 'inline-block', width: '55%', marginRight: '10px'}}>Treasure Name </div>
-					<div className='equipment-title' style={{display: 'inline-block', width: '30%'}}>Treasure Quantity </div>
+					<div className='equipment-title' style={{display: 'inline-block', width: '55%', marginRight: '10px', overflowY: 'auto'}}>Treasure Name </div>
+					<div className='equipment-title' style={{display: 'inline-block', width: '30%', overflowY: 'auto'}}>Treasure Quantity </div>
 					<button className='delete-property-button' style={{display: 'inline-block', width: '10%'}} 
 						onClick={(e) => deleteItem(e, treasure._id, 'http://localhost:4000/CreateCharacter/DeleteTreasure/')}>
 							X
@@ -191,8 +191,8 @@ return (
 					
 
 					<div style={{padding: '0px 0px 5px 10px'}}> 
-						<div style={{display: 'inline-block', width: '57%', marginRight: '10px'}}>{treasure.characterTreasureName}</div>
-						<div style={{display: 'inline-block', width: '30%'}}>{treasure.characterTreasureQuantity}</div>
+						<div style={{display: 'inline-block', width: '57%', marginRight: '10px', whiteSpace: 'nowrap', overflowY: 'auto', paddingBottom: '15px'}}>{treasure.characterTreasureName}</div>
+						<div style={{display: 'inline-block', width: '30%', whiteSpace: 'nowrap', overflowY: 'auto', paddingBottom: '15px'}}>{treasure.characterTreasureQuantity}</div>
 					</div>
 
 					<div className='equipment-title d-flex '>Treasure Description </div>
