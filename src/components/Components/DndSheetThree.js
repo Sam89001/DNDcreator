@@ -114,12 +114,12 @@ return (
   </div>
 
 	{/* Character Appearence */}
-	<div className="absolute-div dnd-sheet-noflex" style={{  backgroundColor: 'transparent', top: '16.5%', left: '7%', width: '24.5%', height: '28%', fontSize: '0.8vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', top: '16.5%', left: '7%', width: '24.5%', height: '28%', fontSize: '0.8vw' }}>
     <div>{characterTextAppearence}</div>
   </div>
 
 	{/* Character Backstory */}
-	<div className="absolute-div dnd-sheet-noflex" style={{  backgroundColor: 'transparent', top: '49%', left: '7%', width: '24.5%', height: '47%', fontSize: '0.8vw' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', top: '49%', left: '7%', width: '24.5%', height: '47%', fontSize: '0.8vw' }}>
     <div>{characterBackstory}</div>
   </div>
 
@@ -152,8 +152,8 @@ return (
   </div>
 
 	{/* Character Symbol*/}
-	<div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', backgroundColor: 'transparent', top: '19.3%', left: '65%', 
-	width: '21.5%', height: '16.5%', fontSize: '0.6vw', padding: '0px' }}>
+	<div className="absolute-div dnd-sheet-noflex" style={{ top: '19.3%', left: '65%', 
+	width: '24%', height: '16.5%', fontSize: '0.6vw', padding: '0px 20px 0px 0px', overflowY: 'auto' }}>
 	
 		<select className='edit-character-field' style={{marginBottom: '5px'}} onChange={handleSelectChange}>
 			<option/>
@@ -171,7 +171,7 @@ return (
 			</button>
 		</div>
 	
-		<div style={{padding: '0px 0px 10px 10px', wordWrap: 'break-word'}}>{characterSymbol.characterSymbolDescription || ''}</div>
+		<div style={{padding: '0px 0px 10px 10px', wordWrap: 'break-word', maxHeight: '90px'}}>{characterSymbol.characterSymbolDescription || ''}</div>
 	</div>
 
 	{/* Character Treasure*/}
