@@ -97,10 +97,23 @@
 }
 
 .spell-pop-up {
-  height: 70vh;
+  height: 75vh;
   width: 60vw;
+  max-height: 800px;
+  max-height: 1300px;
   border: solid 1px var(--lightBackgroundGrey);
   background-color: var(--backgroundGrey);
+}
+
+@media (max-width: 1400px) {
+  .spell-pop-up {
+    max-height: 550px; /* Adjust this value according to your preference */
+  }
+}
+@media (max-width: 1000px) {
+  .spell-pop-up {
+    max-height: 450px; /* Adjust this value according to your preference */
+  }
 }
 
 .spell-pop-up-button {
