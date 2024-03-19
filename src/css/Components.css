@@ -121,8 +121,10 @@
 
 .spell-pop-up-field {
   background-color: var(--lightBackgroundGrey);
-  padding: 5px 5px 15px 5px;
+  padding: 5px 5px 10px 5px;
   font-size: 1vw;
+  height: 2.5em;
+
 }
 
 /* Universal */
