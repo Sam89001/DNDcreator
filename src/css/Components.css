@@ -97,8 +97,8 @@
 }
 
 .spell-pop-up {
-  height: 500px;
-  width: 800px;
+  height: 70vh;
+  width: 60vw;
   border: solid 1px var(--lightBackgroundGrey);
   background-color: var(--backgroundGrey);
 }
@@ -110,6 +110,7 @@
 .spell-pop-up-title-field,
 .spell-pop-up-field {
   display: inline-block;
+  overflow-y: auto;
 }
 
 .spell-pop-up-title-field {
@@ -119,9 +120,9 @@
 }
 
 .spell-pop-up-field {
-  background-color: var(--textGrey);
-  padding: 5px;
-  font-size: 0.9vw;
+  background-color: var(--lightBackgroundGrey);
+  padding: 5px 5px 15px 5px;
+  font-size: 1vw;
 }
 
 /* Universal */

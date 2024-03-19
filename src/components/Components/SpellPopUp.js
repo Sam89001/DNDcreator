@@ -49,20 +49,47 @@ return(
 
           </div>
 
-          <div className='col-12 row d-flex'>
+          <div className='col-12 row d-flex' style={{paddingBottom: '10px'}}>
 
             <div className='col-12 text-center'>
               <div className='spell-pop-up-title-field'>Spell Description</div>
             </div>
 
+            <div className='col-12 text-center' style={{ maxHeight: '9em',  }}>
+              <div className='text-center spell-pop-up-field' 
+              style={{ width: '98%', height: '100%', overflowY: 'auto', whiteSpace: 'pre-wrap', 
+              wordWrap: 'break-word', padding: '0px 15px 0px 15px' }}>{spell.characterSpellDescription}</div>
+            </div>
+
+          </div>
+
+          <div className='col-12 row d-flex' style={{width: '98%'}}>
+
+            <div className='col-12 d-flex justify-content-between'>
+              <div className='text-center spell-pop-up-title-field' style={{ width: '24%' }}>Spell Level</div>
+              <div className='text-center spell-pop-up-title-field' style={{ width: '24%' }}>Spell Level</div>
+              <div className='text-center spell-pop-up-title-field' style={{ width: '24%' }}>Spell Level</div>
+              <div className='text-center spell-pop-up-title-field' style={{ width: '24%' }}>Spell Level</div>
+            </div>
+
+          </div>
+
+          <div className='col-12 row d-flex' style={{width: '98%'}}>
+
+            <div className='col-12 d-flex justify-content-between'>
+              <div className='text-center spell-pop-up-field' style={{ width: '24%' }}>{spell.characterSpellDuration}</div>
+              <div className='text-center spell-pop-up-field' style={{ width: '24%' }}>{spell.characterSpellSave}</div>
+              <div className='text-center spell-pop-up-field' style={{ width: '24%' }}>{spell.characterSpellSchool}</div>
+              <div className='text-center spell-pop-up-field' style={{ width: '24%' }}>{spell.characterSpellRangeArea}</div>
+            </div>
+
           </div>
 
         </div>
+        
       </div>
 
-      <div className='col-12'>
-        <div className='row'></div>
-      </div>
+      
     </div>
     ))}
   </div>
