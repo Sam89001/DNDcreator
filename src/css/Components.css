@@ -19,7 +19,8 @@
 /* Popup */
 
 .pop-up,
-.delete-pop-up {
+.delete-pop-up,
+.spell-pop-up {
   /* Position */
   z-index: 10;
   position: absolute;
@@ -78,7 +79,8 @@
   background-color: var(--lightBackgroundGrey);
 }
 
-.delete-pop-up-button {
+.delete-pop-up-button,
+.spell-pop-up-button {
   max-height: 40px;
   padding: 15px;
   border: none;
@@ -92,6 +94,17 @@
   font-size: 1.7vw;
   line-height: 15px;
   text-align: center;
+}
+
+.spell-pop-up {
+  height: 500px;
+  width: 800px;
+  border: solid 1px var(--lightBackgroundGrey);
+  background-color: var(--backgroundGrey);
+}
+
+.spell-pop-up-button {
+  color: var(--textGrey);
 }
 
 /* Universal */

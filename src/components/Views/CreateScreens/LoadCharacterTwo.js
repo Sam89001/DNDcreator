@@ -7,8 +7,9 @@ import Navbar from '../../Layouts/Navbar';
 import { UserContext } from '../../../context/userContext';
 
 //Components
-import DndSheetTwo from '../../Components/DndSheetTwo'
+import DndSheetTwo from '../../Components/DndSheetTwo';
 import SpellsForm from '../../Forms/CreateCharacterForms/SpellsForm';
+import SpellPopUp from '../../Components/SpellPopUp';
 
 function LoadCharacterPageTwo() {
 	const { user } = useContext(UserContext);
@@ -144,6 +145,8 @@ return (
 			</div>
 
 		</div>
+		
+		<SpellPopUp/>
 	</div>
 )
 }
