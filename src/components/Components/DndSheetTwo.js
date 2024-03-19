@@ -8,6 +8,10 @@ import DndSheetImage from '../../images/sheet2.png'
 //Dependencies
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
+import React, { useState } from 'react';
+
+//Components
+import SpellPopUp from '../Components/SpellPopUp'
 
 function DndSheetTwo({getCharacterData, propId, characterSpellcastingClass, characterSpellcastingAbility,
 	characterSpellSaveDC, characterSpellAttackBonus, loadCharacterSpells,
@@ -15,7 +19,15 @@ function DndSheetTwo({getCharacterData, propId, characterSpellcastingClass, char
 	characterSpellSlot1, characterSpellSlot2, characterSpellSlot3, characterSpellSlot4, characterSpellSlot5,
 	characterSpellSlot6, characterSpellSlot7, characterSpellSlot8, characterSpellSlot9}) {
 
+const [popUp, setPopUp] = useState(false);
 const characterId = propId.Id
+
+const openPopUp = () => {
+	setPopUp(true)
+}
+const closePopUp = () => {
+	setPopUp(false)
+}
 
 const deleteItem =  async (e, id, address) => {
 	e.preventDefault();
@@ -81,7 +93,9 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '1')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}
+				onClick={(e) => openPopUp(e)}> 
+
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 						{spell.characterSpellName}</div>
 
@@ -259,6 +273,8 @@ return (
 	</div>
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '90%'}}/>
+	
+	{popUp && <SpellPopUp closePopUp={closePopUp} popUpTitle='Create Your Character' formType='createCharacterForm' />}
 </div>
 )
 

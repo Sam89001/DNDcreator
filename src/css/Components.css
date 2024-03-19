@@ -107,6 +107,23 @@
   color: var(--textGrey);
 }
 
+.spell-pop-up-title-field,
+.spell-pop-up-field {
+  display: inline-block;
+}
+
+.spell-pop-up-title-field {
+  padding-bottom: 10px;
+  color: var(--textGrey);
+  font-size: 0.9vw;
+}
+
+.spell-pop-up-field {
+  background-color: var(--textGrey);
+  padding: 5px;
+  font-size: 0.8vw;
+}
+
 /* Universal */
 
 .hover-red:hover {
