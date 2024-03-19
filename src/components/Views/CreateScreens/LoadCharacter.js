@@ -217,7 +217,7 @@ function LoadPlaySession() {
               {/* Skills */}
                               
               <div className='col-3'>
-                <div style={{paddingBottom: '30px'}}>
+                <div style={{paddingBottom: '20px'}}>
                   <SkillsForm updateCharacterSkills={updateCharacterSkills} />
                 </div>
 
