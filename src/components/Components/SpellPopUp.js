@@ -11,12 +11,13 @@ return(
     .filter(spell => spell._id === selectedId)
     .map((spell) => (
     
-    <div className="pop-up spell-pop-up d-flex flex-column align-items-center ">
+    <div className="pop-up spell-pop-up d-flex flex-column ">
 
-      <div style={{ width: '100%' }}>
+      <div style={{ width: '100%', padding: '10px 0px 0px 20px' }}>
         <button className="spell-pop-up-button flex-start" onClick={closePopUp}>Close</button>
       </div>
 
+      <div className='d-flex align-items-center justify-content-center' style={{height: '100%'}}> 
 
       <div className='row align-items-center justify-content-center' style={{ width: '100%' }}>
 
@@ -85,18 +86,19 @@ return(
 
           </div>
 
-          <div className='col-12 row d-flex' style={{ width: '98%' }}>
-            <div className="d-flex justify-content-between" style={{ width: '100%' }}>
-              <button className="spell-pop-up-button">Edit</button>
-              <button className="spell-pop-up-button">Delete</button>
-            </div>
-          </div>
-
         </div>
-        
+
       </div>
 
-      
+      </div>
+
+      <div className="mt-auto" style={{ width: '100%', padding: '0px 20px 20px 20px'}}>
+          <div className="d-flex justify-content-between" >
+            <button className="spell-pop-up-button">Edit</button>
+            <button className="spell-pop-up-button">Delete</button>
+          </div>
+      </div>
+        
     </div>
     ))}
   </div>
