@@ -20,17 +20,25 @@ function DndSheetTwo({getCharacterData, propId, characterSpellcastingClass, char
 	characterSpellSlot6, characterSpellSlot7, characterSpellSlot8, characterSpellSlot9}) {
 
 const [popUp, setPopUp] = useState(false);
+const [selectedId, setSelectedId] = useState({
+	selectedId: ''
+})
 const characterId = propId.Id
 
-const openPopUp = () => {
+const openPopUp = (id) => {
 	setPopUp(true)
+	setSelectedId({
+		selectedId: id || ''
+	})
 }
 const closePopUp = () => {
 	setPopUp(false)
+	setSelectedId('')
 }
 
 const deleteItem =  async (e, id, address) => {
 	e.preventDefault();
+	e.stopPropagation()
 	try {
 		const response = await axios.delete(address + `${id}`);
 		if(response.error) {
@@ -73,7 +81,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '0')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}>
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}>
 					<div  style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 					{spell.characterSpellName}</div>
 					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}} 
@@ -93,8 +102,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '1')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}
-				onClick={(e) => openPopUp(e)}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' key={spell._id}
+				onClick={() => openPopUp(spell._id)}> 
 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 						{spell.characterSpellName}</div>
@@ -116,7 +125,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '2')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}> 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 						{spell.characterSpellName}</div>
 
@@ -137,7 +147,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '3')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}> 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 					{spell.characterSpellName}</div>
 					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
@@ -157,7 +168,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '4')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}>
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}>
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }} >
 						{spell.characterSpellName}</div>
 					<button className='delete-property-button' style={{marginLeft: '5px', paddingBottom: '10px'}}
@@ -177,7 +189,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '5')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}>
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}>
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 					{spell.characterSpellName}</div>
 
@@ -198,7 +211,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '6')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}> 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }} >
 					{spell.characterSpellName}</div>
 
@@ -219,7 +233,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '7')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}> 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 					{spell.characterSpellName}</div>
 
@@ -240,7 +255,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '8')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}> 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 					{spell.characterSpellName}</div>
 
@@ -261,7 +277,8 @@ return (
 			{loadCharacterSpells
 			.filter(spell => spell.characterSpellLevel === '9')
 			.map(spell => (
-				<div className='col-12 hover-red d-flex align-items-center justify-content-between'  key={spell._id}> 
+				<div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+				onClick={() => openPopUp(spell._id)} key={spell._id}> 
 					<div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
 						{spell.characterSpellName}</div>
 
@@ -274,7 +291,7 @@ return (
 
 	<img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px', width: '90%'}}/>
 	
-	{popUp && <SpellPopUp closePopUp={closePopUp} popUpTitle='Create Your Character' formType='createCharacterForm' />}
+	{popUp && <SpellPopUp closePopUp={closePopUp} selectedId={selectedId.selectedId} loadCharacterSpells={loadCharacterSpells}/>}
 </div>
 )
 
