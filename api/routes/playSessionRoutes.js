@@ -86,5 +86,46 @@ router.delete('/DeleteCharacter/:characterId', async (req, res) => {
   }
 });
 
+//Get character stats
+router.get('/:characterId', async (req, res) => {
+  try {
+    const characterId = req.params.characterId; 
+    const LoadCharacters = await CreateCharacterSchema.findById(characterId);
+    const LoadCharacterPersonalityTraits = await CreateCharacterPersonalitySchema.find({ characterId: characterId })
+    const LoadCharacterIdeal = await CreateCharacterIdealSchema.find({ characterId: characterId })
+    const LoadCharacterBonds = await CreateCharacterBondSchema.find({ characterId: characterId })
+    const LoadCharacterFlaw = await CreateCharacterFlawSchema.find({ characterId: characterId })
+    const LoadCharacterLanguage = await CreateCharacterLanguageSchema.find({ characterId: characterId })
+    const LoadCharacterTrait = await CreateCharacterTraitSchema.find({ characterId: characterId })
+    const LoadCharacterAttack = await CreateCharacterAttackSchema.find({ characterId: characterId })
+    const LoadCharacterEquipment = await CreateCharacterEquipmentSchema.find({ characterId: characterId })
+    const LoadCharacterCurrency = await CreateCharacterCurrencySchema.find({ characterId: characterId})
+
+    if (!LoadCharacters) {
+      return res.json({
+        error: 'No characters found with the specified ID'
+      });
+    }
+    const responseData = {
+      character: LoadCharacters,
+      personalityTraits: LoadCharacterPersonalityTraits,
+      ideals: LoadCharacterIdeal,
+      bonds: LoadCharacterBonds,
+      flaws: LoadCharacterFlaw,
+      languages: LoadCharacterLanguage,
+      traits: LoadCharacterTrait,
+      attacks: LoadCharacterAttack,
+      equipment: LoadCharacterEquipment,
+      currency: LoadCharacterCurrency
+    };
+    res.json(responseData);
+  } catch (error) {
+    console.error('Error fetching character data:', error);
+    return res.json({
+      error: 'Internal server error'
+    });
+  }
+});
+
 
 module.exports = router;
