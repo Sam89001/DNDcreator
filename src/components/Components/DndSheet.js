@@ -26,7 +26,7 @@ function DndSheet({fetchData,
 
   characterTraits, characterAttacks, characterEquipment,
 
-  characterSavingThrows, characterSkills
+  characterSavingThrows, characterSkills, characterCurrency
   }) {
 
   const deleteItem =  async (e, id, address) => {
@@ -468,6 +468,16 @@ function DndSheet({fetchData,
 
         {/* Prof Skills */}
         {skillDivs}
+
+        {/* Currency */}
+        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '74.5%', left: '39.5%', width: '5.5%', height: '17%', fontSize: '1.1vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+          <div className='row' style={{padding: '0px'}}>
+            {characterCurrency.map(currency => (
+              <div className='col-12 text-center' style={{padding: '0px', minHeight: '24px'}}>{currency.characterCurrencyAmount}</div>
+            ))}
+          </div>
+        </div>
+
 
         {/* Attacks */}
         <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', overflowX: 'hidden', top: '49.5%', left: '37.5%', width: '28%', height: '7.5%', fontSize: '0.7vw', maxHeight: '100px' }}>

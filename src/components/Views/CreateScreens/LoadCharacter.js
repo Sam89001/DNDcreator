@@ -4,6 +4,7 @@ import { UserContext } from '../../../context/userContext';
 //forms
 import GeneralStatsForm from '../../Forms/CreateCharacterForms/GeneralStatsForm';
 import SkillsForm from '../../Forms/CreateCharacterForms/SkillsForm';
+import CurrencyForm from '../../Forms/CreateCharacterForms/CurrencyForm';
 import PersonalityTraitForm from '../../Forms/CreateCharacterForms/PersonalityTraitForm';
 import IdealsForm from '../../Forms/CreateCharacterForms/IdealsForm';
 import BondsForm from '../../Forms/CreateCharacterForms/BondsForm';
@@ -66,7 +67,7 @@ function LoadPlaySession() {
 		characterInspiration: '',
 		characterProficiencyBonus: '',
 		characterPerception: '',
-		characterHitDice: '',
+		characterHitDice: '' 
 	}) 
   const [characterSkills, setCharacterSkills] = useState({
 		characterStrength: '',
@@ -88,6 +89,7 @@ function LoadPlaySession() {
   const [characterEquipment, setCharacterEquipment] = useState([]);
   const [characterSavingThrows, setCharacterSavingThrows] = useState([])
   const [characterProfSkills, setCharacterProfSkills] = useState([]) 
+  const [characterCurrency, setCharacterCurrency] = useState([])
   
     const fetchData = async () => {
       try {
@@ -111,7 +113,7 @@ function LoadPlaySession() {
           characterInspiration: characterData.character.characterInspiration || '',
           characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
           characterPerception: characterData.character.characterPerception || '',
-          characterHitDice: characterData.character.characterHitDice || ''
+          characterHitDice: characterData.character.characterHitDice || '',
         });
         setCharacterSkills({
           characterStrength: characterData.character.characterStrength || '',
@@ -132,6 +134,7 @@ function LoadPlaySession() {
         setCharacterTraits(characterData.traits || []);
         setCharacterAttacks(characterData.attacks || []);
         setCharacterEquipment(characterData.equipment|| []);
+        setCharacterCurrency(characterData.currency || [])
 
         console.log('This is the character data:', JSON.stringify(characterData, null, 2));
       } catch (error) {
@@ -200,6 +203,7 @@ function LoadPlaySession() {
 
             characterSavingThrows={characterSavingThrows}
             characterSkills={characterProfSkills}
+            characterCurrency={characterCurrency}
             />
           </div>
 
@@ -217,8 +221,12 @@ function LoadPlaySession() {
               {/* Skills */}
                               
               <div className='col-3'>
-                <div style={{paddingBottom: '20px'}}>
+                <div style={{paddingBottom: '5px'}}>
                   <SkillsForm updateCharacterSkills={updateCharacterSkills} />
+                </div>
+
+                <div style={{paddingBottom: '5px'}}>
+                  <CurrencyForm characterCurrency={characterCurrency} setCharacterCurrency={setCharacterCurrency} fetchData={fetchData}/>
                 </div>
 
                 <LanguagesForm characterLanguages={characterLanguages} setCharacterLanguages={setCharacterLanguages} fetchData={fetchData}/>

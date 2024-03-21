@@ -30,6 +30,7 @@ const CreateCharacterEquipmentSchema = require('../models/CreateCharacterEquipme
 const CreateCharacterSpellSchema = require('../models/CreateCharacterSpellSchema');
 const CreateCharacterTreasureSchema = require('../models/CreateCharacterTreasureSchema')
 const CreateCharacterOrganisationSchema = require('../models/CreateCharacterOrganisationSchema')
+const CreateCharacterCurrencySchema = require('../models/CreateCharacterCurrencySchema')
 
 //Load all characters
 router.get('/', async (req, res) => {
@@ -85,7 +86,8 @@ router.delete('/DeleteCharacter/:characterId', async (req, res) => {
       CreateCharacterEquipmentSchema.deleteMany(query),
       CreateCharacterSpellSchema.deleteMany(query),
       CreateCharacterTreasureSchema.deleteMany(query),
-      CreateCharacterOrganisationSchema.deleteMany(query)
+      CreateCharacterOrganisationSchema.deleteMany(query),
+      CreateCharacterCurrencySchema.deleteMany(query)
     ];
 
     await Promise.all(deleteOperations);
@@ -96,7 +98,6 @@ router.delete('/DeleteCharacter/:characterId', async (req, res) => {
     return res.status(500).json({ error: 'Internal server error' });
   }
 });
-
 
 //Page Navigation
 router.get('/NextPage/:sentId', async (req, res) => {
@@ -134,6 +135,7 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterTrait = await CreateCharacterTraitSchema.find({ characterId: characterId })
     const LoadCharacterAttack = await CreateCharacterAttackSchema.find({ characterId: characterId })
     const LoadCharacterEquipment = await CreateCharacterEquipmentSchema.find({ characterId: characterId })
+    const LoadCharacterCurrency = await CreateCharacterCurrencySchema.find({ characterId: characterId})
 
     if (!LoadCharacters) {
       return res.json({
@@ -149,7 +151,8 @@ router.get('/:characterId', async (req, res) => {
       languages: LoadCharacterLanguage,
       traits: LoadCharacterTrait,
       attacks: LoadCharacterAttack,
-      equipment: LoadCharacterEquipment
+      equipment: LoadCharacterEquipment,
+      currency: LoadCharacterCurrency
     };
     res.json(responseData);
   } catch (error) {
@@ -204,6 +207,18 @@ router.post('/CreateNewCharacter', async (req, res) => {
 			characterName,
 			userId: id
 		});
+
+    const characterId = createCharacter._id;
+
+    const currencyEntries = [
+      { characterId, characterCurrencyName: 'Copper Pieces', characterCurrencyAmount: 0 },
+      { characterId, characterCurrencyName: 'Silver Pieces', characterCurrencyAmount: 0 },
+      { characterId, characterCurrencyName: 'Electrum Pieces', characterCurrencyAmount: 0 },
+      { characterId, characterCurrencyName: 'Gold Pieces', characterCurrencyAmount: 0 },
+      { characterId, characterCurrencyName: 'Platinum Pieces', characterCurrencyAmount: 0 }
+    ];
+
+    const createCurrency = await CreateCharacterCurrencySchema.insertMany(currencyEntries);
 
 		res.json({ mongoId: createCharacter._id });
 
