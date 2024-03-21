@@ -97,7 +97,7 @@ function ChoosePlaySession() {
               key={character._id}
               id={character._id}
               title={character.characterName}
-              //link={`/PlaySession/${character._id}`}
+              link={`/PlaySession/${character._id}`}
               image={character.characterProfileImageAddress ? character.characterProfileImageAddress : TempImage}
               openDeletePopUp={openDeletePopUp}
             />
