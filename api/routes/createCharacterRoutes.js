@@ -38,7 +38,6 @@ router.get('/', async (req, res) => {
 		const userId = req.query.userId; 
     const LoadCharacters = await CreateCharacterSchema.find({ userId });
 
-
     if (!LoadCharacters || LoadCharacters.length < 1) {
       return res.json({
         error: 'No characters to load'

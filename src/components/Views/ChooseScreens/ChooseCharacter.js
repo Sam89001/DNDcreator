@@ -105,8 +105,6 @@ function ChooseCharacter() {
           <div className="row h-100 w-100 d-flex" >  
             <Create title="Create a Character" openPopUp={openPopUp} />
 
-            {/* Map through characters and render LoadItem components */}     
-
             {Array.isArray(characters) && characters.length > 0 && characters.map((character) => (
             <LoadItem
               key={character._id}
