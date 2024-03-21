@@ -17,6 +17,7 @@ function CurrencyForm({fetchData}) {
 	})
 
   const update = async (e) => {
+    e.preventDefault();
     const {id, characterCurrencyName, characterCurrencyAmount} = data;
 		try {
 				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeCurrency/${id}`, {
@@ -25,7 +26,7 @@ function CurrencyForm({fetchData}) {
           characterCurrencyAmount
 				});
 
-				if (response.error) {
+				if (response.data.error) {
 					toast.error(response.data.error);
 				} else {
 					fetchData();
@@ -74,8 +75,8 @@ function CurrencyForm({fetchData}) {
         </div>
 
         <div className='col-12 d-flex align-items-center justify-content-center' style={{marginBottom: '10px'}}> 
-  			<button className='create-character-button' type="submit" > Update</button>
-			</div>
+  			  <button className='create-character-button' type="submit" > Update</button>
+			  </div>
 
       </div>
     </form>

@@ -347,6 +347,50 @@ router.put('/UpdateSkills/:id', async (req, res) => {
   }
 })
 
+//Updates Currency
+router.put('/ChangeCurrency/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterCurrencyName,
+      characterCurrencyAmount } = req.body;
+
+      if (isNaN(characterCurrencyAmount)) {
+        return res.json({
+          error: 'Amount must be a number.',
+        });
+      }
+      
+      if (characterCurrencyAmount === "") {
+        return res.json({
+          error: 'Please include a valid amount.',
+        });
+      }
+
+    const characterData = {
+      characterCurrencyAmount
+    };
+
+    const updateCurrency = await CreateCharacterCurrencySchema.findOneAndUpdate(
+      { characterId: id, characterCurrencyName: characterCurrencyName }, 
+      { $set: characterData }, 
+      { new: true } 
+    );
+
+    if (!updateCurrency) {
+      return res.json({
+        error: 'Error updating character data',
+      });
+    }
+
+    return res.json({
+      success: true,
+    });
+    
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 //Creates a new Personality Trait
 router.post('/UpdatePersonalityTrait/:id', async (req, res) => {
   try {

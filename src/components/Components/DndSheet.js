@@ -470,10 +470,10 @@ function DndSheet({fetchData,
         {skillDivs}
 
         {/* Currency */}
-        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '74.5%', left: '39.5%', width: '5.5%', height: '17%', fontSize: '1.1vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '75%', left: '39.5%', width: '4.5%', height: '17%', fontSize: '0.9vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <div className='row' style={{padding: '0px'}}>
             {characterCurrency.map(currency => (
-              <div className='col-12 text-center' style={{padding: '0px', minHeight: '24px'}}>{currency.characterCurrencyAmount}</div>
+              <div className='col-12 text-center' style={{padding: '0px 0px 4px 0px', minHeight: '22.5px', overflowY: 'auto'}}>{currency.characterCurrencyAmount}</div>
             ))}
           </div>
         </div>
