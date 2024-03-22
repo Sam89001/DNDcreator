@@ -287,8 +287,8 @@ function PlaySession() {
               {/* Image & Spell Slot Fields */}
               <div className='col-6'>
                   <div className='col-12 d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
-                    <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Character Name</div>
-                    <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '30vh' }} />
+                    <div className="text-center form-titles" style={{ marginBottom: '10px' }}>{characterData.characterName}</div>
+                    <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
                   </div>
 
                   <div className='col-12 d-flex flex-column align-items-center'>
@@ -321,23 +321,22 @@ function PlaySession() {
               </div>
 
               {/* Attacks/Spells */}
-              <div className='col-6'>
-
+              <div className='col-6 d-flex flex-column align-items-center'>
+                <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Attacks/Spells</div>
               </div>
 
               {/* Equipment */}
-              <div className='col-6'>
-
+              <div className='col-6 d-flex flex-column d-flex'>
+                <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Equipment</div>
               </div>
 
-              
           </div>
 
         </div>
 
         {/* Character Sheet */}
         <div className="col-4 row d-flex justify-content-center align-items-center">
-          <div className='col-12' style={{ color: 'white', padding: '10px 0px 10px 0px' }}>
+          <div className='col-12' style={{ color: 'white', padding: '15px 0px 15px 0px' }}>
             {currentPage === 1 && <PlaySessionDndSheet
             fetchData={fetchData}
             characterName={characterData ? characterData.characterName : ''}
