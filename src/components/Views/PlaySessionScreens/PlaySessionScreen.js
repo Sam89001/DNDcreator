@@ -199,10 +199,12 @@ function PlaySession() {
       <div className='row mx-auto justify-content-center' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}> 
 
         <div className="col-3 row d-flex justify-content-center align-items-center">
+          {/* Title */}
           <div className='col-12'>
             <header className="form-header text-center">Dice & Damage</header>
           </div>
 
+          {/* Dice Images */}
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
               <div className='w-100 d-flex justify-content-between' style={{ flex: '1' }}>
                   <img className='img-fluid dice-image' src={dFour}/>
@@ -218,6 +220,7 @@ function PlaySession() {
               </div>
           </div>
 
+          {/* No. Rolls Fields */}
           <div className='col-12 row'>
 
             <div className='col-12 d-flex justify-content-between' style={{paddingBottom: '10px'}}>
@@ -245,6 +248,13 @@ function PlaySession() {
             </div>
           </div>
 
+          {/* Log */}
+          <div className='col-12 row'>
+
+            
+          </div>
+
+          {/* Notes */}
           <div className='col-12'>
             <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Notes</div>
             <textarea className='field-style spell-description-field' style={{width: '100%'}} 
