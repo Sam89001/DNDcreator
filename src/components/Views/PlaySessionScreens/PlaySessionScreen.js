@@ -228,9 +228,11 @@ function PlaySession() {
             characterCurrency={characterCurrency}/>
           </div>
 
-          <div className='col-12'>
-            <header className="navbar-text" >Next Sheet &gt;</header>
+          <div className='col-12' style={{padding: '0px 30px 0px 30px'}}>
+            <header className="navbar-text w-50" style={{ display: 'inline-block' }}>Edit Character Sheet</header>
+            <header className="navbar-text w-50" style={{ display: 'inline-block', textAlign: 'end' }}>Next Sheet &gt;</header>
           </div>
+
         </div>
 
       </div>
