@@ -261,10 +261,10 @@
 /* Dice Rolling */
 
 .dice-image {
-  max-height: 12vh;
+  max-height: 11vh;
 }
 
 .dice-image:hover {
-  max-height: 14vh;
+  max-height: 13vh;
   opacity: 0.7;
 }

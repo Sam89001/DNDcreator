@@ -198,36 +198,36 @@ function PlaySession() {
 
       <div className='row mx-auto justify-content-center' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}> 
 
-        <div className="col-4 d-flex justify-content-center align-items-center">
-          <header className="form-header text-center">Combat Stats</header>
-
-        </div>
-
-        <div className="col-4 row d-flex justify-content-center align-items-center">
+        <div className="col-3 row d-flex justify-content-center align-items-center">
           <div className='col-12'>
             <header className="form-header text-center">Dice & Damage</header>
           </div>
 
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
-              <div className='w-100 d-flex justify-content-center' style={{ flex: '1' }}>
+              <div className='w-100 d-flex justify-content-between' style={{ flex: '1' }}>
                   <img className='img-fluid dice-image' src={dFour}/>
                   <img className='img-fluid dice-image' src={dSix}/>
                   <img className='img-fluid dice-image' src={dEight}/>
                   <img className='img-fluid dice-image' src={dTen}/>
               </div>
 
-              <div className='w-100 d-flex justify-content-center' style={{ flex: '1' }}>
+              <div className='w-100 d-flex d-flex justify-content-between' style={{ flex: '1', padding: '0px 20px 0px 20px'}}>
                   <img className='img-fluid dice-image' src={dTwelve}/>
                   <img className='img-fluid dice-image' src={dTwenty}/>
                   <img className='img-fluid dice-image' src={dOneHundred}/>
               </div>
           </div>
 
-
           <div className='col-12'>
+            <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Notes</div>
             <textarea className='field-style spell-description-field' style={{width: '100%'}} 
-              placeholder="Description"></textarea>
+              placeholder="Notes"></textarea>
           </div>
+
+        </div>
+
+        <div className="col-5 d-flex justify-content-center align-items-center">
+          <header className="form-header text-center">Combat Stats</header>
 
         </div>
 
