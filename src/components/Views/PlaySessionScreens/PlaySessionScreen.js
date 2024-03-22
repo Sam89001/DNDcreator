@@ -300,22 +300,24 @@ function PlaySession() {
               {/* Form Fields */}
               <div className='col-6'>
 
-                <div className='col-12 row d-flex align-items-center' style={{ paddingBottom: '10px' }}>
+                {/* Temp Hp*/}
+                <div className='col-12 row d-flex align-items-center' style={{ padding: '0px 0px 10px 0px' }}>
+
                   <div className='col-12'>
-                    <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Temp Hp</div>
+                    <div className="text-center form-titles" style={{ padding: '0px 0px 5px 0px' }}>Temp Hp</div>
                   </div>
    
-                  <div className='col-12 d-flex align-items-center'>
+                  <div className='col-12 d-flex align-items-center' style={{ padding: '0px' }}>
                     <form className="d-flex justify-content-between align-items-center" style={{ width: '100%' }}>
                       <div className='play-session-field d-flex justify-content-between align-items-center' style={{ width: '75%', padding: '10px 0px 10px 0px' }}> 
 
                         <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.8vw', textAlign: 'center' }}/>
 
                         <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.8vw', paddingBottom: '5px' }}>/</div>
+                        style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.8vw', paddingBottom: '3px' }}>/</div>
                         
                         <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.8vw', paddingBottom: '5px' }}>{characterData.characterHp}</div>
+                        style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.8vw', paddingBottom: '3px' }}>{characterData.characterHp}</div>
                       </div>
 
                       <div style={{ width: '20%' }}>
@@ -324,12 +326,31 @@ function PlaySession() {
                     </form>
 
                   </div>
- 
                 </div>
 
-                
-                <div className='col-12 d-flex flex-column align-items-center'>
-                  
+                {/* AC, SS DC, Speed*/}
+                <div className='col-12 row' style={{ padding: '0px 0px 10px 0px' }}>
+
+                    <div className='col-12 d-flex flex-row align-items-center justify-content-between' style={{ padding: '0px 0px 10px 0px' }}>
+                      <div className="text-center form-titles" style={{ width: '30%' }}>AC</div>
+                      <div className="text-center form-titles" style={{ width: '30%' }}>SS DC</div>
+                      <div className="text-center form-titles" style={{ width: '30%' }}>Speed</div>
+                    </div>
+
+                    <div className='col-12 d-flex flex-row justify-content-between' style={{ padding: '0px' }}>
+                      <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
+                        <div style={{width: '80%', paddingBottom: '5px' }}>{characterData.characterAc}</div>
+                      </div>
+
+                      <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
+                        <div style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpellSaveDC}</div>
+                      </div>
+
+                      <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
+                        <div style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpeed}</div>
+                      </div>
+                    </div>
+
                 </div>
 
                 <div className='col-12 d-flex flex-column align-items-center'>
