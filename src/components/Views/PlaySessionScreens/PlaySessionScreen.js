@@ -194,8 +194,20 @@ function PlaySession() {
 
         </div>
 
-        <div className="col-4 d-flex justify-content-center align-items-center">
-          <header className="form-header text-center">Dice & Damage</header>
+        <div className="col-4 row d-flex justify-content-center align-items-center">
+          <div className='col-12'>
+            <header className="form-header text-center">Dice & Damage</header>
+          </div>
+
+          <div className='col-12'>
+
+          </div>
+
+
+          <div className='col-12'>
+            <textarea className='field-style spell-description-field' style={{width: '100%'}} 
+              placeholder="Description"></textarea>
+          </div>
 
         </div>
 
