@@ -11,6 +11,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
+//Images
+import dFour from '../../../images/d4.png'
+import dSix from '../../../images/d6.png'
+import dEight from '../../../images/d8.png'
+import dTen from '../../../images/d10.png'
+import dTwelve from '../../../images/d12.png'
+import dTwenty from '../../../images/d20.png'
+import dOneHundred from '../../../images/d100.png'
+
 function PlaySession() {
 
   const { user } = useContext(UserContext);
@@ -199,8 +208,19 @@ function PlaySession() {
             <header className="form-header text-center">Dice & Damage</header>
           </div>
 
-          <div className='col-12'>
+          <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
+              <div className='w-100 d-flex justify-content-center' style={{ flex: '1' }}>
+                  <img className='img-fluid' src={dFour} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid' src={dSix} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid' src={dEight} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid' src={dTen} style={{maxHeight: '12vh'}}></img>
+              </div>
 
+              <div className='w-100 d-flex justify-content-center' style={{ flex: '1' }}>
+                  <img className='img-fluid' src={dTwelve} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid' src={dTwenty} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid' src={dOneHundred} style={{maxHeight: '12vh'}}></img>
+              </div>
           </div>
 
 
