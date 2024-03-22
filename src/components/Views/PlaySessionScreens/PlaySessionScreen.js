@@ -104,6 +104,8 @@ function PlaySession() {
   const [characterProfSkills, setCharacterProfSkills] = useState([]) 
   const [characterCurrency, setCharacterCurrency] = useState([])
   const [loadCharacterSpells, setLoadCharacterSpells] = useState([]);
+  const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
+	const [updateCharacterOrganisation, setUpdateCharacterOrganisation] = useState([])
 
   const fetchData = async () => {
 		try {
@@ -189,6 +191,8 @@ function PlaySession() {
       setCharacterEquipment(characterData.equipment|| []);
       setCharacterCurrency(characterData.currency || [])
       setLoadCharacterSpells(characterData.spells || [])
+      setUpdateCharacterTreasure(characterData.treasure || []);
+			setUpdateCharacterOrganisation(characterData.organisation || []);
 		} catch (error) {
 			console.log(error)
 		}
@@ -319,6 +323,7 @@ function PlaySession() {
             characterSavingThrows={characterSavingThrows}
             characterSkills={characterProfSkills}
             characterCurrency={characterCurrency}/>}
+
             {currentPage === 2 && <PlaySessionDndSheetTwo
               loadCharacterSpells={loadCharacterSpells}
               characterSpellcastingClass={characterData ? characterData.characterSpellcastingClass : ''}
@@ -334,7 +339,22 @@ function PlaySession() {
               characterSpellSlot7={characterData ? characterData.characterSpellSlot7 : ''}
               characterSpellSlot8={characterData ? characterData.characterSpellSlot8 : ''}
               characterSpellSlot9={characterData ? characterData.characterSpellSlot9 : ''}/>}
-            {currentPage === 3 && <PlaySessionDndSheetThree/>}
+
+            {currentPage === 3 && <PlaySessionDndSheetThree
+              updateCharacterOrganisation={updateCharacterOrganisation}
+              characterOrganisationSymbol={updateCharacterOrganisation ? updateCharacterOrganisation : ''}
+				      characterTreasure={updateCharacterTreasure ? updateCharacterTreasure : ''}
+              characterName={characterData ? characterData.characterName : ''}
+              characterAge={characterData ? characterData.characterAge : ''}
+              characterEyes={characterData ? characterData.characterEyes : ''}
+              characterHair={characterData ? characterData.characterHair : ''}
+              characterHeight={characterData ? characterData.characterHeight : ''}
+              characterSkin={characterData ? characterData.characterSkin : ''}
+              characterWeight={characterData ? characterData.characterWeight : ''}
+              characterTextAppearence={characterData ? characterData.characterTextAppearence : ''}
+              characterBackstory={characterData ? characterData.characterBackstory : ''}
+              profileImage={"/" + characterData.characterFaceImage}
+              bodyImage={ "/" + characterData.characterBodyImage}/>}
           </div>
 
           <div className='col-12 d-flex justify-content-between' style={{padding: '0px 30px 0px 30px'}}>
