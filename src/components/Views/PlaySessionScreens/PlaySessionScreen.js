@@ -7,7 +7,7 @@ import PlaySessionDndSheetThree from '../../Components/PlaySession/PlaySessionDn
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
@@ -278,7 +278,9 @@ function PlaySession() {
           </div>
 
           <div className='col-12 d-flex justify-content-between' style={{padding: '0px 30px 0px 30px'}}>
-            <header className="navbar-text" style={{ display: 'inline-block' }}>Edit Character Sheet</header>
+            <Link to={`/LoadCharacter/${characterId.Id}`}>
+              <header className="navbar-text" style={{ display: 'inline-block' }}>Edit Character Sheet</header>
+            </Link>
             <header className="navbar-text" style={{ display: 'inline-block', textAlign: 'end' }} onClick={prevPage}>&lt; Previous Sheet </header>
             <header className="navbar-text" style={{ display: 'inline-block', textAlign: 'end' }} onClick={nextPage}>Next Sheet &gt;</header>
           </div>
