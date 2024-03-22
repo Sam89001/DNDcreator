@@ -5,12 +5,6 @@ import '../../../css/Components.css';
 //Images
 import DndSheetImage from '../../../images/sheet1.jpg'
 
-//Dependencies
-import axios from 'axios';
-import {toast} from 'react-hot-toast'
-
-//Dependencies
-
 function DndSheet({characterName, characterClass, characterLevel, characterBackground, characterRace, 
   characterAlignment, characterXp, characterUser, characterAC, characterInt, characterSpeed,
   characterHP,
@@ -327,7 +321,6 @@ function DndSheet({characterName, characterClass, characterLevel, characterBackg
   });
 
 	return (
-    <div>
       <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
         {/* Character Name */}
@@ -606,7 +599,6 @@ function DndSheet({characterName, characterClass, characterLevel, characterBackg
         {/* image */}
         <img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px'}}/>
       </div>
-    </div>
   );
 }
 

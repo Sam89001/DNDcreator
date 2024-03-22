@@ -2,6 +2,8 @@
 import Navbar from '../../Layouts/Navbar';
 import { UserContext } from '../../../context/userContext';
 import PlaySessionDndSheet from '../../Components/PlaySession/PlaySessionDndSheet';
+import PlaySessionDndSheetTwo from '../../Components/PlaySession/PlaySessionDndSheetTwo';
+import PlaySessionDndSheetThree from '../../Components/PlaySession/PlaySessionDndSheetThree';
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
@@ -13,6 +15,19 @@ function PlaySession() {
 
   const { user } = useContext(UserContext);
 	const navigate = useNavigate();
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const nextPage = () => {
+    if (currentPage < 3) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
 	const [characterId, setUserId] = useState({
     Id: ''
   })
@@ -186,7 +201,7 @@ function PlaySession() {
 
         <div className="col-4 row d-flex justify-content-center align-items-center">
           <div className='col-12' style={{ color: 'white', padding: '10px 0px 10px 0px' }}>
-            <PlaySessionDndSheet
+            {currentPage === 1 && <PlaySessionDndSheet
             fetchData={fetchData}
             characterName={characterData ? characterData.characterName : ''}
             characterClass={characterData ? characterData.characterClass : ''}
@@ -225,15 +240,18 @@ function PlaySession() {
 
             characterSavingThrows={characterSavingThrows}
             characterSkills={characterProfSkills}
-            characterCurrency={characterCurrency}/>
+            characterCurrency={characterCurrency}/>}
+            {currentPage === 2 && <PlaySessionDndSheetTwo/>}
+            {currentPage === 3 && <PlaySessionDndSheetThree/>}
           </div>
 
-          <div className='col-12' style={{padding: '0px 30px 0px 30px'}}>
-            <header className="navbar-text w-50" style={{ display: 'inline-block' }}>Edit Character Sheet</header>
-            <header className="navbar-text w-50" style={{ display: 'inline-block', textAlign: 'end' }}>Next Sheet &gt;</header>
+          <div className='col-12 d-flex justify-content-between' style={{padding: '0px 30px 0px 30px'}}>
+            <header className="navbar-text" style={{ display: 'inline-block' }}>Edit Character Sheet</header>
+            <header className="navbar-text" style={{ display: 'inline-block', textAlign: 'end' }} onClick={prevPage}>&lt; Previous Sheet </header>
+            <header className="navbar-text" style={{ display: 'inline-block', textAlign: 'end' }} onClick={nextPage}>Next Sheet &gt;</header>
           </div>
 
-        </div>
+        </div> 
 
       </div>
 
