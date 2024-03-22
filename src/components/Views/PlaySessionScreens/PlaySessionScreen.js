@@ -339,15 +339,15 @@ function PlaySession() {
 
                     <div className='col-12 d-flex flex-row justify-content-between' style={{ padding: '0px' }}>
                       <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
-                        <div style={{width: '80%', paddingBottom: '5px' }}>{characterData.characterAc}</div>
+                        <div className='text-center' style={{width: '80%', paddingBottom: '5px' }}>{characterData.characterAc}</div>
                       </div>
 
                       <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
-                        <div style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpellSaveDC}</div>
+                        <div className='text-center' style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpellSaveDC}</div>
                       </div>
 
                       <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
-                        <div style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpeed}</div>
+                        <div className='text-center' style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpeed}</div>
                       </div>
                     </div>
 
