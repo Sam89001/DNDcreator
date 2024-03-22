@@ -103,6 +103,7 @@ function PlaySession() {
   const [characterSavingThrows, setCharacterSavingThrows] = useState([])
   const [characterProfSkills, setCharacterProfSkills] = useState([]) 
   const [characterCurrency, setCharacterCurrency] = useState([])
+  const [loadCharacterSpells, setLoadCharacterSpells] = useState([]);
 
   const fetchData = async () => {
 		try {
@@ -139,30 +140,33 @@ function PlaySession() {
         characterProficiencyBonus: characterData.character.characterProficiencyBonus || '',
         characterPerception: characterData.character.characterPerception || '',
         characterHitDice: characterData.character.characterHitDice || '',
-        characterSpellcastingClass: characterData.character.characterSpellcastingClass,
-				characterSpellcastingAbility: characterData.character.characterSpellcastingAbility,
-				characterSpellSaveDC: characterData.character.characterSpellSaveDC,
-				characterSpellAttackBonus: characterData.character.characterSpellAttackBonus,
-				characterSpellSlot1: characterData.character.characterSpellSlot1,
-				characterSpellSlot2: characterData.character.characterSpellSlot2,
-				characterSpellSlot3: characterData.character.characterSpellSlot3,
-				characterSpellSlot4: characterData.character.characterSpellSlot4,
-				characterSpellSlot5: characterData.character.characterSpellSlot5,
-				characterSpellSlot6: characterData.character.characterSpellSlot6,
-				characterSpellSlot7: characterData.character.characterSpellSlot7,
-				characterSpellSlot8: characterData.character.characterSpellSlot8,
-				characterSpellSlot9: characterData.character.characterSpellSlot9,
-        characterName: characterData.character.characterName,
-				characterAge: characterData.character.characterAge,
-				characterEyes: characterData.character.characterEyes,
-				characterHair: characterData.character.characterHair,
-				characterHeight: characterData.character.characterHeight,
-				characterSkin: characterData.character.characterSkin,
-				characterWeight: characterData.character.characterWeight,
-				characterTextAppearence: characterData.character.characterTextAppearence,
-				characterFaceImage: characterData.character.characterProfileImageAddress,
-				characterBodyImage: characterData.character.characterBodyImageAddress,
-				characterBackstory: characterData.character.characterBackstory,
+
+        characterSpellcastingClass: characterData.character.characterSpellcastingClass || '',
+				characterSpellcastingAbility: characterData.character.characterSpellcastingAbility || '',
+				characterSpellSaveDC: characterData.character.characterSpellSaveDC || '',
+				characterSpellAttackBonus: characterData.character.characterSpellAttackBonus || '',
+
+				characterSpellSlot1: characterData.character.characterSpellSlot1 || '',
+				characterSpellSlot2: characterData.character.characterSpellSlot2 || '',
+				characterSpellSlot3: characterData.character.characterSpellSlot3 || '',
+				characterSpellSlot4: characterData.character.characterSpellSlot4 || '',
+				characterSpellSlot5: characterData.character.characterSpellSlot5 || '',
+				characterSpellSlot6: characterData.character.characterSpellSlot6 || '',
+				characterSpellSlot7: characterData.character.characterSpellSlot7 || '',
+				characterSpellSlot8: characterData.character.characterSpellSlot8 || '',
+				characterSpellSlot9: characterData.character.characterSpellSlot9 || '',
+        
+        characterName: characterData.character.characterName || '',
+				characterAge: characterData.character.characterAge || '',
+				characterEyes: characterData.character.characterEyes || '',
+				characterHair: characterData.character.characterHair || '',
+				characterHeight: characterData.character.characterHeight || '',
+				characterSkin: characterData.character.characterSkin || '',
+				characterWeight: characterData.character.characterWeight || '',
+				characterTextAppearence: characterData.character.characterTextAppearence || '',
+				characterFaceImage: characterData.character.characterProfileImageAddress || '',
+				characterBodyImage: characterData.character.characterBodyImageAddress || '',
+				characterBackstory: characterData.character.characterBackstory || '',
       });
       setCharacterSkills({
         characterStrength: characterData.character.characterStrength || '',
@@ -184,6 +188,7 @@ function PlaySession() {
       setCharacterAttacks(characterData.attacks || []);
       setCharacterEquipment(characterData.equipment|| []);
       setCharacterCurrency(characterData.currency || [])
+      setLoadCharacterSpells(characterData.spells || [])
 		} catch (error) {
 			console.log(error)
 		}
@@ -198,6 +203,7 @@ function PlaySession() {
 
       <div className='row mx-auto justify-content-center' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}> 
 
+        {/* Dice Rolling */}
         <div className="col-3 row d-flex justify-content-center align-items-center">
           {/* Title */}
           <div className='col-12'>
@@ -250,8 +256,9 @@ function PlaySession() {
 
           {/* Log */}
           <div className='col-12 row'>
-
-            
+            <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Log</div>
+            <textarea className='field-style spell-description-field' style={{width: '100%'}} 
+              placeholder="Notes"></textarea>
           </div>
 
           {/* Notes */}
@@ -263,11 +270,13 @@ function PlaySession() {
 
         </div>
 
+        {/* Character Information */}
         <div className="col-5 d-flex justify-content-center align-items-center">
           <header className="form-header text-center">Combat Stats</header>
 
         </div>
 
+        {/* Character Sheet */}
         <div className="col-4 row d-flex justify-content-center align-items-center">
           <div className='col-12' style={{ color: 'white', padding: '10px 0px 10px 0px' }}>
             {currentPage === 1 && <PlaySessionDndSheet
@@ -310,7 +319,21 @@ function PlaySession() {
             characterSavingThrows={characterSavingThrows}
             characterSkills={characterProfSkills}
             characterCurrency={characterCurrency}/>}
-            {currentPage === 2 && <PlaySessionDndSheetTwo/>}
+            {currentPage === 2 && <PlaySessionDndSheetTwo
+              loadCharacterSpells={loadCharacterSpells}
+              characterSpellcastingClass={characterData ? characterData.characterSpellcastingClass : ''}
+              characterSpellcastingAbility={characterData ? characterData.characterSpellcastingAbility : ''}
+              characterSpellSaveDC={characterData ? characterData.characterSpellSaveDC : ''}
+              characterSpellAttackBonus={characterData ? characterData.characterSpellAttackBonus : ''}
+              characterSpellSlot1={characterData ? characterData.characterSpellSlot1 : ''}
+              characterSpellSlot2={characterData ? characterData.characterSpellSlot2 : ''}
+              characterSpellSlot3={characterData ? characterData.characterSpellSlot3 : ''}
+              characterSpellSlot4={characterData ? characterData.characterSpellSlot4 : ''}
+              characterSpellSlot5={characterData ? characterData.characterSpellSlot5 : ''}
+              characterSpellSlot6={characterData ? characterData.characterSpellSlot6 : ''}
+              characterSpellSlot7={characterData ? characterData.characterSpellSlot7 : ''}
+              characterSpellSlot8={characterData ? characterData.characterSpellSlot8 : ''}
+              characterSpellSlot9={characterData ? characterData.characterSpellSlot9 : ''}/>}
             {currentPage === 3 && <PlaySessionDndSheetThree/>}
           </div>
 

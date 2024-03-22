@@ -100,6 +100,9 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterAttack = await CreateCharacterAttackSchema.find({ characterId: characterId })
     const LoadCharacterEquipment = await CreateCharacterEquipmentSchema.find({ characterId: characterId })
     const LoadCharacterCurrency = await CreateCharacterCurrencySchema.find({ characterId: characterId})
+    const LoadSpells = await CreateCharacterSpellSchema.find({ characterId: characterId })
+    const LoadTreasure = await CreateCharacterTreasureSchema.find({ characterId: characterId })
+    const LoadOrganisation = await CreateCharacterOrganisationSchema.find({ characterId: characterId })
 
     if (!LoadCharacters) {
       return res.json({
@@ -116,7 +119,10 @@ router.get('/:characterId', async (req, res) => {
       traits: LoadCharacterTrait,
       attacks: LoadCharacterAttack,
       equipment: LoadCharacterEquipment,
-      currency: LoadCharacterCurrency
+      currency: LoadCharacterCurrency,
+      spells: LoadSpells,
+      treasure: LoadTreasure,
+      organisation: LoadOrganisation,
     };
     res.json(responseData);
   } catch (error) {
