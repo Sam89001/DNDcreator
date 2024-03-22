@@ -218,6 +218,33 @@ function PlaySession() {
               </div>
           </div>
 
+          <div className='col-12 row'>
+
+            <div className='col-12 d-flex justify-content-between' style={{paddingBottom: '10px'}}>
+                <div style={{flex: '1', marginRight: '10px'}}>
+                  <div className="text-center form-titles">No. Of Rolls</div>
+                </div>
+                <div style={{flex: '1', marginRight: '10px'}}>
+                  <div className="text-center form-titles">Total Result</div>
+                </div>
+                <div style={{flex: '1'}}>
+                  <div className="text-center form-titles">Ind. Result</div>
+                </div>
+            </div>
+
+            <div className='col-12 d-flex justify-content-between' style={{padding: '0px'}}>
+                <div style={{flex: '1', marginRight: '10px'}}>
+                  <input className='field-style' style={{width: '100%'}} />
+                </div>
+                <div style={{flex: '1', marginRight: '10px'}}>
+                  <div className='field-style' style={{width: '100%'}} />
+                </div>
+                <div style={{flex: '1'}}>
+                  <div className='field-style' style={{width: '100%'}} />
+                </div>
+            </div>
+          </div>
+
           <div className='col-12'>
             <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Notes</div>
             <textarea className='field-style spell-description-field' style={{width: '100%'}} 
