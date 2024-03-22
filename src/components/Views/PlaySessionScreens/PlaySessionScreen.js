@@ -210,16 +210,16 @@ function PlaySession() {
 
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
               <div className='w-100 d-flex justify-content-center' style={{ flex: '1' }}>
-                  <img className='img-fluid' src={dFour} style={{maxHeight: '12vh'}}></img>
-                  <img className='img-fluid' src={dSix} style={{maxHeight: '12vh'}}></img>
-                  <img className='img-fluid' src={dEight} style={{maxHeight: '12vh'}}></img>
-                  <img className='img-fluid' src={dTen} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid dice-image' src={dFour}/>
+                  <img className='img-fluid dice-image' src={dSix}/>
+                  <img className='img-fluid dice-image' src={dEight}/>
+                  <img className='img-fluid dice-image' src={dTen}/>
               </div>
 
               <div className='w-100 d-flex justify-content-center' style={{ flex: '1' }}>
-                  <img className='img-fluid' src={dTwelve} style={{maxHeight: '12vh'}}></img>
-                  <img className='img-fluid' src={dTwenty} style={{maxHeight: '12vh'}}></img>
-                  <img className='img-fluid' src={dOneHundred} style={{maxHeight: '12vh'}}></img>
+                  <img className='img-fluid dice-image' src={dTwelve}/>
+                  <img className='img-fluid dice-image' src={dTwenty}/>
+                  <img className='img-fluid dice-image' src={dOneHundred}/>
               </div>
           </div>
 
