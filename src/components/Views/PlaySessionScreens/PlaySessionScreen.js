@@ -286,14 +286,15 @@ function PlaySession() {
 
               {/* Image & Spell Slot Fields */}
               <div className='col-6'>
-                  <div className='col-12 d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
-                    <div className="text-center form-titles" style={{ marginBottom: '10px' }}>{characterData.characterName}</div>
-                    <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
-                  </div>
+                <div className='col-12 d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
+                  <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {characterData.characterName.length > 20 ? characterData.characterName.slice(0, 17) + '...' : characterData.characterName}</div>
+                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
+                </div>
 
-                  <div className='col-12 d-flex flex-column align-items-center'>
-                    <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Spell Slots</div>
-                  </div>
+                <div className='col-12 d-flex flex-column align-items-center'>
+                  <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Spell Slots</div>
+                </div>
               </div>
 
               {/* Form Fields */}
