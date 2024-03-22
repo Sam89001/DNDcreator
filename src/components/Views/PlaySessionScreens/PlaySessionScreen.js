@@ -208,7 +208,8 @@ function PlaySession() {
       <div className='row mx-auto justify-content-center' style={{paddingTop: '85px', maxWidth: '1900px', minWidth: '1500px'}}> 
 
         {/* Dice Rolling */}
-        <div className="col-3 row d-flex justify-content-center align-items-center">
+        
+        <div className="col-4 row d-flex justify-content-center align-items-center">
           {/* Title */}
           <div className='col-12'>
             <header className="form-header text-center">Dice & Damage</header>
@@ -275,8 +276,62 @@ function PlaySession() {
         </div>
 
         {/* Character Information */}
-        <div className="col-5 d-flex justify-content-center align-items-center">
-          <header className="form-header text-center">Combat Stats</header>
+        <div className="col-4 row d-flex justify-content-center align-items-center">
+
+          <div className='col-12'>
+            <header className="form-header text-center">Combat Stats</header>
+          </div>
+
+          <div className='col-12 row d-flex justify-content-center'>
+
+              {/* Image & Spell Slot Fields */}
+              <div className='col-6'>
+                  <div className='col-12 d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
+                    <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Character Name</div>
+                    <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '30vh' }} />
+                  </div>
+
+                  <div className='col-12 d-flex flex-column align-items-center'>
+                    <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Spell Slots</div>
+                  </div>
+              </div>
+
+              {/* Form Fields */}
+              <div className='col-6'>
+
+                <div className='col-12 d-flex flex-column align-items-center'>
+                  <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Temp Hp</div>
+                </div>
+                
+                <div className='col-12 d-flex flex-column align-items-center'>
+                  
+                </div>
+
+                <div className='col-12 d-flex flex-column align-items-center'>
+                  
+                </div>
+
+                <div className='col-12 d-flex flex-column align-items-center'>
+                  <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Successful Death Saves</div>
+                </div>
+
+                <div className='col-12 d-flex flex-column align-items-center'>
+                  <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Failed Death Saves</div>
+                </div>
+              </div>
+
+              {/* Attacks/Spells */}
+              <div className='col-6'>
+
+              </div>
+
+              {/* Equipment */}
+              <div className='col-6'>
+
+              </div>
+
+              
+          </div>
 
         </div>
 
