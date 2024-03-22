@@ -6,8 +6,10 @@
 .edit-character-field,
 .description-field,
 .field-style,
+.field-colour,
 .spells-expand-box,
-.spell-edit-character-field {
+.spell-edit-character-field,
+.play-session-field {
     background-color: var(--inputGrey);
     border: none;
     color: white;
@@ -292,8 +294,11 @@
 }
 
 .field-style {
-  height: 35px;
   padding: 10px 5px 10px 5px;
+  height: 35px;
+}
+.play-session-field {
+  height: 8vh;
 }
 
 .spells-field {

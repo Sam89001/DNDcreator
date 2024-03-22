@@ -300,9 +300,20 @@ function PlaySession() {
               {/* Form Fields */}
               <div className='col-6'>
 
-                <div className='col-12 d-flex flex-column align-items-center'>
+              <div className='col-12 d-flex flex-column align-items-center'>
                   <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Temp Hp</div>
-                </div>
+
+                  <div className='play-session-field d-flex justify-content-between align-items-center' style={{ width: '90%', padding: '10px 5px 10px 5px' }}> 
+                      <input className='field-colour' style={{ width: '45%', border: 'solid 0.5px var(--textGrey)', fontSize: '2vw', textAlign: 'center' }}/>
+
+                      <div className='field-colour d-flex justify-content-center align-items-center' 
+                      style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '2.3vw', paddingBottom: '5px' }}>/</div>
+
+                      <div className='field-colour d-flex justify-content-center align-items-center' 
+                      style={{ width: '45%', color: 'var(--textLightGrey)', fontSize: '2.3vw', paddingBottom: '5px' }}>{characterData.characterHp}</div>
+                  </div>
+              </div>
+
                 
                 <div className='col-12 d-flex flex-column align-items-center'>
                   
