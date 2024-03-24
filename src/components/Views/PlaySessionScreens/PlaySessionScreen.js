@@ -199,7 +199,8 @@ function PlaySession() {
 	}
 
   const [selectedSpellSlot, setSelectedSpellSlot] = useState({
-
+    selectedSpellSlot: '',
+    selectedSpellSlotValue: '0' || ''
   })
 
   return (
@@ -382,18 +383,26 @@ function PlaySession() {
                   
                   <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Spell Slots</div>
                   <div className="field-colour" style={{width: '100%', height: '10vh', padding: '0px 5px 0px 5px', marginBottom: '5px'}}>
-                    <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}>
-                      <option>Cantrips</option>
-                      <option>Level 1</option>
-                      <option>Level 2</option>
-                      <option>Level 3</option>
-                      <option>Level 4</option>
-                      <option>Level 5</option>
-                      <option>Level 6</option>
-                      <option>Level 7</option>
-                      <option>Level 8</option>
-                      <option>Level 9</option>
+                    <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}
+                      onChange={(e) =>
+                          setSelectedSpellSlot((prevData) => ({
+                            ...prevData,
+                            selectedSpellSlotValue: e.target.value,
+                            selectedSpellSlot: e.target.selectedOptions[0].dataset.value
+                          }))
+                      }>
+                      <option value={0} data-value={0}>Cantrips</option>
+                      <option value={characterData.characterSpellSlot1} data-value={1}>Level 1</option>
+                      <option value={characterData.characterSpellSlot2} data-value={2}>Level 2</option>
+                      <option value={characterData.characterSpellSlot3} data-value={3}>Level 3</option>
+                      <option value={characterData.characterSpellSlot4} data-value={4}>Level 4</option>
+                      <option value={characterData.characterSpellSlot5} data-value={5}>Level 5</option>
+                      <option value={characterData.characterSpellSlot6} data-value={6}>Level 6</option>
+                      <option value={characterData.characterSpellSlot7} data-value={7}>Level 7</option>
+                      <option value={characterData.characterSpellSlot8} data-value={8}>Level 8</option>
+                      <option value={characterData.characterSpellSlot9} data-value={9}>Level 9</option>
                     </select>
+
 
                     <div className='d-flex justify-content-between' style={{width: '100%'}}>
 
@@ -404,7 +413,7 @@ function PlaySession() {
 
 
                       <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '45%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>{characterData.characterHp}</div>
+                        style={{ width: '45%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>{selectedSpellSlot.selectedSpellSlotValue}</div>
 
                     </div>
 
