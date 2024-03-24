@@ -285,7 +285,7 @@ function PlaySession() {
         </div>
 
         {/* Character Information */}
-        <div className="col-5 row ">
+        <div className="col-5 row " style={{padding: '0px 10px 0px 50px'}}>
 
           <div className='col-12'>
             <header className="form-header text-center">Combat Stats</header>
@@ -298,7 +298,7 @@ function PlaySession() {
                 <div className='d-flex flex-column align-items-center'>
                   <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {characterData.characterName.length > 25 ? characterData.characterName.slice(0, 22) + '...' : characterData.characterName}</div>
-                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '22vh' }} />
+                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
                 </div>
               </div>
 
@@ -402,20 +402,22 @@ function PlaySession() {
                     <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
                   </div>
 
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '10px' }}>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterPerception}</div>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
                   </div>
 
                   {/* Long and Short Rest */}
                   <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>
-                      <button className='create-character-button' type="submit">Update SS</button>
+
+                    <div className='d-flex justify-content-center'style={{ width: '45%' }}>
+                      <button className='create-character-button' type="submit">Short Rest</button>
                     </div>
 
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>
-                      <button className='create-character-button' type="submit">Update SS</button>
+                    <div className='d-flex justify-content-center' style={{ width: '45%' }}>
+                      <button className='create-character-button' type="submit">Long Rest</button>
                     </div>
+
                   </div>
 
                 </div>
@@ -427,12 +429,26 @@ function PlaySession() {
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Attacks/Spells</div>
                 
                 <div className="field-colour" style={{ width: '100%', height: '40vh' }}>
+
+                <div style={{ height: '6vh', backgroundColor: 'red', display: 'flex' }}>
+                  <div className='d-flex justify-content-center align-items-center flex-column' style={{ width: '50%', height: '100%', backgroundColor: 'blue', verticalAlign: 'top' }}>
+                    <div>Attacks</div>
+                  </div>
+                  
+                  <div className='d-flex justify-content-center align-items-center flex-column' style={{ width: '50%', height: '80%', backgroundColor: 'green', verticalAlign: 'top' }}>
+                    <div>Spells</div>
+                  </div>
+                </div>
+
+
+
                   {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
                     .map(spell => (
                       <div key={spell.id}>
                         <div style={{ paddingBottom: '5px', overflowY: 'auto' }}>{spell.characterSpellName}</div>
                       </div>
                     ))}
+                  
                 </div>
               </div>
 
