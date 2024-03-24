@@ -198,6 +198,10 @@ function PlaySession() {
 		}
 	}
 
+  const [selectedSpellSlot, setSelectedSpellSlot] = useState({
+
+  })
+
   return (
     <div style={{paddingBottom: '20px'}}>
 
@@ -289,7 +293,7 @@ function PlaySession() {
                 <div className='d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
                   <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {characterData.characterName.length > 20 ? characterData.characterName.slice(0, 17) + '...' : characterData.characterName}</div>
-                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '23vh' }} />
+                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '22vh' }} />
                 </div>
               </div>
 
@@ -371,39 +375,70 @@ function PlaySession() {
               </div>
 
               {/* Spell Slots, Death Saves */}
-              <div className='col-12 row' style={{paddingBottom: '10px'}}>
+              <div className='col-12 row' style={{paddingBottom: '0px'}}>
                 
                 {/* Spell Slots*/}
-                <div className='col-6' style={{paddingLeft: '0px'}}>
+                <div className='col-5' style={{paddingLeft: '0px'}}>
                   
                   <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Spell Slots</div>
-                  <div className="field-colour" style={{width: '100%', height: '12vh', marginBottom: '5px'}}></div>
+                  <div className="field-colour" style={{width: '100%', height: '10vh', padding: '0px 5px 0px 5px', marginBottom: '5px'}}>
+                    <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}>
+                      <option>Cantrips</option>
+                      <option>Level 1</option>
+                      <option>Level 2</option>
+                      <option>Level 3</option>
+                      <option>Level 4</option>
+                      <option>Level 5</option>
+                      <option>Level 6</option>
+                      <option>Level 7</option>
+                      <option>Level 8</option>
+                      <option>Level 9</option>
+                    </select>
 
-                  <div className='w-100 d-flex justify-content-between ' >
+                    <div className='d-flex justify-content-between' style={{width: '100%'}}>
+
+                      <input className='field-colour' placeholder='HP' style={{ width: '45%', fontSize: '1.5vw', textAlign: 'center' }}/>
+
+                      <div className='field-colour d-flex justify-content-center align-items-center' 
+                      style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>/</div>
+
+
+                      <div className='field-colour d-flex justify-content-center align-items-center' 
+                        style={{ width: '45%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>{characterData.characterHp}</div>
+
+                    </div>
+
+                  </div>
+
+                 
+
+                  <div className='w-100 d-flex justify-content-center ' >
                     <button className='create-character-button' type="submit">Update SS</button>
-                    <button className='create-character-button' type="submit">Long Rest</button>
-                    <button className='create-character-button' type="submit">Short Rest</button>
                   </div>
                   
-
                 </div>
 
                 {/* Death Saves*/}
-                <div className='col-6 d-flex flex-column align-items-center' style={{padding: '0px 12px 0px 0px'}}>
-                   {/* Successful Death Saves*/}
+                <div className='col-7 row justify-content-center' style={{padding: '0px 0px 0px 12px'}}>
+                    <div className='col-6' style={{padding: '0px 5px 5px 0px'}}>
+                      <div className="text-center form-titles" style={{paddingBottom: '5px'}}>Successful Death Saves</div>
+                      <div className="field-colour mx-auto" style={{height: '6vh'}}></div>
+                    </div>
 
-                  <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Successful Death Saves</div>
-                  <div className="field-colour" style={{width: '100%', height: '6vh', marginBottom: '10px'}}>
+                    <div className='col-6' style={{padding: '0px 0px 5px 5px'}}>
+                      <div className="text-center form-titles" style={{paddingBottom: '5px'}}>Failed Death Saves</div>
+                      <div className="field-colour mx-auto" style={{height: '6vh'}}></div>
+                    </div>
 
-                  </div>
+                    <div className='col-12 d-flex justify-content-between' style={{padding: '0px 0px 5px 0px'}}>
+                      <button className='create-character-button' type="submit">Long Rest</button>
+                      <button className='create-character-button' type="submit">Short Rest</button>
+                    </div>
 
-                  {/* Failed Death Saves*/}
-
-                  <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Failed Death Saves</div>
-                  <div className="field-colour" style={{width: '100%', height: '6vh'}}>
-                      
-                  </div>
-
+                    <div className='col-12 d-flex justify-content-between' style={{padding: '0px 0px 5px 0px'}}>
+                      <button className='create-character-button' type="submit">Long Rest</button>
+                      <button className='create-character-button' type="submit">Short Rest</button>
+                    </div>
                 </div>
 
               </div>
