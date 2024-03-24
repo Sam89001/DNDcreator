@@ -218,7 +218,6 @@ function PlaySession() {
       <div className='row mx-auto justify-content-center' style={{paddingTop: '75px', maxWidth: '1900px', minWidth: '1500px'}}> 
 
         {/* Dice Rolling */}
-        
         <div className="col-3 row d-flex justify-content-center align-items-center">
           {/* Title */}
           <div className='col-12'>
@@ -286,17 +285,17 @@ function PlaySession() {
         </div>
 
         {/* Character Information */}
-        <div className="col-5 row d-flex justify-content-center align-items-center">
+        <div className="col-5 row ">
 
           <div className='col-12'>
             <header className="form-header text-center">Combat Stats</header>
           </div>
 
-          <div className='col-12 row d-flex justify-content-center'>
+          <div className='col-12 row'>
 
               {/* Image & Spell Slot Fields */}
-              <div className='col-5'>
-                <div className='d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
+              <div className='col-4'>
+                <div className='d-flex flex-column align-items-center'>
                   <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {characterData.characterName.length > 25 ? characterData.characterName.slice(0, 22) + '...' : characterData.characterName}</div>
                   <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '22vh' }} />
@@ -304,86 +303,33 @@ function PlaySession() {
               </div>
 
               {/* Form Fields */}
-              <div className='col-7'>
+              <div className='col-8 row' style={{padding: '0px 0px 0px 12px'}}> 
 
-                {/* Temp Hp*/}
-                <div className='col-7 d-flex flex-column justify-content-center' style={{ padding: '0px 0px 5px 0px' }}>
+                <div className='col-6' >
 
-                    <div className="text-center form-titles" style={{ padding: '0px 0px 5px 0px', width: '100%' }}>Temp Hp</div>
-
+                  {/* Temp Hp*/}
+                  <div className="text-center form-titles" style={{ width: '100%' }}>Temp Hp</div>
+                  <div className='d-flex align-items-center' style={{width: '100%'}}>
                     <form >
-                      <div className='play-session-field d-flex justify-content-between align-items-center' style={{ width: '100%', padding: '10px 0px 10px 0px' }}> 
+                      <div className='play-session-field d-flex justify-content-between' style={{ width: '100%', padding: '10px 0px 10px 0px', marginBottom: '10px' }}> 
 
-                        <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}/>
+                      <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}/>
 
-                        <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>/</div>
-                        
-                        <div className='field-colour d-flex justify-content-center align-items-center' 
+                      <div className='field-colour d-flex justify-content-center align-items-center' 
+                      style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>/</div>
+                            
+                      <div className='field-colour d-flex justify-content-center align-items-center' 
                         style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>{characterData.characterHp}</div>
                       </div>
+
                     </form>
-
-                    <div className='d-flex justify-content-center' style={{width: '100%'}}>
+                  </div>
+                  <div className='d-flex justify-content-center' style={{width: '100%'}}>
                     <button className='create-character-button' type="submit">Update</button>
-                    </div>
-
-                </div>
-
-                <div className='col-4'>
-                  <div className="text-center form-titles" style={{ width: '100%' }}>SS DC</div>
-                  <div className='play-session-field basic-combat-stats-field text-center' 
-                  style={{width: '100%', paddingBottom: '5px'}}>{characterData.characterSpellSaveDC}</div>
-                </div>
-
-                {/* AC, SS DC, Speed*/}
-                <div className='col-12 row' style={{ padding: '0px 0px 5px 0px' }}>
-
-                    <div className='col-12 d-flex flex-row align-items-center justify-content-between' style={{ padding: '0px 0px 5px 0px' }}>
-                      <div className="text-center form-titles" style={{ width: '30%' }}>AC</div>
-                      <div className="text-center form-titles" style={{ width: '30%' }}>Speed</div>
-                    </div>
-
-                    <div className='col-12 d-flex flex-row justify-content-between' style={{ padding: '0px' }}>
-                      <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
-                        <div className='text-center' style={{width: '80%', paddingBottom: '5px' }}>{characterData.characterAc}</div>
-                      </div>
-
-                      <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
-                        <div className='text-center' style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpeed}</div>
-                      </div>
-                    </div>
-
-                </div>
-
-                {/* Inspiration, Perception*/}
-                <div className='col-12 row d-flex flex-row align-items-center justify-content-between' style={{ padding: '0px 0px 5px 0px' }}>
-
-                  <div className="text-center form-titles" style={{ width: '45%', padding: '0px 0px 5px 0px' }}>Inspiration</div>
-                  <div className="text-center form-titles" style={{ width: '45%', padding: '0px 0px 5px 0px'  }}>Perception</div>
-
-                  <div className='play-session-field d-flex align-items-center justify-content-center' style={{width: '47%', overflowY: 'auto'}}>
-                    <div className='text-center' style={{ width: '80%', paddingBottom: '5px', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>
-                      {characterData.characterInspiration}</div>
                   </div>
-                  
-                  <div className='play-session-field d-flex align-items-center justify-content-center' style={{width: '47%', overflowY: 'auto'}}>
-                    <div className='text-center' style={{ width: '80%', paddingBottom: '5px', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>
-                      {characterData.characterPerception}</div>
-                  </div>
-                  
 
-                </div>
-                
-              </div>
-
-              {/* Spell Slots, Death Saves */}
-              <div className='col-12 row' style={{paddingBottom: '0px'}}>
-                
-                {/* Spell Slots*/}
-                <div className='col-5' style={{paddingLeft: '0px'}}>
-                  
-                  <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Spell Slots</div>
+                  {/* Spell Slots */}
+                  <div className="text-center form-titles" style={{ width: '100%' }}>Spell Slots</div>
                   <div className="field-colour" style={{width: '100%', height: '10vh', padding: '0px 5px 0px 5px', marginBottom: '5px'}}>
                     <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}
                       onChange={(e) =>
@@ -421,47 +367,70 @@ function PlaySession() {
 
                   </div>
 
-                  <div className='w-100 d-flex justify-content-center ' >
+                  <div className='d-flex justify-content-center' style={{width: '100%'}}>
                     <button className='create-character-button' type="submit">Update SS</button>
                   </div>
-                  
+
                 </div>
+                
+                <div className='col-6 flex-column' style={{ padding: '0px 0px 0px 10px' }}>
 
-                {/* Death Saves*/}
-                <div className='col-7 row justify-content-center' style={{padding: '0px 0px 0px 12px'}}>
-                    <div className='col-6' style={{padding: '0px 5px 5px 0px'}}>
-                      <div className="text-center form-titles" style={{paddingBottom: '5px'}}>Successful Death Saves</div>
-                      <div className="field-colour mx-auto" style={{height: '6vh'}}></div>
+                  {/* AC and SS DC */}
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>SS DC</div>
+                  </div>
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpellSaveDC}</div>
+                  </div>
+
+                  {/* Speed and Inspiration */}
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>Speed</div>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>Inspiration</div>
+                  </div>
+
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpeed}</div>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterInspiration}</div>
+                  </div>
+
+                  {/* Perception */}
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>Perception</div>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
+                  </div>
+
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterPerception}</div>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
+                  </div>
+
+                  {/* Long and Short Rest */}
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>
+                      <button className='create-character-button' type="submit">Update SS</button>
                     </div>
 
-                    <div className='col-6' style={{padding: '0px 0px 5px 5px'}}>
-                      <div className="text-center form-titles" style={{paddingBottom: '5px'}}>Failed Death Saves</div>
-                      <div className="field-colour mx-auto" style={{height: '6vh'}}></div>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>
+                      <button className='create-character-button' type="submit">Update SS</button>
                     </div>
+                  </div>
 
-                    <div className='col-12 d-flex justify-content-between' style={{padding: '0px 0px 5px 0px'}}>
-                      <button className='create-character-button' type="submit">Long Rest</button>
-                      <button className='create-character-button' type="submit">Short Rest</button>
-                    </div>
-
-                    <div className='col-12 d-flex justify-content-between' style={{padding: '0px 0px 5px 0px'}}>
-                      <button className='create-character-button' type="submit">Long Rest</button>
-                      <button className='create-character-button' type="submit">Short Rest</button>
-                    </div>
                 </div>
 
               </div>
-
 
               {/* Attacks/Spells */}
               <div className='col-6 d-flex flex-column align-items-center'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Attacks/Spells</div>
                 
-                <div className="field-colour" style={{ width: '100%', height: '28vh' }}>
+                <div className="field-colour" style={{ width: '100%', height: '40vh' }}>
                   {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
                     .map(spell => (
                       <div key={spell.id}>
-                        <div style={{ paddingBottom: '5px' }}>{spell.characterSpellName}</div>
+                        <div style={{ paddingBottom: '5px', overflowY: 'auto' }}>{spell.characterSpellName}</div>
                       </div>
                     ))}
                 </div>
@@ -470,7 +439,7 @@ function PlaySession() {
               {/* Equipment */}
               <div className='col-6 d-flex flex-column d-flex'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Equipment</div>
-                <div className="field-colour" style={{width: '100%', height: '28vh'}}></div>
+                <div className="field-colour" style={{width: '100%', height: '40vh'}}></div>
               </div>
 
           </div>

@@ -261,7 +261,7 @@
 /* Dice Rolling */
 
 .dice-image {
-  max-height: 11vh;
+  max-height: 10vh;
   transition: max-height 0.5s;
 }
 
