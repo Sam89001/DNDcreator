@@ -376,10 +376,16 @@ function PlaySession() {
                 {/* Spell Slots*/}
                 <div className='col-6' style={{paddingLeft: '0px'}}>
                   
-                  <div className="text-center form-titles" style={{ paddingBottom: '10px' }}>Spell Slots</div>
-                  <div className="field-colour" style={{width: '100%', height: '16vh'}}>
+                  <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Spell Slots</div>
+                  <div className="field-colour" style={{width: '100%', height: '12vh', marginBottom: '5px'}}></div>
 
+                  <div className='w-100 d-flex justify-content-between ' >
+                    <button className='create-character-button' type="submit">Update SS</button>
+                    <button className='create-character-button' type="submit">Long Rest</button>
+                    <button className='create-character-button' type="submit">Short Rest</button>
                   </div>
+                  
+
                 </div>
 
                 {/* Death Saves*/}
