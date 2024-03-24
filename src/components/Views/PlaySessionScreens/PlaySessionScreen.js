@@ -199,9 +199,14 @@ function PlaySession() {
 	}
 
   const [selectedSpellSlot, setSelectedSpellSlot] = useState({
-    selectedSpellSlot: '',
-    selectedSpellSlotValue: '0' || ''
-  })
+    selectedSpellSlot: 0,
+    selectedSpellSlotValue: '0'
+  }); useEffect(() => {
+      setSelectedSpellSlot((prevData) => ({
+          ...prevData,
+          selectedSpellSlot: 0
+      }));
+  }, []);
 
   return (
     <div style={{paddingBottom: '20px'}}>
@@ -419,8 +424,6 @@ function PlaySession() {
 
                   </div>
 
-                 
-
                   <div className='w-100 d-flex justify-content-center ' >
                     <button className='create-character-button' type="submit">Update SS</button>
                   </div>
@@ -456,7 +459,15 @@ function PlaySession() {
               {/* Attacks/Spells */}
               <div className='col-6 d-flex flex-column align-items-center'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Attacks/Spells</div>
-                <div className="field-colour" style={{width: '100%', height: '28vh'}}></div>
+                
+                <div className="field-colour" style={{ width: '100%', height: '28vh' }}>
+                  {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
+                    .map(spell => (
+                      <div key={spell.id}>
+                        <div style={{ paddingBottom: '5px' }}>{spell.characterSpellName}</div>
+                      </div>
+                    ))}
+                </div>
               </div>
 
               {/* Equipment */}
