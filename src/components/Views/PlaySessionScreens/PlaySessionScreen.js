@@ -289,7 +289,7 @@ function PlaySession() {
                 <div className='d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
                   <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {characterData.characterName.length > 20 ? characterData.characterName.slice(0, 17) + '...' : characterData.characterName}</div>
-                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '27vh' }} />
+                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '23vh' }} />
                 </div>
               </div>
 
@@ -307,13 +307,13 @@ function PlaySession() {
                     <form className="d-flex justify-content-between align-items-center" style={{ width: '100%' }}>
                       <div className='play-session-field d-flex justify-content-between align-items-center' style={{ width: '75%', padding: '10px 0px 10px 0px' }}> 
 
-                        <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.8vw', textAlign: 'center' }}/>
+                        <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}/>
 
                         <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.8vw', paddingBottom: '3px' }}>/</div>
+                        style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>/</div>
                         
                         <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.8vw', paddingBottom: '3px' }}>{characterData.characterHp}</div>
+                        style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>{characterData.characterHp}</div>
                       </div>
 
                       <div style={{ width: '20%' }}>
@@ -374,10 +374,10 @@ function PlaySession() {
               <div className='col-12 row' style={{paddingBottom: '10px'}}>
                 
                 {/* Spell Slots*/}
-                <div className='col-6' >
+                <div className='col-6' style={{paddingLeft: '0px'}}>
                   
                   <div className="text-center form-titles" style={{ paddingBottom: '10px' }}>Spell Slots</div>
-                  <div className="field-colour" style={{width: '100%', height: '23vh'}}>
+                  <div className="field-colour" style={{width: '100%', height: '16vh'}}>
 
                   </div>
                 </div>
@@ -386,15 +386,15 @@ function PlaySession() {
                 <div className='col-6 d-flex flex-column align-items-center' style={{padding: '0px 12px 0px 0px'}}>
                    {/* Successful Death Saves*/}
 
-                  <div className="text-center form-titles" style={{ paddingBottom: '10px' }}>Successful Death Saves</div>
-                  <div className="field-colour" style={{width: '100%', height: '9vh', marginBottom: '10px'}}>
+                  <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Successful Death Saves</div>
+                  <div className="field-colour" style={{width: '100%', height: '6vh', marginBottom: '10px'}}>
 
                   </div>
 
                   {/* Failed Death Saves*/}
 
-                  <div className="text-center form-titles" style={{ paddingBottom: '10px' }}>Failed Death Saves</div>
-                  <div className="field-colour" style={{width: '100%', height: '9vh'}}>
+                  <div className="text-center form-titles" style={{ paddingBottom: '5px' }}>Failed Death Saves</div>
+                  <div className="field-colour" style={{width: '100%', height: '6vh'}}>
                       
                   </div>
 
@@ -406,11 +406,13 @@ function PlaySession() {
               {/* Attacks/Spells */}
               <div className='col-6 d-flex flex-column align-items-center'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Attacks/Spells</div>
+                <div className="field-colour" style={{width: '100%', height: '28vh'}}></div>
               </div>
 
               {/* Equipment */}
               <div className='col-6 d-flex flex-column d-flex'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Equipment</div>
+                <div className="field-colour" style={{width: '100%', height: '28vh'}}></div>
               </div>
 
           </div>
