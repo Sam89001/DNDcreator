@@ -298,7 +298,7 @@ function PlaySession() {
               <div className='col-5'>
                 <div className='d-flex flex-column align-items-center' style={{paddingBottom: '10px'}}>
                   <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {characterData.characterName.length > 20 ? characterData.characterName.slice(0, 17) + '...' : characterData.characterName}</div>
+                  {characterData.characterName.length > 25 ? characterData.characterName.slice(0, 22) + '...' : characterData.characterName}</div>
                   <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '22vh' }} />
                 </div>
               </div>
@@ -307,15 +307,12 @@ function PlaySession() {
               <div className='col-7'>
 
                 {/* Temp Hp*/}
-                <div className='col-12 row d-flex align-items-center' style={{ padding: '0px 0px 5px 0px' }}>
+                <div className='col-7 d-flex flex-column justify-content-center' style={{ padding: '0px 0px 5px 0px' }}>
 
-                  <div className='col-12'>
-                    <div className="text-center form-titles" style={{ padding: '0px 0px 5px 0px' }}>Temp Hp</div>
-                  </div>
-   
-                  <div className='col-12 d-flex align-items-center' style={{ padding: '0px' }}>
-                    <form className="d-flex justify-content-between align-items-center" style={{ width: '100%' }}>
-                      <div className='play-session-field d-flex justify-content-between align-items-center' style={{ width: '75%', padding: '10px 0px 10px 0px' }}> 
+                    <div className="text-center form-titles" style={{ padding: '0px 0px 5px 0px', width: '100%' }}>Temp Hp</div>
+
+                    <form >
+                      <div className='play-session-field d-flex justify-content-between align-items-center' style={{ width: '100%', padding: '10px 0px 10px 0px' }}> 
 
                         <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}/>
 
@@ -325,13 +322,18 @@ function PlaySession() {
                         <div className='field-colour d-flex justify-content-center align-items-center' 
                         style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>{characterData.characterHp}</div>
                       </div>
-
-                      <div style={{ width: '20%' }}>
-                        <button className='create-character-button' type="submit">Update</button>
-                      </div>
                     </form>
 
-                  </div>
+                    <div className='d-flex justify-content-center' style={{width: '100%'}}>
+                    <button className='create-character-button' type="submit">Update</button>
+                    </div>
+
+                </div>
+
+                <div className='col-4'>
+                  <div className="text-center form-titles" style={{ width: '100%' }}>SS DC</div>
+                  <div className='play-session-field basic-combat-stats-field text-center' 
+                  style={{width: '100%', paddingBottom: '5px'}}>{characterData.characterSpellSaveDC}</div>
                 </div>
 
                 {/* AC, SS DC, Speed*/}
@@ -339,17 +341,12 @@ function PlaySession() {
 
                     <div className='col-12 d-flex flex-row align-items-center justify-content-between' style={{ padding: '0px 0px 5px 0px' }}>
                       <div className="text-center form-titles" style={{ width: '30%' }}>AC</div>
-                      <div className="text-center form-titles" style={{ width: '30%' }}>SS DC</div>
                       <div className="text-center form-titles" style={{ width: '30%' }}>Speed</div>
                     </div>
 
                     <div className='col-12 d-flex flex-row justify-content-between' style={{ padding: '0px' }}>
                       <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
                         <div className='text-center' style={{width: '80%', paddingBottom: '5px' }}>{characterData.characterAc}</div>
-                      </div>
-
-                      <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
-                        <div className='text-center' style={{width: '80%', paddingBottom: '5px'}}>{characterData.characterSpellSaveDC}</div>
                       </div>
 
                       <div className='play-session-field d-flex align-items-center justify-content-center basic-combat-stats-field'>
