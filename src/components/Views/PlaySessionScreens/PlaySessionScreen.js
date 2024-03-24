@@ -208,6 +208,33 @@ function PlaySession() {
       }));
   }, []);
 
+    const [activeIndex, setActiveIndex] = useState(0); 
+    const handleClick = (index) => {
+      setActiveIndex(index === activeIndex ? activeIndex : index); 
+    };
+    const renderContent = () => {
+      if (activeIndex === 0) {
+        //Attacks Render
+        return (
+          <div>
+            <div>Attacks</div>
+          </div>
+        );
+      } else if (activeIndex === 1) {
+        // Spells Render
+        return (
+          <div>
+            {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
+              .map(spell => (
+                <div key={spell.id}>
+                  <div style={{ paddingBottom: '5px', overflowY: 'auto' }}>{spell.characterSpellName}</div>
+                </div>
+              ))}
+          </div>
+        );
+      } 
+    };
+
   return (
     <div style={{paddingBottom: '20px'}}>
 
@@ -430,24 +457,23 @@ function PlaySession() {
                 
                 <div className="field-colour" style={{ width: '100%', height: '40vh' }}>
 
-                <div style={{ height: '6vh', backgroundColor: 'red', display: 'flex' }}>
-                  <div className='d-flex justify-content-center align-items-center flex-column' style={{ width: '50%', height: '100%', backgroundColor: 'blue', verticalAlign: 'top' }}>
-                    <div>Attacks</div>
-                  </div>
-                  
-                  <div className='d-flex justify-content-center align-items-center flex-column' style={{ width: '50%', height: '80%', backgroundColor: 'green', verticalAlign: 'top' }}>
-                    <div>Spells</div>
-                  </div>
-                </div>
-
-
-
-                  {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
-                    .map(spell => (
-                      <div key={spell.id}>
-                        <div style={{ paddingBottom: '5px', overflowY: 'auto' }}>{spell.characterSpellName}</div>
+                  <div style={{ height: '6vh', display: 'block', width: '100%' }}>
+                    <div className='d-flex flex-row' style={{height: '100%'}}>
+                      <div className={`attack-menu-container ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
+                        <div className="text-center">Attacks</div>
                       </div>
-                    ))}
+
+                      <div className={`attack-menu-container ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>
+                        <div className="text-center">Spells</div>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div style={{padding: '5px'}}>
+                    {renderContent()}
+                  </div>
                   
                 </div>
               </div>
