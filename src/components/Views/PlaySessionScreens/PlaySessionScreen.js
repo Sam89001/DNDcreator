@@ -198,6 +198,7 @@ function PlaySession() {
 		}
 	}
 
+  //Sets Spell Target
   const [selectedSpellSlot, setSelectedSpellSlot] = useState({
     selectedSpellSlot: 0,
     selectedSpellSlotValue: '0'
@@ -208,6 +209,7 @@ function PlaySession() {
       }));
   }, []);
 
+    //Loads Spell Info
     const [activeIndex, setActiveIndex] = useState(0); 
     const handleClick = (index) => {
       setActiveIndex(index === activeIndex ? activeIndex : index); 
@@ -216,20 +218,42 @@ function PlaySession() {
       if (activeIndex === 0) {
         //Attacks Render
         return (
-          <div>
-            <div>Attacks</div>
+          <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
+
+            <div className='d-flex flex-row justify-cpntent-between' style={{width: '100%', borderBottom: 'solid 1px var(--textGrey)', color: 'var(--textGrey)', marginBottom: '10px'}}>
+              <div className='text-center attack-title-styling' style={{width: '35%'}}>Name</div>
+              <div className='text-center attack-title-styling' style={{width: '30%'}}>Cast Time</div>
+              <div className='text-center attack-title-styling'style={{width: '25%'}}>Dmg</div>
+              <div className='text-center' style={{padding: '5px 5px 5px 5px'}}>Desc</div>
+            </div>
+
           </div>
         );
       } else if (activeIndex === 1) {
         // Spells Render
         return (
-          <div>
-            {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
-              .map(spell => (
-                <div key={spell.id}>
-                  <div style={{ paddingBottom: '5px', overflowY: 'auto' }}>{spell.characterSpellName}</div>
-                </div>
-              ))}
+          <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
+
+            <div className='d-flex flex-row justify-cpntent-between' style={{width: '100%', borderBottom: 'solid 1px var(--textGrey)', color: 'var(--textGrey)', marginBottom: '10px'}}>
+              <div className='text-center attack-title-styling' style={{width: '35%'}}>Name</div>
+              <div className='text-center attack-title-styling' style={{width: '30%'}}>Cast Time</div>
+              <div className='text-center attack-title-styling'style={{width: '25%'}}>Dmg</div>
+              <div className='text-center' style={{padding: '5px 5px 5px 5px'}}>Desc</div>
+            </div>
+
+            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '10px', }}>
+              {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
+                .map(spell => (
+                  <div key={spell.id} className='d-flex flex-row justify-cpntent-between' 
+                  style={{borderBottom: 'solid 1px var(--textGrey)', paddingBottom: '5px'}}>
+                    <div className='text-center attack-item-styling' style={{ width: '36.5%' }}>{spell.characterSpellName}</div>
+                    <div className='text-center attack-item-styling' style={{ width: '32%' }}>{spell.characterSpellCastTime}</div>
+                    <div className='text-center attack-item-styling' style={{ width: '29%' }}>{spell.characterSpellDamage}</div>
+                    <div className='text-center attack-title-styling' >&gt;</div>
+                  </div>
+                ))}
+            </div>
+
           </div>
         );
       } 
@@ -455,9 +479,9 @@ function PlaySession() {
               <div className='col-6 d-flex flex-column align-items-center'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Attacks/Spells</div>
                 
-                <div className="field-colour" style={{ width: '100%', height: '40vh' }}>
+                <div className="field-colour" style={{ width: '100%', height: '40vh'}}>
 
-                  <div style={{ height: '6vh', display: 'block', width: '100%' }}>
+                  <div style={{ height: '5vh', display: 'block', width: '100%' }}>
                     <div className='d-flex flex-row' style={{height: '100%'}}>
                       <div className={`attack-menu-container ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
                         <div className="text-center">Attacks</div>
@@ -469,12 +493,11 @@ function PlaySession() {
 
                     </div>
                   </div>
-
-
-                  <div style={{padding: '5px'}}>
+                  
+                  <div style={{height: '34vh'}}>
                     {renderContent()}
                   </div>
-                  
+
                 </div>
               </div>
 

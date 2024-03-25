@@ -290,11 +290,10 @@
   height: 80%;
   vertical-align: top;
 
-  font: 400 1.3vw 'Grenze Gotisch';
+  font: 400 1.2vw 'Grenze Gotisch';
   color: var(--backgroundGrey); 
   display: flex;
   background-color: var( --lightBackgroundGrey);
-  border: solid var(--backgroundGrey);
   box-shadow: 2px 10px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 
@@ -302,8 +301,24 @@
 }
 
 .attack-menu-container.active {
-  font-size: 2vw;
+  font-size: 1.6vw;
   background-color: var(--textGrey);
   transition: height font-size 0.3s;
   height: 100%;
+}
+
+.attack-title-styling,
+.attack-item-styling { 
+  padding: 5px 5px 5px 5px;
+  border-right: solid 1px var(--textGrey);
+}
+
+.attack-title-styling {
+  font-size: 1.1vw;
+}
+
+.attack-item-styling {
+  white-space: nowrap;
+  font-size: 0.9vw;
+  overflow-y: auto;
 }
