@@ -18,7 +18,7 @@ import FeaturesTraitsForm from '../../Forms/CreateCharacterForms/FeatureTraitsFo
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 
@@ -213,7 +213,12 @@ function LoadPlaySession() {
 
           <div className='w-100 d-flex align-items-center justify-content-between'>
               <header className="form-header">Create Your Character</header>
-              <header className="navbar-text" onClick={nextPage} >Spells Page &gt;</header>
+              <div className="d-flex">
+                <Link to={`/PlaySession/${characterId.Id}`} style={{textDecoration: 'none'}}>
+                  <header className="navbar-text mr-3" style={{paddingRight: '10px'}}>Play Session</header>
+                </Link>
+                <header className="navbar-text" style={{paddingLeft: '10px'}} onClick={nextPage} >Spells Page &gt;</header>
+              </div>
           </div>
   
             <div className='row'>

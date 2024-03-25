@@ -229,10 +229,10 @@ function PlaySession() {
             <div style={{ overflowX: 'auto', height: '85%', paddingRight: '7px', }}>
               {characterAttacks
                 .map(attack => (
-                  <div key={attack.id} className='d-flex flex-row justify-cpntent-between' 
-                  style={{borderBottom: 'solid 1px var(--textGrey)', paddingBottom: '5px'}}>
-                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '36%' }}>{attack.characterAttackName}</div>
-                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '33.5%' }}>{attack.characterAttackBonus}</div>
+                  <div key={attack.id} className='d-flex flex-row justify-content-between' 
+                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
+                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '35.5%' }}>{attack.characterAttackName}</div>
+                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '32.5%' }}>{attack.characterAttackBonus}</div>
                     <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '30%' }}>{attack.characterDamageType}</div>
                   </div>
                 ))}
@@ -245,22 +245,22 @@ function PlaySession() {
         return (
           <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
 
-            <div className='d-flex flex-row justify-cpntent-between' style={{width: '100%', borderBottom: 'solid 1px var(--textGrey)', color: 'var(--textGrey)', marginBottom: '10px'}}>
+            <div className='d-flex flex-row justify-content-between' style={{width: '100%', borderBottom: 'solid 1px var(--textGrey)', color: 'var(--textGrey)', marginBottom: '10px'}}>
               <div className='text-center attack-title-styling' style={{width: '35%'}}>Name</div>
               <div className='text-center attack-title-styling' style={{width: '30%'}}>Cast Time</div>
               <div className='text-center attack-title-styling'style={{width: '25%'}}>Dmg</div>
               <div className='text-center' style={{padding: '5px 5px 5px 5px', fontSize: '1.1vw'}}>Desc</div>
             </div>
 
-            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '10px', }}>
+            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '5px', }}>
               {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
                 .map(spell => (
-                  <div key={spell.id} className='d-flex flex-row justify-cpntent-between' 
-                  style={{borderBottom: 'solid 1px var(--textGrey)', paddingBottom: '5px'}}>
-                    <div className='text-center attack-item-styling' style={{ width: '36.5%' }}>{spell.characterSpellName}</div>
-                    <div className='text-center attack-item-styling' style={{ width: '32%' }}>{spell.characterSpellCastTime}</div>
-                    <div className='text-center attack-item-styling' style={{ width: '29%' }}>{spell.characterSpellDamage}</div>
-                    <div className='text-center attack-title-styling' >&gt;</div>
+                  <div key={spell.id} className='d-flex flex-row justify-content-between' 
+                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
+                    <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '34%' }}>{spell.characterSpellName}</div>
+                    <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '26%' }}>{spell.characterSpellCastTime}</div>
+                    <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '21%' }}>{spell.characterSpellDamage}</div>
+                    <div className='d-flex text-center attack-title-styling align-items-center'style={{ width: '10%' }} >&gt;</div>
                   </div>
                 ))}
             </div>
