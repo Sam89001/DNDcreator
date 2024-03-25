@@ -291,36 +291,48 @@
   height: 70%;
   vertical-align: top;
 
-  font: 400 1.2vw 'Grenze Gotisch';
+  font: 400 1vw 'Grenze Gotisch';
   color: var(--backgroundGrey); 
   display: flex;
   background-color: var( --lightBackgroundGrey);
   box-shadow: 2px 10px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 
-  transition: height 0.3s, border-radius 0.5s;
+  transition: height 0.3s, border-radius 0.5s, width 0.3s;
 }
 
 .attack-menu-container.active {
-  font-size: 1.6vw;
+  width: 60%;
+  font-size: 1.5vw;
   background-color: var(--textGrey);
-  transition: height 0.3s, border-radius 0.5s;
+  transition: height 0.3s, border-radius 0.5s, width 0.3s;
   height: 100%;
   border-radius: 0 0 5px 5px;
 }
 
 .attack-title-styling,
-.attack-item-styling { 
+.attack-title-styling-no-border,
+.attack-item-styling,
+.attack-item-styling-no-border { 
   padding: 5px 5px 5px 5px;
-  border-right: solid 1px var(--textGrey);
 }
 
-.attack-title-styling {
+.attack-title-styling,
+.attack-title-styling-no-border {
   font-size: 1.1vw;
 }
 
-.attack-item-styling {
+.attack-item-styling,
+.attack-item-styling-no-border {
   white-space: nowrap;
   font-size: 0.9vw;
   overflow-y: auto;
+}
+
+.attack-title-styling {
+  border-right: solid 1px var(--textGrey);
+}
+
+.attack-item-styling {
+  border-right: solid 1px var(--textGrey);
 }
