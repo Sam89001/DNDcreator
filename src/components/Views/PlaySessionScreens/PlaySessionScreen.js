@@ -6,7 +6,7 @@ import PlaySessionDndSheetTwo from '../../Components/PlaySession/PlaySessionDndS
 import PlaySessionDndSheetThree from '../../Components/PlaySession/PlaySessionDndSheetThree';
 
 //Dependencies
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
@@ -44,6 +44,7 @@ function PlaySession() {
 		characterName: '',
 		characterClass: '',
 		characterHp: '',
+    characterTempHP: '',
 		characterAc: '',
 		characterLevel: '',
 		characterRace: '',
@@ -107,6 +108,7 @@ function PlaySession() {
   const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
 	const [updateCharacterOrganisation, setUpdateCharacterOrganisation] = useState([])
 
+  //Grabs all data on page load
   const fetchData = async () => {
 		try {
 			const characterId = window.location.pathname.split('/').pop();
@@ -119,6 +121,7 @@ function PlaySession() {
 		fetchData();
 	}, []);
 
+  //Gets all Data
   const getCharacterData = async (characterId) => {
 		try {
 			const sentId = characterId ;
@@ -130,6 +133,7 @@ function PlaySession() {
         characterName: characterData.character.characterName || '',
         characterClass: characterData.character.characterClass || '',
         characterHp: characterData.character.characterHp || '',
+        characterTempHp: characterData.character.characterTempHp || characterData.character.characterHp,
         characterAc: characterData.character.characterAc || '',
         characterLevel: characterData.character.characterLevel || '',
         characterRace: characterData.character.characterRace || '',
@@ -157,7 +161,7 @@ function PlaySession() {
 				characterSpellSlot7: characterData.character.characterSpellSlot7 || '',
 				characterSpellSlot8: characterData.character.characterSpellSlot8 || '',
 				characterSpellSlot9: characterData.character.characterSpellSlot9 || '',
-        
+    
         characterName: characterData.character.characterName || '',
 				characterAge: characterData.character.characterAge || '',
 				characterEyes: characterData.character.characterEyes || '',
@@ -198,6 +202,38 @@ function PlaySession() {
 		}
 	}
 
+  //Form Values
+  const characterTempHpRef = useRef(null);
+
+  //Puts tempHP
+  const [tempHpData, setTempHpData] = useState({
+    characterTempHP: ''
+  })
+  const updateTempHP = async (e) => {
+    e.preventDefault();
+    const { characterTempHP } = tempHpData;
+    const id = user.id;
+    
+    try {
+      const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
+        characterTempHP
+      });
+  
+      if (response.data.error) {
+        toast.error(response.data.error);
+      } else {
+        const updatedCharacterData = response.data.updatedTempHp;
+        setCharacterData({
+          ...characterData,
+          characterTempHP: updatedCharacterData.characterTempHP
+        });
+        toast.success('Updated Temp Hp!');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   //Sets Spell Target
   const [selectedSpellSlot, setSelectedSpellSlot] = useState({
     selectedSpellSlot: 0,
@@ -209,10 +245,11 @@ function PlaySession() {
       }));
   }, []);
 
-    //Loads Spell Info
+    //Loads Spell/Equipment Info
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeIndexEquipment, setActiveIndexEquipment] = useState(0);  
 
+    //Handles Menu Target
     const changeMenuSpells = (index) => {
       setActiveIndex(index === activeIndex ? activeIndex : index); 
     };
@@ -220,6 +257,7 @@ function PlaySession() {
       setActiveIndexEquipment(index === activeIndex ? activeIndex : index); 
     };
 
+    //Renders Correct Info
     const renderContentSpells = () => {
       if (activeIndex === 0) {
         //Attacks Render
@@ -275,41 +313,39 @@ function PlaySession() {
         );
       } 
     };
-
     const renderContentTreasure = () => {
       if (activeIndexEquipment === 0) {
         //Equipment Render
         return (
           <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
 
-            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '7px', }}>
-              {characterEquipment
-                .map(attack => (
-                  <div key={attack.id} className='d-flex flex-column justify-content-between' 
-                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
-                    
-                    <div className='d-flex flex-row justify-content-between' style={{ maxWidth: '100%', borderBottom: 'solid 1px var(--textGrey)', borderTop: 'solid 1px var(--textGrey)'}}>
+            <div style={{ overflowX: 'auto', height: '100%', paddingRight: '7px' }}>
+              {characterEquipment.map(attack => (
+                <div key={attack.id} className='d-flex flex-column justify-content-between' style={{ borderBottom: 'solid 1px var(--textGrey)', marginBottom: '20px' }}>
+                  
+                  <div className='d-flex flex-row justify-content-between' style={{ maxWidth: '100%', borderBottom: 'solid 1px var(--textGrey)', borderTop: 'solid 1px var(--textGrey)' }}>
 
-                      <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
-                        <div className='equipment-title-mini' >Equipment Title:</div>
-                        <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterEquipmentName}</div>
-                      </div>
-
-                      <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
-                        <div className='equipment-title-mini'>Equipment Quantity:</div>
-                        <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterEquipmentQuantity}</div>
-                      </div>
-
+                    <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
+                      <div className='equipment-title-mini' >Equipment Title:</div>
+                      <div className='equipment-content' style={{ overflowY: 'auto', paddingBottom: '15px' }}>{attack.characterEquipmentName}</div>
                     </div>
 
-                    <div className='text-center equipment-item-styling' style={{ maxWidth: '100%' }}>
-                      <div className='equipment-title-mini' >Equipment Description:</div>
-                      <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterEquipmentDescription}</div>
+                    <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
+                      <div className='equipment-title-mini'>Equipment Quantity:</div>
+                      <div className='equipment-content' style={{ overflowY: 'auto', paddingBottom: '15px' }}>{attack.characterEquipmentQuantity}</div>
                     </div>
-                    
+
                   </div>
-                ))}
+
+                  <div className='text-center equipment-item-styling' style={{ maxWidth: '100%' }}>
+                    <div className='equipment-title-mini'>Equipment Description:</div>
+                    <div className='equipment-content' style={{ overflowX: 'auto', paddingBottom: '15px' }}>{attack.characterEquipmentDescription}</div>
+                  </div>
+                  
+                </div>
+              ))}
             </div>
+
 
           </div>
         );
@@ -455,24 +491,26 @@ function PlaySession() {
 
                   {/* Temp Hp*/}
                   <div className="text-center form-titles" style={{ width: '100%' }}>Temp Hp</div>
-                  <div className='d-flex align-items-center' style={{width: '100%'}}>
-                    <form >
-                      <div className='play-session-field d-flex justify-content-between' style={{ width: '100%', padding: '10px 0px 10px 0px', marginBottom: '10px' }}> 
+                  <form onSubmit={updateTempHP}>
+                    <div className='d-flex align-items-center' style={{width: '100%'}}>
+                      
+                        <div className='play-session-field d-flex justify-content-between' style={{ width: '100%', padding: '10px 0px 10px 0px', marginBottom: '10px' }}> 
 
-                      <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}/>
+                        <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}
+                        ref={characterNameRef}
+                        onChange={(e) => setTempHpData({ ...tempHpData, characterTempHP: e.target.value })}/>
 
-                      <div className='field-colour d-flex justify-content-center align-items-center' 
-                      style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>/</div>
-                            
-                      <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>{characterData.characterHp}</div>
-                      </div>
-
-                    </form>
-                  </div>
-                  <div className='d-flex justify-content-center' style={{width: '100%'}}>
-                    <button className='create-character-button' type="submit">Update</button>
-                  </div>
+                        <div className='field-colour d-flex justify-content-center align-items-center' 
+                        style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>/</div>
+                              
+                        <div className='field-colour d-flex justify-content-center align-items-center' 
+                          style={{ width: '50%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>{characterData.characterHp}</div>
+                        </div>
+                    </div>
+                    <div className='d-flex justify-content-center' style={{width: '100%'}}>
+                      <button className='create-character-button' type="submit">Update</button>
+                    </div>
+                  </form>
 
                   {/* Spell Slots */}
                   <div className="text-center form-titles" style={{ width: '100%' }}>Spell Slots</div>

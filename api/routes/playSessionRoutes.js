@@ -133,5 +133,37 @@ router.get('/:characterId', async (req, res) => {
   }
 });
 
+//Updates Temp HP
+router.put('/UpdateTempHp/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterTempHP } = req.body; 
+    const characterData = { characterTempHP };
+
+    const update = await CreateCharacterSchema.findOneAndUpdate(
+      { userId: id }, 
+      { $set: characterData }, 
+      { new: true } 
+    );
+
+    if (!update) {
+      return res.status(404).json({
+        error: 'Error updating character data',
+      });
+    }
+
+    return res.json({
+      success: true,
+      updatedTempHp: update.characterTempHP
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error: 'Internal Server Error'
+    });
+  }
+});
+
 
 module.exports = router;

@@ -335,13 +335,18 @@
 }
 
 .equipment-item-styling {
-  padding: 5px 5px 5px 5px;
-  white-space: nowrap;
-  font-size: 0.9vw;
+  padding: 5px;
   border-right: solid 1px var(--textGrey);
-  
 }
 
 .equipment-title-mini {
-  color: var(--textGrey)
+  white-space: nowrap;
+  color: var(--textGrey);
+  font-size: 0.7vw;
+}
+
+.equipment-content {
+  white-space: nowrap; 
+  max-height: calc(5 * 1.2em); 
+  overflow-x: auto;
 }

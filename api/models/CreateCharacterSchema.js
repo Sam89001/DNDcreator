@@ -16,6 +16,9 @@ const CreateCharacterSchema = new mongoose.Schema({
   characterHp: {
     type: Number,
   },
+  characterTempHP: {
+    type: Number
+  },
   characterAc: {
     type: Number,
   },
