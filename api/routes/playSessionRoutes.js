@@ -137,8 +137,8 @@ router.get('/:characterId', async (req, res) => {
 router.put('/UpdateTempHp/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { characterTempHP } = req.body; 
-    const characterData = { characterTempHP };
+    const { characterTempHp } = req.body; 
+    const characterData = { characterTempHp };
 
     const update = await CreateCharacterSchema.findOneAndUpdate(
       { userId: id }, 
@@ -154,7 +154,7 @@ router.put('/UpdateTempHp/:id', async (req, res) => {
 
     return res.json({
       success: true,
-      updatedTempHp: update.characterTempHP
+      updatedTempHp: update.characterTempHp
     });
     
   } catch (error) {

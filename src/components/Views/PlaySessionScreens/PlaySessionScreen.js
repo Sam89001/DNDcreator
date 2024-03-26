@@ -44,7 +44,7 @@ function PlaySession() {
 		characterName: '',
 		characterClass: '',
 		characterHp: '',
-    characterTempHP: '',
+    characterTempHp: '',
 		characterAc: '',
 		characterLevel: '',
 		characterRace: '',
@@ -108,7 +108,7 @@ function PlaySession() {
   const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
 	const [updateCharacterOrganisation, setUpdateCharacterOrganisation] = useState([])
 
-  //Grabs all data on page load
+  //Triggers get request
   const fetchData = async () => {
 		try {
 			const characterId = window.location.pathname.split('/').pop();
@@ -117,9 +117,7 @@ function PlaySession() {
 		} catch (error) {
 			console.log(error)
 		}
-	}; useEffect(() => {
-		fetchData();
-	}, []);
+	}; 
 
   //Gets all Data
   const getCharacterData = async (characterId) => {
@@ -133,7 +131,7 @@ function PlaySession() {
         characterName: characterData.character.characterName || '',
         characterClass: characterData.character.characterClass || '',
         characterHp: characterData.character.characterHp || '',
-        characterTempHp: characterData.character.characterTempHp || characterData.character.characterHp,
+        characterTempHp: characterData.character.characterTempHp || '',
         characterAc: characterData.character.characterAc || '',
         characterLevel: characterData.character.characterLevel || '',
         characterRace: characterData.character.characterRace || '',
@@ -202,21 +200,18 @@ function PlaySession() {
 		}
 	}
 
-  //Form Values
-  const characterTempHpRef = useRef(null);
-
   //Puts tempHP
   const [tempHpData, setTempHpData] = useState({
-    characterTempHP: ''
+    characterTempHp: ''
   })
   const updateTempHP = async (e) => {
     e.preventDefault();
-    const { characterTempHP } = tempHpData;
+    const { characterTempHp } = tempHpData;
     const id = user.id;
     
     try {
       const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
-        characterTempHP
+        characterTempHp
       });
   
       if (response.data.error) {
@@ -225,7 +220,7 @@ function PlaySession() {
         const updatedCharacterData = response.data.updatedTempHp;
         setCharacterData({
           ...characterData,
-          characterTempHP: updatedCharacterData.characterTempHP
+          characterTempHp: updatedCharacterData.characterTempHp
         });
         toast.success('Updated Temp Hp!');
       }
@@ -233,6 +228,19 @@ function PlaySession() {
       console.log(error);
     }
   }
+
+  //Triggers Information Load on page load
+  useEffect(() => {
+    fetchData();
+  
+    // Set initial value of characterTempHp in input field
+    if (characterData.characterTempHp && !tempHpData.characterTempHp) {
+      setTempHpData(prevTempHpData => ({
+        ...prevTempHpData,
+        characterTempHp: characterData.characterTempHp
+      }));
+    }
+  }, [characterData]);
 
   //Sets Spell Target
   const [selectedSpellSlot, setSelectedSpellSlot] = useState({
@@ -497,8 +505,8 @@ function PlaySession() {
                         <div className='play-session-field d-flex justify-content-between' style={{ width: '100%', padding: '10px 0px 10px 0px', marginBottom: '10px' }}> 
 
                         <input className='field-colour' placeholder='HP' style={{ width: '42%', fontSize: '1.5vw', textAlign: 'center' }}
-                        ref={characterNameRef}
-                        onChange={(e) => setTempHpData({ ...tempHpData, characterTempHP: e.target.value })}/>
+                         value={tempHpData.characterTempHp}
+                         onChange={(e) => setTempHpData({ ...tempHpData, characterTempHp: e.target.value })}/>
 
                         <div className='field-colour d-flex justify-content-center align-items-center' 
                         style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw', paddingBottom: '2px' }}>/</div>
