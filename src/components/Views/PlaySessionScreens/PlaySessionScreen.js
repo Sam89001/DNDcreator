@@ -117,6 +117,10 @@ function PlaySession() {
   const [updateCharacterTreasure, setUpdateCharacterTreasure] = useState([])
 	const [updateCharacterOrganisation, setUpdateCharacterOrganisation] = useState([])
 
+  //API REQUESTS
+
+
+
   //Triggers get request
   const fetchData = async () => {
 		try {
@@ -126,7 +130,9 @@ function PlaySession() {
 		} catch (error) {
 			console.log(error)
 		}
-	}; 
+	};useEffect(() => {
+    fetchData();
+  }, []); 
 
   //Gets all Data
   const getCharacterData = async (characterId) => {
@@ -218,19 +224,6 @@ function PlaySession() {
 		}
 	}
 
-  //Triggers Information Load on page load
-  useEffect(() => {
-    fetchData();
-  
-    // Set initial value of characterTempHp in input field
-    if (characterData.characterTempHp && !tempHpData.characterTempHp) {
-      setTempHpData(prevTempHpData => ({
-        ...prevTempHpData,
-        characterTempHp: characterData.characterTempHp
-      }));
-    }
-  }, [characterData]);
-
     //Sets Spell Target
     const [selectedSpellSlot, setSelectedSpellSlot] = useState({
       selectedSpellSlot: 0,
@@ -239,12 +232,90 @@ function PlaySession() {
     }); 
     useEffect(() => {
         setSelectedSpellSlot((prevData) => ({
-            ...prevData,
-            selectedSpellSlot: 0
+          ...prevData,
+          selectedSpellSlot: 0,
+          selectedSpellSlotNumber: 'characterTemporarySpellSlot0'
         }));
     }, []);
 
-    //Loads Spell/Equipment Info
+    //Puts tempHP
+    const [tempHpData, setTempHpData] = useState({
+      characterTempHp: ''
+    })
+    const updateTempHP = async (e) => {
+      e.preventDefault();
+      const { characterTempHp } = tempHpData;
+      const id = characterId.Id;
+      
+      try {
+        const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
+          characterTempHp
+        });
+    
+        if (response.data.error) {
+          toast.error(response.data.error);
+        } else {
+          const updatedCharacterData = response.data.updatedTempHp;
+          setCharacterData({
+            ...characterData,
+            characterTempHp: updatedCharacterData.characterTempHp
+          });
+          toast.success('Updated Temp Hp!');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    //Puts Spell Slots
+    const [tempSpellSlot, setTempSpellSlot] = useState({
+      characterTemporarySpellSlot0: '',
+      characterTemporarySpellSlot1: '',
+      characterTemporarySpellSlot2: '',
+      characterTemporarySpellSlot3: '',
+      characterTemporarySpellSlot4: '',
+      characterTemporarySpellSlot5: '',
+      characterTemporarySpellSlot6: '',
+      characterTemporarySpellSlot7: '',
+      characterTemporarySpellSlot8: '',
+      characterTemporarySpellSlot9: '',
+    })
+    const updateSpellSlot = async (e) => {
+      e.preventDefault();
+      const id = characterId.Id;
+      const selectedSlot = selectedSpellSlot.selectedSpellSlotNumber; 
+      const characterTemporarySpellSlotValue = tempSpellSlot[selectedSlot];
+      const characterTemporarySpellSlotNumber = selectedSlot;
+      try {
+        const response = await axios.put(`/PlaySession/UpdateTemporarySpellSlot/${id}`, {
+          characterTemporarySpellSlotValue,
+          characterTemporarySpellSlotNumber
+        });
+    
+        if (response.data.error) {
+          toast.error(response.data.error);
+        } else {
+          const updatedSpellSlot = response.data.updatedSpellSlot;
+    
+          setCharacterData(prevCharacterData => ({
+            ...prevCharacterData,
+            [selectedSlot]: updatedSpellSlot
+          }));
+    
+          toast.success('Updated Spell Slot!');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }; 
+
+
+
+    //Loading
+
+    
+
+    //Sets render numbers
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeIndexEquipment, setActiveIndexEquipment] = useState(0);  
 
@@ -387,77 +458,18 @@ function PlaySession() {
         );
       } 
     };
-
-    //Puts tempHP
-    const [tempHpData, setTempHpData] = useState({
-      characterTempHp: ''
-    })
-    const updateTempHP = async (e) => {
-      e.preventDefault();
-      const { characterTempHp } = tempHpData;
-      const id = characterId.Id;
+    
+    //Triggers Information Load on page load
+    useEffect(() => {
       
-      try {
-        const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
-          characterTempHp
-        });
-    
-        if (response.data.error) {
-          toast.error(response.data.error);
-        } else {
-          const updatedCharacterData = response.data.updatedTempHp;
-          setCharacterData({
-            ...characterData,
-            characterTempHp: updatedCharacterData.characterTempHp
-          });
-          toast.success('Updated Temp Hp!');
-        }
-      } catch (error) {
-        console.log(error);
+      // Set initial value of characterTempHp in input field
+      if (characterData.characterTempHp && !tempHpData.characterTempHp) {
+        setTempHpData(prevTempHpData => ({
+          ...prevTempHpData,
+          characterTempHp: characterData.characterTempHp
+        }));
       }
-    }
-
-    //Puts Spell Slots
-    const [tempSpellSlot, setTempSpellSlot] = useState({
-      characterTemporarySpellSlot0: '',
-      characterTemporarySpellSlot1: '',
-      characterTemporarySpellSlot2: '',
-      characterTemporarySpellSlot3: '',
-      characterTemporarySpellSlot4: '',
-      characterTemporarySpellSlot5: '',
-      characterTemporarySpellSlot6: '',
-      characterTemporarySpellSlot7: '',
-      characterTemporarySpellSlot8: '',
-      characterTemporarySpellSlot9: '',
-    })
-    const updateSpellSlot = async (e) => {
-      e.preventDefault();
-      const id = characterId.Id;
-      const selectedSlot = selectedSpellSlot.selectedSpellSlotNumber; 
-      const characterTemporarySpellSlotValue = tempSpellSlot[selectedSlot];
-      const characterTemporarySpellSlotNumber = selectedSlot;
-      try {
-        const response = await axios.put(`/PlaySession/UpdateTemporarySpellSlot/${id}`, {
-          characterTemporarySpellSlotValue,
-          characterTemporarySpellSlotNumber
-        });
-    
-        if (response.data.error) {
-          toast.error(response.data.error);
-        } else {
-          const updatedSpellSlot = response.data.updatedSpellSlot;
-    
-          setCharacterData(prevCharacterData => ({
-            ...prevCharacterData,
-            [selectedSlot]: updatedSpellSlot
-          }));
-    
-          toast.success('Updated Spell Slot!');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };    
+    }, [characterData]);
     
   return (
     <div style={{paddingBottom: '20px'}}>
