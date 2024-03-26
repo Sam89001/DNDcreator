@@ -72,6 +72,15 @@ function PlaySession() {
 		characterSpellSlot7: '',
 		characterSpellSlot8: '',
 		characterSpellSlot9: '',
+    characterTemporarySpellSlot1: '',
+    characterTemporarySpellSlot2: '',
+    characterTemporarySpellSlot3: '',
+    characterTemporarySpellSlot4: '',
+    characterTemporarySpellSlot5: '',
+    characterTemporarySpellSlot6: '',
+    characterTemporarySpellSlot7: '',
+    characterTemporarySpellSlot8: '',
+    characterTemporarySpellSlot9: '',
     characterName: '',
 		characterAge: '',
 		characterEyes: '',
@@ -159,6 +168,15 @@ function PlaySession() {
 				characterSpellSlot7: characterData.character.characterSpellSlot7 || '',
 				characterSpellSlot8: characterData.character.characterSpellSlot8 || '',
 				characterSpellSlot9: characterData.character.characterSpellSlot9 || '',
+        characterTemporarySpellSlot1: characterData.character.characterTemporarySpellSlot1 || '',
+        characterTemporarySpellSlot2: characterData.character.characterTemporarySpellSlot2 || '',
+        characterTemporarySpellSlot3: characterData.character.characterTemporarySpellSlot3 || '',
+        characterTemporarySpellSlot4: characterData.character.characterTemporarySpellSlot4 || '',
+        characterTemporarySpellSlot5: characterData.character.characterTemporarySpellSlot5 || '',
+        characterTemporarySpellSlot6: characterData.character.characterTemporarySpellSlot6 || '',
+        characterTemporarySpellSlot7: characterData.character.characterTemporarySpellSlot7 || '',
+        characterTemporarySpellSlot8: characterData.character.characterTemporarySpellSlot8 || '',
+        characterTemporarySpellSlot9: characterData.character.characterTemporarySpellSlot9 || '',
     
         characterName: characterData.character.characterName || '',
 				characterAge: characterData.character.characterAge || '',
@@ -200,35 +218,6 @@ function PlaySession() {
 		}
 	}
 
-  //Puts tempHP
-  const [tempHpData, setTempHpData] = useState({
-    characterTempHp: ''
-  })
-  const updateTempHP = async (e) => {
-    e.preventDefault();
-    const { characterTempHp } = tempHpData;
-    const id = characterId.Id;
-    
-    try {
-      const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
-        characterTempHp
-      });
-  
-      if (response.data.error) {
-        toast.error(response.data.error);
-      } else {
-        const updatedCharacterData = response.data.updatedTempHp;
-        setCharacterData({
-          ...characterData,
-          characterTempHp: updatedCharacterData.characterTempHp
-        });
-        toast.success('Updated Temp Hp!');
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   //Triggers Information Load on page load
   useEffect(() => {
     fetchData();
@@ -242,16 +231,18 @@ function PlaySession() {
     }
   }, [characterData]);
 
-  //Sets Spell Target
-  const [selectedSpellSlot, setSelectedSpellSlot] = useState({
-    selectedSpellSlot: 0,
-    selectedSpellSlotValue: '0'
-  }); useEffect(() => {
-      setSelectedSpellSlot((prevData) => ({
-          ...prevData,
-          selectedSpellSlot: 0
-      }));
-  }, []);
+    //Sets Spell Target
+    const [selectedSpellSlot, setSelectedSpellSlot] = useState({
+      selectedSpellSlot: 0,
+      selectedSpellSlotValue: '0',
+      selectedSpellSlotNumber: ''
+    }); 
+    useEffect(() => {
+        setSelectedSpellSlot((prevData) => ({
+            ...prevData,
+            selectedSpellSlot: 0
+        }));
+    }, []);
 
     //Loads Spell/Equipment Info
     const [activeIndex, setActiveIndex] = useState(0);
@@ -397,6 +388,77 @@ function PlaySession() {
       } 
     };
 
+    //Puts tempHP
+    const [tempHpData, setTempHpData] = useState({
+      characterTempHp: ''
+    })
+    const updateTempHP = async (e) => {
+      e.preventDefault();
+      const { characterTempHp } = tempHpData;
+      const id = characterId.Id;
+      
+      try {
+        const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
+          characterTempHp
+        });
+    
+        if (response.data.error) {
+          toast.error(response.data.error);
+        } else {
+          const updatedCharacterData = response.data.updatedTempHp;
+          setCharacterData({
+            ...characterData,
+            characterTempHp: updatedCharacterData.characterTempHp
+          });
+          toast.success('Updated Temp Hp!');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    //Puts Spell Slots
+    const [tempSpellSlot, setTempSpellSlot] = useState({
+      characterTemporarySpellSlot0: '',
+      characterTemporarySpellSlot1: '',
+      characterTemporarySpellSlot2: '',
+      characterTemporarySpellSlot3: '',
+      characterTemporarySpellSlot4: '',
+      characterTemporarySpellSlot5: '',
+      characterTemporarySpellSlot6: '',
+      characterTemporarySpellSlot7: '',
+      characterTemporarySpellSlot8: '',
+      characterTemporarySpellSlot9: '',
+    })
+    const updateSpellSlot = async (e) => {
+      e.preventDefault();
+      const id = characterId.Id;
+      const selectedSlot = selectedSpellSlot.selectedSpellSlotNumber; // Rename the variable to avoid shadowing
+      const characterTemporarySpellSlotValue = tempSpellSlot[selectedSlot];
+      const characterTemporarySpellSlotNumber = selectedSlot;
+      try {
+        const response = await axios.put(`/PlaySession/UpdateTemporarySpellSlot/${id}`, {
+          characterTemporarySpellSlotValue,
+          characterTemporarySpellSlotNumber
+        });
+    
+        if (response.data.error) {
+          toast.error(response.data.error);
+        } else {
+          const updatedSpellSlot = response.data.updatedSpellSlot;
+    
+          setCharacterData(prevCharacterData => ({
+            ...prevCharacterData,
+            [selectedSlot]: updatedSpellSlot
+          }));
+    
+          toast.success('Updated Spell Slot!');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };    
+    
   return (
     <div style={{paddingBottom: '20px'}}>
 
@@ -522,95 +584,101 @@ function PlaySession() {
 
                   {/* Spell Slots */}
                   <div className="text-center form-titles" style={{ width: '100%' }}>Spell Slots</div>
-                  <div className="field-colour" style={{width: '100%', height: '10vh', padding: '0px 5px 0px 5px', marginBottom: '5px'}}>
-                    <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}
-                      onChange={(e) =>
-                          setSelectedSpellSlot((prevData) => ({
-                            ...prevData,
-                            selectedSpellSlotValue: e.target.value,
-                            selectedSpellSlot: e.target.selectedOptions[0].dataset.value
-                          }))
-                      }>
-                      <option value={0} data-value={0}>Cantrips</option>
-                      <option value={characterData.characterSpellSlot1} data-value={1}>Level 1</option>
-                      <option value={characterData.characterSpellSlot2} data-value={2}>Level 2</option>
-                      <option value={characterData.characterSpellSlot3} data-value={3}>Level 3</option>
-                      <option value={characterData.characterSpellSlot4} data-value={4}>Level 4</option>
-                      <option value={characterData.characterSpellSlot5} data-value={5}>Level 5</option>
-                      <option value={characterData.characterSpellSlot6} data-value={6}>Level 6</option>
-                      <option value={characterData.characterSpellSlot7} data-value={7}>Level 7</option>
-                      <option value={characterData.characterSpellSlot8} data-value={8}>Level 8</option>
-                      <option value={characterData.characterSpellSlot9} data-value={9}>Level 9</option>
-                    </select>
+                    <form onSubmit={updateSpellSlot}>
+                      <div className="field-colour" style={{width: '100%', height: '10vh', padding: '0px 5px 0px 5px', marginBottom: '5px'}}>
+                        <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}
+                          onChange={(e) =>
+                              setSelectedSpellSlot((prevData) => ({
+                                ...prevData,
+                                selectedSpellSlotNumber: e.target.selectedOptions[0].dataset.custom,
+                                selectedSpellSlotValue: e.target.value,
+                                selectedSpellSlot: e.target.selectedOptions[0].dataset.value
+                              }))
+                          }>
+                          <option value={0} data-value={0}>Cantrips</option>
+                          <option value={characterData.characterSpellSlot1} data-value={1} data-custom="characterTemporarySpellSlot1">Level 1</option>
+                          <option value={characterData.characterSpellSlot2} data-value={2} data-custom="characterTemporarySpellSlot2">Level 2</option>
+                          <option value={characterData.characterSpellSlot3} data-value={3} data-custom="characterTemporarySpellSlot3">Level 3</option>
+                          <option value={characterData.characterSpellSlot4} data-value={4} data-custom="characterTemporarySpellSlot4">Level 4</option>
+                          <option value={characterData.characterSpellSlot5} data-value={5} data-custom="characterTemporarySpellSlot5">Level 5</option>
+                          <option value={characterData.characterSpellSlot6} data-value={6} data-custom="characterTemporarySpellSlot6">Level 6</option>
+                          <option value={characterData.characterSpellSlot7} data-value={7} data-custom="characterTemporarySpellSlot7">Level 7</option>
+                          <option value={characterData.characterSpellSlot8} data-value={8} data-custom="characterTemporarySpellSlot8">Level 8</option>
+                          <option value={characterData.characterSpellSlot9} data-value={9} data-custom="characterTemporarySpellSlot9">Level 9</option>
+                        </select>
 
 
-                    <div className='d-flex justify-content-between' style={{width: '100%'}}>
+                        <div className='d-flex justify-content-between' style={{width: '100%'}}>
 
-                      <input className='field-colour' placeholder='HP' style={{ width: '45%', fontSize: '1.5vw', textAlign: 'center' }}/>
+                          <input className='field-colour' placeholder='HP' style={{ width: '45%', fontSize: '1.5vw', textAlign: 'center' }}
+                           onChange={(e) => setTempSpellSlot({ 
+                            ...tempSpellSlot, 
+                            [`characterTempSpellSlot${selectedSpellSlot.selectedSpellSlot}`]: e.target.value 
+                          })}/>
 
-                      <div className='field-colour d-flex justify-content-center align-items-center' 
-                      style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>/</div>
+                          <div className='field-colour d-flex justify-content-center align-items-center' 
+                          style={{ width: '5%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>/</div>
 
 
-                      <div className='field-colour d-flex justify-content-center align-items-center' 
-                        style={{ width: '45%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>{selectedSpellSlot.selectedSpellSlotValue}</div>
+                          <div className='field-colour d-flex justify-content-center align-items-center' 
+                            style={{ width: '45%', color: 'var(--textLightGrey)', fontSize: '1.5vw' }}>{selectedSpellSlot.selectedSpellSlotValue}</div>
 
-                    </div>
+                        </div>
 
+                      </div>
+
+                      <div className='d-flex justify-content-center' style={{width: '100%'}}>
+                        <button className='create-character-button' type="submit">Update SS</button>
+                      </div>
+                    </form>
                   </div>
-
-                  <div className='d-flex justify-content-center' style={{width: '100%'}}>
-                    <button className='create-character-button' type="submit">Update SS</button>
-                  </div>
-
-                </div>
                 
-                <div className='col-6 flex-column' style={{ padding: '0px 0px 0px 10px' }}>
+                  <div className='col-6 flex-column' style={{ padding: '0px 0px 0px 10px' }}>
 
-                  {/* AC and SS DC */}
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>SS DC</div>
+                      {/* AC and SS DC */}
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                        <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
+                        <div className="text-center form-titles" style={{ width: '45%' }}>SS DC</div>
+                      </div>
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
+                        <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
+                        <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpellSaveDC}</div>
+                      </div>
+
+                      {/* Speed and Inspiration */}
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                        <div className="text-center form-titles" style={{ width: '45%' }}>Speed</div>
+                        <div className="text-center form-titles" style={{ width: '45%' }}>Inspiration</div>
+                      </div>
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
+                        <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpeed}</div>
+                        <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterInspiration}</div>
+                      </div>
+
+                      {/* Perception */}
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                        <div className="text-center form-titles" style={{ width: '45%' }}>Perception</div>
+                        <div className="text-center form-titles" style={{ width: '45%' }}>Prof. Bonus</div>
+                      </div>
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
+                        <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterPerception}</div>
+                        <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterProficiencyBonus}</div>
+                      </div>
+
+                      {/* Long and Short Rest */}
+                      <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+
+                        <div className='d-flex justify-content-center'style={{ width: '45%' }}>
+                          <button className='create-character-button' type="submit">Short Rest</button>
+                        </div>
+
+                        <div className='d-flex justify-content-center' style={{ width: '45%' }}>
+                          <button className='create-character-button' type="submit">Long Rest</button>
+                        </div>
+
+                      </div>
+
                   </div>
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpellSaveDC}</div>
-                  </div>
-
-                  {/* Speed and Inspiration */}
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>Speed</div>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>Inspiration</div>
-                  </div>
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpeed}</div>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterInspiration}</div>
-                  </div>
-
-                  {/* Perception */}
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>Perception</div>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>Prof. Bonus</div>
-                  </div>
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterPerception}</div>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterProficiencyBonus}</div>
-                  </div>
-
-                  {/* Long and Short Rest */}
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
-
-                    <div className='d-flex justify-content-center'style={{ width: '45%' }}>
-                      <button className='create-character-button' type="submit">Short Rest</button>
-                    </div>
-
-                    <div className='d-flex justify-content-center' style={{ width: '45%' }}>
-                      <button className='create-character-button' type="submit">Long Rest</button>
-                    </div>
-
-                  </div>
-
-                </div>
 
               </div>
 

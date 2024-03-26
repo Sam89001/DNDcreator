@@ -124,6 +124,33 @@ const CreateCharacterSchema = new mongoose.Schema({
   characterSpellSlot9: {
     type: Number
   },
+  characterTemporarySpellSlot1: {
+    type: Number
+  },
+  characterTemporarySpellSlot2: {
+    type: Number
+  },
+  characterTemporarySpellSlot3: {
+    type: Number
+  },
+  characterTemporarySpellSlot4: {
+    type: Number
+  },
+  characterTemporarySpellSlot5: {
+    type: Number
+  },
+  characterTemporarySpellSlot6: {
+    type: Number
+  },
+  characterTemporarySpellSlot7: {
+    type: Number
+  },
+  characterTemporarySpellSlot8: {
+    type: Number
+  },
+  characterTemporarySpellSlot9: {
+    type: Number
+  },
   characterAge: {
     type: Number,
   },

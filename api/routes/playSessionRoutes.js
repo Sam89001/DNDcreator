@@ -181,5 +181,39 @@ router.put('/UpdateTempHp/:id', async (req, res) => {
   }
 });
 
+//Updates Spell SLot
+router.put('/UpdateTemporarySpellSlot/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { characterTemporarySpellSlotValue, characterTemporarySpellSlotNumber } = req.body
+
+    // Update the specified field in the database
+    const update = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      { $set: { [characterTemporarySpellSlotNumber]: characterTemporarySpellSlotValue } },
+      { new: true }
+    );
+
+    if (!update) {
+      return res.status(404).json({
+        error: 'Error updating character data',
+      });
+    }
+
+    return res.json({
+      success: true,
+      updatedSpellSlot: update.characterTemporarySpellSlotNumber
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error: 'Internal Server Error'
+    });
+  }
+});
+
+
+
 
 module.exports = router;
