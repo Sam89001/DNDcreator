@@ -276,6 +276,83 @@ function PlaySession() {
       } 
     };
 
+    const renderContentTreasure = () => {
+      if (activeIndexEquipment === 0) {
+        //Equipment Render
+        return (
+          <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
+
+            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '7px', }}>
+              {characterEquipment
+                .map(attack => (
+                  <div key={attack.id} className='d-flex flex-column justify-content-between' 
+                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
+                    
+                    <div className='d-flex flex-row justify-content-between' style={{ maxWidth: '100%', borderBottom: 'solid 1px var(--textGrey)', borderTop: 'solid 1px var(--textGrey)'}}>
+
+                      <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
+                        <div className='equipment-title-mini' >Equipment Title:</div>
+                        <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterEquipmentName}</div>
+                      </div>
+
+                      <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
+                        <div className='equipment-title-mini'>Equipment Quantity:</div>
+                        <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterEquipmentQuantity}</div>
+                      </div>
+
+                    </div>
+
+                    <div className='text-center equipment-item-styling' style={{ maxWidth: '100%' }}>
+                      <div className='equipment-title-mini' >Equipment Description:</div>
+                      <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterEquipmentDescription}</div>
+                    </div>
+                    
+                  </div>
+                ))}
+            </div>
+
+          </div>
+        );
+        //Treasure Render
+      } else if (activeIndexEquipment === 1) {
+        
+        return (
+          <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
+
+            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '7px', }}>
+              {updateCharacterTreasure
+                .map(attack => (
+                  <div key={attack.id} className='d-flex flex-column justify-content-between' 
+                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
+                    
+                    <div className='d-flex flex-row justify-content-between' style={{ maxWidth: '100%', borderBottom: 'solid 1px var(--textGrey)', borderTop: 'solid 1px var(--textGrey)'}}>
+
+                      <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
+                        <div className='equipment-title-mini' >Treasure Title:</div>
+                        <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterTreasureName}</div>
+                      </div>
+
+                      <div className='text-center equipment-item-styling' style={{ flex: '1', maxWidth: '50%' }}>
+                        <div className='equipment-title-mini'>Treasure Quantity:</div>
+                        <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterTreasureQuantity}</div>
+                      </div>
+
+                    </div>
+
+                    <div className='text-center equipment-item-styling' style={{ maxWidth: '100%' }}>
+                      <div className='equipment-title-mini' >Treasure Description:</div>
+                      <div style={{overflowY: 'auto', paddingBottom: '15px'}}>{attack.characterTreasureDescription}</div>
+                    </div>
+                    
+                  </div>
+                ))}
+            </div>
+
+          </div>
+        );
+      } 
+    };
+
   return (
     <div style={{paddingBottom: '20px'}}>
 
@@ -534,6 +611,10 @@ function PlaySession() {
                       </div>
 
                     </div>
+                  </div>
+
+                  <div style={{height: '34vh'}}>
+                    {renderContentTreasure()}
                   </div>
 
                 </div>
