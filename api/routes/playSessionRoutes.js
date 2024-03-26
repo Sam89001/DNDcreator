@@ -207,8 +207,6 @@ router.put('/UpdateTemporarySpellSlot/:id', async (req, res) => {
       });
     }
     
-    
-
     const update = await CreateCharacterSchema.findByIdAndUpdate(
       id,
       { $set: { [characterTemporarySpellSlotNumber]: characterTemporarySpellSlotValue } },
