@@ -210,11 +210,17 @@ function PlaySession() {
   }, []);
 
     //Loads Spell Info
-    const [activeIndex, setActiveIndex] = useState(0); 
-    const handleClick = (index) => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndexEquipment, setActiveIndexEquipment] = useState(0);  
+
+    const changeMenuSpells = (index) => {
       setActiveIndex(index === activeIndex ? activeIndex : index); 
     };
-    const renderContent = () => {
+    const changeMenuEquipment = (index) => {
+      setActiveIndexEquipment(index === activeIndex ? activeIndex : index); 
+    };
+
+    const renderContentSpells = () => {
       if (activeIndex === 0) {
         //Attacks Render
         return (
@@ -367,6 +373,7 @@ function PlaySession() {
               {/* Form Fields */}
               <div className='col-8 row' style={{padding: '0px 0px 0px 12px'}}> 
 
+                {/* Temp Hp & Spell Slots*/}
                 <div className='col-6' >
 
                   {/* Temp Hp*/}
@@ -442,7 +449,7 @@ function PlaySession() {
                     <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
                     <div className="text-center form-titles" style={{ width: '45%' }}>SS DC</div>
                   </div>
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpellSaveDC}</div>
                   </div>
@@ -452,8 +459,7 @@ function PlaySession() {
                     <div className="text-center form-titles" style={{ width: '45%' }}>Speed</div>
                     <div className="text-center form-titles" style={{ width: '45%' }}>Inspiration</div>
                   </div>
-
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterSpeed}</div>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterInspiration}</div>
                   </div>
@@ -461,12 +467,11 @@ function PlaySession() {
                   {/* Perception */}
                   <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap' }}>
                     <div className="text-center form-titles" style={{ width: '45%' }}>Perception</div>
-                    <div className="text-center form-titles" style={{ width: '45%' }}>AC</div>
+                    <div className="text-center form-titles" style={{ width: '45%' }}>Prof. Bonus</div>
                   </div>
-
-                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '10px' }}>
+                  <div className='d-flex justify-content-between' style={{ flexWrap: 'wrap', marginBottom: '9px' }}>
                     <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterPerception}</div>
-                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterAc}</div>
+                    <div className='play-session-field basic-combat-stats-field text-center' style={{ width: '45%' }}>{characterData.characterProficiencyBonus}</div>
                   </div>
 
                   {/* Long and Short Rest */}
@@ -494,11 +499,11 @@ function PlaySession() {
 
                   <div style={{ height: '5vh', display: 'block', width: '100%' }}>
                     <div className='d-flex flex-row' style={{height: '100%'}}>
-                      <div className={`attack-menu-container ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
+                      <div className={`attack-menu-container ${activeIndex === 0 ? 'active' : ''}`} onClick={() => changeMenuSpells(0)}>
                         <div className="text-center">Attacks</div>
                       </div>
 
-                      <div className={`attack-menu-container ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>
+                      <div className={`attack-menu-container ${activeIndex === 1 ? 'active' : ''}`} onClick={() => changeMenuSpells(1)}>
                         <div className="text-center">Spells</div>
                       </div>
 
@@ -506,7 +511,7 @@ function PlaySession() {
                   </div>
                   
                   <div style={{height: '34vh'}}>
-                    {renderContent()}
+                    {renderContentSpells()}
                   </div>
 
                 </div>
@@ -515,7 +520,24 @@ function PlaySession() {
               {/* Equipment */}
               <div className='col-6 d-flex flex-column d-flex'>
                 <div className="text-center form-titles" style={{ marginBottom: '10px' }}>Equipment</div>
-                <div className="field-colour" style={{width: '100%', height: '40vh'}}></div>
+
+                <div className="field-colour" style={{width: '100%', height: '40vh'}}>
+
+                  <div style={{ height: '5vh', display: 'block', width: '100%' }}>
+                    <div className='d-flex flex-row' style={{height: '100%'}}>
+                      <div className={`attack-menu-container ${activeIndexEquipment === 0 ? 'active' : ''}`} onClick={() => changeMenuEquipment(0)}>
+                        <div className="text-center">Equipment</div>
+                      </div>
+
+                      <div className={`attack-menu-container ${activeIndexEquipment === 1 ? 'active' : ''}`} onClick={() => changeMenuEquipment(1)}>
+                        <div className="text-center">Treasure</div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              
               </div>
 
           </div>
