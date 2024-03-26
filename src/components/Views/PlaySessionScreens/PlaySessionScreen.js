@@ -433,7 +433,7 @@ function PlaySession() {
     const updateSpellSlot = async (e) => {
       e.preventDefault();
       const id = characterId.Id;
-      const selectedSlot = selectedSpellSlot.selectedSpellSlotNumber; // Rename the variable to avoid shadowing
+      const selectedSlot = selectedSpellSlot.selectedSpellSlotNumber; 
       const characterTemporarySpellSlotValue = tempSpellSlot[selectedSlot];
       const characterTemporarySpellSlotNumber = selectedSlot;
       try {
@@ -595,7 +595,7 @@ function PlaySession() {
                                 selectedSpellSlot: e.target.selectedOptions[0].dataset.value
                               }))
                           }>
-                          <option value={0} data-value={0}>Cantrips</option>
+                          <option value={0} data-value={0} data-custom="characterTemporarySpellSlot0">Cantrips</option>
                           <option value={characterData.characterSpellSlot1} data-value={1} data-custom="characterTemporarySpellSlot1">Level 1</option>
                           <option value={characterData.characterSpellSlot2} data-value={2} data-custom="characterTemporarySpellSlot2">Level 2</option>
                           <option value={characterData.characterSpellSlot3} data-value={3} data-custom="characterTemporarySpellSlot3">Level 3</option>
@@ -613,7 +613,7 @@ function PlaySession() {
                           <input className='field-colour' placeholder='HP' style={{ width: '45%', fontSize: '1.5vw', textAlign: 'center' }}
                            onChange={(e) => setTempSpellSlot({ 
                             ...tempSpellSlot, 
-                            [`characterTempSpellSlot${selectedSpellSlot.selectedSpellSlot}`]: e.target.value 
+                            [selectedSpellSlot.selectedSpellSlotNumber]: e.target.value 
                           })}/>
 
                           <div className='field-colour d-flex justify-content-center align-items-center' 
