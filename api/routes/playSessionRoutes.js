@@ -140,10 +140,26 @@ router.put('/UpdateTempHp/:id', async (req, res) => {
     const { characterTempHp } = req.body; 
     const characterData = { characterTempHp };
 
-    const update = await CreateCharacterSchema.findOneAndUpdate(
-      { userId: id }, 
-      { $set: characterData }, 
-      { new: true } 
+    const hpCheck = await CreateCharacterSchema.findById(id)
+
+    if (isNaN(characterTempHp)) {
+      return res.json({
+        error: 'Temp Hp must be a number.',
+      });
+    }
+
+    console.log(hpCheck)
+
+    if (characterTempHp > hpCheck.characterHp) {
+      return res.json({
+        error: 'Temp Hp cannot exceed Max HP.',
+      });
+    }
+
+    const update = await CreateCharacterSchema.findByIdAndUpdate(
+      id,
+      { $set: characterData },
+      { new: true }
     );
 
     if (!update) {

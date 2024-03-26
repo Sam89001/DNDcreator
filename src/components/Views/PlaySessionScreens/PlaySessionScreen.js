@@ -207,7 +207,7 @@ function PlaySession() {
   const updateTempHP = async (e) => {
     e.preventDefault();
     const { characterTempHp } = tempHpData;
-    const id = user.id;
+    const id = characterId.Id;
     
     try {
       const response = await axios.put(`/PlaySession/UpdateTempHp/${id}`, {
