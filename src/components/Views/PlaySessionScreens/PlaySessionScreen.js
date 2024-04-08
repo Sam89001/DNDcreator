@@ -665,7 +665,7 @@ function PlaySession() {
                 
                 <div className='field-style' 
                 style={{ flex: '1', marginRight: '10px', overflowX: 'auto', overflowY: 'hidden', 
-                display: 'flex', paddingBottom: '24px', fontSize: '1vw' }}>
+                display: 'flex', paddingBottom: '24px', fontSize: '1vw', color: 'var(--textLightGrey)' }}>
 
                     <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
                         {diceNumbers.rolledNumbers.map((number, index) => (
@@ -680,7 +680,7 @@ function PlaySession() {
                 </div>
 
                 <div style={{ flex: '1' }}>
-                  <div className='field-style' style={{ width: '100%', display: 'flex', alignItems: 'center' }}>{diceNumbers.rollOutput}</div>
+                  <div className='field-style' style={{ width: '100%', display: 'flex', alignItems: 'center', color: 'var(--textLightGrey)' }}>{diceNumbers.rollOutput}</div>
                 </div>
             </div>
 
@@ -690,7 +690,7 @@ function PlaySession() {
           <div className='col-12 row'>
             <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Log</div>
             <textarea className='field-style' 
-            style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', lineHeight: '1.2', minHeight: '75px', maxHeight: '200px'}} 
+            style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', lineHeight: '1.2', minHeight: '75px', maxHeight: '200px', color: 'var(--textLightGrey)'}} 
             placeholder="Notes"
             value={rollLogs.rollLog.join('\n\n' )}
             readOnly
