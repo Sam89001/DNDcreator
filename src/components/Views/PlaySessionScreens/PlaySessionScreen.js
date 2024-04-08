@@ -19,6 +19,7 @@ import dTen from '../../../images/d10.png'
 import dTwelve from '../../../images/d12.png'
 import dTwenty from '../../../images/d20.png'
 import dOneHundred from '../../../images/d100.png'
+import noPicture from '../../../images/Question Mark Graphic.png'
 
 function PlaySession() {
 
@@ -684,7 +685,7 @@ function PlaySession() {
                 <div className='d-flex flex-column align-items-center'>
                   <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {characterData.characterName.length > 25 ? characterData.characterName.slice(0, 22) + '...' : characterData.characterName}</div>
-                  <img className='img-fluid' src={"/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
+                  <img className='img-fluid' src={!characterData.characterBodyImage ? noPicture : "/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
                 </div>
               </div>
 
@@ -718,7 +719,7 @@ function PlaySession() {
                   </form>
 
                   {/* Spell Slots */}
-                  <div className="text-center form-titles" style={{ width: '100%' }}>Spell Slots</div>
+                  <div className="text-center form-titles" style={{ width: '100%' }}>Select Spell & Spell Slots</div>
                     <form onSubmit={updateSpellSlot}>
                       <div className="field-colour" style={{width: '100%', height: '10vh', padding: '0px 5px 0px 5px', marginBottom: '5px'}}>
                         <select className='create-character-field' style={{width: '100%', borderBottom: 'solid var(--textGrey) 0.5px', color: 'var(--textGrey)'}}
@@ -745,7 +746,7 @@ function PlaySession() {
 
                         <div className='d-flex justify-content-between' style={{width: '100%'}}>
 
-                          <input className='field-colour' placeholder='HP' style={{ width: '45%', fontSize: '1.5vw', textAlign: 'center' }}
+                          <input className='field-colour' placeholder='SS' style={{ width: '45%', fontSize: '1.5vw', textAlign: 'center' }}
                            onChange={(e) => setTempSpellSlot({ 
                             ...tempSpellSlot, 
                             [selectedSpellSlot.selectedSpellSlotNumber]: e.target.value 
