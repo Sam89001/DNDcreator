@@ -484,7 +484,6 @@ function PlaySession() {
     const [rollLogs, setRollLogs] = useState({
       rollLog: [],
     })
-
     const rollDice = (userDiceSelection) => {
       const rollAmount = diceNumbers.userNumber.trim();
     
@@ -564,16 +563,42 @@ function PlaySession() {
           {/* Dice Images */}
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
               <div className='w-100 d-flex justify-content-between' style={{ flex: '1' }}>
+                <div>
+                  <div className="text-center form-titles">D4</div>
                   <img className='img-fluid dice-image' src={dFour} onClick={() => rollDice(4)}/>
+                </div>
+
+                <div>
+                  <div className="text-center form-titles">D6</div>
                   <img className='img-fluid dice-image' src={dSix} onClick={() => rollDice(6)}/>
+                </div>
+
+                <div>
+                  <div className="text-center form-titles">D8</div>
                   <img className='img-fluid dice-image' src={dEight} onClick={() => rollDice(8)}/>
+                </div>
+
+                <div>
+                  <div className="text-center form-titles">D10</div>
                   <img className='img-fluid dice-image' src={dTen} onClick={() => rollDice(10)}/>
+                </div>
               </div>
 
               <div className='w-100 d-flex d-flex justify-content-between' style={{ flex: '1', padding: '0px 20px 0px 20px'}}>
+                <div>
+                  <div className="text-center form-titles">D12</div>
                   <img className='img-fluid dice-image' src={dTwelve} onClick={() => rollDice(12)}/>
+                </div>
+
+                <div>
+                  <div className="text-center form-titles">D20</div>
                   <img className='img-fluid dice-image' src={dTwenty} onClick={() => rollDice(20)}/>
+                </div>
+
+                <div>
+                  <div className="text-center form-titles">D100</div>
                   <img className='img-fluid dice-image' src={dOneHundred} onClick={() => rollDice(100)}/>
+                </div>
               </div>
           </div>
 
