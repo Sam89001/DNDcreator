@@ -530,10 +530,16 @@ function PlaySession() {
         rollOutput: value
       }));
       
-      setRollLogs((prevLogs) => ({
-        ...prevLogs,
-        rollLog: [...prevLogs.rollLog, 'd' + userDiceSelection + ' result = ' + stringValue + value],
-      }));
+      setRollLogs(prevLogs => {
+        let updatedRollLog = [...prevLogs.rollLog, 'd' + userDiceSelection + ' result:   ' + stringValue + value];
+        if (updatedRollLog.length > 30) {
+            updatedRollLog = updatedRollLog.slice(1);
+        }
+        return {
+            ...prevLogs,
+            rollLog: updatedRollLog
+        };
+      });
     }
     
 
