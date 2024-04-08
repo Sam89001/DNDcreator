@@ -483,29 +483,46 @@ function PlaySession() {
     })
 
     const rollDice = (userDiceSelection) => {
-      const rollAmount = diceNumbers.userNumber
-
-      console.log('user roll amount ' + rollAmount)
-      console.log('dice value ' + userDiceSelection)
-
-      if (isNaN(rollAmount) || rollAmount % 1 !== 0) {
+      const rollAmount = diceNumbers.userNumber.trim();
+    
+      if (rollAmount === '' || isNaN(rollAmount)) {
         toast.error('Please input a number')
         return;
       }
+    
+      if (rollAmount % 1 !== 0) {
+        toast.error('Number must be whole')
+        return;
+      }
 
-      //Trim out whitespace
-      //Clear rolledNumbers & rollOutput
-      //roll x dice based on value passed in userDiceSelection
-
-      //let value = 0
-
-      //For loop (roll amount)
-        //Math.random between two values that are set depending on user selection
-        //Each loop add to array rolledNumbers in diceNumbers
-        //add calc value to value
-
-      //rollOutput = value
+      if (rollAmount > 101) {
+        toast.error('Number must be less than or equal to 100')
+        return;
+      }
+    
+      setDiceNumbers(prevState => ({
+        ...prevState,
+        rolledNumbers: [],
+        rollOutput: ''
+      }));
+    
+      let min = 1
+      let value = 0
+    
+      for (let i = 0; i < rollAmount; i++) {
+        const diceRoll = Math.floor(Math.random() * (userDiceSelection - min)) + min;
+        
+        value += diceRoll
+        console.log( i + ' Result is ' + diceRoll)
+      }
+      
+      setDiceNumbers(prevState => ({
+        ...prevState,
+        rollOutput: value
+      }));
+      
     }
+    
 
   return (
     <div style={{paddingBottom: '20px'}}>
@@ -526,16 +543,16 @@ function PlaySession() {
           {/* Dice Images */}
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
               <div className='w-100 d-flex justify-content-between' style={{ flex: '1' }}>
-                  <img className='img-fluid dice-image' src={dFour} value={4} onClick={() => rollDice(4)}/>
-                  <img className='img-fluid dice-image' src={dSix} value={6}/>
-                  <img className='img-fluid dice-image' src={dEight} value={8}/>
-                  <img className='img-fluid dice-image' src={dTen} value={10}/>
+                  <img className='img-fluid dice-image' src={dFour} onClick={() => rollDice(5)}/>
+                  <img className='img-fluid dice-image' src={dSix} onClick={() => rollDice(7)}/>
+                  <img className='img-fluid dice-image' src={dEight} onClick={() => rollDice(9)}/>
+                  <img className='img-fluid dice-image' src={dTen} onClick={() => rollDice(11)}/>
               </div>
 
               <div className='w-100 d-flex d-flex justify-content-between' style={{ flex: '1', padding: '0px 20px 0px 20px'}}>
-                  <img className='img-fluid dice-image' src={dTwelve} value={12}/>
-                  <img className='img-fluid dice-image' src={dTwenty} value={20}/>
-                  <img className='img-fluid dice-image' src={dOneHundred} value={100}/>
+                  <img className='img-fluid dice-image' src={dTwelve} onClick={() => rollDice(13)}/>
+                  <img className='img-fluid dice-image' src={dTwenty} onClick={() => rollDice(21)}/>
+                  <img className='img-fluid dice-image' src={dOneHundred} onClick={() => rollDice(101)}/>
               </div>
           </div>
 
@@ -550,7 +567,7 @@ function PlaySession() {
                   <div className="text-center form-titles">Total Result</div>
                 </div>
                 <div style={{flex: '1'}}>
-                  <div className="text-center form-titles" value={diceNumbers.rollOutput}>Ind. Result</div>
+                  <div className="text-center form-titles">Ind. Result</div>
                 </div>
             </div>
 
@@ -566,8 +583,8 @@ function PlaySession() {
                 <div style={{flex: '1', marginRight: '10px'}}>
                   <div className='field-style' style={{width: '100%'}} />
                 </div>
-                <div style={{flex: '1'}}>
-                  <div className='field-style' style={{width: '100%'}} />
+                <div style={{ flex: '1' }}>
+                  <div className='field-style' style={{ width: '100%', display: 'flex', alignItems: 'center' }}>{diceNumbers.rollOutput}</div>
                 </div>
             </div>
           </div>
