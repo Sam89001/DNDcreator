@@ -513,7 +513,7 @@ function PlaySession() {
       const rolledNumbers = []
     
       for (let i = 0; i < rollAmount; i++) {
-        const diceRoll = Math.floor(Math.random() * (userDiceSelection - min)) + min;
+        const diceRoll = Math.floor(Math.random() * (userDiceSelection - min + 1)) + min ;
         rolledNumbers.push(diceRoll);
         value += diceRoll;
 
@@ -532,7 +532,7 @@ function PlaySession() {
       
       setRollLogs((prevLogs) => ({
         ...prevLogs,
-        rollLog: [...prevLogs.rollLog, stringValue + value],
+        rollLog: [...prevLogs.rollLog, 'd' + userDiceSelection + ' result = ' + stringValue + value],
       }));
     }
     
@@ -556,16 +556,16 @@ function PlaySession() {
           {/* Dice Images */}
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
               <div className='w-100 d-flex justify-content-between' style={{ flex: '1' }}>
-                  <img className='img-fluid dice-image' src={dFour} onClick={() => rollDice(5)}/>
-                  <img className='img-fluid dice-image' src={dSix} onClick={() => rollDice(7)}/>
-                  <img className='img-fluid dice-image' src={dEight} onClick={() => rollDice(9)}/>
-                  <img className='img-fluid dice-image' src={dTen} onClick={() => rollDice(11)}/>
+                  <img className='img-fluid dice-image' src={dFour} onClick={() => rollDice(4)}/>
+                  <img className='img-fluid dice-image' src={dSix} onClick={() => rollDice(6)}/>
+                  <img className='img-fluid dice-image' src={dEight} onClick={() => rollDice(8)}/>
+                  <img className='img-fluid dice-image' src={dTen} onClick={() => rollDice(10)}/>
               </div>
 
               <div className='w-100 d-flex d-flex justify-content-between' style={{ flex: '1', padding: '0px 20px 0px 20px'}}>
-                  <img className='img-fluid dice-image' src={dTwelve} onClick={() => rollDice(13)}/>
-                  <img className='img-fluid dice-image' src={dTwenty} onClick={() => rollDice(21)}/>
-                  <img className='img-fluid dice-image' src={dOneHundred} onClick={() => rollDice(101)}/>
+                  <img className='img-fluid dice-image' src={dTwelve} onClick={() => rollDice(12)}/>
+                  <img className='img-fluid dice-image' src={dTwenty} onClick={() => rollDice(20)}/>
+                  <img className='img-fluid dice-image' src={dOneHundred} onClick={() => rollDice(100)}/>
               </div>
           </div>
 
@@ -616,9 +616,10 @@ function PlaySession() {
           {/* Log */}
           <div className='col-12 row'>
             <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Log</div>
-            <textarea className='field-style spell-description-field' style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', fontSize: '1.2vw', lineHeight: '1.5'}} 
+            <textarea className='field-style spell-description-field' 
+            style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', fontSize: '1.2vw', lineHeight: '1.2'}} 
             placeholder="Notes"
-            value={rollLogs.rollLog.join('\n' )}
+            value={rollLogs.rollLog.join('\n\n' )}
             readOnly
             />
           </div>
