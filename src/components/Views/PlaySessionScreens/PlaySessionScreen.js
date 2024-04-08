@@ -482,8 +482,17 @@ function PlaySession() {
       rollOutput: ''
     })
 
-    const rollDice = (rollAmount, userDiceSelection) => {
-      //check if rollAmount is a number, if not a number throw error
+    const rollDice = (userDiceSelection) => {
+      const rollAmount = diceNumbers.userNumber
+
+      console.log('user roll amount ' + rollAmount)
+      console.log('dice value ' + userDiceSelection)
+
+      if (isNaN(rollAmount) || rollAmount % 1 !== 0) {
+        toast.error('Please input a number')
+        return;
+      }
+
       //Trim out whitespace
       //Clear rolledNumbers & rollOutput
       //roll x dice based on value passed in userDiceSelection
@@ -517,16 +526,16 @@ function PlaySession() {
           {/* Dice Images */}
           <div className='col-12 d-flex flex-column align-items-center justify-content-center' style={{padding: '0px'}}>
               <div className='w-100 d-flex justify-content-between' style={{ flex: '1' }}>
-                  <img className='img-fluid dice-image' src={dFour}/>
-                  <img className='img-fluid dice-image' src={dSix}/>
-                  <img className='img-fluid dice-image' src={dEight}/>
-                  <img className='img-fluid dice-image' src={dTen}/>
+                  <img className='img-fluid dice-image' src={dFour} value={4} onClick={() => rollDice(4)}/>
+                  <img className='img-fluid dice-image' src={dSix} value={6}/>
+                  <img className='img-fluid dice-image' src={dEight} value={8}/>
+                  <img className='img-fluid dice-image' src={dTen} value={10}/>
               </div>
 
               <div className='w-100 d-flex d-flex justify-content-between' style={{ flex: '1', padding: '0px 20px 0px 20px'}}>
-                  <img className='img-fluid dice-image' src={dTwelve}/>
-                  <img className='img-fluid dice-image' src={dTwenty}/>
-                  <img className='img-fluid dice-image' src={dOneHundred}/>
+                  <img className='img-fluid dice-image' src={dTwelve} value={12}/>
+                  <img className='img-fluid dice-image' src={dTwenty} value={20}/>
+                  <img className='img-fluid dice-image' src={dOneHundred} value={100}/>
               </div>
           </div>
 
@@ -547,7 +556,12 @@ function PlaySession() {
 
             <div className='col-12 d-flex justify-content-between' style={{padding: '0px'}}>
                 <div style={{flex: '1', marginRight: '10px'}}>
-                  <input className='field-style' style={{width: '100%'}} />
+                  <input className='field-style' style={{width: '100%'}} 
+                    onChange={(e) => setDiceNumbers((prevData) => ({
+                      ...prevData,
+                      userNumber: e.target.value
+                    }))
+                  }/>
                 </div>
                 <div style={{flex: '1', marginRight: '10px'}}>
                   <div className='field-style' style={{width: '100%'}} />
