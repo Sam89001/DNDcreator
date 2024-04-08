@@ -529,9 +529,11 @@ function PlaySession() {
         rolledNumbers: rolledNumbers,
         rollOutput: value
       }));
+
+      let rollLogValue = 'd' + userDiceSelection + ' * ' + rollAmount + ' result:   ' + stringValue + value
       
       setRollLogs(prevLogs => {
-        let updatedRollLog = [...prevLogs.rollLog, 'd' + userDiceSelection + ' result:   ' + stringValue + value];
+        let updatedRollLog = [...prevLogs.rollLog, rollLogValue];
         if (updatedRollLog.length > 30) {
             updatedRollLog = updatedRollLog.slice(1);
         }
@@ -590,7 +592,7 @@ function PlaySession() {
                 </div>
             </div>
 
-            <div className='col-12 d-flex justify-content-between' style={{padding: '0px'}}>
+            <div className='col-12 d-flex justify-content-between' style={{padding: '0px', fontSize: '1.2vw'}}>
                 <div style={{flex: '1', marginRight: '10px'}}>
                   <input className='field-style' style={{width: '100%'}} 
                     onChange={(e) => setDiceNumbers((prevData) => ({
@@ -600,16 +602,20 @@ function PlaySession() {
                   }/>
                 </div>
                 
-                <div className='field-style' style={{ flex: '1', marginRight: '10px', overflowX: 'auto' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
-                    {diceNumbers.rolledNumbers.map((number, index) => (
-                      <span key={index}>
-                        {number}
-                        {index !== diceNumbers.rolledNumbers.length - 1 ? ' + ' : ' = '}
-                      </span>
-                    ))}
-                    {diceNumbers.rollOutput}
-                  </div>
+                <div className='field-style' 
+                style={{ flex: '1', marginRight: '10px', overflowX: 'auto', overflowY: 'hidden', 
+                display: 'flex', paddingBottom: '24px', fontSize: '1vw' }}>
+
+                    <div style={{ display: 'flex', alignItems: 'center', whiteSpace: 'nowrap' }}>
+                        {diceNumbers.rolledNumbers.map((number, index) => (
+                            <span key={index}>
+                                {number}
+                                {index !== diceNumbers.rolledNumbers.length - 1 ? ' + ' : ' = '}
+                            </span>
+                        ))}
+                        {diceNumbers.rollOutput}
+                    </div>
+
                 </div>
 
                 <div style={{ flex: '1' }}>
@@ -622,8 +628,8 @@ function PlaySession() {
           {/* Log */}
           <div className='col-12 row'>
             <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Log</div>
-            <textarea className='field-style spell-description-field' 
-            style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', fontSize: '1.2vw', lineHeight: '1.2'}} 
+            <textarea className='field-style' 
+            style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', lineHeight: '1.2', minHeight: '75px', maxHeight: '200px'}} 
             placeholder="Notes"
             value={rollLogs.rollLog.join('\n\n' )}
             readOnly
