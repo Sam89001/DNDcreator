@@ -201,12 +201,14 @@ router.put('/UpdateTemporarySpellSlot/:id', async (req, res) => {
         error: 'Cantrip Spell Slots cannot be edited',
       });
     }
+    
+    /*
     if (characterTemporarySpellSlotValue > spellBoundryCheck[characterTemporarySpellSlotNumber]) {
       return res.json({
         error: 'Temp Hp cannot exceed Max HP.',
       });
     }
-    
+    */
     const update = await CreateCharacterSchema.findByIdAndUpdate(
       id,
       { $set: { [characterTemporarySpellSlotNumber]: characterTemporarySpellSlotValue } },

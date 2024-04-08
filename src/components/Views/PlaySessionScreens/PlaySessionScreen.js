@@ -470,7 +470,34 @@ function PlaySession() {
         }));
       }
     }, [characterData]);
-    
+
+
+
+
+    //Functions 
+
+    const [diceNumbers, setDiceNumbers] = useState({
+      userNumber: '',
+      rolledNumbers: [],
+      rollOutput: ''
+    })
+
+    const rollDice = (rollAmount, userDiceSelection) => {
+      //check if rollAmount is a number, if not a number throw error
+      //Trim out whitespace
+      //Clear rolledNumbers & rollOutput
+      //roll x dice based on value passed in userDiceSelection
+
+      //let value = 0
+
+      //For loop (roll amount)
+        //Math.random between two values that are set depending on user selection
+        //Each loop add to array rolledNumbers in diceNumbers
+        //add calc value to value
+
+      //rollOutput = value
+    }
+
   return (
     <div style={{paddingBottom: '20px'}}>
 
@@ -514,7 +541,7 @@ function PlaySession() {
                   <div className="text-center form-titles">Total Result</div>
                 </div>
                 <div style={{flex: '1'}}>
-                  <div className="text-center form-titles">Ind. Result</div>
+                  <div className="text-center form-titles" value={diceNumbers.rollOutput}>Ind. Result</div>
                 </div>
             </div>
 
