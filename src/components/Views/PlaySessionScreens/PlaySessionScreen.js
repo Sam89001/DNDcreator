@@ -616,9 +616,9 @@ function PlaySession() {
           {/* Log */}
           <div className='col-12 row'>
             <div className="text-center form-titles" style={{paddingBottom: '10px'}}>Log</div>
-            <textarea className='field-style spell-description-field' style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', fontSize: '1.2vw'}} 
+            <textarea className='field-style spell-description-field' style={{width: '100%', overflowY: 'auto', padding: '5px 10px 5px 5px ', fontSize: '1.2vw', lineHeight: '1.5'}} 
             placeholder="Notes"
-            value={rollLogs.rollLog.join('\n\n' )}
+            value={rollLogs.rollLog.join('\n' )}
             readOnly
             />
           </div>
