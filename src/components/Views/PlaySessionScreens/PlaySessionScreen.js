@@ -7,7 +7,7 @@ import PlaySessionDndSheetThree from '../../Components/PlaySession/PlaySessionDn
 
 //Dependencies
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 import ClipLoader from "react-spinners/ClipLoader";
@@ -316,7 +316,7 @@ function PlaySession() {
 
     //Spinner
     let [color, setColor] = useState("#B6B1B1");
-    //Loading Tine
+    //Loading Time
     const [loading, setLoading] = useState(false)
     useEffect(() => {
       setLoading(true)
