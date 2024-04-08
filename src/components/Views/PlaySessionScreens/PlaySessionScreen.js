@@ -6,10 +6,11 @@ import PlaySessionDndSheetTwo from '../../Components/PlaySession/PlaySessionDndS
 import PlaySessionDndSheetThree from '../../Components/PlaySession/PlaySessionDndSheetThree';
 
 //Dependencies
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
+import ClipLoader from "react-spinners/ClipLoader";
 
 //Images
 import dFour from '../../../images/d4.png'
@@ -24,7 +25,6 @@ import noPicture from '../../../images/Question Mark Graphic.png'
 function PlaySession() {
 
   const { user } = useContext(UserContext);
-	const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
   const nextPage = () => {
@@ -314,7 +314,16 @@ function PlaySession() {
 
     //Loading
 
-    
+    //Spinner
+    let [color, setColor] = useState("#B6B1B1");
+    //Loading Tine
+    const [loading, setLoading] = useState(false)
+    useEffect(() => {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 500)
+    }, [])
 
     //Sets render numbers
     const [activeIndex, setActiveIndex] = useState(0);
@@ -333,6 +342,7 @@ function PlaySession() {
       if (activeIndex === 0) {
         //Attacks Render
         return (
+          
           <div style={{color: 'var(--textLightGrey)', height: '100%'}}>
 
             <div className='d-flex flex-row justify-content-between' style={{ width: '100%', borderBottom: 'solid 1px var(--textGrey)', color: 'var(--textGrey)', marginBottom: '10px' }}>
@@ -340,18 +350,30 @@ function PlaySession() {
               <div className='text-center attack-title-styling' style={{ flex: '1', maxWidth: '30%' }}>Atk Bonus</div>
               <div className='text-center attack-title-styling-no-border' style={{ flex: '1', maxWidth: '30%' }}>Dmg Type</div>
             </div>
-
-            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '7px', }}>
-              {characterAttacks
-                .map(attack => (
-                  <div key={attack.id} className='d-flex flex-row justify-content-between' 
-                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
-                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '35.5%' }}>{attack.characterAttackName}</div>
-                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '32.5%' }}>{attack.characterAttackBonus}</div>
-                    <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '30%' }}>{attack.characterDamageType}</div>
-                  </div>
-                ))}
-            </div>
+            {
+              loading ?
+                <div className='d-flex align-items-center justify-content-center' style={{height: '80%'}}>
+                  <ClipLoader
+                    color={color}
+                    loading={loading}
+                    size={100}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>
+                :
+                <div style={{ overflowX: 'auto', height: '85%', paddingRight: '7px', }}>
+                  {characterAttacks
+                    .map(attack => (
+                      <div key={attack.id} className='d-flex flex-row justify-content-between' 
+                      style={{borderBottom: 'solid 1px var(--textGrey)'}}>
+                        <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '35.5%' }}>{attack.characterAttackName}</div>
+                        <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '32.5%' }}>{attack.characterAttackBonus}</div>
+                        <div className='text-center attack-item-styling' style={{ flex: '1', maxWidth: '30%' }}>{attack.characterDamageType}</div>
+                      </div>
+                    ))}
+                </div>
+            }
 
           </div>
         );
@@ -367,18 +389,31 @@ function PlaySession() {
               <div className='text-center' style={{padding: '5px 5px 5px 5px', fontSize: '1.1vw'}}>Desc</div>
             </div>
 
-            <div style={{ overflowX: 'auto', height: '85%', paddingRight: '5px', }}>
-              {loadCharacterSpells.filter(spell => spell.characterSpellLevel == selectedSpellSlot.selectedSpellSlot)
-                .map(spell => (
-                  <div key={spell.id} className='d-flex flex-row justify-content-between' 
-                  style={{borderBottom: 'solid 1px var(--textGrey)'}}>
-                    <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '34%' }}>{spell.characterSpellName}</div>
-                    <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '26%' }}>{spell.characterSpellCastTime}</div>
-                    <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '21%' }}>{spell.characterSpellDamage}</div>
-                    <div className='d-flex text-center attack-title-styling align-items-center'style={{ width: '10%' }} >&gt;</div>
-                  </div>
-                ))}
-            </div>
+            {
+              loading ?
+                <div className='d-flex align-items-center justify-content-center' style={{height: '80%'}}>
+                  <ClipLoader
+                    color={color}
+                    loading={loading}
+                    size={100}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>
+                :
+              <div style={{ overflowX: 'auto', height: '85%', paddingRight: '5px', }}>
+                {loadCharacterSpells.filter(spell => spell.characterSpellLevel === selectedSpellSlot.selectedSpellSlot)
+                  .map(spell => (
+                    <div key={spell.id} className='d-flex flex-row justify-content-between' 
+                    style={{borderBottom: 'solid 1px var(--textGrey)'}}>
+                      <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '34%' }}>{spell.characterSpellName}</div>
+                      <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '26%' }}>{spell.characterSpellCastTime}</div>
+                      <div className='d-flex text-center attack-item-styling align-items-center' style={{ width: '21%' }}>{spell.characterSpellDamage}</div>
+                      <div className='d-flex text-center attack-title-styling align-items-center'style={{ width: '10%' }} >&gt;</div>
+                    </div>
+                  ))}
+              </div>
+           }
 
           </div>
         );
@@ -544,10 +579,10 @@ function PlaySession() {
       });
     }
     
-
   return (
+    
     <div style={{paddingBottom: '20px'}}>
-
+      
       <nav className='navigation-bar'>
         <Navbar navigationTitle="Character Menu" navigationTitleLink="/ChoosePlaySession" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
@@ -682,11 +717,24 @@ function PlaySession() {
 
               {/* Image & Spell Slot Fields */}
               <div className='col-4'>
-                <div className='d-flex flex-column align-items-center'>
-                  <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {characterData.characterName.length > 25 ? characterData.characterName.slice(0, 22) + '...' : characterData.characterName}</div>
-                  <img className='img-fluid' src={!characterData.characterBodyImage ? noPicture : "/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
-                </div>
+                {loading ?
+                  <div className='d-flex align-items-center justify-content-center' style={{height: '100%'}}>
+                    <ClipLoader
+                      color={color}
+                      loading={loading}
+                      size={150}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </div>
+                  :
+                  <div className='d-flex flex-column align-items-center'>
+                    
+                    <div className="text-center form-titles" style={{ marginBottom: '10px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {characterData.characterName.length > 25 ? characterData.characterName.slice(0, 22) + '...' : characterData.characterName}</div>
+                    <img className='img-fluid' src={!characterData.characterBodyImage ? noPicture : "/" + characterData.characterBodyImage} style={{ maxHeight: '25vh' }} />
+                  </div>
+                }
               </div>
 
               {/* Form Fields */}
@@ -864,7 +912,20 @@ function PlaySession() {
                   </div>
 
                   <div style={{height: '34vh'}}>
-                    {renderContentTreasure()}
+                    {
+                    loading ?
+                    <div className='d-flex align-items-center justify-content-center' style={{height: '100%'}}>
+                      <ClipLoader
+                        color={color}
+                        loading={loading}
+                        size={100}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </div>
+                    :
+                    renderContentTreasure()
+                    }
                   </div>
 
                 </div>
@@ -963,6 +1024,7 @@ function PlaySession() {
         </div> 
 
       </div>
+      
 
     </div>
   )
