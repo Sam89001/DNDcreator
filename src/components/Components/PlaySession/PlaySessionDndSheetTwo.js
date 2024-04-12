@@ -19,17 +19,17 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spellcasting Ability */}
-      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap',  top: '7.2%', left: '42.5%', width: '9.2%', height: '5%', fontSize: '1.1vw' }}>
+      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap',  top: '7.2%', left: '45%', width: '9.2%', height: '5%', fontSize: '1.1vw' }}>
         <div>{characterSpellcastingAbility}</div>
       </div>
 
       {/* Spellcasting DC */}
-      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '7.2%', left: '57%', width: '9%', height: '5%', fontSize: '1.1vw' }}>
+      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '7.2%', left: '61%', width: '9%', height: '5%', fontSize: '1.1vw' }}>
         <div>{characterSpellSaveDC}</div>
       </div>
 
       {/* Spellcasting Atk Bonus */}
-      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '7.2%', left: '72.5%', width: '9%', height: '5%', fontSize: '1.1vw' }}>
+      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto',  paddingBottom: '15px', whiteSpace: 'nowrap', backgroundColor: 'transparent', top: '7.2%', left: '77.5%', width: '9%', height: '5%', fontSize: '1.1vw' }}>
         <div>{characterSpellAttackBonus}</div>
       </div>
 
@@ -48,11 +48,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 1*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '39.5%', left: '8%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '39.5%', left: '8.5%', width: '3%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot1}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowX: 'auto', paddingRight: '15px', top: '45%', left: '6.5%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowX: 'auto', paddingRight: '15px', top: '45%', left: '7%', width: '24.5%', height: '21.5%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '1')
@@ -66,11 +66,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 2*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '68.5%', left: '8%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '68.4%', left: '8.5%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot2}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '71.7%', left: '6.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '71.7%', left: '7%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '2')
@@ -84,11 +84,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 3*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '18.5%', left: '36%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '18.5%', left: '38.5%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot3}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '37%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '3')
@@ -102,11 +102,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 4*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '47%', left: '36%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '47%', left: '38.5%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot4}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '50.3%', left: '34.5%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '50.3%', left: '37%', width: '24.5%', height: '23%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '4')
@@ -120,11 +120,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 5*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '75.5%', left: '36%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '75.5%', left: '38.5%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot5}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '79%', left: '34.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '79%', left: '37%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '5')
@@ -138,11 +138,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 6*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '18.5%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '18.5%', left: '67.7%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot6}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '22%', left: '66.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '6')
@@ -156,11 +156,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 7*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '40%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '40%', left: '67.7%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot7}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '43.5%', left: '62%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '43.5%', left: '66.5%', width: '24.5%', height: '16%', fontSize: '0.59vw' }}>
         <div className='row'> 
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '7')
@@ -174,11 +174,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
       
       {/* Spell Slot 8*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '61%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '61%', left: '67.7%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot8}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '65%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '65%', left: '66.5%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
         <div className='row'> 
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '8')
@@ -192,11 +192,11 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       </div>
 
       {/* Spell Slot 9*/}
-      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '79%', left: '63.5%', width: '4.5%', height: '2.5%', fontSize: '1.3vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  backgroundColor: 'transparent', top: '79%', left: '67.7%', width: '4.5%', height: '2.5%', fontSize: '1vw' }}>
         <div>{characterSpellSlot9}</div>
       </div>
 
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '82.5%', left: '62%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', paddingRight: '15px', top: '82.5%', left: '66.5%', width: '24.5%', height: '12.5%', fontSize: '0.59vw' }}>
         <div className='row'>
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '9')
