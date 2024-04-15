@@ -1,12 +1,11 @@
 //CSS
-
 import '../../css/Site.css';
 import '../../css/Components.css';
 import '../../css/Animations.css';
 
 //Forms
-
 import CreateCharacterForm from '../Forms/CreateCharacterForms/CreateCharacterForm';
+import CreateSessionForm from '../Forms/PlaySessionForms/CreateSessionForm';
 
 function PopUp({closePopUp, popUpTitle, formType}) {
 
@@ -17,7 +16,7 @@ function PopUp({closePopUp, popUpTitle, formType}) {
       case 'createCharacterForm':
         return <CreateCharacterForm/>;
       case 'createSessionForm':
-        return ;
+        return <CreateSessionForm/>;
       default:
         return null;
     }

@@ -14,10 +14,11 @@ import { useNavigate } from 'react-router-dom';
 function CreateCharacterForm() {
 	const navigate = useNavigate();
 	const { user } = useContext(UserContext);
+	console.log(user.id)
 
 	const [data, setData] = useState({
 		characterName: '',
-		id: user.id,
+		id: user.id || '',
 	})
 
 	const registerCharacter = async (e) => {
@@ -53,7 +54,7 @@ function CreateCharacterForm() {
 		<br></br>
 		<br></br>
 		<button type='submit' >Save</button>
-		<p>User ID: {user.id}</p> {/* Assuming 'id' is a property in the user object */}
+		<p>User ID: {data.id}</p> {/* Assuming 'id' is a property in the user object */}
 		
 	</form>
   );
