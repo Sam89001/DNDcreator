@@ -10,6 +10,7 @@ import LoadCharacterPageThree from './components/Views/CreateScreens/LoadCharact
 import ChoosePlaySession from './components/Views/ChooseScreens/ChoosePlaySession';
 import PlaySession from './components/Views/PlaySessionScreens/PlaySessionScreen';
 import ChooseSession from './components/Views/ChooseScreens/ChooseSession';
+import PlayHostSession from './components/Views/HostSessionScreens/HostSessionScreen'
 import { UserContextProvider } from './context/userContext';
 
 //Router
@@ -34,6 +35,7 @@ function App() {
               <Route path="/" element={<Navigate to="/Login" />} />
               <Route path="Login" element={<Login/>}/>
               <Route path="Register" element={<Register/>}/>
+
               <Route element={<AuthenticatedRoutes/>}>
                 <Route path="Home" element={<Home/>}/>
                 <Route path="AccountEdit" element={<AccountEdit/>}/>
@@ -44,7 +46,9 @@ function App() {
                 <Route path="ChoosePlaySession" element={<ChoosePlaySession/>}/>
                 <Route path="PlaySession/:id" element={<PlaySession/>}/>
                 <Route path="ChooseSession" element={<ChooseSession/>}/>
+                <Route path="HostSession/:id" element={<PlayHostSession/>}/>
               </Route>
+              
             </Routes>
           </main>
       </BrowserRouter>

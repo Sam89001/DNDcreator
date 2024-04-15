@@ -20,9 +20,31 @@ function CreateSessionForm() {
 		id: user.id,
 	})
 
+  const registerSession = async (e) => {
+		e.preventDefault();
+		const {sessionName, id} = data
+
+	try {
+      const response = await axios.post('/HostSession/CreateNewSession', {
+        sessionName, id
+      });
+
+      if (response.data.error) {
+        toast.error(response.data.error);
+      } else {
+        setData({});
+        toast.success('Character created successfully!');
+        const mongoId = response.data.mongoId // Assuming your server sends back _id
+        navigate(`/HostSession/${mongoId}`);
+      }
+    } catch (error) {
+      console.error('Error creating character:', error);
+    }
+  };
+
   return (
    <div>
-      <form >
+      <form onSubmit={registerSession}>
         <label> Session Name</label>
         <input placeholder="Session Name" value={data.sessionName} onChange={(e) => setData({...data, sessionName: e.target.value})}></input>
         <br></br>
