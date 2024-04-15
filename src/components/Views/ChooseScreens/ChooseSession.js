@@ -6,10 +6,12 @@ import '../../../css/Animations.css';
 import Navbar from '../../Layouts/Navbar';
 import Create from '../../Components/Create';
 import LoadItem from '../../Components/LoadItem';
+import PopUp from '../../Components/PopUp';
+import DeletePopUp from '../../Components/DeletePopUp';
 import { UserContext } from '../../../context/userContext';
 
 //Dependencies
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 //Temp Images
 import TempImage from '../../../images/temp-character.jpg'
@@ -17,6 +19,14 @@ import TempImage from '../../../images/temp-character.jpg'
 
 function ChooseSession() {
   const { user } = useContext(UserContext);
+  const [popUp, setPopUp] = useState(false);
+
+  const openPopUp = () => {
+    setPopUp(true)
+  }
+  const closePopUp = () => {
+    setPopUp(false)
+  }
 
   return (
     <div>
@@ -31,15 +41,13 @@ function ChooseSession() {
       <div className="col-12 text-center justify-content-center align-items-center mb-0" style={{padding: '30px'}}>
         <div className="d-flex character-select-box justify-content-center">
           <div className="row h-100 w-100 d-flex"> 
-            <Create title="Create a Session" link=""/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
-            <LoadItem title="Mike" link="" image={TempImage}/>
+            <Create title="Create a Session" openPopUp={openPopUp}/>
             
           </div>
         </div>
       </div>
+
+    {popUp && <PopUp closePopUp={closePopUp} popUpTitle='Create Session' formType='createSessionForm' />}
 
     </div>
   );

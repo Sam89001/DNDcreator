@@ -38,6 +38,7 @@
   App.use('/Home', require('./routes/homeRoutes'));
   App.use('/CreateCharacter', require('./routes/createCharacterRoutes'));
   App.use('/PlaySession', require('./routes/playSessionRoutes'));
+  App.use('/HostSession', require('./routes/hostSessionRoutes'));
 
   // Serve static files from the public directory
   App.use(express.static(path.join(__dirname, 'public')));
