@@ -2,14 +2,36 @@ import '../../../css/Site.css';
 import '../../../css/Animations.css';
 import '../../../css/Components.css';
 
+//Depenedencies
+import React, { useState } from 'react';
+
 //Images
 import DndSheetImage from '../../../images/sheet2.png'
+
+//Components
+import SpellPopUp from '../SpellPopUp'
 
 function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
 	characterSpellSaveDC, characterSpellAttackBonus, loadCharacterSpells,
 
 	characterSpellSlot1, characterSpellSlot2, characterSpellSlot3, characterSpellSlot4, characterSpellSlot5,
 	characterSpellSlot6, characterSpellSlot7, characterSpellSlot8, characterSpellSlot9}) {
+
+  const [popUp, setPopUp] = useState(false);
+  const [selectedId, setSelectedId] = useState({
+    selectedId: ''
+  })
+  const openPopUp = (id) => {
+    setPopUp(true)
+    setSelectedId({
+      selectedId: id || ''
+    })
+  }
+  const closePopUp = () => {
+    setPopUp(false)
+    setSelectedId('')
+  }
+    
   return (
     <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
@@ -39,7 +61,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '0')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' >
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+            onClick={() => openPopUp(spell._id)}>
               <div  style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -57,7 +80,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '1')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={spell._id}> 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' key={spell._id}
+            onClick={() => openPopUp(spell._id)}> 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -75,7 +99,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '2')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' > 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+            onClick={() => openPopUp(spell._id)}> 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -93,7 +118,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '3')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between'> 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between'
+            onClick={() => openPopUp(spell._id)}> 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -111,7 +137,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '4')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' >
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+            onClick={() => openPopUp(spell._id)}>
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }} >
                 {spell.characterSpellName}</div>
             </div>
@@ -129,7 +156,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '5')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' >
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+            onClick={() => openPopUp(spell._id)}>
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -147,7 +175,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '6')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' > 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+            onClick={() => openPopUp(spell._id)}> 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }} >
               {spell.characterSpellName}</div>
             </div>
@@ -165,7 +194,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '7')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' > 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between' 
+            onClick={() => openPopUp(spell._id)}> 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -183,7 +213,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '8')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' > 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between'
+            onClick={() => openPopUp(spell._id)} > 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
               {spell.characterSpellName}</div>
             </div>
@@ -201,7 +232,8 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
           {loadCharacterSpells
           .filter(spell => spell.characterSpellLevel === '9')
           .map(spell => (
-            <div className='col-12 hover-red d-flex align-items-center justify-content-between' > 
+            <div className='col-12 hover-red d-flex align-items-center justify-content-between'
+            onClick={() => openPopUp(spell._id)} > 
               <div style={{ overflowY: 'auto', marginRight: '10px', paddingBottom: '12px', whiteSpace: 'nowrap' }}>
                 {spell.characterSpellName}</div>
             </div>
@@ -212,6 +244,7 @@ function DndSheetTwo({characterSpellcastingClass, characterSpellcastingAbility,
       
        {/* image */}
        <img className="img-fluid character-sheet" src={DndSheetImage} alt="Character Image" style={{minWidth: '450px'}}/>
+       {popUp && <SpellPopUp closePopUp={closePopUp} selectedId={selectedId.selectedId} loadCharacterSpells={loadCharacterSpells}/>}
     </div>
   )
 }

@@ -41,53 +41,53 @@ function DndSheetThree({updateCharacterOrganisation,
   return (
     <div className='container' style={{ position: 'relative', minWidth: '500px',}}>
 
-          {/* Name */}
-      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '15px', whiteSpace: 'nowrap', top: '7.7%', left: '9%', width: '30%', height: '5%', fontSize: '1.1vw' }}>
+      {/* Name */}
+      <div className="absolute-div dnd-sheet" style={{ overflowY: 'auto', paddingBottom: '15px', whiteSpace: 'nowrap', top: '7.7%', left: '10%', width: '30%', height: '5%', fontSize: '1.1vw' }}>
         <div>{characterName}</div>
       </div>
 
       {/* Age*/}
-      <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '6%', left: '42%', width: '12%', height: '4%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '5.6%', left: '44%', width: '12%', height: '4%', fontSize: '0.8vw' }}>
         <div>{characterAge}</div>
       </div>
 
       {/* Height*/}
-      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '6%', left: '58.5%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '5.6%', left: '60.5%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
         <div>{characterHeight}</div>
       </div>
 
       {/* Weight*/}
-      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '6%', left: '73%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '5.6%', left: '75%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
         <div>{characterWeight}</div>
       </div>
 
       {/* Eyes*/}
-      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '42%', width: '12%', height: '4%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '44%', width: '12%', height: '4%', fontSize: '0.8vw' }}>
         <div>{characterEyes}</div>
       </div>
 
       {/* Skin*/}
-      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '58.5%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet" style={{  overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '60.5%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
         <div>{characterSkin}</div>
       </div>
 
       {/* Hair */}
-      <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '73%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet" style={{   overflowY: 'auto', paddingBottom: '10px', whiteSpace: 'nowrap', top: '9%', left: '75%', width: '11%', height: '4%', fontSize: '0.8vw' }}>
         <div>{characterHair}</div>
       </div>
 
       {/* Character Appearence */}
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', top: '16.5%', left: '7%', width: '24.5%', height: '28%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', top: '16.5%', left: '8%', width: '24.5%', height: '28%', fontSize: '0.8vw' }}>
         <div>{characterTextAppearence}</div>
       </div>
 
       {/* Character Backstory */}
-      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', top: '49%', left: '7%', width: '24.5%', height: '47%', fontSize: '0.8vw' }}>
+      <div className="absolute-div dnd-sheet-noflex" style={{ overflowY: 'auto', top: '49%', left: '8%', width: '24.5%', height: '47%', fontSize: '0.8vw' }}>
         <div>{characterBackstory}</div>
       </div>
 
       {/* Character Organisation */}
-      <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '16.5%', left: '37%', width: '27%', height: '28%', fontSize: '0.6vw' }}>
+      <div className="absolute-div dnd-sheet-noflex row" style={{ overflowY: 'auto', top: '16.5%', left: '39%', width: '27%', height: '28%', fontSize: '0.6vw' }}>
         {characterOrganisationSymbol
         .filter(organisation => organisation.type === 'Organisation')
         .map(organisation => (
@@ -109,7 +109,7 @@ function DndSheetThree({updateCharacterOrganisation,
       </div>
 
       {/* Character Symbol*/}
-      <div className="absolute-div dnd-sheet-noflex" style={{ top: '19.3%', left: '65%', 
+      <div className="absolute-div dnd-sheet-noflex" style={{ top: '19.3%', left: '68%', 
       width: '24%', height: '16.5%', fontSize: '0.6vw', padding: '0px 20px 0px 0px', overflowY: 'auto' }}>
       
         <select className='edit-character-field' style={{marginBottom: '5px'}} onChange={handleSelectChange}>
@@ -128,7 +128,7 @@ function DndSheetThree({updateCharacterOrganisation,
 
       {/* Character Treasure*/}
       <div className="absolute-div dnd-sheet-noflex" 
-      style={{ overflow: 'auto', backgroundColor: 'transparent', top: '77%', left: '36%', width: '52%', height: '19%', fontSize: '0.6vw' }}>
+      style={{ overflow: 'auto', backgroundColor: 'transparent', top: '77%', left: '37%', width: '52%', height: '19%', fontSize: '0.6vw' }}>
         <div className='row'>
 
           {characterTreasure.map(treasure => (
