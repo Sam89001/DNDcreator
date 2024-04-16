@@ -135,11 +135,6 @@ router.get('/:characterId', async (req, res) => {
     const LoadCharacterEquipment = await CreateCharacterEquipmentSchema.find({ characterId: characterId })
     const LoadCharacterCurrency = await CreateCharacterCurrencySchema.find({ characterId: characterId})
 
-    if (!LoadCharacters) {
-      return res.json({
-        error: 'No characters found with the specified ID'
-      });
-    }
     const responseData = {
       character: LoadCharacters,
       personalityTraits: LoadCharacterPersonalityTraits,

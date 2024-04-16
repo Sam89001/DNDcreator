@@ -60,6 +60,19 @@ function HostSession() {
     dimensionOne: '',
     dimensionTwo: ''
   })
+  useEffect(() => {
+    setUserMapSize({ 
+      dimensionOne: '20',
+      dimensionTwo: '10'
+     });
+  }, []);
+
+  const [userSquareHeight, setUserSquareHeight] = useState({
+    squareHeight: '',
+  })
+  useEffect(() => {
+    setUserSquareHeight({ squareHeight: '3' });
+  }, []);
 
   function setMapSize() {
   if (!userMapSize.dimensionOne || !userMapSize.dimensionTwo 
@@ -86,17 +99,15 @@ function HostSession() {
       listItems.push(<br key={`br-${i}`} />);
     }
   }
-
   return (
     <div style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}>
-      <ul style={{ padding: 0, margin: 0, fontSize: '0.8vw' }}>
+      <ul style={{ padding: 0, margin: 0, fontSize: `${userSquareHeight.squareHeight}vw` }}>
         {listItems}
       </ul>
     </div>
   );
-}
+  }
 
-  
   
   return (
     <div style={{paddingBottom: '20px'}}>
@@ -109,37 +120,51 @@ function HostSession() {
         <div className='row mx-auto justify-content-center' style={{height: '100%', width: '96%'}}  >
           <div className='col-9 row' >
 
-            <div className='col-12'>
-              List of turns will be here
+            <div className='col-12 d-flex justify-content-center'>
+              <div className="spells-field spell-form-titles"> Initiative</div>
             </div>
 
             <div className='col-12' style={{height: '100%'}}>
               
               {/* List placed in here*/}
-              <div>
+              <div style={{height: '100%', maxHeight: '700px'}}>
                 {setMapSize()}
               </div>
 
-              <form onSubmit={(e) => { e.preventDefault(); setMapSize(); }}>
-                <label>Grid Size</label>
-                <div className='d-flex flex-row '>
-                  
-                    <input 
-                      onChange={(e) => setUserMapSize((prevData) => ({
-                        ...prevData,
-                        dimensionOne: e.target.value
-                    }))}/>
-                    <div>x</div>
-                    <input 
-                      onChange={(e) => setUserMapSize((prevData) => ({
-                        ...prevData,
-                        dimensionTwo: e.target.value
-                    }))}/>
+              <div className='d-flex flex-row'>
+              {/* Grid Size*/}
+                <form onSubmit={(e) => { e.preventDefault(); setMapSize(); }}>
+                  <label>Grid Size</label>
+                  <div className='d-flex flex-row '>
+                    
+                      <input 
+                        onChange={(e) => setUserMapSize((prevData) => ({
+                          ...prevData,
+                          dimensionOne: e.target.value
+                      }))}/>
+                      <div>x</div>
+                      <input 
+                        onChange={(e) => setUserMapSize((prevData) => ({
+                          ...prevData,
+                          dimensionTwo: e.target.value
+                      }))}/>
 
-                    <button type="submit">Submit</button>
-                  
+                      <button type="submit">Submit</button>
+                    
+                  </div>
+                </form>
+                
+                {/* Square Height*/}
+                <div className='d-flex flex-row '>
+                  <label>Square Height</label>
+                  <input 
+                    onChange={(e) => setUserSquareHeight((prevData) => ({
+                      ...prevData,
+                      squareHeight: e.target.value
+                    }))}/>
                 </div>
-              </form>
+                
+              </div>
 
             </div>
             
