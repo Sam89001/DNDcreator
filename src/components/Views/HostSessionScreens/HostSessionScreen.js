@@ -15,9 +15,11 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function HostSession() {
 
+  const [containerPopout, setActiveContainerPopOut] = useState(null);
   const [popout, setActivePopOut] = useState(null);
   const handlePopOut = (index) => {
     setActivePopOut((prevPopout) => (prevPopout === index ? null : index));
+    setActiveContainerPopOut((prevPopout) => (prevPopout === index ? null : index));
   };
 
   return (
@@ -26,7 +28,7 @@ function HostSession() {
         <Navbar navigationTitle="Session Menu" navigationTitleLink="/ChooseSession" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
-      <div style={{paddingTop: '75px', maxWidth: '100vw', minWidth: '1500px', height: '97vh', position: 'relative'}}>
+      <div className="d-flex align-items-center" style={{paddingTop: '75px', maxWidth: '100vw', minWidth: '1500px', height: '97vh', }}>
 
         <div className='row mx-auto justify-content-center' style={{height: '100%', width: '96%'}}  >
           <div className='col-9 row' >
@@ -41,21 +43,20 @@ function HostSession() {
             <DiceRoller/>
           </div>
         </div>
-
-        <div className='host-popout-container'>
-          
-          <div className={`host-popout ${popout === 0 ? 'active' : ''}`}
-            style={{ backgroundColor: 'var(--textGrey)' }}
-            onClick={() => handlePopOut(0)}>
-          Content 1</div>
-
-          <div className={`host-popout ${popout === 1 ? 'active' : ''}`}
-            style={{ backgroundColor: 'var(--lightBackgroundGrey)', bottom: 0, right: 0 }}
-            onClick={() => handlePopOut(1)}>
-          Content 2</div>
-
+        
+ 
+        <div className={`host-popout ${popout === 0 ? 'active' : ''}`}
+          style={{ backgroundColor: 'var(--textGrey)', top: '30%' }}
+          onClick={() => handlePopOut(0)}>
+          Content 1
         </div>
 
+        <div className={`host-popout ${popout === 1 ? 'active' : ''}`}
+          style={{ backgroundColor: 'var(--lightBackgroundGrey)', bottom: '20%' }}
+          onClick={() => handlePopOut(1)}>
+          Content 2
+        </div>
+ 
       </div>
 
     </div>

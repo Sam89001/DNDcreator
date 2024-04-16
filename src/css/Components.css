@@ -137,44 +137,24 @@
   padding: 5px 5px 10px 5px;
   font-size: 1vw;
   height: 2.5em;
-
-}
-
-.host-popout-container {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background-color: transparent;
-  cursor: pointer;
-  z-index: 999;
-  height: 75%;
-  width: 26%;
-  display: flex;
-  flex-direction: column;
 }
 
 .host-popout {
   position: absolute;
-  height: 50%;
-  width: 10%;
-  align-self: flex-end;
-  border-radius: 5px 0 0 0px;
-  transition: width 0.5s, border-radius 0.3s, height 0.5s, z-index 0.1s;
-  transition-delay: 0.2s, 0s, 0s, 0.1s;
-  z-index: 998;
+  right: 0;
+  height: 25%;
+  cursor: pointer;
+  width: 3%;
+  z-index: 999;
+  border-radius: 10px 0px 0px 10px;
+  transition: width 0.5s, height 0.5s;
 }
 
 .host-popout.active {
-  height: 100%;
-  width: 100%;
-  align-self: flex-end;
-  border-radius: 5px 0 0 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  transition: width 0.5s, border-radius 0.2s, height 0.3s;
-  transition-delay: 0s, 0s, 0.2s;
-  z-index: 997;
-  
+  height: 50%;
+  width: 26%;
+  z-index: 998;
+  transition: width 0.5s, height 0.5s;
 }
 
 /* Universal */
