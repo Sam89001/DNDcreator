@@ -140,9 +140,12 @@
 }
 
 .host-popout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   right: 0;
-  height: 25%;
+  height: 30%;
   cursor: pointer;
   width: 3%;
   z-index: 999;
@@ -151,8 +154,8 @@
 }
 
 .host-popout.active {
-  height: 50%;
-  width: 26%;
+  height: 60%;
+  width: 35%;
   z-index: 998;
   transition: width 0.5s, height 0.5s;
 }
