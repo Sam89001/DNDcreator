@@ -1,3 +1,6 @@
+//CSS
+import '../../../css/Components.css'
+
 //Components
 import Navbar from '../../Layouts/Navbar';
 import { UserContext } from '../../../context/userContext';
@@ -11,6 +14,12 @@ import {toast} from 'react-hot-toast'
 import ClipLoader from "react-spinners/ClipLoader";
 
 function HostSession() {
+
+  const [popout, setActivePopOut] = useState(null);
+  const handlePopOut = (index) => {
+    setActivePopOut((prevPopout) => (prevPopout === index ? null : index));
+  };
+
   return (
     <div style={{paddingBottom: '20px'}}>
       <nav className='navigation-bar'>
@@ -19,7 +28,7 @@ function HostSession() {
 
       <div style={{paddingTop: '75px', maxWidth: '100vw', minWidth: '1500px', height: '97vh', position: 'relative'}}>
 
-        <div className='row mx-auto justify-content-center' style={{height: '100%'}}  >
+        <div className='row mx-auto justify-content-center' style={{height: '100%', width: '96%'}}  >
           <div className='col-9 row' >
 
             <div className='col-12'>
@@ -33,14 +42,18 @@ function HostSession() {
           </div>
         </div>
 
-        <div style={{position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', 
-        backgroundColor: 'transparent', cursor: 'pointer', zIndex: 999, height: '75%', width: '30%', display: 'flex', flexDirection: 'column'}}>
-            <div style={{height: '50%', backgroundColor: 'blue', width: '7%', alignSelf: 'flex-end'}}>
-                First Div
-            </div>
-            <div style={{height: '50%', backgroundColor: 'green', width: '7%', alignSelf: 'flex-end'}}>
-                Second Div
-            </div>
+        <div className='host-popout-container'>
+          
+          <div className={`host-popout ${popout === 0 ? 'active' : ''}`}
+            style={{ backgroundColor: 'var(--textGrey)' }}
+            onClick={() => handlePopOut(0)}>
+          Content 1</div>
+
+          <div className={`host-popout ${popout === 1 ? 'active' : ''}`}
+            style={{ backgroundColor: 'var(--lightBackgroundGrey)', bottom: 0, right: 0 }}
+            onClick={() => handlePopOut(1)}>
+          Content 2</div>
+
         </div>
 
       </div>
