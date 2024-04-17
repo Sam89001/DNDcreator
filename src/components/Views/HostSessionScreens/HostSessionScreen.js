@@ -39,6 +39,97 @@ function HostSession() {
       Hp: '',
       MaxHp: ''
     },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    
   ]
   const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
 
@@ -54,13 +145,49 @@ function HostSession() {
         <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
 
           <div style={{backgroundColor: 'green', width: '91%',}}>
-            {stateCharacters.map((character) => (
-              <div key={character.id}>Test</div>
-            ))}
+            <div className='row' style={{height: '100%'}}>
+
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%' }}>Default Characters</div>
+                
+                <div className='grid-counters-grid'>
+
+                  {stateCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}} />
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%'}}>User Uploaded</div>
+
+                <div className='grid-counters-grid'>
+
+                  <div className='grid-counters d-flex justify-content-center align-items-center flex-column'>
+                    <img className='img-fluid' src={DiceImage} style={{ width:'70%'}}/>
+                    <div className='text-center' style={{fontSize: '1.5vh'}}>Upload</div>
+                  </div>
+
+                  {stateCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+            
           </div >
 
           <div style={{backgroundColor: 'blue', width: '9%', height: '50%'}}>
-            Test
+            {/* Image to return goes here*/}
           </div>
 
         </div>
