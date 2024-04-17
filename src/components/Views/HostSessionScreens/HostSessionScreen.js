@@ -34,7 +34,7 @@ function HostSession() {
   };
 
   
-  //Popup Content Rendering
+  //Popup Content
   function popoutContent() {
     if(popout == null) {
       return (
