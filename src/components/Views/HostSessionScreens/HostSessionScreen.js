@@ -28,16 +28,43 @@ function HostSession() {
   const handleLowerPopOut = (index) => {
       setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
   };
+
+  const droppableCharacters = [
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+  ]
+  const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
+
   function popoutContent() {
     if(popout == null) {
       return (
-        <div style={{padding: '5px'}}>
+        <div className='d-flex justify-content-center align-items-center' style={{padding: '5px'}}>
           <img className='img-fluid' src={DiceImage} style={{opacity: '0.7'}}></img>
         </div>
       );
     } else {
       return (
-        <div>Place Characters Here</div>
+        <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
+
+          <div style={{backgroundColor: 'green', width: '91%',}}>
+            {stateCharacters.map((character) => (
+              <div key={character.id}>Test</div>
+            ))}
+          </div >
+
+          <div style={{backgroundColor: 'blue', width: '9%', height: '50%'}}>
+            Test
+          </div>
+
+        </div>
+        
       );
     }
   }
@@ -100,11 +127,20 @@ function HostSession() {
     }
   }
   return (
-    <div style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}>
-      <ul style={{ padding: 0, margin: 0, fontSize: `${userSquareHeight.squareHeight}vw` }}>
-        {listItems}
-      </ul>
-    </div>
+    <Droppable droppableId="droppable">
+        {(provided) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}
+          >
+            <ul style={{ padding: 0, margin: 0, fontSize: `${userSquareHeight.squareHeight}vw` }}>
+              {listItems}
+            </ul>
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
   );
   }
 
@@ -128,7 +164,9 @@ function HostSession() {
               
               {/* List placed in here*/}
               <div style={{height: '100%', maxHeight: '700px'}}>
-                {setMapSize()}
+                <DragDropContext>
+                  {setMapSize()}
+                </DragDropContext>
               </div>
 
               <div className='d-flex flex-row'>
@@ -179,10 +217,11 @@ function HostSession() {
         <div className={`host-popout ${popout === 0 ? 'active' : ''}`}
             style={{ backgroundColor: 'var(--textGrey)', top: '20%' }}
             onClick={() => handlePopOut(0)}>
-            <div>
-              {popoutContent()}
+            <div className='d-flex' style={{ flex: '1', width: '90%' }}>
+                {popoutContent()}
             </div>
         </div>
+
 
         <div className={`host-popout ${lowerPopOut === 1 ? 'active' : ''}`}
             style={{ backgroundColor: 'var(--lightBackgroundGrey)', bottom: '20%' }}
