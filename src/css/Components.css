@@ -371,6 +371,11 @@
 
 /* DND Grid*/
 
+.initiative-box {
+  width: 10vh;
+  font-size: 3vh;
+}
+
 .grid-counters-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

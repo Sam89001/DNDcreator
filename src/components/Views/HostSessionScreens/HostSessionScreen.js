@@ -4,6 +4,7 @@ import '../../../css/Components.css'
 //Images
 import DiceImage from '../../../images/d20.png'
 import UploadArrow from '../../../images/Upload Arrow No BK.png'
+import UpArrow from '../../../images/Up Arrow.png'
 
 //Components
 import Navbar from '../../Layouts/Navbar';
@@ -285,14 +286,28 @@ function HostSession() {
         <div className='row mx-auto justify-content-center' style={{height: '100%', width: '96%'}}  >
           <div className='col-9 row' >
 
-            <div className='col-12 d-flex justify-content-center'>
-              <div className="spells-field spell-form-titles"> Initiative</div>
+            <div className='col-12 d-flex justify-content-center flex-column' style={{paddingBottom: '5px'}}>
+              <div className="spells-field spell-form-titles text-center" style={{display: 'block', width: '100%'}}> Initiative</div>
+
+              <div className='d-flex flex-row justify-content-center' style={{width: '100%', paddingBottom: '10px'}}>
+                <div className='initiative-box text-center'>Mike</div>
+                <div className='initiative-box text-center'>John</div>
+                <div className='initiative-box text-center'>Steve</div>
+                <div className='initiative-box text-center'>Jerm</div>
+                <div className='initiative-box text-center'>Farrah</div>
+              </div>
+
+              <div className="d-flex justify-content-center align-items-center flex-column" style={{ width: '100%'}}> 
+                <img className='img-fluid' src={UpArrow} style={{height: '1vh', width: '2vh'}}></img>
+                <div style={{fontSize: '1.5vh'}}>Turn Player</div>
+              </div>
+
             </div>
 
             <div className='col-12' style={{height: '100%'}}>
               
               {/* List placed in here*/}
-              <div style={{height: '100%', maxHeight: '630px'}}>
+              <div style={{height: '100%', maxHeight: '630px', marginBottom: '10px'}}>
                 <DragDropContext>
                   {setMapSize()}
                 </DragDropContext>
