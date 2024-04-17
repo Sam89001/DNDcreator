@@ -144,7 +144,7 @@ function HostSession() {
       return (
         <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
 
-          <div style={{backgroundColor: 'green', width: '91%',}}>
+          <div style={{width: '91%', zIndex: '100'}}>
             <div className='row' style={{height: '100%'}}>
 
               <div className='col-12'>
