@@ -5,6 +5,8 @@ import '../../../css/Components.css'
 import DiceImage from '../../../images/d20.png'
 import UploadArrow from '../../../images/Upload Arrow No BK.png'
 import UpArrow from '../../../images/Up Arrow.png'
+import RightArrow from '../../../images/Right Arrow.png'
+import LeftArrow from '../../../images/Left Arrow.png'
 
 //Components
 import Navbar from '../../Layouts/Navbar';
@@ -287,14 +289,22 @@ function HostSession() {
           <div className='col-9 row' >
 
             <div className='col-12 d-flex justify-content-center flex-column' style={{paddingBottom: '5px'}}>
-              <div className="spells-field spell-form-titles text-center" style={{display: 'block', width: '100%'}}> Initiative</div>
+              <div className="spells-field spell-form-titles text-center" style={{display: 'block', width: '100%', color: 'var(--textGrey)'}}> Initiative</div>
 
               <div className='d-flex flex-row justify-content-center' style={{width: '100%', paddingBottom: '10px'}}>
+                <div className='initiative-box d-flex justify-content-end align-items-center'>
+                  <img className='img-fluid' src={LeftArrow} style={{maxHeight: '2.5vh'}}></img>
+                </div>
+
                 <div className='initiative-box text-center'>Mike</div>
                 <div className='initiative-box text-center'>John</div>
                 <div className='initiative-box text-center'>Steve</div>
                 <div className='initiative-box text-center'>Jerm</div>
                 <div className='initiative-box text-center'>Farrah</div>
+
+                <div className='initiative-box d-flex justify-content-start align-items-center'>
+                  <img className='img-fluid' src={RightArrow} style={{maxHeight: '2.5vh'}}></img>
+                </div>
               </div>
 
               <div className="d-flex justify-content-center align-items-center flex-column" style={{ width: '100%'}}> 
