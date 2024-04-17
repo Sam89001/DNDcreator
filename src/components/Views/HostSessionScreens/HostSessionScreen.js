@@ -3,6 +3,7 @@ import '../../../css/Components.css'
 
 //Images
 import DiceImage from '../../../images/d20.png'
+import UploadArrow from '../../../images/Upload Arrow No BK.png'
 
 //Components
 import Navbar from '../../Layouts/Navbar';
@@ -28,6 +29,81 @@ function HostSession() {
   const handleLowerPopOut = (index) => {
       setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
   };
+  function popoutContent() {
+    if(popout == null) {
+      return (
+        <div className='d-flex justify-content-center align-items-center' style={{padding: '5px'}}>
+          <img className='img-fluid' src={DiceImage} style={{opacity: '0.7'}}></img>
+        </div>
+      );
+    } else {
+      return (
+        <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
+
+          <div style={{width: '91%', zIndex: '100'}}>
+            <div className='row' style={{height: '100%'}}>
+
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%' }}>Default Characters</div>
+                
+                <div className='grid-counters-grid'>
+
+                  {stateCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}} />
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%'}}>User Uploaded</div>
+
+                <div className='grid-counters-grid'>
+
+                  <div className='grid-counters d-flex justify-content-center align-items-center flex-column'>
+                    <img className='img-fluid' src={UploadArrow} style={{ width:'70%'}}/>
+                    <div className='text-center' style={{fontSize: '1.5vh'}}>Upload</div>
+                  </div>
+
+                  {stateCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+            </div>
+            
+          </div >
+
+          <div style={{backgroundColor: 'blue', width: '9%', height: '50%'}}>
+            {/* Image to return goes here*/}
+          </div>
+
+        </div>
+        
+      );
+    }
+  }
+  function lowerPopoutContent() {
+    if(lowerPopOut == null) {
+      return (
+        <div className='d-flex justify-content-center align-items-center' style={{padding: '5px'}}>
+          <img className='img-fluid' src={DiceImage} style={{opacity: '0.7'}}></img>
+        </div>
+      );
+    } else {
+      return (
+        <div>2nd Test</div>
+      );
+    }
+  }
 
   const droppableCharacters = [
     {
@@ -133,81 +209,7 @@ function HostSession() {
   ]
   const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
 
-  function popoutContent() {
-    if(popout == null) {
-      return (
-        <div className='d-flex justify-content-center align-items-center' style={{padding: '5px'}}>
-          <img className='img-fluid' src={DiceImage} style={{opacity: '0.7'}}></img>
-        </div>
-      );
-    } else {
-      return (
-        <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
 
-          <div style={{width: '91%', zIndex: '100'}}>
-            <div className='row' style={{height: '100%'}}>
-
-              <div className='col-12'>
-                <div className='text-center' style={{ display: 'block', width: '100%' }}>Default Characters</div>
-                
-                <div className='grid-counters-grid'>
-
-                  {stateCharacters.map((character) => (
-                    <div key={character.id} className='grid-counters'>
-                      <img className='img-fluid' src={character.image} style={{ width:'100%'}} />
-                    </div>
-                  ))}
-
-                </div>
-
-              </div>
-
-              <div className='col-12'>
-                <div className='text-center' style={{ display: 'block', width: '100%'}}>User Uploaded</div>
-
-                <div className='grid-counters-grid'>
-
-                  <div className='grid-counters d-flex justify-content-center align-items-center flex-column'>
-                    <img className='img-fluid' src={DiceImage} style={{ width:'70%'}}/>
-                    <div className='text-center' style={{fontSize: '1.5vh'}}>Upload</div>
-                  </div>
-
-                  {stateCharacters.map((character) => (
-                    <div key={character.id} className='grid-counters'>
-                      <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
-                    </div>
-                  ))}
-
-                </div>
-
-              </div>
-
-            </div>
-            
-          </div >
-
-          <div style={{backgroundColor: 'blue', width: '9%', height: '50%'}}>
-            {/* Image to return goes here*/}
-          </div>
-
-        </div>
-        
-      );
-    }
-  }
-  function lowerPopoutContent() {
-    if(lowerPopOut == null) {
-      return (
-        <div style={{padding: '5px'}}>
-          <img className='img-fluid' src={DiceImage} style={{opacity: '0.7'}}></img>
-        </div>
-      );
-    } else {
-      return (
-        <div>2nd Test</div>
-      );
-    }
-  }
 
   //Map Functions
   const [userMapSize, setUserMapSize] = useState({
@@ -216,8 +218,8 @@ function HostSession() {
   })
   useEffect(() => {
     setUserMapSize({ 
-      dimensionOne: '20',
-      dimensionTwo: '10'
+      dimensionOne: '30',
+      dimensionTwo: '20'
      });
   }, []);
 
@@ -225,7 +227,7 @@ function HostSession() {
     squareHeight: '',
   })
   useEffect(() => {
-    setUserSquareHeight({ squareHeight: '3' });
+    setUserSquareHeight({ squareHeight: '1.5' });
   }, []);
 
   function setMapSize() {
@@ -290,7 +292,7 @@ function HostSession() {
             <div className='col-12' style={{height: '100%'}}>
               
               {/* List placed in here*/}
-              <div style={{height: '100%', maxHeight: '700px'}}>
+              <div style={{height: '100%', maxHeight: '630px'}}>
                 <DragDropContext>
                   {setMapSize()}
                 </DragDropContext>
@@ -353,7 +355,7 @@ function HostSession() {
         <div className={`host-popout ${lowerPopOut === 1 ? 'active' : ''}`}
             style={{ backgroundColor: 'var(--lightBackgroundGrey)', bottom: '20%' }}
             onClick={() => handleLowerPopOut(1)}> {/* Changed index to 1 */}
-            <div>
+            <div className='d-flex' style={{ flex: '1', width: '90%' }}>
               {lowerPopoutContent()}  
             </div>
         </div>
