@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 import ClipLoader from "react-spinners/ClipLoader";
-import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
+import { Droppable} from 'react-beautiful-dnd'
 
 function HostSession() {
 
@@ -55,18 +55,10 @@ function HostSession() {
                 <div className='grid-counters-grid'>
                   
                     {stateCharacters.map((character, index) => (
-                      <Draggable key={character.id} draggableId={character.id} index={index}>
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className='grid-counters'
-                          >
-                            <img className='img-fluid' src={character.image} style={{ width:'100%' }} />
-                          </div>
-                        )}
-                      </Draggable>
+                      <div className='grid-counters'
+                        draggable='true'>
+                        <img className='img-fluid' src={character.image} style={{ width:'100%' }} />
+                      </div>
                     ))}
                   
                 </div>
@@ -246,37 +238,56 @@ function HostSession() {
 
 
   function setMapSize() {
-  if (!userMapSize.dimensionOne || !userMapSize.dimensionTwo 
-    || isNaN(userMapSize.dimensionOne) || isNaN(userMapSize.dimensionTwo)) {
-    toast.error('Please include numbers for map size.');
-    return null;
-  }
-
-  const dimensionOne = parseInt(userMapSize.dimensionOne);
-  const dimensionTwo = parseInt(userMapSize.dimensionTwo);
-
-  const totalItems = dimensionOne * dimensionTwo;
-  const listItems = [];
-
-  for (let i = 1; i <= totalItems; i++) {
-    listItems.push(
-      <li key={`item-${i}`} style={{ display: 'inline-block', border: '1px solid grey', margin: 0, padding: 0, textAlign: 'center', width: 'calc(100% / ' + dimensionOne + ')' }}>
-        x{i !== totalItems ? ',' : ''} 
-      </li>
-    );
-
-    if (i % dimensionOne === 0) {
-      listItems.push(<br key={`br-${i}`} />);
+    if (
+      !userMapSize.dimensionOne ||
+      !userMapSize.dimensionTwo ||
+      isNaN(userMapSize.dimensionOne) ||
+      isNaN(userMapSize.dimensionTwo)
+    ) {
+      toast.error('Please include numbers for map size.');
+      return null;
     }
-  }
+  
+    const dimensionOne = parseInt(userMapSize.dimensionOne);
+    const dimensionTwo = parseInt(userMapSize.dimensionTwo);
+  
+    // Generate the div elements with white border
+    const divElements = [];
+  
+    for (let i = 1; i <= dimensionOne * dimensionTwo; i++) {
+      divElements.push(
+        <div
+          key={`item-${i}`}
+          style={{
+            border: '1px solid white',
+            boxSizing: 'border-box',
+            width: '100%',
+            height: '100%'
+          }}
+        />
+      );
+    }
   
     return (
-       <ul style={{ padding: 0, margin: 0, fontSize: `${userSquareHeight.squareHeight}vw` }}>
-        {listItems}
-      </ul>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${dimensionOne}, 1fr)`,
+          gridTemplateRows: `repeat(${dimensionTwo}, 1fr)`,
+          gap: '0px', // No gap between grid items
+          padding: 0,
+          margin: 0,
+          fontSize: `${userSquareHeight.squareHeight}vw`,
+          width: '100%',
+          height: '100%'
+        }}
+      >
+        {divElements}
+      </div>
     );
   }
-
+  
+  
   
   return (
     <div style={{paddingBottom: '20px'}}>
@@ -284,7 +295,6 @@ function HostSession() {
         <Navbar navigationTitle="Session Menu" navigationTitleLink="/ChooseSession" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
-      <DragDropContext>
         <div className="d-flex align-items-center" style={{paddingTop: '75px', maxWidth: '100vw', minWidth: '1500px', height: '97vh', }}>
 
           <div className='row mx-auto justify-content-center' style={{height: '100%', width: '96%'}}  >
@@ -320,17 +330,9 @@ function HostSession() {
                 
                 {/* List placed in here*/}          
                 <div style={{height: '100%', maxHeight: '630px', marginBottom: '10px'}}>
-                  <Droppable droppableId="droppable">
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                        style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}>
-                          {setMapSize()}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
+                  <div style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}>
+                    {setMapSize()}
+                  </div>
                 </div>  
 
                 <div className='d-flex flex-row'>
@@ -396,7 +398,6 @@ function HostSession() {
           </div>
           
         </div>
-      </DragDropContext>  
                     
     </div>
   )
