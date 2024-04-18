@@ -37,7 +37,7 @@ function HostSession() {
 
     //Width Slider
     const [gridWidthValue, setGridWidthValue] = useState(100);
-    const [mapWidthValue, setMapWidthValue] = useState(100);
+    const [mapWidthValue, setMapWidthValue] = useState(50);
     const gridSliderChange = (event) => {
       setGridWidthValue(parseInt(event.target.value));
     };
@@ -371,7 +371,7 @@ function HostSession() {
 
                         <label>Width</label>
                         <input 
-                          style={{width: '5vw', height: '5vh'}}
+                          style={{width: '5vw', height: '3vh'}}
                           onChange={(e) => setUserMapSize((prevData) => ({
                             ...prevData,
                             dimensionOne: e.target.value
@@ -379,7 +379,7 @@ function HostSession() {
 
                         <label>Height</label>
                         <input 
-                          style={{width: '5vw', height: '5vh'}}
+                          style={{width: '5vw', height: '3vh'}}
                           onChange={(e) => setUserMapSize((prevData) => ({
                             ...prevData,
                             dimensionTwo: e.target.value
@@ -387,11 +387,11 @@ function HostSession() {
 
                         <label htmlFor="slider">Choose grid width:</label>
                         <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '10vw', height: '3vh'}}/>
-                        <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '5vh'}}/>
+                        <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
 
                         <label htmlFor="slider">Choose Image width:</label>
                         <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '10vw', height: '3vh'}}/>
-                        <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '5vh'}}/>
+                        <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
                                               
                     </div>
                   </form>
