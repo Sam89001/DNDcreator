@@ -35,6 +35,39 @@ function HostSession() {
 
   //Map Functions
 
+    //Width Slider
+    const [gridWidthValue, setGridWidthValue] = useState(100);
+    const [mapWidthValue, setMapWidthValue] = useState(100);
+    const gridSliderChange = (event) => {
+      setGridWidthValue(parseInt(event.target.value));
+    };
+    const gridInputChange = (event) => {
+      let newValue = parseInt(event.target.value);
+      if (!isNaN(newValue)) {
+        if (newValue < 1) {
+          newValue = 1;
+        } else if (newValue > 100) {
+          newValue = 100;
+        }
+        setGridWidthValue(newValue);
+      }
+    };
+    const mapSliderChange = (event) => {
+      setMapWidthValue(parseInt(event.target.value));
+    };
+    const mapInputChange = (event) => {
+      let newValue = parseInt(event.target.value);
+      if (!isNaN(newValue)) {
+        if (newValue < 1) {
+          newValue = 1;
+        } else if (newValue > 100) {
+          newValue = 100;
+        }
+        setMapWidthValue(newValue);
+      }
+    };
+
+
   //Default Map Size
   const [userMapSize, setUserMapSize] = useState({
     dimensionOne: '',
@@ -114,7 +147,7 @@ function HostSession() {
 
     return (
       <DndProvider backend={HTML5Backend}>
-        <div
+        <div 
           style={{
             display: 'grid',
             gridTemplateColumns: `repeat(${dimensionOne}, 1fr)`,
@@ -320,17 +353,15 @@ function HostSession() {
               <div className='col-12' style={{height: '100%'}}>
         
                 {/* List placed in here*/}                
-                <div style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+                <div className='d-flex justify-content-center align-items-center' style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', overflow: 'hidden' }}>
                   {/* Map */}
-                  <img src={WideMap} style={{ width: '65%', objectFit: 'cover' }} />
+                  <img src={WideMap} style={{ width: `${mapWidthValue}%`, objectFit: 'cover', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
                   
                   {/* Grid */}
-                  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                  <div style={{ width: `${gridWidthValue}%`, height: '100%', zIndex: 1 }}>
                     {setMapSize()} 
                   </div>
                 </div>
-
-
 
                 <div className='d-flex flex-row'>
                 {/* Grid Size*/}
@@ -340,19 +371,28 @@ function HostSession() {
 
                         <label>Width</label>
                         <input 
+                          style={{width: '5vw', height: '5vh'}}
                           onChange={(e) => setUserMapSize((prevData) => ({
                             ...prevData,
                             dimensionOne: e.target.value
                         }))}/>
+
                         <label>Height</label>
                         <input 
+                          style={{width: '5vw', height: '5vh'}}
                           onChange={(e) => setUserMapSize((prevData) => ({
                             ...prevData,
                             dimensionTwo: e.target.value
                         }))}/>
 
-                        <button type="submit">Submit</button>
-                      
+                        <label htmlFor="slider">Choose grid width:</label>
+                        <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '10vw', height: '3vh'}}/>
+                        <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '5vh'}}/>
+
+                        <label htmlFor="slider">Choose Image width:</label>
+                        <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '10vw', height: '3vh'}}/>
+                        <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '5vh'}}/>
+                                              
                     </div>
                   </form>
                   
