@@ -2,8 +2,15 @@
 import '../../../css/Components.css'
 
 //Images
+
+//Temp Images
 import DiceImage from '../../../images/d20.png'
 import SecondDiceImage from '../../../images/d4.png'
+import WideMap from '../../../images/wide map.jpg'
+import SquareMap from '../../../images/Guard-Post.jpg'
+import LongMap from '../../../images/map.jpg'
+
+
 import UploadArrow from '../../../images/Upload Arrow No BK.png'
 import UpArrow from '../../../images/Up Arrow.png'
 import RightArrow from '../../../images/Right Arrow.png'
@@ -146,7 +153,7 @@ function HostSession() {
         ref={drop}
         className='droppable-area'
         style={{
-          border: '1px solid white',
+          border: '1px solid rgba(255, 255, 255, 0.5)',
           boxSizing: 'border-box',
           width: '100%',
           height: '100%',
@@ -156,8 +163,10 @@ function HostSession() {
       >
         {/* Render dropped items within the square */}
         {itemsInSquare.map((item) => (
-          <div key={item.id} style={{ backgroundColor: 'red' }}>
-            <img className='img-fluid' src={item.image}></img>
+          <div className='d-flex justify-content-center align-items-center flex-column' >
+            <div key={item.id} className='d-flex justify-content-center align-items-center' style={{ backgroundColor: 'var(--textGrey)', borderRadius: '50%' }} >
+              <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
+            </div>
           </div>
         ))}
       </div>
@@ -310,12 +319,18 @@ function HostSession() {
 
               <div className='col-12' style={{height: '100%'}}>
         
-                {/* List placed in here*/}          
-                <div style={{height: '100%', maxHeight: '630px', marginBottom: '10px'}}>
-                  <div style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}>
-                    {setMapSize()} {/* Call setMapSize as a JSX element */}
+                {/* List placed in here*/}                
+                <div style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', display: 'flex', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }}>
+                  {/* Map */}
+                  <img src={WideMap} style={{ width: '65%', objectFit: 'cover' }} />
+                  
+                  {/* Grid */}
+                  <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 1 }}>
+                    {setMapSize()} 
                   </div>
-                </div>  
+                </div>
+
+
 
                 <div className='d-flex flex-row'>
                 {/* Grid Size*/}
