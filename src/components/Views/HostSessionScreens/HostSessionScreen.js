@@ -3,6 +3,7 @@ import '../../../css/Components.css'
 
 //Images
 import DiceImage from '../../../images/d20.png'
+import SecondDiceImage from '../../../images/d4.png'
 import UploadArrow from '../../../images/Upload Arrow No BK.png'
 import UpArrow from '../../../images/Up Arrow.png'
 import RightArrow from '../../../images/Right Arrow.png'
@@ -15,6 +16,8 @@ import DiceRoller from '../../Components/DiceRoller';
 
 //Dependencies
 import ReactDOM from 'react-dom';
+import { useDrop, useDrag, DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -25,49 +28,67 @@ function HostSession() {
 
   //Map Functions
 
-
-  //Drag and Drop Functions
-  function handleDragStart(e, character) {
-    e.dataTransfer.setData('character', JSON.stringify(character));
-  }
-  function handleDragOver(e) {
-    e.preventDefault();
-  }
-  function handleDrop(e) {
-    e.preventDefault();
-    const character = JSON.parse(e.dataTransfer.getData('character'));
-  
-    // Create a new element representing the dropped item
-    const droppedItem = document.createElement('div');
-    droppedItem.className = 'dropped-item';
-    ReactDOM.render(
-      <img className='img-fluid' src={character.image} alt={character.name} style={{ width:'100%' }} />,
-      droppedItem
-    );
-  
-    // Append the dropped item to the grid where it was dropped
-    e.target.appendChild(droppedItem);
-  }
-  
-
   //Default Map Size
   const [userMapSize, setUserMapSize] = useState({
     dimensionOne: '',
     dimensionTwo: ''
   })
-  const [userSquareHeight, setUserSquareHeight] = useState({
-    squareHeight: '',
-  })
   useEffect(() => {
     setUserMapSize({ 
-      dimensionOne: '30',
-      dimensionTwo: '20'
+      dimensionOne: '2',
+      dimensionTwo: '2'
      });
   }, []);
-  useEffect(() => {
-    setUserSquareHeight({ squareHeight: '1.5' });
-  }, []);
 
+  // State for dropped items
+  const [droppedItems, setDroppedItems] = useState([]);
+  const droppableCharacters = [
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: '',
+      content: 'Mage Content'
+    },
+    {
+      id: 'defaultBarb',
+      uniqueId: '',
+      image: SecondDiceImage,
+      name: 'Barbarian',
+      userName: '',
+      Hp: '',
+      MaxHp: '',
+      content: 'Barbarian Content'
+    }
+    
+  ]
+  const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
+
+  // Function to handle drop
+  const handleDrop = (item, squareIndex) => {
+    const itemInSquare = droppedItems.find((droppedItem) => droppedItem.index === squareIndex);
+    if (itemInSquare) {
+      toast.error('There is already an item in this square.');
+      return; 
+    }
+  
+    console.log('Item dropped:', item);
+    console.log('Square index:', squareIndex);
+    setDroppedItems((prevItems) => [
+      ...prevItems,
+      {
+        id: item.id,
+        name: item.name,
+        image: item.image,
+        content: item.content,
+        index: squareIndex,
+      },
+    ]);
+  };
+  
 
   //Map Generation
   function setMapSize() {
@@ -80,50 +101,70 @@ function HostSession() {
       toast.error('Please include numbers for map size.');
       return null;
     }
-  
+
     const dimensionOne = parseInt(userMapSize.dimensionOne);
     const dimensionTwo = parseInt(userMapSize.dimensionTwo);
-  
-    // Generate the div elements with white border
-    const divElements = [];
-  
-    for (let i = 1; i <= dimensionOne * dimensionTwo; i++) {
-      divElements.push(
-        <div
-          key={`item-${i}`}
-          className='droppable-area' // Add a class to identify drop areas
-          onDragOver={(e) => handleDragOver(e)} // Call handleDragOver when item is dragged over
-          onDrop={(e) => handleDrop(e)} // Call handleDrop when item is dropped
-          style={{
-            border: '1px solid white',
-            boxSizing: 'border-box',
-            width: '100%',
-            height: '100%'
-          }}
-        />
-      );
-    }
-  
+
     return (
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${dimensionOne}, 1fr)`,
-          gridTemplateRows: `repeat(${dimensionTwo}, 1fr)`,
-          gap: '0px', // No gap between grid items
-          padding: 0,
-          margin: 0,
-          fontSize: `${userSquareHeight.squareHeight}vw`,
-          width: '100%',
-          height: '100%'
-        }}
-      >
-        {divElements}
-      </div>
+      <DndProvider backend={HTML5Backend}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${dimensionOne}, 1fr)`,
+            gridTemplateRows: `repeat(${dimensionTwo}, 1fr)`,
+            gap: '0px',
+            padding: 0,
+            margin: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          {/* Render DroppableSquare components */}
+          {Array.from({ length: dimensionOne * dimensionTwo }, (_, index) => (
+            <DroppableSquare key={`item-${index}`} onDrop={handleDrop} droppedItems={droppedItems} squareIndex={index} />
+          ))}
+        </div>
+      </DndProvider>
     );
   }
 
-
+  //Dropppable Grid Generation
+  function DroppableSquare({ onDrop, droppedItems, squareIndex }) {
+    const [{ isOver }, drop] = useDrop({
+      accept: 'DRAGGABLE_ITEM_TYPE',
+      drop: (item) => onDrop(item, squareIndex),
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    });
+  
+    // Filter dropped items to only include those belonging to this square
+    const itemsInSquare = droppedItems.filter((item) => item.index === squareIndex);
+  
+    return (
+      <div
+        ref={drop}
+        className='droppable-area'
+        style={{
+          border: '1px solid white',
+          boxSizing: 'border-box',
+          width: '100%',
+          height: '100%',
+          backgroundColor: isOver ? 'lightblue' : 'transparent',
+          position: 'relative',
+        }}
+      >
+        {/* Render dropped items within the square */}
+        {itemsInSquare.map((item) => (
+          <div key={item.id} style={{ backgroundColor: 'red' }}>
+            <img className='img-fluid' src={item.image}></img>
+          </div>
+        ))}
+      </div>
+    );
+  }  
+  
+ 
   //Popups
   const [popout, setActivePopOut] = useState(null);
   const [lowerPopOut, setActiveLowerPopOut] = useState(null);
@@ -136,29 +177,28 @@ function HostSession() {
 
   
   //Popup Content
-  const droppableCharacters = [
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultBarb',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Barbarian',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    }
-    
-  ]
-  const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
-
+  function DraggableCharacter({ character }) {
+    const [{ isDragging }, drag] = useDrag({
+      type: 'DRAGGABLE_ITEM_TYPE',
+      item: { id: character.id, type: 'character', name: character.name, image: character.image },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    });
+  
+    return (
+      <div
+        className='grid-counters'
+        ref={drag} // Attach the drag ref to make the element draggable
+        style={{
+          opacity: isDragging ? 0.5 : 1, // Change opacity when dragging
+        }}
+      >
+        <img className='img-fluid' src={character.image} style={{ width: '100%' }} alt={character.name} />
+      </div>
+    );
+  }
+  
   function popoutContent() {
     if(popout == null) {
       return (
@@ -177,13 +217,9 @@ function HostSession() {
                 <div className='text-center' style={{ display: 'block', width: '100%' }}>Default Characters</div>
                 
                 <div className='grid-counters-grid'>
-                  
                   {stateCharacters.map((character, index) => (
-                    <div key={character.id} className='grid-counters' draggable='true' onDragStart={(e) => handleDragStart(e, character)}>
-                       <img className='img-fluid' src={character.image} style={{ width:'100%' }} /> 
-                    </div>
+                    <DraggableCharacter key={character.id} character={character} />
                   ))}
-                  
                 </div>
 
               </div>
@@ -220,7 +256,6 @@ function HostSession() {
       );
     }
   }
-
   function lowerPopoutContent() {
     if(lowerPopOut == null) {
       return (
@@ -236,6 +271,7 @@ function HostSession() {
   }
 
   return (
+    <DndProvider backend={HTML5Backend}>
     <div style={{paddingBottom: '20px'}}>
       <nav className='navigation-bar'>
         <Navbar navigationTitle="Session Menu" navigationTitleLink="/ChooseSession" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
@@ -273,11 +309,11 @@ function HostSession() {
               </div>
 
               <div className='col-12' style={{height: '100%'}}>
-                
+        
                 {/* List placed in here*/}          
                 <div style={{height: '100%', maxHeight: '630px', marginBottom: '10px'}}>
                   <div style={{ backgroundColor: 'transparent', width: '100%', height: '100%', maxHeight: '700px', overflowY: 'hidden' }}>
-                    {setMapSize()}
+                    {setMapSize()} {/* Call setMapSize as a JSX element */}
                   </div>
                 </div>  
 
@@ -304,16 +340,6 @@ function HostSession() {
                       
                     </div>
                   </form>
-                  
-                  {/* Square Height*/}
-                  <div className='d-flex flex-row '>
-                    <label>Square Height</label>
-                    <input 
-                      onChange={(e) => setUserSquareHeight((prevData) => ({
-                        ...prevData,
-                        squareHeight: e.target.value
-                      }))}/>
-                  </div>
                   
                 </div>
 
@@ -347,6 +373,7 @@ function HostSession() {
         </div>
                     
     </div>
+    </DndProvider>
   )
 }
 
