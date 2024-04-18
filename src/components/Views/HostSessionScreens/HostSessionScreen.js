@@ -14,14 +14,115 @@ import { UserContext } from '../../../context/userContext';
 import DiceRoller from '../../Components/DiceRoller';
 
 //Dependencies
+import ReactDOM from 'react-dom';
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 import ClipLoader from "react-spinners/ClipLoader";
-import { Droppable} from 'react-beautiful-dnd'
 
 function HostSession() {
+
+  //Map Functions
+
+
+  //Drag and Drop Functions
+  function handleDragStart(e, character) {
+    e.dataTransfer.setData('character', JSON.stringify(character));
+  }
+  function handleDragOver(e) {
+    e.preventDefault();
+  }
+  function handleDrop(e) {
+    e.preventDefault();
+    const character = JSON.parse(e.dataTransfer.getData('character'));
+  
+    // Create a new element representing the dropped item
+    const droppedItem = document.createElement('div');
+    droppedItem.className = 'dropped-item';
+    ReactDOM.render(
+      <img className='img-fluid' src={character.image} alt={character.name} style={{ width:'100%' }} />,
+      droppedItem
+    );
+  
+    // Append the dropped item to the grid where it was dropped
+    e.target.appendChild(droppedItem);
+  }
+  
+
+  //Default Map Size
+  const [userMapSize, setUserMapSize] = useState({
+    dimensionOne: '',
+    dimensionTwo: ''
+  })
+  const [userSquareHeight, setUserSquareHeight] = useState({
+    squareHeight: '',
+  })
+  useEffect(() => {
+    setUserMapSize({ 
+      dimensionOne: '30',
+      dimensionTwo: '20'
+     });
+  }, []);
+  useEffect(() => {
+    setUserSquareHeight({ squareHeight: '1.5' });
+  }, []);
+
+
+  //Map Generation
+  function setMapSize() {
+    if (
+      !userMapSize.dimensionOne ||
+      !userMapSize.dimensionTwo ||
+      isNaN(userMapSize.dimensionOne) ||
+      isNaN(userMapSize.dimensionTwo)
+    ) {
+      toast.error('Please include numbers for map size.');
+      return null;
+    }
+  
+    const dimensionOne = parseInt(userMapSize.dimensionOne);
+    const dimensionTwo = parseInt(userMapSize.dimensionTwo);
+  
+    // Generate the div elements with white border
+    const divElements = [];
+  
+    for (let i = 1; i <= dimensionOne * dimensionTwo; i++) {
+      divElements.push(
+        <div
+          key={`item-${i}`}
+          className='droppable-area' // Add a class to identify drop areas
+          onDragOver={(e) => handleDragOver(e)} // Call handleDragOver when item is dragged over
+          onDrop={(e) => handleDrop(e)} // Call handleDrop when item is dropped
+          style={{
+            border: '1px solid white',
+            boxSizing: 'border-box',
+            width: '100%',
+            height: '100%'
+          }}
+        />
+      );
+    }
+  
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: `repeat(${dimensionOne}, 1fr)`,
+          gridTemplateRows: `repeat(${dimensionTwo}, 1fr)`,
+          gap: '0px', // No gap between grid items
+          padding: 0,
+          margin: 0,
+          fontSize: `${userSquareHeight.squareHeight}vw`,
+          width: '100%',
+          height: '100%'
+        }}
+      >
+        {divElements}
+      </div>
+    );
+  }
+
 
   //Popups
   const [popout, setActivePopOut] = useState(null);
@@ -35,6 +136,29 @@ function HostSession() {
 
   
   //Popup Content
+  const droppableCharacters = [
+    {
+      id: 'defaultMage',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Mage',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    },
+    {
+      id: 'defaultBarb',
+      uniqueId: '',
+      image: DiceImage,
+      name: 'Barbarian',
+      userName: '',
+      Hp: '',
+      MaxHp: ''
+    }
+    
+  ]
+  const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
+
   function popoutContent() {
     if(popout == null) {
       return (
@@ -54,12 +178,11 @@ function HostSession() {
                 
                 <div className='grid-counters-grid'>
                   
-                    {stateCharacters.map((character, index) => (
-                      <div className='grid-counters'
-                        draggable='true'>
-                        <img className='img-fluid' src={character.image} style={{ width:'100%' }} />
-                      </div>
-                    ))}
+                  {stateCharacters.map((character, index) => (
+                    <div key={character.id} className='grid-counters' draggable='true' onDragStart={(e) => handleDragStart(e, character)}>
+                       <img className='img-fluid' src={character.image} style={{ width:'100%' }} /> 
+                    </div>
+                  ))}
                   
                 </div>
 
@@ -94,10 +217,10 @@ function HostSession() {
           </div>
 
         </div>
-        
       );
     }
   }
+
   function lowerPopoutContent() {
     if(lowerPopOut == null) {
       return (
@@ -112,183 +235,6 @@ function HostSession() {
     }
   }
 
-  const droppableCharacters = [
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    {
-      id: 'defaultMage',
-      uniqueId: '',
-      image: DiceImage,
-      name: 'Mage',
-      userName: '',
-      Hp: '',
-      MaxHp: ''
-    },
-    
-  ]
-  const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
-
-  
-
-  //Map Functions
-  const [userMapSize, setUserMapSize] = useState({
-    dimensionOne: '',
-    dimensionTwo: ''
-  })
-  const [userSquareHeight, setUserSquareHeight] = useState({
-    squareHeight: '',
-  })
-  useEffect(() => {
-    setUserMapSize({ 
-      dimensionOne: '30',
-      dimensionTwo: '20'
-     });
-  }, []);
-  useEffect(() => {
-    setUserSquareHeight({ squareHeight: '1.5' });
-  }, []);
-
-
-  function setMapSize() {
-    if (
-      !userMapSize.dimensionOne ||
-      !userMapSize.dimensionTwo ||
-      isNaN(userMapSize.dimensionOne) ||
-      isNaN(userMapSize.dimensionTwo)
-    ) {
-      toast.error('Please include numbers for map size.');
-      return null;
-    }
-  
-    const dimensionOne = parseInt(userMapSize.dimensionOne);
-    const dimensionTwo = parseInt(userMapSize.dimensionTwo);
-  
-    // Generate the div elements with white border
-    const divElements = [];
-  
-    for (let i = 1; i <= dimensionOne * dimensionTwo; i++) {
-      divElements.push(
-        <div
-          key={`item-${i}`}
-          style={{
-            border: '1px solid white',
-            boxSizing: 'border-box',
-            width: '100%',
-            height: '100%'
-          }}
-        />
-      );
-    }
-  
-    return (
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${dimensionOne}, 1fr)`,
-          gridTemplateRows: `repeat(${dimensionTwo}, 1fr)`,
-          gap: '0px', // No gap between grid items
-          padding: 0,
-          margin: 0,
-          fontSize: `${userSquareHeight.squareHeight}vw`,
-          width: '100%',
-          height: '100%'
-        }}
-      >
-        {divElements}
-      </div>
-    );
-  }
-  
-  
-  
   return (
     <div style={{paddingBottom: '20px'}}>
       <nav className='navigation-bar'>
@@ -340,13 +286,14 @@ function HostSession() {
                   <form onSubmit={(e) => { e.preventDefault(); setMapSize(); }}>
                     <label>Grid Size</label>
                     <div className='d-flex flex-row '>
-                      
+
+                        <label>Width</label>
                         <input 
                           onChange={(e) => setUserMapSize((prevData) => ({
                             ...prevData,
                             dimensionOne: e.target.value
                         }))}/>
-                        <div>x</div>
+                        <label>Height</label>
                         <input 
                           onChange={(e) => setUserMapSize((prevData) => ({
                             ...prevData,
