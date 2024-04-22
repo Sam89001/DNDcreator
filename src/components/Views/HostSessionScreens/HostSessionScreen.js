@@ -114,11 +114,13 @@ function HostSession() {
       toast.error('There is already an item in this square.');
       return; 
     }
-  
-    console.log('Item dropped:', item);
-    console.log('Square index:', squareIndex);
+
+    // Remove the item from its original position
+    const updatedDroppedItems = droppedItems.filter((droppedItem) => droppedItem.id !== item.id);
+
+    // Add the item to the new square
     setDroppedItems((prevItems) => [
-      ...prevItems,
+      ...updatedDroppedItems,
       {
         id: item.id,
         name: item.name,
@@ -128,6 +130,7 @@ function HostSession() {
       },
     ]);
   };
+
   
 
   //Map Generation
@@ -196,15 +199,37 @@ function HostSession() {
       >
         {/* Render dropped items within the square */}
         {itemsInSquare.map((item) => (
-          <div className='d-flex justify-content-center align-items-center flex-column' >
-            <div key={item.id} className='d-flex justify-content-center align-items-center' style={{ backgroundColor: 'var(--textGrey)', borderRadius: '50%' }} >
-              <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
-            </div>
-          </div>
+          <DraggableGridItem key={item.id} item={item} />
         ))}
       </div>
     );
-  }  
+  }
+  
+  function DraggableGridItem({ item }) {
+    const [{ isDragging }, drag] = useDrag({
+      type: 'DRAGGABLE_ITEM_TYPE',
+      item: { id: item.id, type: 'character', name: item.name, image: item.image },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    });
+  
+    return (
+      <div
+        ref={drag}
+        style={{
+          opacity: isDragging ? 0.5 : 1,
+          cursor: 'move', // Change cursor to indicate draggability
+        }}
+      >
+        <div className='d-flex justify-content-center align-items-center flex-column'>
+          <div className='d-flex justify-content-center align-items-center' style={{ backgroundColor: 'var(--textGrey)', borderRadius: '50%' }}>
+            <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
+          </div>
+        </div>
+      </div>
+    );
+  }
   
  
   //Popups
