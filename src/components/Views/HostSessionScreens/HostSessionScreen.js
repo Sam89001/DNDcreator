@@ -37,6 +37,11 @@ function HostSession() {
   const [gridWidthValue, setGridWidthValue] = useState(100);
   const [mapWidthValue, setMapWidthValue] = useState(50);
   const [gridOpacityValue, setGridOpacityValue] = useState(0.5)
+  const [gridColour, setGridColour] = useState({
+    redValue: '',
+    greenValue: '',
+    blueValue: ''
+  })
   const gridSliderChange = (event) => {
     setGridWidthValue(parseInt(event.target.value));
   };
@@ -46,7 +51,7 @@ function HostSession() {
   const mapSliderChange = (event) => {
     setMapWidthValue(parseInt(event.target.value));
   };
-  
+
   const gridInputChange = (event) => {
     let newValue = parseInt(event.target.value);
     if (!isNaN(newValue)) {
@@ -77,17 +82,27 @@ function HostSession() {
   };
   
 
-  //Default Map Size
+  //Default Map Size & Colour
   const [userMapSize, setUserMapSize] = useState({
     dimensionOne: '',
     dimensionTwo: ''
   })
+  //Size
   useEffect(() => {
     setUserMapSize({ 
       dimensionOne: '10',
       dimensionTwo: '10'
     });
   }, []);
+  //Colour
+  useEffect(() => {
+    setGridColour({
+      redValue: 255,
+      greenValue: 255,
+      blueValue: 255
+    })
+  })
+
 
   // State for dropped items
   const [droppedItems, setDroppedItems] = useState([]);
@@ -203,7 +218,7 @@ function HostSession() {
         ref={drop}
         className='droppable-area'
         style={{
-          border: `1px solid rgba(255, 255, 255, ${gridOpacityValue})`,
+          border: `1px solid rgba(${gridColour.redValue}, ${gridColour.greenValue}, ${gridColour.blueValue}, ${gridOpacityValue})`,
           boxSizing: 'border-box',
           width: '100%',
           height: '100%',
