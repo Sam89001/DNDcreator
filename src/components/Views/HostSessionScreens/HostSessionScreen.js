@@ -2,6 +2,7 @@
 import '../../../css/Components.css'
 
 //Images
+import GearIcon from '../../../images/Gear Icon Lighter.png'
 
 //Temp Images
 import DiceImage from '../../../images/d20.png'
@@ -420,6 +421,8 @@ function HostSession() {
                   <form onSubmit={(e) => { e.preventDefault(); setMapSize(); }}>
                     <label>Grid Size</label>
                     <div className='d-flex flex-row '>
+
+                        <img className='img-fluid' src={GearIcon} style={{maxHeight: '7vh'}}></img>
 
                         <label>Width</label>
                         <input 
