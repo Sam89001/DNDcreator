@@ -386,11 +386,11 @@ function HostSession() {
                         }))}/>
 
                         <label htmlFor="slider">Choose grid width:</label>
-                        <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '10vw', height: '3vh'}}/>
+                        <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
 
                         <label htmlFor="slider">Choose Image width:</label>
-                        <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '10vw', height: '3vh'}}/>
+                        <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
                                               
                     </div>
