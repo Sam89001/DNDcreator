@@ -101,7 +101,7 @@ function HostSession() {
       greenValue: 255,
       blueValue: 255
     })
-  })
+  }, [])
 
 
   // State for dropped items
@@ -437,15 +437,31 @@ function HostSession() {
                             dimensionTwo: e.target.value
                         }))}/>
 
-                        <label htmlFor="slider">Choose Grid Width:</label>
+                        <label>Choose Grid Width:</label>
                         <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
 
-                        <label htmlFor="slider">Choose Grid Opacity:</label>
+                        <label>Choose Grid Opacity:</label>
                         <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
 
-                        <label htmlFor="slider">Choose Image Width:</label>
+                        <label>Choose Grid Colour:</label>
+                        <select onChange={(e) => setGridColour({
+                          redValue: e.target.options[e.target.selectedIndex].getAttribute('value'),
+                          greenValue: e.target.options[e.target.selectedIndex].getAttribute('value2'),
+                          blueValue: e.target.options[e.target.selectedIndex].getAttribute('value3')
+                        })}>
+                          <option value="255" value2="255" value3="255">White</option>
+                          <option value="255" value2="0" value3="0">Red</option>
+
+                          <option value="144" value2="238" value3="144">Light Green</option>
+                          <option value="0" value2="255" value3="0">Green</option>
+
+                          <option value="173" value2="216" value3="230">Light Blue</option>
+                          <option value="0" value2="0" value3="255">Dark Blue</option>
+                        </select>
+
+                        <label>Choose Image Width:</label>
                         <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
 
