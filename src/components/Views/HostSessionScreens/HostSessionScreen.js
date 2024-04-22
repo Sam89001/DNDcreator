@@ -33,40 +33,49 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function HostSession() {
 
-  //Map Functions
-
-    //Width Slider
-    const [gridWidthValue, setGridWidthValue] = useState(100);
-    const [mapWidthValue, setMapWidthValue] = useState(50);
-    const gridSliderChange = (event) => {
-      setGridWidthValue(parseInt(event.target.value));
-    };
-    const gridInputChange = (event) => {
-      let newValue = parseInt(event.target.value);
-      if (!isNaN(newValue)) {
-        if (newValue < 1) {
-          newValue = 1;
-        } else if (newValue > 100) {
-          newValue = 100;
-        }
-        setGridWidthValue(newValue);
+  //Width Slider
+  const [gridWidthValue, setGridWidthValue] = useState(100);
+  const [mapWidthValue, setMapWidthValue] = useState(50);
+  const [gridOpacityValue, setGridOpacityValue] = useState(0.5)
+  const gridSliderChange = (event) => {
+    setGridWidthValue(parseInt(event.target.value));
+  };
+  const gridOpacitySliderChange = (event) => { 
+    setGridOpacityValue( parseFloat(event.target.value));
+  };
+  const mapSliderChange = (event) => {
+    setMapWidthValue(parseInt(event.target.value));
+  };
+  
+  const gridInputChange = (event) => {
+    let newValue = parseInt(event.target.value);
+    if (!isNaN(newValue)) {
+      if (newValue < 1) {
+        newValue = 1;
+      } else if (newValue > 100) {
+        newValue = 100;
       }
-    };
-    const mapSliderChange = (event) => {
-      setMapWidthValue(parseInt(event.target.value));
-    };
-    const mapInputChange = (event) => {
-      let newValue = parseInt(event.target.value);
-      if (!isNaN(newValue)) {
-        if (newValue < 1) {
-          newValue = 1;
-        } else if (newValue > 100) {
-          newValue = 100;
-        }
-        setMapWidthValue(newValue);
+      setGridWidthValue(newValue);
+    }
+  };
+  const gridOpacityInputChange = (event) => {
+    const newValue = parseFloat(event.target.value);
+    if (!isNaN(newValue) && newValue >= 0 && newValue <= 1) {
+      setGridOpacityValue(newValue);
+    }
+  };
+  const mapInputChange = (event) => {
+    let newValue = parseInt(event.target.value);
+    if (!isNaN(newValue)) {
+      if (newValue < 1) {
+        newValue = 1;
+      } else if (newValue > 100) {
+        newValue = 100;
       }
-    };
-
+      setMapWidthValue(newValue);
+    }
+  };
+  
 
   //Default Map Size
   const [userMapSize, setUserMapSize] = useState({
@@ -75,9 +84,9 @@ function HostSession() {
   })
   useEffect(() => {
     setUserMapSize({ 
-      dimensionOne: '2',
-      dimensionTwo: '2'
-     });
+      dimensionOne: '10',
+      dimensionTwo: '10'
+    });
   }, []);
 
   // State for dropped items
@@ -109,10 +118,17 @@ function HostSession() {
 
   // Function to handle drop
   const handleDrop = (item, squareIndex) => {
-    const itemInSquare = droppedItems.find((droppedItem) => droppedItem.index === squareIndex);
-    if (itemInSquare) {
+    const numRows = parseInt(userMapSize.dimensionOne);
+    const numCols = parseInt(userMapSize.dimensionTwo);
+
+    const row = Math.floor(squareIndex / numCols);
+    const col = squareIndex % numCols;
+
+    const isValidDrop = row >= 0 && row < numRows && col >= 0 && col < numCols;
+
+    if (!isValidDrop) {
       toast.error('There is already an item in this square.');
-      return; 
+      return;
     }
 
     // Remove the item from its original position
@@ -130,8 +146,6 @@ function HostSession() {
       },
     ]);
   };
-
-  
 
   //Map Generation
   function setMapSize() {
@@ -180,16 +194,16 @@ function HostSession() {
         isOver: !!monitor.isOver(),
       }),
     });
-  
+
     // Filter dropped items to only include those belonging to this square
     const itemsInSquare = droppedItems.filter((item) => item.index === squareIndex);
-  
+
     return (
       <div
         ref={drop}
         className='droppable-area'
         style={{
-          border: '1px solid rgba(255, 255, 255, 0.5)',
+          border: `1px solid rgba(255, 255, 255, ${gridOpacityValue})`,
           boxSizing: 'border-box',
           width: '100%',
           height: '100%',
@@ -204,7 +218,7 @@ function HostSession() {
       </div>
     );
   }
-  
+
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
@@ -213,7 +227,7 @@ function HostSession() {
         isDragging: !!monitor.isDragging(),
       }),
     });
-  
+
     return (
       <div
         ref={drag}
@@ -230,8 +244,7 @@ function HostSession() {
       </div>
     );
   }
-  
- 
+
   //Popups
   const [popout, setActivePopOut] = useState(null);
   const [lowerPopOut, setActiveLowerPopOut] = useState(null);
@@ -242,7 +255,6 @@ function HostSession() {
       setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
   };
 
-  
   //Popup Content
   function DraggableCharacter({ character }) {
     const [{ isDragging }, drag] = useDrag({
@@ -252,7 +264,7 @@ function HostSession() {
         isDragging: !!monitor.isDragging(),
       }),
     });
-  
+
     return (
       <div
         className='grid-counters'
@@ -265,7 +277,7 @@ function HostSession() {
       </div>
     );
   }
-  
+
   function popoutContent() {
     if(popout == null) {
       return (
@@ -410,13 +422,19 @@ function HostSession() {
                             dimensionTwo: e.target.value
                         }))}/>
 
-                        <label htmlFor="slider">Choose grid width:</label>
+                        <label htmlFor="slider">Choose Grid Width:</label>
                         <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
 
-                        <label htmlFor="slider">Choose Image width:</label>
+                        <label htmlFor="slider">Choose Grid Opacity:</label>
+                        <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
+                        <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
+
+                        <label htmlFor="slider">Choose Image Width:</label>
                         <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
                         <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
+
+                        
                                               
                     </div>
                   </form>
