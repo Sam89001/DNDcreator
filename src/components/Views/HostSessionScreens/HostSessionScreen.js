@@ -34,7 +34,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function HostSession() {
 
-  //Width Slider
+  //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
   const [mapWidthValue, setMapWidthValue] = useState(50);
   const [gridOpacityValue, setGridOpacityValue] = useState(0.5)
@@ -113,8 +113,8 @@ function HostSession() {
       image: DiceImage,
       name: 'Mage',
       userName: '',
-      Hp: '',
-      MaxHp: '',
+      currentHp: '',
+      maxHp: '',
       content: 'Mage Content'
     },
     {
@@ -123,8 +123,8 @@ function HostSession() {
       image: SecondDiceImage,
       name: 'Barbarian',
       userName: '',
-      Hp: '',
-      MaxHp: '',
+      currentHp: '',
+      maxHp: '',
       content: 'Barbarian Content'
     }
     
@@ -166,7 +166,7 @@ function HostSession() {
         },
       ]);
     }
-};
+  };
 
   
   //Map Generation
@@ -244,7 +244,8 @@ function HostSession() {
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
-      item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId },
+      item: { id: item.id, type: 'character', name: item.name, image: item.image, 
+      uniqueId: item.uniqueId, userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
@@ -304,11 +305,15 @@ function HostSession() {
   //Popups
   const [popout, setActivePopOut] = useState(null);
   const [lowerPopOut, setActiveLowerPopOut] = useState(null);
+  const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
   const handlePopOut = (index) => {
       setActivePopOut((prevPopout) => (prevPopout === index ? null : index));
   };
   const handleLowerPopOut = (index) => {
       setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
+  };
+  const handlePlaceCharacterPopup = (index) => {
+    setPlaceCharacterPopup((prevPopout) => (prevPopout === index ? null : index));
   };
 
   //Popup Content
@@ -538,7 +543,6 @@ function HostSession() {
               </div>
           </div>
 
-
           <div className={`host-popout ${lowerPopOut === 1 ? 'active' : ''}`}
               style={{ backgroundColor: 'var(--lightBackgroundGrey)', bottom: '20%' }}
               onClick={() => handleLowerPopOut(1)}> {/* Changed index to 1 */}
@@ -548,7 +552,24 @@ function HostSession() {
           </div>
           
         </div>
-                    
+
+        <div className='d-flex place-character-popup align-items-center flex-column'>
+          <div className='d-flex flex-end' style={{width: '100%'}}>X</div>
+          <div>Character Information</div>
+          <form>
+            <div>
+              <label>Character Name</label>
+              <input></input>
+            </div>
+
+            <div>
+              <label>Character Max Health</label>
+              <input></input>
+            </div>
+
+          </form>
+        </div>
+
     </div>
     </DndProvider>
   )

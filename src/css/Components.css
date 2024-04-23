@@ -158,6 +158,26 @@
   transition: width 0.5s, height 0.5s;
 }
 
+.place-character-popup {
+  display: none; /* Initially hidden */
+  visibility: hidden;
+  z-index: 999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  height: 30vw;
+  background-color: var(--textGrey);
+  border-radius: 5%;
+  padding: 0.5vw;
+}
+
+.place-character-popup.active {
+  display: block; 
+  visibility: visible;
+}
+
 /* Universal */
 
 .hover-red:hover {
