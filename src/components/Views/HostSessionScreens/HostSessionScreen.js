@@ -143,18 +143,30 @@ function HostSession() {
     const isValidDrop = row >= 0 && row < numRows && col >= 0 && col < numCols;
 
     if (!isValidDrop) {
+      toast.error('Invalid drop location.');
+      return;
+    }
+
+    // Check if there's already an item in the target square
+    const isOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
+
+    if (isOccupied) {
       toast.error('There is already an item in this square.');
       return;
     }
 
+    // Generate a unique ID for the dropped item
+    const uniqueId = Math.random().toString(36).substr(2, 9);
+
     // Remove the item from its original position
     const updatedDroppedItems = droppedItems.filter((droppedItem) => droppedItem.id !== item.id);
 
-    // Add the item to the new square
+    // Add the item to the new square with the generated unique ID
     setDroppedItems((prevItems) => [
       ...updatedDroppedItems,
       {
         id: item.id,
+        uniqueId: uniqueId, // Assign the unique ID
         name: item.name,
         image: item.image,
         content: item.content,
@@ -162,7 +174,7 @@ function HostSession() {
       },
     ]);
   };
-
+ 
   //Map Generation
   function setMapSize() {
     if (
@@ -259,9 +271,10 @@ function HostSession() {
         <div className='d-flex justify-content-center align-items-center'>
           <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
         </div>
-        <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>20/20</div>
+        {!isDragging && (
+          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>20/20</div>
+        )}
       </div>
-
     );
   }
 
