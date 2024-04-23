@@ -192,12 +192,8 @@ function HostSession() {
     setPlaceCharacterPopup(true);
     submissionCheck
       .then(() => {
-        if (existingItemIndex !== -1) {
-          const updatedItems = [...droppedItems];
-          updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
-          setDroppedItems(updatedItems);
-        } else {
-          setDroppedItems((prevItems) => [
+        setDroppedItems((prevItems) => {
+          const updatedItems = [
             ...prevItems,
             {
               ...item,
@@ -207,8 +203,10 @@ function HostSession() {
               characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
               currentHp: placedCharacterTemporaryData.characterMaxHp
             },
-          ]);
-        }
+          ];
+          setPlaceCharacterPopup(null);
+          return updatedItems;
+        });
       })
       .catch((error) => {
         setPlaceCharacterPopup(null);
@@ -216,7 +214,6 @@ function HostSession() {
       });
   };
   
-
 
   //Map Generation
   function setMapSize() {
@@ -293,8 +290,8 @@ function HostSession() {
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
-      item: { id: item.id, type: 'character', name: item.name, image: item.image, 
-      uniqueId: item.uniqueId, userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
+      item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId, 
+      userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
@@ -316,7 +313,7 @@ function HostSession() {
           <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
         </div>
         {!isDragging && (
-          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>20/{item.maxHp}</div>
+          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>{item.userName}</div>
         )}
       </div>
     );
@@ -630,7 +627,7 @@ function HostSession() {
             }/>
           </div>
 
-          <button className='submit-place-character-popup' onClick={() => setPlaceCharacterPopup(null)}>Submit</button>
+          <button className='submit-place-character-popup'>Submit</button>
 
         </div>
 
