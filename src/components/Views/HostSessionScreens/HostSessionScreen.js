@@ -130,6 +130,7 @@ function HostSession() {
     
   ]
   const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
+  const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
 
   function generateUniqueId(itemId) {
     const timestamp = new Date().getTime();
@@ -143,32 +144,61 @@ function HostSession() {
   
     // Check if there's already an item in the square
     const squareOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
-
+  
     // If the square is already occupied, show an error message and return
     if (squareOccupied) {
       toast.error('This square is already occupied!');
       return;
     }
   
-    if (existingItemIndex !== -1) {
-      // If the item exists, update its position
-      const updatedItems = [...droppedItems];
-      updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
-      setDroppedItems(updatedItems);
-    } else {
-      // If the item does not exist, add it with the generated unique ID
-      setDroppedItems((prevItems) => [
-        ...prevItems,
-        {
-          ...item,
-          uniqueId: generateUniqueId(item.id),
-          index: squareIndex,
-        },
-      ]);
-    }
+    const submissionCheck = new Promise((resolve, reject) => {
+      const handleClose = () => {
+        reject(new Error('Popup closed'));
+      };
+  
+      // Function to handle submission of the popup
+      const handleSubmit = () => {
+        resolve();
+      };
+      document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
+      document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
+  
+      return () => {
+        document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
+        document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
+      };
+    });
+  
+    setPlaceCharacterPopup(true);
+  
+    submissionCheck
+      .then(() => {
+
+        if (existingItemIndex !== -1) {
+          const updatedItems = [...droppedItems];
+          updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
+          setDroppedItems(updatedItems);
+        } else {
+          setDroppedItems((prevItems) => [
+            ...prevItems,
+            {
+              ...item,
+              uniqueId: generateUniqueId(item.id),
+              index: squareIndex,
+            },
+          ]);
+        }
+      })
+      .catch((error) => {
+        setPlaceCharacterPopup(null)
+        console.error(error); 
+      });
   };
 
-  
+
+
+
+
   //Map Generation
   function setMapSize() {
     if (
@@ -305,16 +335,13 @@ function HostSession() {
   //Popups
   const [popout, setActivePopOut] = useState(null);
   const [lowerPopOut, setActiveLowerPopOut] = useState(null);
-  const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
   const handlePopOut = (index) => {
       setActivePopOut((prevPopout) => (prevPopout === index ? null : index));
   };
   const handleLowerPopOut = (index) => {
       setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
   };
-  const handlePlaceCharacterPopup = (index) => {
-    setPlaceCharacterPopup((prevPopout) => (prevPopout === index ? null : index));
-  };
+
 
   //Popup Content
   function popoutContent() {
@@ -468,6 +495,7 @@ function HostSession() {
     }
   }
 
+  
   return (
     <DndProvider backend={HTML5Backend}>
     <div style={{paddingBottom: '20px'}}>
@@ -553,22 +581,28 @@ function HostSession() {
           
         </div>
 
-        <div className='d-flex place-character-popup align-items-center flex-column'>
-          <div className='d-flex flex-end' style={{width: '100%'}}>X</div>
+        {/* Popup */}
+        <div className={`d-flex align-items-center flex-column place-character-popup ${placeCharacterPopup !== null ? 'active' : ''}`}>
+          <div className='d-flex flex-end' style={{width: '100%'}}>
+            <button className='close-place-character-popup' >X</button>
+          </div>
+
           <div>Character Information</div>
-          <form>
-            <div>
-              <label>Character Name</label>
-              <input></input>
-            </div>
 
-            <div>
-              <label>Character Max Health</label>
-              <input></input>
-            </div>
+          <div>
+            <label>Character Name</label>
+            <input></input>
+          </div>
 
-          </form>
+          <div>
+            <label>Character Max Health</label>
+            <input></input>
+          </div>
+
+          <button className='submit-place-character-popup' onClick={() => setPlaceCharacterPopup(null)}>Submit</button>
+
         </div>
+
 
     </div>
     </DndProvider>
