@@ -153,7 +153,7 @@
 
 .host-popout.active {
   height: 60%;
-  width: 35%;
+  width: 27%;
   z-index: 98;
   transition: width 0.5s, height 0.5s;
 }

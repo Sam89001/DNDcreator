@@ -2,7 +2,7 @@
 import '../../../css/Components.css'
 
 //Images
-import GearIcon from '../../../images/Gear Icon Lighter.png'
+import GearIcon from '../../../images/Gear Icon White.png'
 
 //Temp Images
 import DiceImage from '../../../images/d20.png'
@@ -249,15 +249,19 @@ function HostSession() {
         ref={drag}
         style={{
           opacity: isDragging ? 0.5 : 1,
-          cursor: 'move', // Change cursor to indicate draggability
+          cursor: 'move',
+          position: 'relative',
+          height: '100%',
+          backgroundColor: 'var(--textGrey)',
+          borderRadius: '50%',
         }}
       >
-        <div className='d-flex justify-content-center align-items-center flex-column'>
-          <div className='d-flex justify-content-center align-items-center' style={{ backgroundColor: 'var(--textGrey)', borderRadius: '50%' }}>
-            <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
-          </div>
+        <div className='d-flex justify-content-center align-items-center'>
+          <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
         </div>
+        <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>20/20</div>
       </div>
+
     );
   }
 
@@ -305,7 +309,7 @@ function HostSession() {
       return (
         <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
 
-          <div style={{width: '91%', zIndex: '100'}}>
+          <div style={{width: '91.5%', zIndex: '100'}} onClick={(e) => e.stopPropagation()}>
             <div className='row' style={{height: '100%'}}>
 
               <div className='col-12'>
@@ -343,8 +347,10 @@ function HostSession() {
             
           </div >
 
-          <div style={{backgroundColor: 'blue', width: '9%', height: '50%'}}>
-            {/* Image to return goes here*/}
+          <div style={{width: '8.5%', height: '50%'}}>
+            <div className='d-flex align-items-center justify-content-center'  style={{width: '100%', height: '100%'}}>
+              <img className='img-fluid' src={RightArrow}></img>
+            </div>
           </div>
 
         </div>
@@ -355,12 +361,90 @@ function HostSession() {
     if(lowerPopOut == null) {
       return (
         <div className='d-flex justify-content-center align-items-center' style={{padding: '5px'}}>
-          <img className='img-fluid' src={DiceImage} style={{opacity: '0.7'}}></img>
+          <img className='img-fluid' src={GearIcon} style={{opacity: '0.7'}}></img>
         </div>
       );
     } else {
       return (
-        <div>2nd Test</div>
+        <div className='d-flex flex-row' style={{height: '100%', width: '100%', padding: '10px'}}>
+
+           <div className='d-flex flex-column' style={{width: '91.5%', zIndex: '100'}} onClick={(e) => e.stopPropagation()}>
+
+              <div style={{fontSize: '1.5vw', paddingBottom: '10px'}}>Grid Settings</div>
+              {/* Grid Height and Width*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Width</label>
+                <input 
+                    style={{width: '5vw', height: '3vh'}}
+                    onChange={(e) => setUserMapSize((prevData) => ({
+                      ...prevData,
+                      dimensionOne: e.target.value
+                    }))}
+                />
+              
+                <label>Height</label>
+                <input 
+                  style={{width: '5vw', height: '3vh'}}
+                          onChange={(e) => setUserMapSize((prevData) => ({
+                            ...prevData,
+                            dimensionTwo: e.target.value
+                  }))}
+                />
+              </div>
+              
+              {/* Grid Size*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Choose Grid Width:</label>
+                <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
+                <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
+              </div>
+              
+              {/* Grid Opacity*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Choose Grid Opacity:</label>
+                <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
+                <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
+              </div>
+              
+              {/* Grid Colour*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Choose Grid Colour:</label>
+                <select onChange={(e) => setGridColour({
+                  redValue: e.target.options[e.target.selectedIndex].getAttribute('value'),
+                  greenValue: e.target.options[e.target.selectedIndex].getAttribute('value2'),
+                  blueValue: e.target.options[e.target.selectedIndex].getAttribute('value3')
+                })}>
+                  <option value="255" value2="255" value3="255">White</option>
+                  <option value="255" value2="0" value3="0">Red</option>
+
+                  <option value="144" value2="238" value3="144">Light Green</option>
+                  <option value="0" value2="255" value3="0">Green</option>
+
+                  <option value="173" value2="216" value3="230">Light Blue</option>
+                  <option value="0" value2="0" value3="255">Dark Blue</option>
+                </select>
+              </div>
+
+              <div style={{fontSize: '1.5vw', paddingBottom: '10px'}}>Image Settings</div>
+
+              {/* Image Size*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Choose Image Width:</label>
+                <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
+                <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
+              </div>
+           </div>
+
+           <div style={{ width: '8.5%', height: '100%'}}>
+
+              <div style={{width: '100%', height: '50%'}}>{/* Leave blank*/}</div>
+              <div className='d-flex align-items-center justify-content-center' style={{width: '100%', height: '50%'}}>
+                <img className='img-fluid' src={RightArrow}></img>
+              </div>
+
+            </div>
+
+        </div>
       );
     }
   }
@@ -417,62 +501,9 @@ function HostSession() {
                 </div>
 
                 <div className='d-flex flex-row'>
-                {/* Grid Size*/}
-                  <form onSubmit={(e) => { e.preventDefault(); setMapSize(); }}>
-                    <label>Grid Size</label>
-                    <div className='d-flex flex-row '>
-
-                        <img className='img-fluid' src={GearIcon} style={{maxHeight: '7vh'}}></img>
-
-                        <label>Width</label>
-                        <input 
-                          style={{width: '5vw', height: '3vh'}}
-                          onChange={(e) => setUserMapSize((prevData) => ({
-                            ...prevData,
-                            dimensionOne: e.target.value
-                        }))}/>
-
-                        <label>Height</label>
-                        <input 
-                          style={{width: '5vw', height: '3vh'}}
-                          onChange={(e) => setUserMapSize((prevData) => ({
-                            ...prevData,
-                            dimensionTwo: e.target.value
-                        }))}/>
-
-                        <label>Choose Grid Width:</label>
-                        <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                        <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
-
-                        <label>Choose Grid Opacity:</label>
-                        <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
-                        <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
-
-                        <label>Choose Grid Colour:</label>
-                        <select onChange={(e) => setGridColour({
-                          redValue: e.target.options[e.target.selectedIndex].getAttribute('value'),
-                          greenValue: e.target.options[e.target.selectedIndex].getAttribute('value2'),
-                          blueValue: e.target.options[e.target.selectedIndex].getAttribute('value3')
-                        })}>
-                          <option value="255" value2="255" value3="255">White</option>
-                          <option value="255" value2="0" value3="0">Red</option>
-
-                          <option value="144" value2="238" value3="144">Light Green</option>
-                          <option value="0" value2="255" value3="0">Green</option>
-
-                          <option value="173" value2="216" value3="230">Light Blue</option>
-                          <option value="0" value2="0" value3="255">Dark Blue</option>
-                        </select>
-
-                        <label>Choose Image Width:</label>
-                        <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                        <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
-
-                        
-                                              
-                    </div>
-                  </form>
-                  
+                  <div className='d-flex flex-row '>
+                               
+                  </div>
                 </div>
 
               </div>
