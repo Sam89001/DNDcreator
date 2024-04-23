@@ -82,7 +82,6 @@ function HostSession() {
     }
   };
   
-
   //Default Map Size & Colour
   const [userMapSize, setUserMapSize] = useState({
     dimensionOne: '',
@@ -110,7 +109,7 @@ function HostSession() {
   const droppableCharacters = [
     {
       id: 'defaultMage',
-      uniqueId: '',
+      uniqueId: null,
       image: DiceImage,
       name: 'Mage',
       userName: '',
@@ -120,7 +119,7 @@ function HostSession() {
     },
     {
       id: 'defaultBarb',
-      uniqueId: '',
+      uniqueId: null,
       image: SecondDiceImage,
       name: 'Barbarian',
       userName: '',
@@ -132,49 +131,34 @@ function HostSession() {
   ]
   const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
 
+  function generateUniqueId(itemId) {
+    const timestamp = new Date().getTime();
+    const random = Math.floor(Math.random() * 10000); // Generate a random number between 0 and 9999
+    return `${itemId}-${timestamp}-${random}`;
+  }
+  
   // Function to handle drop
   const handleDrop = (item, squareIndex) => {
-    const numRows = parseInt(userMapSize.dimensionOne);
-    const numCols = parseInt(userMapSize.dimensionTwo);
-
-    const row = Math.floor(squareIndex / numCols);
-    const col = squareIndex % numCols;
-
-    const isValidDrop = row >= 0 && row < numRows && col >= 0 && col < numCols;
-
-    if (!isValidDrop) {
-      toast.error('Invalid drop location.');
-      return;
+    const existingItemIndex = droppedItems.findIndex((droppedItem) => droppedItem.uniqueId === item.uniqueId);
+  
+    if (existingItemIndex !== -1) {
+      // If the item exists, update its position
+      const updatedItems = [...droppedItems];
+      updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
+      setDroppedItems(updatedItems);
+    } else {
+      // If the item does not exist, add it with the generated unique ID
+      setDroppedItems((prevItems) => [
+        ...prevItems,
+        {
+          ...item,
+          uniqueId: generateUniqueId(item.id),
+          index: squareIndex,
+        },
+      ]);
     }
-
-    // Check if there's already an item in the target square
-    const isOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
-
-    if (isOccupied) {
-      toast.error('There is already an item in this square.');
-      return;
-    }
-
-    // Generate a unique ID for the dropped item
-    const uniqueId = Math.random().toString(36).substr(2, 9);
-
-    // Remove the item from its original position
-    const updatedDroppedItems = droppedItems.filter((droppedItem) => droppedItem.id !== item.id);
-
-    // Add the item to the new square with the generated unique ID
-    setDroppedItems((prevItems) => [
-      ...updatedDroppedItems,
-      {
-        id: item.id,
-        uniqueId: uniqueId, // Assign the unique ID
-        name: item.name,
-        image: item.image,
-        content: item.content,
-        index: squareIndex,
-      },
-    ]);
   };
- 
+  
   //Map Generation
   function setMapSize() {
     if (
@@ -250,7 +234,7 @@ function HostSession() {
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
-      item: { id: item.id, type: 'character', name: item.name, image: item.image },
+      item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
@@ -278,26 +262,21 @@ function HostSession() {
     );
   }
 
-  //Popups
-  const [popout, setActivePopOut] = useState(null);
-  const [lowerPopOut, setActiveLowerPopOut] = useState(null);
-  const handlePopOut = (index) => {
-      setActivePopOut((prevPopout) => (prevPopout === index ? null : index));
-  };
-  const handleLowerPopOut = (index) => {
-      setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
-  };
-
-  //Popup Content
   function DraggableCharacter({ character }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
-      item: { id: character.id, type: 'character', name: character.name, image: character.image },
+      item: { 
+        id: character.id, 
+        uniqueId: character.uniqueId, 
+        type: 'character', 
+        name: character.name, 
+        image: character.image 
+      },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
     });
-
+  
     return (
       <div
         className='grid-counters'
@@ -310,7 +289,19 @@ function HostSession() {
       </div>
     );
   }
+  
 
+  //Popups
+  const [popout, setActivePopOut] = useState(null);
+  const [lowerPopOut, setActiveLowerPopOut] = useState(null);
+  const handlePopOut = (index) => {
+      setActivePopOut((prevPopout) => (prevPopout === index ? null : index));
+  };
+  const handleLowerPopOut = (index) => {
+      setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
+  };
+
+  //Popup Content
   function popoutContent() {
     if(popout == null) {
       return (
