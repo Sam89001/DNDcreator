@@ -141,6 +141,15 @@ function HostSession() {
   const handleDrop = (item, squareIndex) => {
     const existingItemIndex = droppedItems.findIndex((droppedItem) => droppedItem.uniqueId === item.uniqueId);
   
+    // Check if there's already an item in the square
+    const squareOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
+
+    // If the square is already occupied, show an error message and return
+    if (squareOccupied) {
+      toast.error('This square is already occupied!');
+      return;
+    }
+  
     if (existingItemIndex !== -1) {
       // If the item exists, update its position
       const updatedItems = [...droppedItems];
@@ -157,7 +166,8 @@ function HostSession() {
         },
       ]);
     }
-  };
+};
+
   
   //Map Generation
   function setMapSize() {
