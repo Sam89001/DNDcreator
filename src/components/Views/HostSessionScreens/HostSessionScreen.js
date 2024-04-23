@@ -131,6 +131,10 @@ function HostSession() {
   ]
   const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
   const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
+  const [placedCharacterTemporaryData, setPlacedCharacterTemporaryData] = useState({
+    characterName: '',
+    characterMaxHp: ''
+  })
 
   function generateUniqueId(itemId) {
     const timestamp = new Date().getTime();
@@ -138,65 +142,84 @@ function HostSession() {
     return `${itemId}-${timestamp}-${random}`;
   }
   
+
   // Function to handle drop
   const handleDrop = (item, squareIndex) => {
     const existingItemIndex = droppedItems.findIndex((droppedItem) => droppedItem.uniqueId === item.uniqueId);
   
     // Check if there's already an item in the square
     const squareOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
-  
     // If the square is already occupied, show an error message and return
     if (squareOccupied) {
       toast.error('This square is already occupied!');
       return;
     }
-  
-    const submissionCheck = new Promise((resolve, reject) => {
-      const handleClose = () => {
-        reject(new Error('Popup closed'));
-      };
-  
-      // Function to handle submission of the popup
-      const handleSubmit = () => {
-        resolve();
-      };
-      document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
-      document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
-  
-      return () => {
-        document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
-        document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
-      };
-    });
-  
-    setPlaceCharacterPopup(true);
-  
-    submissionCheck
-      .then(() => {
 
-        if (existingItemIndex !== -1) {
-          const updatedItems = [...droppedItems];
-          updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
-          setDroppedItems(updatedItems);
-        } else {
-          setDroppedItems((prevItems) => [
-            ...prevItems,
-            {
-              ...item,
-              uniqueId: generateUniqueId(item.id),
-              index: squareIndex,
-            },
-          ]);
-        }
-      })
-      .catch((error) => {
-        setPlaceCharacterPopup(null)
-        console.error(error); 
+    if(existingItemIndex) {
+      const submissionCheck = new Promise((resolve, reject) => {
+        const handleClose = () => {
+          reject(new Error('Popup closed'));
+        };
+    
+        // Function to handle submission of the popup
+        const handleSubmit = () => {
+          resolve();
+        };
+        document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
+        document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
+    
+        return () => {
+          document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
+          document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
+        };
       });
+      setPlaceCharacterPopup(true);
+      submissionCheck
+        .then(() => {
+  
+          if (existingItemIndex !== -1) {
+            const updatedItems = [...droppedItems];
+            updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
+            setDroppedItems(updatedItems);
+          } else {
+            setDroppedItems((prevItems) => [
+              ...prevItems,
+              {
+                ...item,
+                uniqueId: generateUniqueId(item.id),
+                index: squareIndex,
+                userName: placedCharacterTemporaryData.characterName,
+                characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
+                currentHp: placedCharacterTemporaryData.characterMaxHp
+              },
+            ]);
+          }
+        })
+        .catch((error) => {
+          setPlaceCharacterPopup(null)
+          console.error(error); 
+        });
+    } else {
+      if (existingItemIndex !== -1) {
+        const updatedItems = [...droppedItems];
+        updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
+        setDroppedItems(updatedItems);
+      } else {
+        setDroppedItems((prevItems) => [
+          ...prevItems,
+          {
+            ...item,
+            uniqueId: generateUniqueId(item.id),
+            index: squareIndex,
+            userName: placedCharacterTemporaryData.characterName,
+            characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
+            currentHp: placedCharacterTemporaryData.characterMaxHp
+          },
+        ]);
+      }
+    }
+    
   };
-
-
-
 
 
   //Map Generation
@@ -297,7 +320,7 @@ function HostSession() {
           <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
         </div>
         {!isDragging && (
-          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>20/20</div>
+          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>20/{item.maxHp}</div>
         )}
       </div>
     );
@@ -591,12 +614,24 @@ function HostSession() {
 
           <div>
             <label>Character Name</label>
-            <input></input>
+            <input
+            onChange={(e) =>
+              setPlacedCharacterTemporaryData((prevData) => ({
+                ...prevData,
+                characterName: e.target.value,
+              }))
+            }/>
           </div>
 
           <div>
             <label>Character Max Health</label>
-            <input></input>
+            <input
+            onChange={(e) =>
+              setPlacedCharacterTemporaryData((prevData) => ({
+                ...prevData,
+                characterMaxHp: e.target.value,
+              }))
+            }/>
           </div>
 
           <button className='submit-place-character-popup' onClick={() => setPlaceCharacterPopup(null)}>Submit</button>
