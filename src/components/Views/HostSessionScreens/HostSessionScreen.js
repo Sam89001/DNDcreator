@@ -147,59 +147,11 @@ function HostSession() {
   const handleDrop = (item, squareIndex) => {
     const existingItemIndex = droppedItems.findIndex((droppedItem) => droppedItem.uniqueId === item.uniqueId);
   
-    // Check if there's already an item in the square
-    const squareOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
-    // If the square is already occupied, show an error message and return
-    if (squareOccupied) {
-      toast.error('This square is already occupied!');
-      return;
-    }
-
-    if(existingItemIndex) {
-      const submissionCheck = new Promise((resolve, reject) => {
-        const handleClose = () => {
-          reject(new Error('Popup closed'));
-        };
-    
-        // Function to handle submission of the popup
-        const handleSubmit = () => {
-          resolve();
-        };
-        document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
-        document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
-    
-        return () => {
-          document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
-          document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
-        };
-      });
-      setPlaceCharacterPopup(true);
-      submissionCheck
-        .then(() => {
+    // Check if the piece is already on the grid
+    const pieceOnGrid = existingItemIndex !== -1;
   
-          if (existingItemIndex !== -1) {
-            const updatedItems = [...droppedItems];
-            updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
-            setDroppedItems(updatedItems);
-          } else {
-            setDroppedItems((prevItems) => [
-              ...prevItems,
-              {
-                ...item,
-                uniqueId: generateUniqueId(item.id),
-                index: squareIndex,
-                userName: placedCharacterTemporaryData.characterName,
-                characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
-                currentHp: placedCharacterTemporaryData.characterMaxHp
-              },
-            ]);
-          }
-        })
-        .catch((error) => {
-          setPlaceCharacterPopup(null)
-          console.error(error); 
-        });
-    } else {
+    // If the piece is already on the grid, return without showing the popup
+    if (pieceOnGrid) {
       if (existingItemIndex !== -1) {
         const updatedItems = [...droppedItems];
         updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
@@ -217,9 +169,53 @@ function HostSession() {
           },
         ]);
       }
+      return; // Exit the function early if the piece is already on the grid
     }
-    
+  
+    // If the piece is not on the grid, show the popup
+    const submissionCheck = new Promise((resolve, reject) => {
+      const handleClose = () => {
+        reject(new Error('Popup closed'));
+      };
+  
+      const handleSubmit = () => {
+        resolve();
+      };
+      document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
+      document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
+  
+      return () => {
+        document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
+        document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
+      };
+    });
+    setPlaceCharacterPopup(true);
+    submissionCheck
+      .then(() => {
+        if (existingItemIndex !== -1) {
+          const updatedItems = [...droppedItems];
+          updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
+          setDroppedItems(updatedItems);
+        } else {
+          setDroppedItems((prevItems) => [
+            ...prevItems,
+            {
+              ...item,
+              uniqueId: generateUniqueId(item.id),
+              index: squareIndex,
+              userName: placedCharacterTemporaryData.characterName,
+              characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
+              currentHp: placedCharacterTemporaryData.characterMaxHp
+            },
+          ]);
+        }
+      })
+      .catch((error) => {
+        setPlaceCharacterPopup(null);
+        console.error(error); 
+      });
   };
+  
 
 
   //Map Generation
