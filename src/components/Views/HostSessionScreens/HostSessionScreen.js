@@ -34,11 +34,9 @@ import { UserContext } from '../../../context/userContext';
 import DiceRoller from '../../Components/DiceRoller';
 
 //Dependencies
-import ReactDOM from 'react-dom';
 import { useDrop, useDrag, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-hot-toast'
 import ClipLoader from "react-spinners/ClipLoader";
@@ -213,6 +211,7 @@ function HostSession() {
     
   ]
   const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
+  const [editCharacterPopup, setEditCharacterPopup] = useState(null);
   const [placedCharacterTemporaryData, setPlacedCharacterTemporaryData] = useState({
     characterName: '',
     characterMaxHp: ''
@@ -382,14 +381,14 @@ function HostSession() {
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
-      item: { 
-        id: item.id, 
-        type: 'character', 
-        name: item.name, 
-        image: item.image, 
-        uniqueId: item.uniqueId, 
-        userName: item.userName, 
-        maxHp: item.maxHp, 
+      item: {
+        id: item.id,
+        type: 'character',
+        name: item.name,
+        image: item.image,
+        uniqueId: item.uniqueId,
+        userName: item.userName,
+        maxHp: item.maxHp,
         currentHp: item.currentHp
       },
       collect: (monitor) => ({
@@ -398,25 +397,40 @@ function HostSession() {
     });
   
     // State to manage aura size
-    const [auraSize, setAuraSize] = useState(75); // Initial size of the aura
+    const [auraSize, setAuraSize] = useState(150); 
+    
+    //Loads edit pop up
+    const [clickCount, setClickCount] = useState(0);
+    const handleMouseDown = () => {
+      setClickCount((prevCount) => prevCount + 1);
+      if (clickCount === 1) {
+        // Trigger the action on double click
+        setEditCharacterPopup(1);
+      }
+    };
+    const handleMouseUp = () => {
+      setTimeout(() => {
+        setClickCount(0);
+      }, 300); // Reset click count after 300ms to prevent interference with other interactions
+    };
   
     return (
-      <div className='d-flex justify-content-center align-items-center draggable-counter-container' ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
-        <div className='d-flex justify-content-center align-items-center'>
-          <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
+      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} style={{height: '100%'}}>
+        <div className='d-flex justify-content-center align-items-center draggable-counter-container' ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
+          <div className='d-flex justify-content-center align-items-center' style={{zIndex: '50'}}>
+            <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
+          </div>
+          {!isDragging && (
+            <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px', zIndex: '25' }}>Test</div>
+          )}
+          {!isDragging && (
+            <div className='counter-aura' style={{ border: '1px solid red', width: auraSize, height: auraSize }}></div>
+          )}
         </div>
-        {!isDragging && (
-          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px', zIndex: '25' }}>Test</div>
-        )}
-        {/* Display aura div when not dragging */}
-        {!isDragging && (
-          <div className='counter-aura' style={{ border:  '1px solid red', width: auraSize, height: auraSize }}></div>
-        )}
       </div>
     );
   }
   
-
   function DraggableCharacter({ character }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
@@ -445,7 +459,6 @@ function HostSession() {
     );
   }
   
-
   //Popups
   const [popout, setActivePopOut] = useState(null);
   const [lowerPopOut, setActiveLowerPopOut] = useState(null);
@@ -455,7 +468,6 @@ function HostSession() {
   const handleLowerPopOut = (index) => {
       setActiveLowerPopOut((prevPopout) => (prevPopout === index ? null : index));
   };
-
 
   //Popup Content
   function popoutContent() {
@@ -691,7 +703,6 @@ function HostSession() {
     }
   }
 
-  
   return (
     <DndProvider backend={HTML5Backend}>
     <div style={{paddingBottom: '20px'}}>
@@ -777,7 +788,7 @@ function HostSession() {
           
         </div>
 
-        {/* Popup */}
+        {/*Place Popup */}
         <div className={`d-flex align-items-center flex-column place-character-popup ${placeCharacterPopup !== null ? 'active' : ''}`}>
           <div className='d-flex flex-end' style={{width: '100%'}}>
             <button className='close-place-character-popup' >X</button>
@@ -811,7 +822,30 @@ function HostSession() {
 
         </div>
 
+        {/* Edit Character Popup*/}
+        <div className={`d-flex align-items-center flex-column place-character-popup ${editCharacterPopup !== null ? 'active' : ''}`}>
+          <div className='d-flex flex-end' style={{width: '100%'}}>
+            <button className='close-place-character-popup' onClick={() => setEditCharacterPopup(null)} >X</button>
+          </div>
 
+          <div>Character Information</div>
+
+          <div>
+            <label>Character Name</label>
+            <input/>
+          </div>
+
+          <div>
+            <label>Character Max Health</label>
+            <input/>
+          </div>
+
+          <div>
+            <label>Character Aura</label>
+            
+          </div>
+
+        </div>
     </div>
     </DndProvider>
   )
