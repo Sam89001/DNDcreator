@@ -2,20 +2,33 @@
 import '../../../css/Components.css'
 
 //Images
+
+//Icons
 import GearIcon from '../../../images/Gear Icon White.png'
-
-//Temp Images
-import DiceImage from '../../../images/d20.png'
-import SecondDiceImage from '../../../images/d4.png'
-import WideMap from '../../../images/wide map.jpg'
-import SquareMap from '../../../images/Guard-Post.jpg'
-import LongMap from '../../../images/map.jpg'
-
-
 import UploadArrow from '../../../images/Upload Arrow No BK.png'
 import UpArrow from '../../../images/Up Arrow.png'
 import RightArrow from '../../../images/Right Arrow.png'
 import LeftArrow from '../../../images/Left Arrow.png'
+
+//Backgrounds
+import TavernMap from '../../../images/tavern-map.png'
+import CaveMap from '../../../images/cave-map.png'
+import BeachMap from '../../../images/beach-map.jpg'
+import DockMap from '../../../images/dock-map.png'
+import CampMap from '../../../images/camp-map.jpg'
+import ForestMap from '../../../images/forest-map.png'
+import EmptyFieldMap from '../../../images/empty-field-map.png'
+import GraveyardMap from '../../../images/graveyard-map.png'
+import CastleMap from '../../../images/castle-map.jpg'
+import HellMap from '../../../images/hell-map.jpg'
+import HellDungeonMap from '../../../images/hell-dungeon-map.png'
+import VolcanoMap from '../../../images/volcano-map.png'
+import BuildingMap from '../../../images/volcano-map.png'
+import HotelMap from '../../../images/volcano-map.png'
+
+//Temp Images
+import DiceImage from '../../../images/d20.png'
+import SecondDiceImage from '../../../images/d4.png'
 
 //Components
 import Navbar from '../../Layouts/Navbar';
@@ -36,13 +49,14 @@ function HostSession() {
 
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
-  const [mapWidthValue, setMapWidthValue] = useState(75);
   const [gridOpacityValue, setGridOpacityValue] = useState(0.5)
   const [gridColour, setGridColour] = useState({
     redValue: '',
     greenValue: '',
     blueValue: ''
   })
+  const [mapWidthValue, setMapWidthValue] = useState(75);
+  const [defaultMapImage, setDefaultMapImage] = useState(TavernMap)
   const gridSliderChange = (event) => {
     setGridWidthValue(parseInt(event.target.value));
   };
@@ -79,6 +93,58 @@ function HostSession() {
         newValue = 100;
       }
       setMapWidthValue(newValue);
+    }
+  };
+
+  const MapChange = (event) => {
+    const selectedMap = event.target.value;
+    
+    switch (selectedMap) {
+        case 'TavernMap':
+            setDefaultMapImage(TavernMap);
+            break;
+        case 'CaveMap':
+            setDefaultMapImage(CaveMap);
+            break;
+        case 'BeachMap':
+            setDefaultMapImage(BeachMap);
+            break;
+        case 'DockMap':
+            setDefaultMapImage(DockMap);
+            break;
+        case 'CampMap':
+            setDefaultMapImage(CampMap);
+            break;
+        case 'ForestMap':
+            setDefaultMapImage(ForestMap);
+            break;
+        case 'EmptyFieldMap':
+            setDefaultMapImage(EmptyFieldMap);
+            break;
+        case 'GraveyardMap':
+            setDefaultMapImage(GraveyardMap);
+            break;
+        case 'CastleMap':
+            setDefaultMapImage(CastleMap);
+            break;
+        case 'HellMap':
+            setDefaultMapImage(HellMap);
+            break;
+        case 'HellDungeonMap':
+            setDefaultMapImage(HellDungeonMap);
+            break;
+        case 'VolcanoMap':
+            setDefaultMapImage(VolcanoMap);
+            break;
+        case 'BuildingMap':
+            setDefaultMapImage(BuildingMap);
+            break;
+        case 'HotelMap':
+            setDefaultMapImage(HotelMap);
+            break;
+        default:
+            setDefaultMapImage(TavernMap); // Default to TavernMap if none matched
+            break;
     }
   };
   
@@ -586,9 +652,25 @@ function HostSession() {
                 <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
               </div>
 
-              {/* Upload Temporary Image*/}
+              {/* Default Image Selection*/}
               <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Upload Temporary Image:</label>
+                <label>Choose Default Image:</label>
+                <select onChange={MapChange} style={{fontSize: '0.7vw'}}>
+                  <option value='TavernMap'>Tavern</option>
+                  <option value='CaveMap'>Cave</option>
+                  <option value='BeachMap'>Beach</option>
+                  <option value='DockMap'>Dock</option>
+                  <option value='CampMap'>Camp</option>
+                  <option value='ForestMap'>Forest</option>
+                  <option value='EmptyFieldMap'>Empty Field</option>
+                  <option value='GraveyardMap'>Graveyard</option>
+                  <option value='CastleMap'>Castle</option>
+                  <option value='HellMap'>Hell</option>
+                  <option value='HellDungeonMap'>Hell Dungeon</option>
+                  <option value='VolcanoMap'>Volcano</option>
+                  <option value='BuildingMap'>Building</option>
+                  <option value='HotelMap'>Hotel</option>
+                </select>
               </div>
 
               {/* Save Image to library*/}
@@ -596,10 +678,6 @@ function HostSession() {
                 <label>Upload Image to save:</label>
               </div>
 
-              {/* Default Image Selection*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Choose Default Image:</label>
-              </div>
            </div>
 
            <div style={{ width: '8.5%', height: '100%'}}>
@@ -660,7 +738,7 @@ function HostSession() {
                 {/* List placed in here*/}                
                 <div className='d-flex justify-content-center align-items-center' style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', overflow: 'hidden' }}>
                   {/* Map */}
-                  <img src={WideMap} style={{ width: `${mapWidthValue}%`, objectFit: 'cover', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+                  <img src={defaultMapImage} style={{ width: `${mapWidthValue}%`, objectFit: 'cover', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
                   
                   {/* Grid */}
                   <div style={{ width: `${gridWidthValue}%`, height: '100%', zIndex: 1 }}>
