@@ -367,6 +367,7 @@ function HostSession() {
           height: '100%',
           backgroundColor: isOver ? 'lightblue' : 'transparent',
           position: 'relative',
+          zIndex: '50'
         }}
       >
         {/* Render dropped items within the square */}
@@ -413,6 +414,7 @@ function HostSession() {
         </div>
     );
   }
+
 
   function DraggableCharacter({ character }) {
     const [{ isDragging }, drag] = useDrag({
