@@ -106,7 +106,7 @@ function HostSession() {
 
   // State for dropped items
   const [droppedItems, setDroppedItems] = useState([]);
-  const droppableCharacters = [
+  const defaultCharacters = [
     {
       id: 'defaultMage',
       uniqueId: null,
@@ -126,10 +126,34 @@ function HostSession() {
       currentHp: '',
       maxHp: '',
       content: 'Barbarian Content'
-    }
+    },
+    
     
   ]
-  const [stateCharacters, setStateCharacters] = useState(droppableCharacters)
+  const defaultEnemyCharacters = [
+    {
+      id: 'defaultGoblin',
+      uniqueId: null,
+      image: DiceImage,
+      name: 'Goblin',
+      userName: '',
+      currentHp: '',
+      maxHp: '',
+      content: 'Goblin Content'
+    },
+    {
+      id: 'defaultWolf',
+      uniqueId: null,
+      image: SecondDiceImage,
+      name: 'Wolf',
+      userName: '',
+      currentHp: '',
+      maxHp: '',
+      content: 'Wolf Content'
+    },
+    
+    
+  ]
   const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
   const [placedCharacterTemporaryData, setPlacedCharacterTemporaryData] = useState({
     characterName: '',
@@ -300,7 +324,7 @@ function HostSession() {
     });
 
     return (
-      <div
+      <div className='d-flex justify-content-center align-items-center'
         ref={drag}
         style={{
           opacity: isDragging ? 0.5 : 1,
@@ -312,10 +336,10 @@ function HostSession() {
         }}
       >
         <div className='d-flex justify-content-center align-items-center'>
-          <img className='img-fluid' src={item.image} style={{ width: '50%' }} alt={item.name} />
+          <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
         </div>
         {!isDragging && (
-          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>{item.userName}</div>
+          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>Test</div>
         )}
       </div>
     );
@@ -373,31 +397,28 @@ function HostSession() {
       return (
         <div className='d-flex flex-row' style={{height: '100%', width: '100%'}}>
 
-          <div style={{width: '91.5%', zIndex: '100'}} onClick={(e) => e.stopPropagation()}>
-            <div className='row' style={{height: '100%'}}>
+          <div style={{width: '91.5%', zIndex: '100', padding: '10px'}} onClick={(e) => e.stopPropagation()}>
+            <div className='row' style={{height: '100%', width: '100%', overflowX: 'auto'}}>
 
+              {/* Default Classes*/}
               <div className='col-12'>
                 <div className='text-center' style={{ display: 'block', width: '100%' }}>Default Characters</div>
                 
                 <div className='grid-counters-grid'>
-                  {stateCharacters.map((character, index) => (
+                  {defaultCharacters.map((character, index) => (
                     <DraggableCharacter key={character.id} character={character} />
                   ))}
                 </div>
 
               </div>
-
+              
+              {/* Enemy Classes*/}
               <div className='col-12'>
-                <div className='text-center' style={{ display: 'block', width: '100%'}}>User Uploaded</div>
+                <div className='text-center' style={{ display: 'block', width: '100%'}}>Enemy Classes</div>
 
                 <div className='grid-counters-grid'>
 
-                  <div className='grid-counters d-flex justify-content-center align-items-center flex-column'>
-                    <img className='img-fluid' src={UploadArrow} style={{ width:'70%'}}/>
-                    <div className='text-center' style={{fontSize: '1.5vh'}}>Upload</div>
-                  </div>
-
-                  {stateCharacters.map((character) => (
+                  {defaultEnemyCharacters.map((character) => (
                     <div key={character.id} className='grid-counters'>
                       <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
                     </div>
@@ -407,6 +428,66 @@ function HostSession() {
 
               </div>
 
+              {/* Effect Classes*/}
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%'}}>Field Effects</div>
+
+                <div className='grid-counters-grid'>
+
+                  {defaultCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+              
+              {/* User Uploaded Classes*/}
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%'}}>User Uploaded Player</div>
+
+                <div className='grid-counters-grid'>
+
+                  <div className='grid-counters d-flex justify-content-center align-items-center flex-column'>
+                    <img className='img-fluid' src={UploadArrow} style={{ width:'70%'}}/>
+                    <div className='text-center' style={{fontSize: '1.5vh'}}>Upload</div>
+                  </div>
+                  
+                  {/* Will need to be a state */}
+                  {defaultCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+
+              {/* User Uploaded Enemy*/}
+              <div className='col-12'>
+                <div className='text-center' style={{ display: 'block', width: '100%'}}>User Uploaded Enemy</div>
+
+                <div className='grid-counters-grid'>
+
+                  <div className='grid-counters d-flex justify-content-center align-items-center flex-column'>
+                    <img className='img-fluid' src={UploadArrow} style={{ width:'70%'}}/>
+                    <div className='text-center' style={{fontSize: '1.5vh'}}>Upload</div>
+                  </div>
+                  
+                  {/* Will need to be a state */}
+                  {defaultCharacters.map((character) => (
+                    <div key={character.id} className='grid-counters'>
+                      <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
+                    </div>
+                  ))}
+
+                </div>
+
+              </div>
+              
             </div>
             
           </div >
