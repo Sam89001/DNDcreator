@@ -331,6 +331,7 @@ function HostSession() {
             margin: 0,
             width: '100%',
             height: '100%',
+            zIndex: '50'
           }}
         >
           {/* Render DroppableSquare components */}
@@ -379,7 +380,8 @@ function HostSession() {
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
         type: 'DRAGGABLE_ITEM_TYPE',
-        item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId, userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
+        item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId, 
+        userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging(),
         }),
@@ -401,13 +403,16 @@ function HostSession() {
                 <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
             </div>
             {!isDragging && (
-                <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>Test</div>
+                <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px', zIndex: '25' }}>Test</div>
+            )}
+            {!isDragging && (
+                <div style={{ fontSize: '1.3vw', position: 'absolute', left: '50%', 
+                transform: 'translateX(-50%)', marginTop: '3px', zIndex: '25', 
+                borderRadius: '50%', border:  '1px solid red', width: '300%', height: '300%' }}></div>
             )}
         </div>
     );
   }
-
-
 
   function DraggableCharacter({ character }) {
     const [{ isDragging }, drag] = useDrag({
@@ -427,7 +432,7 @@ function HostSession() {
     return (
       <div
         className='grid-counters'
-        ref={drag} // Attach the drag ref to make the element draggable
+        ref={drag} 
         style={{
           opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)' // Change opacity when dragging
         }}
