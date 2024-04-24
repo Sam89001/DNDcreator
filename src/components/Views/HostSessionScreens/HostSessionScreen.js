@@ -148,7 +148,7 @@ function HostSession() {
   //Size
   useEffect(() => {
     setUserMapSize({ 
-      dimensionOne: '10',
+      dimensionOne: '20',
       dimensionTwo: '10'
     });
   }, []);
@@ -223,7 +223,6 @@ function HostSession() {
     const random = Math.floor(Math.random() * 10000); // Generate a random number between 0 and 9999
     return `${itemId}-${timestamp}-${random}`;
   }
-  
 
   // Function to handle drop
 
@@ -305,7 +304,6 @@ function HostSession() {
       });
   };
 
-
   //Map Generation
   function setMapSize() {
     if (
@@ -380,35 +378,36 @@ function HostSession() {
 
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
-      type: 'DRAGGABLE_ITEM_TYPE',
-      item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId, 
-      userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
-      collect: (monitor) => ({
-        isDragging: !!monitor.isDragging(),
-      }),
+        type: 'DRAGGABLE_ITEM_TYPE',
+        item: { id: item.id, type: 'character', name: item.name, image: item.image, uniqueId: item.uniqueId, userName: item.userName, maxHp: item.maxHp, currentHp: item.currentHp},
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging(),
+        }),
     });
 
     return (
-      <div className='d-flex justify-content-center align-items-center'
-        ref={drag}
-        style={{
-          opacity: isDragging ? 0.5 : 1,
-          cursor: 'move',
-          position: 'relative',
-          height: '100%',
-          backgroundColor: 'var(--textGrey)',
-          borderRadius: '50%',
-        }}
-      >
-        <div className='d-flex justify-content-center align-items-center'>
-          <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
+        <div className='d-flex justify-content-center align-items-center'
+            ref={drag}
+            style={{
+                opacity: isDragging ? 0.5 : 1,
+                cursor: 'move',
+                position: 'relative',
+                height: '100%',
+                backgroundColor: 'var(--textGrey)',
+                borderRadius: '50%',
+            }}
+        >
+            <div className='d-flex justify-content-center align-items-center'>
+                <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
+            </div>
+            {!isDragging && (
+                <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>Test</div>
+            )}
         </div>
-        {!isDragging && (
-          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px' }}>Test</div>
-        )}
-      </div>
     );
   }
+
+
 
   function DraggableCharacter({ character }) {
     const [{ isDragging }, drag] = useDrag({
