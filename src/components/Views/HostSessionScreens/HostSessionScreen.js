@@ -23,8 +23,6 @@ import CastleMap from '../../../images/castle-map.jpg'
 import HellMap from '../../../images/hell-map.jpg'
 import HellDungeonMap from '../../../images/hell-dungeon-map.png'
 import VolcanoMap from '../../../images/volcano-map.png'
-import BuildingMap from '../../../images/volcano-map.png'
-import HotelMap from '../../../images/volcano-map.png'
 
 //Temp Images
 import DiceImage from '../../../images/d20.png'
@@ -49,7 +47,7 @@ function HostSession() {
 
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
-  const [gridOpacityValue, setGridOpacityValue] = useState(0.5)
+  const [gridOpacityValue, setGridOpacityValue] = useState(0.3)
   const [gridColour, setGridColour] = useState({
     redValue: '',
     greenValue: '',
@@ -136,14 +134,8 @@ function HostSession() {
         case 'VolcanoMap':
             setDefaultMapImage(VolcanoMap);
             break;
-        case 'BuildingMap':
-            setDefaultMapImage(BuildingMap);
-            break;
-        case 'HotelMap':
-            setDefaultMapImage(HotelMap);
-            break;
         default:
-            setDefaultMapImage(TavernMap); // Default to TavernMap if none matched
+            setDefaultMapImage(TavernMap); 
             break;
     }
   };
@@ -668,8 +660,6 @@ function HostSession() {
                   <option value='HellMap'>Hell</option>
                   <option value='HellDungeonMap'>Hell Dungeon</option>
                   <option value='VolcanoMap'>Volcano</option>
-                  <option value='BuildingMap'>Building</option>
-                  <option value='HotelMap'>Hotel</option>
                 </select>
               </div>
 
