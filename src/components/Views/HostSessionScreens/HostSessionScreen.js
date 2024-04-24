@@ -366,7 +366,7 @@ function HostSession() {
           height: '100%',
           backgroundColor: isOver ? 'lightblue' : 'transparent',
           position: 'relative',
-          zIndex: '50'
+          zIndex: '100'
         }}
       >
         {/* Render dropped items within the square */}
@@ -397,7 +397,7 @@ function HostSession() {
     });
   
     // State to manage aura size
-    const [auraSize, setAuraSize] = useState(150); 
+    const [auraSize, setAuraSize] = useState(75); // Initial size of the aura
     
     //Loads edit pop up
     const [clickCount, setClickCount] = useState(0);
@@ -415,18 +415,19 @@ function HostSession() {
     };
   
     return (
-      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} style={{height: '100%'}}>
+      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} style={{height: '100%', position: 're'}}>
         <div className='d-flex justify-content-center align-items-center draggable-counter-container' ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
           <div className='d-flex justify-content-center align-items-center' style={{zIndex: '50'}}>
-            <img className='img-fluid' src={item.image} style={{ width: '60%' }} alt={item.name} />
+            <img className='img-fluid' src={item.image} style={{ width: '60%', zIndex: '50' }} alt={item.name} />
           </div>
-          {!isDragging && (
-            <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '3px', zIndex: '25' }}>Test</div>
+        </div>
+
+        {!isDragging && (
+            <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', zIndex: '5' }}>Test</div>
           )}
           {!isDragging && (
             <div className='counter-aura' style={{ border: '1px solid red', width: auraSize, height: auraSize }}></div>
           )}
-        </div>
       </div>
     );
   }
@@ -451,7 +452,7 @@ function HostSession() {
         className='grid-counters'
         ref={drag} 
         style={{
-          opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)' // Change opacity when dragging
+          opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)', zIndex: '50' // Change opacity when dragging
         }}
       >
         <img className='img-fluid' src={character.image} style={{ width: '100%' }} alt={character.name} />
