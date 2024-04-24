@@ -415,3 +415,19 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   cursor: grab;
 }
+
+.draggable-counter-container {
+  cursor: move;
+  position: relative;
+  height: 100%;
+  background-color: var(--textGrey);
+  border-radius: 50%;
+}
+
+.counter-aura {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  border-radius: 50%;
+}
