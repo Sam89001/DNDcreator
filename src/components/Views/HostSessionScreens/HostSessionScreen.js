@@ -36,7 +36,7 @@ function HostSession() {
 
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
-  const [mapWidthValue, setMapWidthValue] = useState(50);
+  const [mapWidthValue, setMapWidthValue] = useState(75);
   const [gridOpacityValue, setGridOpacityValue] = useState(0.5)
   const [gridColour, setGridColour] = useState({
     redValue: '',
@@ -171,55 +171,26 @@ function HostSession() {
 
   // Error here where information submitted is a state behind
   const handleDrop = (item, squareIndex) => {
-  const existingItemIndex = droppedItems.findIndex((droppedItem) => droppedItem.uniqueId === item.uniqueId);
+    const existingItemIndex = droppedItems.findIndex((droppedItem) => droppedItem.uniqueId === item.uniqueId);
+    const isSquareOccupied = droppedItems.some((droppedItem) => droppedItem.index === squareIndex);
 
-  // Check if the piece is already on the grid
-  const pieceOnGrid = existingItemIndex !== -1;
-
-  // If the piece is already on the grid, return without showing the popup
-  if (pieceOnGrid) {
-    if (existingItemIndex !== -1) {
-      const updatedItems = [...droppedItems];
-      updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
-      setDroppedItems(updatedItems);
-    } else {
-      setDroppedItems((prevItems) => [
-        ...prevItems,
-        {
-          ...item,
-          uniqueId: generateUniqueId(item.id),
-          index: squareIndex,
-          userName: placedCharacterTemporaryData.characterName,
-          characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
-          currentHp: placedCharacterTemporaryData.characterMaxHp
-        },
-      ]);
+    // Check if the square is occupied
+    if (isSquareOccupied) {
+      toast.error('Error: This square is already occupied!');
+      return;
     }
-    return; // Exit the function early if the piece is already on the grid
-  }
 
-  // If the piece is not on the grid, show the popup
-  const submissionCheck = new Promise((resolve, reject) => {
-    const handleClose = () => {
-      reject(new Error('Popup closed'));
-    };
+    // Check if the piece is already on the grid
+    const pieceOnGrid = existingItemIndex !== -1;
 
-    const handleSubmit = () => {
-      resolve();
-    };
-    document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
-    document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
-
-    return () => {
-      document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
-      document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
-    };
-  });
-  setPlaceCharacterPopup(true);
-  submissionCheck
-    .then(() => {
-      setDroppedItems((prevItems) => {
-        const updatedItems = [
+    // If the piece is already on the grid, return without showing the popup
+    if (pieceOnGrid) {
+      if (existingItemIndex !== -1) {
+        const updatedItems = [...droppedItems];
+        updatedItems[existingItemIndex] = { ...updatedItems[existingItemIndex], index: squareIndex };
+        setDroppedItems(updatedItems);
+      } else {
+        setDroppedItems((prevItems) => [
           ...prevItems,
           {
             ...item,
@@ -229,15 +200,51 @@ function HostSession() {
             characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
             currentHp: placedCharacterTemporaryData.characterMaxHp
           },
-        ];
-        setPlaceCharacterPopup(null);
-        return updatedItems;
-      });
-    })
-    .catch((error) => {
-      setPlaceCharacterPopup(null);
-      console.error(error); 
+        ]);
+      }
+      return; // Exit the function early if the piece is already on the grid
+    }
+
+    // If the piece is not on the grid, show the popup
+    const submissionCheck = new Promise((resolve, reject) => {
+      const handleClose = () => {
+        reject(new Error('Popup closed'));
+      };
+
+      const handleSubmit = () => {
+        resolve();
+      };
+      document.querySelector('.close-place-character-popup').addEventListener('click', handleClose);
+      document.querySelector('.submit-place-character-popup').addEventListener('click', handleSubmit);
+
+      return () => {
+        document.querySelector('.close-place-character-popup').removeEventListener('click', handleClose);
+        document.querySelector('.submit-place-character-popup').removeEventListener('click', handleSubmit);
+      };
     });
+    setPlaceCharacterPopup(true);
+    submissionCheck
+      .then(() => {
+        setDroppedItems((prevItems) => {
+          const updatedItems = [
+            ...prevItems,
+            {
+              ...item,
+              uniqueId: generateUniqueId(item.id),
+              index: squareIndex,
+              userName: placedCharacterTemporaryData.characterName,
+              characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
+              currentHp: placedCharacterTemporaryData.characterMaxHp
+            },
+          ];
+          setPlaceCharacterPopup(null);
+          return updatedItems;
+        });
+      })
+      .catch((error) => {
+        setPlaceCharacterPopup(null);
+        console.error(error); 
+      });
   };
 
 
@@ -365,7 +372,7 @@ function HostSession() {
         className='grid-counters'
         ref={drag} // Attach the drag ref to make the element draggable
         style={{
-          opacity: isDragging ? 0.5 : 1, // Change opacity when dragging
+          opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)' // Change opacity when dragging
         }}
       >
         <img className='img-fluid' src={character.image} style={{ width: '100%' }} alt={character.name} />
@@ -419,7 +426,7 @@ function HostSession() {
                 <div className='grid-counters-grid'>
 
                   {defaultEnemyCharacters.map((character) => (
-                    <div key={character.id} className='grid-counters'>
+                    <div key={character.id} className='grid-counters' style={{backgroundColor: 'darkred'}}>
                       <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
                     </div>
                   ))}
@@ -435,7 +442,7 @@ function HostSession() {
                 <div className='grid-counters-grid'>
 
                   {defaultCharacters.map((character) => (
-                    <div key={character.id} className='grid-counters'>
+                    <div key={character.id} className='grid-counters' style={{backgroundColor: 'darkred'}}>
                       <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
                     </div>
                   ))}
@@ -457,7 +464,7 @@ function HostSession() {
                   
                   {/* Will need to be a state */}
                   {defaultCharacters.map((character) => (
-                    <div key={character.id} className='grid-counters'>
+                    <div key={character.id} className='grid-counters' style={{backgroundColor: 'var(--inputGrey)' }}>
                       <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
                     </div>
                   ))}
@@ -479,7 +486,7 @@ function HostSession() {
                   
                   {/* Will need to be a state */}
                   {defaultCharacters.map((character) => (
-                    <div key={character.id} className='grid-counters'>
+                    <div key={character.id} className='grid-counters' style={{backgroundColor: 'darkred'}}>
                       <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
                     </div>
                   ))}
@@ -577,6 +584,21 @@ function HostSession() {
                 <label>Choose Image Width:</label>
                 <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
                 <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
+              </div>
+
+              {/* Upload Temporary Image*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Upload Temporary Image:</label>
+              </div>
+
+              {/* Save Image to library*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Upload Image to save:</label>
+              </div>
+
+              {/* Default Image Selection*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Choose Default Image:</label>
               </div>
            </div>
 

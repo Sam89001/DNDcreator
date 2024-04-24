@@ -407,7 +407,6 @@
 }
 
 .grid-counters {
-  background-color: var(--inputGrey);
   max-height: 12vh;
   max-width: 11vh;
   width: 100%;
