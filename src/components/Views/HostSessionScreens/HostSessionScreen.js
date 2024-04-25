@@ -45,14 +45,15 @@ import ClipLoader from "react-spinners/ClipLoader";
 function HostSession() {
 
   //Grid & Image Sliders
-  const [gridWidthValue, setGridWidthValue] = useState(100);
-  const [gridOpacityValue, setGridOpacityValue] = useState(0.3)
+  const [gridWidthValue, setGridWidthValue] = useState(75);
+  const [gridOpacityValue, setGridOpacityValue] = useState(0.2)
   const [gridColour, setGridColour] = useState({
     redValue: '',
     greenValue: '',
     blueValue: ''
   })
   const [mapWidthValue, setMapWidthValue] = useState(75);
+  const [mapRotationValue, setMapRotationValue] = useState(0);
   const [defaultMapImage, setDefaultMapImage] = useState(TavernMap)
   const gridSliderChange = (event) => {
     setGridWidthValue(parseInt(event.target.value));
@@ -62,6 +63,9 @@ function HostSession() {
   };
   const mapSliderChange = (event) => {
     setMapWidthValue(parseInt(event.target.value));
+  };
+  const mapRotationSliderChange = (event) => {
+    setMapRotationValue(parseInt(event.target.value));
   };
 
   const gridInputChange = (event) => {
@@ -92,6 +96,14 @@ function HostSession() {
       setMapWidthValue(newValue);
     }
   };
+  const mapRotateInputChange = (event) => {
+    let newValue = parseInt(event.target.value);
+    if (!isNaN(newValue)) {
+      newValue = newValue < 0 ? 0 : newValue > 360 ? 360 : newValue;
+      setMapRotationValue(newValue);
+    }
+  };
+  
 
   const MapChange = (event) => {
     const selectedMap = event.target.value;
@@ -606,6 +618,7 @@ function HostSession() {
               <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
                 <label>Width</label>
                 <input 
+                    value={userMapSize.dimensionOne} 
                     style={{width: '5vw', height: '3vh'}}
                     onChange={(e) => setUserMapSize((prevData) => ({
                       ...prevData,
@@ -615,10 +628,11 @@ function HostSession() {
               
                 <label>Height</label>
                 <input 
+                  value={userMapSize.dimensionTwo} 
                   style={{width: '5vw', height: '3vh'}}
-                          onChange={(e) => setUserMapSize((prevData) => ({
-                            ...prevData,
-                            dimensionTwo: e.target.value
+                  onChange={(e) => setUserMapSize((prevData) => ({
+                    ...prevData,
+                    dimensionTwo: e.target.value
                   }))}
                 />
               </div>
@@ -663,6 +677,13 @@ function HostSession() {
                 <label>Choose Image Width:</label>
                 <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
                 <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
+              </div>
+
+              {/* Image Rotation*/}
+              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <label>Rotate Image:</label>
+                <input type="range" min="0" max="360" value={mapRotationValue} onChange={mapRotationSliderChange} style={{width: '8vw', height: '3vh'}}/>
+                <input type="number" value={mapRotationValue} onChange={mapRotateInputChange} style={{width: '5vw', height: '3vh'}}/>
               </div>
 
               {/* Default Image Selection*/}
@@ -746,9 +767,21 @@ function HostSession() {
               <div className='col-12' style={{height: '100%'}}>
         
                 {/* List placed in here*/}                
-                <div className='d-flex justify-content-center align-items-center' style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', overflow: 'hidden' }}>
+                <div className='d-flex justify-content-center align-items-center' 
+                style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', overflow: 'hidden' }}>
                   {/* Map */}
-                  <img src={defaultMapImage} style={{ width: `${mapWidthValue}%`, objectFit: 'cover', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+                  <img src={defaultMapImage} 
+                  style={{
+                    width: `${mapWidthValue}%`,
+                    transform: `translate(-50%, -50%) rotate(${mapRotationValue}deg)`,
+                    transformOrigin: 'center',
+                    objectFit: 'cover',
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    // Adjust positioning to center the image after rotation
+                    // transform: 'translate(-50%, -50%)' // Remove this line if using transformOrigin
+                  }} />
                   
                   {/* Grid */}
                   <div style={{ width: `${gridWidthValue}%`, height: '100%', zIndex: 100 }}>
