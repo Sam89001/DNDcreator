@@ -389,12 +389,31 @@
   overflow-x: auto;
 }
 
-/* DND Grid*/
+/* Initiative Box*/
 
-.initiative-box {
+.initiative-box,
+.turn-player-box {
   width: 10vh;
-  font-size: 3vh;
 }
+.initiative-box {
+  font-size: 2.5vh;
+  color: var(--textGrey);
+}
+.turn-player-box {
+  font-size: 4.5vh;
+  color: var(--textLightGrey);
+}
+
+.initiative-settings-icon {
+  max-height: 5vh;
+  transition: transform 0.3s ease; 
+}
+
+.initiative-settings-icon:hover {
+  transform: scale(1.2); 
+}
+
+/* DND Grid*/
 
 .grid-counters-grid {
   display: grid;

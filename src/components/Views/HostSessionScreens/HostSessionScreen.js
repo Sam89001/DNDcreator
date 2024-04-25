@@ -4,7 +4,7 @@ import '../../../css/Components.css'
 //Images
 
 //Icons
-import GearIcon from '../../../images/Gear Icon White.png'
+import GearIcon from '../../../images/Gear Icon Lightest.png'
 import UploadArrow from '../../../images/Upload Arrow No BK.png'
 import UpArrow from '../../../images/Up Arrow.png'
 import RightArrow from '../../../images/Right Arrow.png'
@@ -45,7 +45,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 function HostSession() {
 
   //Grid & Image Sliders
-  const [gridWidthValue, setGridWidthValue] = useState(75);
+  const [gridWidthValue, setGridWidthValue] = useState(100);
   const [gridOpacityValue, setGridOpacityValue] = useState(0.2)
   const [gridColour, setGridColour] = useState({
     redValue: '',
@@ -733,35 +733,53 @@ function HostSession() {
         <Navbar navigationTitle="Session Menu" navigationTitleLink="/ChooseSession" secondNavigationTitle="Logout" navigationTitleSecondLink="/Login"/>
       </nav>
 
-        <div className="d-flex align-items-center" style={{paddingTop: '75px', maxWidth: '100vw', minWidth: '1500px', height: '97vh', }}>
+        <div className="d-flex align-items-center" style={{paddingTop: '85px', maxWidth: '100vw', minWidth: '1500px', height: '97vh', }}>
 
           <div className='row mx-auto justify-content-center' style={{height: '100%', width: '96%'}}  >
-            <div className='col-9 row' >
+            {/* Map */}
+            <div className='col-9 row' style={{paddingRight: '2vw'}}>
 
-              <div className='col-12 d-flex justify-content-center flex-column' style={{paddingBottom: '5px'}}>
-                <div className="spells-field spell-form-titles text-center" style={{display: 'block', width: '100%', color: 'var(--textGrey)'}}> Initiative</div>
+              <div className='col-12 d-flex justify-content-center align-items-center flex-column' style={{paddingBottom: '10px'}}>
 
-                <div className='d-flex flex-row justify-content-center' style={{width: '100%', paddingBottom: '10px'}}>
-                  <div className='initiative-box d-flex justify-content-end align-items-center'>
-                    <img className='img-fluid' src={LeftArrow} style={{maxHeight: '2.5vh'}}></img>
-                  </div>
+                {/* Title */}
+                <div className="d-flex align-items-center flex-row spells-field text-center" style={{ display: 'block', width: '100%', color: 'var(--textGrey)' }}>
+                  <div style={{ flex: '1', textAlign: 'center', fontSize: '1.5vw' }}>Initiative</div>
+                </div>
 
-                  <div className='initiative-box text-center'>Mike</div>
-                  <div className='initiative-box text-center'>John</div>
-                  <div className='initiative-box text-center'>Steve</div>
-                  <div className='initiative-box text-center'>Jerm</div>
-                  <div className='initiative-box text-center'>Farrah</div>
-
+                {/* Initiative */}
+                <div className='d-flex flex-row justify-content-center' style={{ width: '100%', paddingBottom: '10px' }}>
                   <div className='initiative-box d-flex justify-content-start align-items-center'>
-                    <img className='img-fluid' src={RightArrow} style={{maxHeight: '2.5vh'}}></img>
+                    <img className='img-fluid' src={LeftArrow} style={{ maxHeight: '2.5vh' }}></img>
+                  </div>
+
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>Mike</div>
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>John</div>
+                  <div className='turn-player-box d-flex justify-content-center align-items-center'>Steve</div>
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>Jerm</div>
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>Farrah</div>
+
+                  <div className='initiative-box d-flex justify-content-end align-items-center'>
+                    <img className='img-fluid' src={RightArrow} style={{ maxHeight: '2.5vh' }}></img>
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-center align-items-center flex-column" style={{ width: '100%'}}> 
-                  <img className='img-fluid' src={UpArrow} style={{height: '1vh', width: '2vh'}}></img>
-                  <div style={{fontSize: '1.5vh'}}>Turn Player</div>
-                </div>
+                {/* Settings & Indicator */}
+                <div className='d-flex flex-row justify-content-space-between' style={{width: '100%'}}>
 
+                  <div className='d-flex flex-row justify-content-center align-items-center'>
+                    <div className='text-center' style={{fontSize: '2vh', color: 'var(--textLightGrey)'}}>Initiative Settings</div>
+                    <img className='img-fluid initiative-settings-icon' src={GearIcon}></img>
+                  </div>
+
+                  <div className="d-flex justify-content-center align-items-center flex-column" style={{ width: '100%'}}> 
+                    <img className='img-fluid' src={UpArrow} style={{height: '1vh', width: '2vh'}}></img>
+                    <div className='initiative-box' style={{fontSize: '2.3vh', color: 'var(--textLightGrey)'}}>Turn Player</div>
+                  </div>
+
+                  <div style={{width: '12%'}}>Action Tracker Here</div>
+
+                </div>
+                
               </div>
 
               <div className='col-12' style={{height: '100%'}}>
@@ -798,7 +816,8 @@ function HostSession() {
               </div>
               
             </div>
-
+            
+            {/* Dice Roller */}
             <div className='col-3 row'>
               <DiceRoller/>
             </div>
