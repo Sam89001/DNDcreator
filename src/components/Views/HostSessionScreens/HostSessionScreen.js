@@ -739,12 +739,7 @@ function HostSession() {
             {/* Map */}
             <div className='col-9 row' style={{paddingRight: '2vw'}}>
 
-              <div className='col-12 d-flex justify-content-center align-items-center flex-column' style={{paddingBottom: '10px'}}>
-
-                {/* Title */}
-                <div className="d-flex align-items-center flex-row spells-field text-center" style={{ display: 'block', width: '100%', color: 'var(--textGrey)' }}>
-                  <div style={{ flex: '1', textAlign: 'center', fontSize: '1.5vw' }}>Initiative</div>
-                </div>
+              <div className='col-12 d-flex justify-content-center align-items-center flex-column' style={{paddingBottom: '20px'}}>
 
                 {/* Initiative */}
                 <div className='d-flex flex-row justify-content-center' style={{ width: '100%', paddingBottom: '10px' }}>
