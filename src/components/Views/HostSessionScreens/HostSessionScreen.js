@@ -32,6 +32,7 @@ import SecondDiceImage from '../../../images/d4.png'
 import Navbar from '../../Layouts/Navbar';
 import { UserContext } from '../../../context/userContext';
 import DiceRoller from '../../Components/DiceRoller';
+import CounterPopUp from '../../Components/HostSession/CounterPopUp'
 
 //Dependencies
 import { useDrop, useDrag, DndProvider } from 'react-dnd';
@@ -171,7 +172,8 @@ function HostSession() {
       userName: '',
       currentHp: '',
       maxHp: '',
-      content: 'Mage Content'
+      content: 'Mage Content',
+      auraSize: 75
     },
     {
       id: 'defaultBarb',
@@ -181,7 +183,8 @@ function HostSession() {
       userName: '',
       currentHp: '',
       maxHp: '',
-      content: 'Barbarian Content'
+      content: 'Barbarian Content',
+      auraSize: 75
     },
     
     
@@ -217,13 +220,42 @@ function HostSession() {
     characterMaxHp: ''
   })
 
+  //Used to update counter values
+  const [placeCharacteryEditableValues, setPlaceCharacteryEditableValues] = useState({
+    auraSize: '',
+    uniqueId: ''
+  })
+
   function generateUniqueId(itemId) {
     const timestamp = new Date().getTime();
-    const random = Math.floor(Math.random() * 10000); // Generate a random number between 0 and 9999
+    const random = Math.floor(Math.random() * 10000); 
     return `${itemId}-${timestamp}-${random}`;
   }
 
   // Function to handle drop
+
+  //Popout to Grid Draggable item
+  function DraggableCharacter({ character }) {
+    const [{ isDragging }, drag] = useDrag({
+      type: 'DRAGGABLE_ITEM_TYPE',
+      item: { 
+        id: character.id, 
+        uniqueId: character.uniqueId, 
+        type: 'character', 
+        name: character.name, 
+        image: character.image
+      },
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+    });
+  
+    return (
+      <div className='grid-counters' ref={drag} style={{ opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)'}}>
+        <img className='img-fluid' src={character.image} style={{ width: '100%' }} alt={character.name} />
+      </div>
+    );
+  }
 
   // Error here where information submitted is a state behind
   const handleDrop = (item, squareIndex) => {
@@ -235,10 +267,8 @@ function HostSession() {
       toast.error('Error: This square is already occupied!');
       return;
     }
-
     // Check if the piece is already on the grid
     const pieceOnGrid = existingItemIndex !== -1;
-
     // If the piece is already on the grid, return without showing the popup
     if (pieceOnGrid) {
       if (existingItemIndex !== -1) {
@@ -254,7 +284,8 @@ function HostSession() {
             index: squareIndex,
             userName: placedCharacterTemporaryData.characterName,
             characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
-            currentHp: placedCharacterTemporaryData.characterMaxHp
+            currentHp: placedCharacterTemporaryData.characterMaxHp,
+            auraSize: 75
           },
         ]);
       }
@@ -290,7 +321,8 @@ function HostSession() {
               index: squareIndex,
               userName: placedCharacterTemporaryData.characterName,
               characterMaxHp: placedCharacterTemporaryData.characterMaxHp,
-              currentHp: placedCharacterTemporaryData.characterMaxHp
+              currentHp: placedCharacterTemporaryData.characterMaxHp,
+              auraSize: 75
             },
           ];
           setPlaceCharacterPopup(null);
@@ -377,7 +409,7 @@ function HostSession() {
     );
   }
 
-  //Grid Specific Item
+  //Grid Draggable Item
   function DraggableGridItem({ item }) {
     const [{ isDragging }, drag] = useDrag({
       type: 'DRAGGABLE_ITEM_TYPE',
@@ -389,73 +421,46 @@ function HostSession() {
         uniqueId: item.uniqueId,
         userName: item.userName,
         maxHp: item.maxHp,
-        currentHp: item.currentHp
+        currentHp: item.currentHp,
+        auraSize: item.auraSize 
       },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
       }),
     });
   
-    // State to manage aura size
-    const [auraSize, setAuraSize] = useState(75); // Initial size of the aura
-    
-    //Loads edit pop up
+    // Loads edit pop up
     const [clickCount, setClickCount] = useState(0);
     const handleMouseDown = () => {
       setClickCount((prevCount) => prevCount + 1);
       if (clickCount === 1) {
-        // Trigger the action on double click
         setEditCharacterPopup(1);
+        setPlaceCharacteryEditableValues({
+          auraSize: item.auraSize,
+          uniqueId: item.uniqueId
+        })
       }
     };
     const handleMouseUp = () => {
       setTimeout(() => {
         setClickCount(0);
-      }, 300); // Reset click count after 300ms to prevent interference with other interactions
+      }, 300); 
     };
   
     return (
-      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} style={{height: '100%', position: 're'}}>
+      <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} style={{height: '100%', position: 'relative'}}>
         <div className='d-flex justify-content-center align-items-center draggable-counter-container' ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
           <div className='d-flex justify-content-center align-items-center' style={{zIndex: '50'}}>
             <img className='img-fluid' src={item.image} style={{ width: '60%', zIndex: '50' }} alt={item.name} />
           </div>
         </div>
-
+  
         {!isDragging && (
-            <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', zIndex: '5' }}>Test</div>
+          <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', zIndex: '5' }}>Test</div>
           )}
-          {!isDragging && (
-            <div className='counter-aura' style={{ border: '1px solid red', width: auraSize, height: auraSize }}></div>
-          )}
-      </div>
-    );
-  }
-  
-  function DraggableCharacter({ character }) {
-    const [{ isDragging }, drag] = useDrag({
-      type: 'DRAGGABLE_ITEM_TYPE',
-      item: { 
-        id: character.id, 
-        uniqueId: character.uniqueId, 
-        type: 'character', 
-        name: character.name, 
-        image: character.image 
-      },
-      collect: (monitor) => ({
-        isDragging: !!monitor.isDragging(),
-      }),
-    });
-  
-    return (
-      <div
-        className='grid-counters'
-        ref={drag} 
-        style={{
-          opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)', zIndex: '50' // Change opacity when dragging
-        }}
-      >
-        <img className='img-fluid' src={character.image} style={{ width: '100%' }} alt={character.name} />
+        {!isDragging && (
+          <div className='counter-aura' style={{ border: '1px solid red', width: item.auraSize, height: item.auraSize }}></div>
+        )}
       </div>
     );
   }
@@ -488,13 +493,11 @@ function HostSession() {
               {/* Default Classes*/}
               <div className='col-12'>
                 <div className='text-center' style={{ display: 'block', width: '100%' }}>Default Characters</div>
-                
                 <div className='grid-counters-grid'>
                   {defaultCharacters.map((character, index) => (
-                    <DraggableCharacter key={character.id} character={character} />
+                    <DraggableCharacter key={character.id} character={character} style={{ zIndex: '25'}}/>
                   ))}
                 </div>
-
               </div>
               
               {/* Enemy Classes*/}
@@ -502,13 +505,11 @@ function HostSession() {
                 <div className='text-center' style={{ display: 'block', width: '100%'}}>Enemy Classes</div>
 
                 <div className='grid-counters-grid'>
-
                   {defaultEnemyCharacters.map((character) => (
                     <div key={character.id} className='grid-counters' style={{backgroundColor: 'darkred'}}>
                       <img className='img-fluid' src={character.image} style={{ width:'100%'}}/>
                     </div>
                   ))}
-
                 </div>
 
               </div>
@@ -750,7 +751,7 @@ function HostSession() {
                   <img src={defaultMapImage} style={{ width: `${mapWidthValue}%`, objectFit: 'cover', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
                   
                   {/* Grid */}
-                  <div style={{ width: `${gridWidthValue}%`, height: '100%', zIndex: 1 }}>
+                  <div style={{ width: `${gridWidthValue}%`, height: '100%', zIndex: 100 }}>
                     {setMapSize()} 
                   </div>
                 </div>
@@ -823,30 +824,10 @@ function HostSession() {
 
         </div>
 
-        {/* Edit Character Popup*/}
-        <div className={`d-flex align-items-center flex-column place-character-popup ${editCharacterPopup !== null ? 'active' : ''}`}>
-          <div className='d-flex flex-end' style={{width: '100%'}}>
-            <button className='close-place-character-popup' onClick={() => setEditCharacterPopup(null)} >X</button>
-          </div>
+        <CounterPopUp editCharacterPopup={editCharacterPopup} setEditCharacterPopup={setEditCharacterPopup} 
+        placeCharacteryEditableValues={placeCharacteryEditableValues} droppedItems={droppedItems} 
+        setDroppedItems={setDroppedItems} />
 
-          <div>Character Information</div>
-
-          <div>
-            <label>Character Name</label>
-            <input/>
-          </div>
-
-          <div>
-            <label>Character Max Health</label>
-            <input/>
-          </div>
-
-          <div>
-            <label>Character Aura</label>
-            
-          </div>
-
-        </div>
     </div>
     </DndProvider>
   )
