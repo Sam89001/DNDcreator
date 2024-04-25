@@ -146,7 +146,7 @@
   height: 30%;
   cursor: pointer;
   width: 3%;
-  z-index: 99;
+  z-index: 150;
   border-radius: 10px 0px 0px 10px;
   transition: width 0.5s, height 0.5s;
 }
@@ -154,7 +154,7 @@
 .host-popout.active {
   height: 60%;
   width: 27%;
-  z-index: 98;
+  z-index: 149;
   transition: width 0.5s, height 0.5s;
 }
 

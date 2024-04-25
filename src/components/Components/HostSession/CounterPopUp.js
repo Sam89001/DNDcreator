@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {toast} from 'react-hot-toast'
 
 function CounterPopUp({ setEditCharacterPopup, editCharacterPopup, placeCharacteryEditableValues, droppedItems, setDroppedItems }) {
   const droppedItem = droppedItems.find(item => item.uniqueId === placeCharacteryEditableValues.uniqueId);
@@ -6,26 +7,26 @@ function CounterPopUp({ setEditCharacterPopup, editCharacterPopup, placeCharacte
 
   const handleAuraSizeChange = (event) => {
     const newValue = event.target.value;
-    // Parse the input value into a number and update state
     setNewAuraSize(parseFloat(newValue));
   };
 
   const updateAuraSize = () => {
-    // Check if the aura size is a valid number
-    if (!isNaN(newAuraSize)) {
+    if (isNaN(newAuraSize)) {
+      toast.error('Please enter a number');
+    } else if (newAuraSize > 999) {
+      toast.error('Value cannot exceed 999');
+    } else {
       const updatedItems = droppedItems.map(item => {
         if (item.uniqueId === placeCharacteryEditableValues.uniqueId) {
           return { ...item, auraSize: newAuraSize };
         }
         return item;
       });
-      console.log(updatedItems);
       setDroppedItems(updatedItems);
-    } else {
-      // Handle error if the aura size is not a valid number
-      console.error('Aura size must be a valid number.');
     }
   };
+  
+  
 
   return (
     <div className={`d-flex align-items-center flex-column place-character-popup ${editCharacterPopup !== null ? 'active' : ''}`}>
