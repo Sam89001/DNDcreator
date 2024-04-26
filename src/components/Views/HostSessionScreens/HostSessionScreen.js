@@ -552,9 +552,7 @@ function HostSession() {
         {!isDragging && (
           <div style={{ fontSize: '1.3vw', position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', zIndex: '5' }}>Test</div>
           )}
-        {!isDragging && (
-          <div className='counter-aura' style={{ border: '1px solid red', width: item.auraSize, height: item.auraSize }}></div>
-        )}
+        <div className='counter-aura' style={{ border: '1px solid red', width: item.auraSize, height: item.auraSize }}></div>
       </div>
     );
   }
