@@ -44,6 +44,72 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function HostSession() {
 
+  //Initiative
+  const [pointer, setPointer] = useState(0);
+  const [initiativeState, setInitiativeState] = useState([]);
+  useEffect(() => {
+    let initiativeArray = [
+      {
+        name: 'John',
+        initiative: 20
+      },
+      {
+        name: 'Mark',
+        initiative: 12
+      },
+      {
+        name: 'Steve',
+        initiative: 1
+      },
+      {
+        name: 'Janis',
+        initiative: 16
+      },
+      {
+        name: 'Marcus',
+        initiative: 8
+      }
+    ];
+
+    function bubbleSort(array) {
+      const arrayLength = array.length;
+      for (let leftSort = 0; leftSort < arrayLength - 1; leftSort++) {
+          for (let rightSort = 0; rightSort < arrayLength - leftSort - 1; rightSort++) {
+              if (array[rightSort].initiative < array[rightSort + 1].initiative) {
+                  // Swap array[rightSort] and array[rightSort + 1]
+                  const temp = array[rightSort];
+                  array[rightSort] = array[rightSort + 1];
+                  array[rightSort + 1] = temp;
+              }
+          }
+      }
+      return array;
+    }
+
+    let sortedArray = bubbleSort(initiativeArray);
+    setInitiativeState(sortedArray); // Update the state with the sorted array
+  }, []); 
+
+  function leftInitiative() {
+    setPointer(prevPointer => {
+      if (prevPointer === 0) {
+        return initiativeState.length - 1;
+      } else {
+        return prevPointer - 1;
+      }
+    });
+  }
+
+  function rightInitiative() {
+    setPointer(prevPointer => {
+      if (prevPointer === initiativeState.length - 1) {
+        return 0;
+      } else {
+        return prevPointer + 1;
+      }
+    });
+  }
+
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
   const [gridOpacityValue, setGridOpacityValue] = useState(0.2)
@@ -743,19 +809,55 @@ function HostSession() {
 
                 {/* Initiative */}
                 <div className='d-flex flex-row justify-content-center' style={{ width: '100%', paddingBottom: '10px' }}>
-                  <div className='initiative-box d-flex justify-content-start align-items-center'>
-                    <img className='img-fluid' src={LeftArrow} style={{ maxHeight: '2.5vh' }}></img>
+
+                  <div className='initiative-box d-flex justify-content-start align-items-center' onClick={leftInitiative}>
+                    <img className='img-fluid' src={LeftArrow} style={{ maxHeight: '2.5vh' }}/>
                   </div>
 
-                  <div className='initiative-box d-flex justify-content-center align-items-center'>Mike</div>
-                  <div className='initiative-box d-flex justify-content-center align-items-center'>John</div>
-                  <div className='turn-player-box d-flex justify-content-center align-items-center'>Steve</div>
-                  <div className='initiative-box d-flex justify-content-center align-items-center'>Jerm</div>
-                  <div className='initiative-box d-flex justify-content-center align-items-center'>Farrah</div>
-
-                  <div className='initiative-box d-flex justify-content-end align-items-center'>
-                    <img className='img-fluid' src={RightArrow} style={{ maxHeight: '2.5vh' }}></img>
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>
+                    {initiativeState.length > 0 && pointer - 2 >= 0 && (
+                      <span>
+                        {initiativeState[pointer - 2].name} ({initiativeState[pointer - 2].initiative})
+                      </span>
+                    )}
                   </div>
+
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>
+                    {initiativeState.length > 0 && pointer - 1 >= 0 && (
+                      <span>
+                        {initiativeState[pointer - 1].name} ({initiativeState[pointer - 1].initiative})
+                      </span>
+                    )}
+                  </div>
+
+                  <div className='turn-player-box d-flex justify-content-center align-items-center'>
+                    {initiativeState.length > 0 && (
+                      <span>
+                        {initiativeState[pointer].name} ({initiativeState[pointer].initiative})
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>
+                    {initiativeState.length > 0 && pointer + 1 < initiativeState.length && (
+                      <span>
+                        {initiativeState[pointer + 1].name} ({initiativeState[pointer + 1].initiative})
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>
+                    {initiativeState.length > 0 && pointer + 2 < initiativeState.length && (
+                      <span>
+                        {initiativeState[pointer + 2].name} ({initiativeState[pointer + 2].initiative})
+                      </span>
+                    )}
+                  </div>
+
+                  <div className='initiative-box d-flex justify-content-end align-items-center' onClick={rightInitiative}>
+                    <img className='img-fluid' src={RightArrow} style={{ maxHeight: '2.5vh' }}/>
+                  </div>
+
                 </div>
 
                 {/* Settings & Indicator */}
