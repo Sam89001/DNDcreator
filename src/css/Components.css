@@ -391,16 +391,26 @@
 
 /* Initiative Box*/
 
+.arrow-image {
+  max-height: 2.5vh;
+  transition: transform 0.3s ease; 
+}
+
+.arrow-image:hover {
+  max-height: 2.5vh;
+  transform: scale(1.5); 
+}
+
 .initiative-box,
 .turn-player-box {
-  width: 10vh;
+  width: 17vh;
 }
 .initiative-box {
   font-size: 2.5vh;
   color: var(--textGrey);
 }
 .turn-player-box {
-  font-size: 4.5vh;
+  font-size: 4.3vh;
   color: var(--textLightGrey);
 }
 

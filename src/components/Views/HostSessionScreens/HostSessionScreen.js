@@ -45,6 +45,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 function HostSession() {
 
   //Initiative
+  const [turnNumber, setTurnNumber] = useState(0);
   const [pointer, setPointer] = useState(0);
   const [initiativeState, setInitiativeState] = useState([]);
   useEffect(() => {
@@ -66,7 +67,7 @@ function HostSession() {
         initiative: 16
       },
       {
-        name: 'Marcus',
+        name: 'Amy',
         initiative: 8
       }
     ];
@@ -93,22 +94,37 @@ function HostSession() {
   function leftInitiative() {
     setPointer(prevPointer => {
       if (prevPointer === 0) {
+        setTurnNumber(prevTurnNumber => --prevTurnNumber);
         return initiativeState.length - 1;
       } else {
         return prevPointer - 1;
       }
     });
   }
-
+  
   function rightInitiative() {
     setPointer(prevPointer => {
       if (prevPointer === initiativeState.length - 1) {
+        setTurnNumber(prevTurnNumber => ++prevTurnNumber);
         return 0;
       } else {
         return prevPointer + 1;
       }
     });
   }
+  
+  
+  function rightInitiative() {
+    setPointer(prevPointer => {
+      if (prevPointer === initiativeState.length - 1) {
+        setTurnNumber(prevTurnNumber => ++prevTurnNumber);
+        return 0;
+      } else {
+        return prevPointer + 1;
+      }
+    });
+  }
+  
 
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
@@ -810,22 +826,26 @@ function HostSession() {
                 {/* Initiative */}
                 <div className='d-flex flex-row justify-content-center' style={{ width: '100%', paddingBottom: '10px' }}>
 
-                  <div className='initiative-box d-flex justify-content-start align-items-center' onClick={leftInitiative}>
-                    <img className='img-fluid' src={LeftArrow} style={{ maxHeight: '2.5vh' }}/>
+                  <div className='initiative-box d-flex justify-content-end align-items-center' style={{fontSize: '1.5vw'}}>
+                    Turn Num: {turnNumber}
+                  </div>
+
+                  <div className='initiative-box d-flex justify-content-end align-items-center'>
+                    <img className='img-fluid arrow-image' src={LeftArrow} onClick={leftInitiative}/>
                   </div>
 
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && pointer - 2 >= 0 && (
+                    {initiativeState.length > 0 && (
                       <span>
-                        {initiativeState[pointer - 2].name} ({initiativeState[pointer - 2].initiative})
+                        {initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].name} ({initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].initiative})
                       </span>
                     )}
                   </div>
 
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && pointer - 1 >= 0 && (
+                    {initiativeState.length > 0 && (
                       <span>
-                        {initiativeState[pointer - 1].name} ({initiativeState[pointer - 1].initiative})
+                        {initiativeState[(pointer - 1 + initiativeState.length) % initiativeState.length].name} ({initiativeState[(pointer - 1 + initiativeState.length) % initiativeState.length].initiative})
                       </span>
                     )}
                   </div>
@@ -839,23 +859,26 @@ function HostSession() {
                   </div>
                   
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && pointer + 1 < initiativeState.length && (
+                    {initiativeState.length > 0 && (
                       <span>
-                        {initiativeState[pointer + 1].name} ({initiativeState[pointer + 1].initiative})
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && pointer + 2 < initiativeState.length && (
-                      <span>
-                        {initiativeState[pointer + 2].name} ({initiativeState[pointer + 2].initiative})
+                        {initiativeState[(pointer + 1) % initiativeState.length].name} ({initiativeState[(pointer + 1) % initiativeState.length].initiative})
                       </span>
                     )}
                   </div>
 
-                  <div className='initiative-box d-flex justify-content-end align-items-center' onClick={rightInitiative}>
-                    <img className='img-fluid' src={RightArrow} style={{ maxHeight: '2.5vh' }}/>
+                  <div className='initiative-box d-flex justify-content-center align-items-center'>
+                    {initiativeState.length > 0 && (
+                      <span>
+                        {initiativeState[(pointer + 2) % initiativeState.length].name} ({initiativeState[(pointer + 2) % initiativeState.length].initiative})
+                      </span>
+                    )}
+                  </div>
+
+                  <div className='initiative-box d-flex justify-content-start align-items-center'>
+                    <img className='img-fluid arrow-image' src={RightArrow} onClick={rightInitiative}/>
+                  </div>
+
+                  <div className='initiative-box d-flex justify-content-start align-items-center'>
                   </div>
 
                 </div>
@@ -870,7 +893,7 @@ function HostSession() {
 
                   <div className="d-flex justify-content-center align-items-center flex-column" style={{ width: '100%'}}> 
                     <img className='img-fluid' src={UpArrow} style={{height: '1vh', width: '2vh'}}></img>
-                    <div className='initiative-box' style={{fontSize: '2.3vh', color: 'var(--textLightGrey)'}}>Turn Player</div>
+                    <div className='initiative-box text-center' style={{fontSize: '2.3vh', color: 'var(--textLightGrey)'}}>Turn Player</div>
                   </div>
 
                   <div style={{width: '12%'}}>Action Tracker Here</div>
@@ -884,6 +907,7 @@ function HostSession() {
                 {/* List placed in here*/}                
                 <div className='d-flex justify-content-center align-items-center' 
                 style={{ height: '100%', maxHeight: '67vh', marginBottom: '10px', position: 'relative', overflow: 'hidden' }}>
+
                   {/* Map */}
                   <img src={defaultMapImage} 
                   style={{
