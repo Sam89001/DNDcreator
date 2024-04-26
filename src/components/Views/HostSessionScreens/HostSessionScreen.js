@@ -345,7 +345,7 @@ function HostSession() {
     });
   
     return (
-      <div className='grid-counters' ref={drag} style={{ opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)'}}>
+      <div className='grid-counters' ref={drag} style={{ opacity: isDragging ? 0.5 : 1, backgroundColor: 'var(--inputGrey)', zIndex: '100'}}>
         <img className='img-fluid' src={character.image} style={{ width: '100%' }} alt={character.name} />
       </div>
     );
@@ -543,8 +543,8 @@ function HostSession() {
   
     return (
       <div onMouseDown={handleMouseDown} onMouseUp={handleMouseUp} style={{height: '100%', position: 'relative'}}>
-        <div className='d-flex justify-content-center align-items-center draggable-counter-container' ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
-          <div className='d-flex justify-content-center align-items-center' style={{zIndex: '50'}}>
+        <div className='d-flex justify-content-center align-items-center draggable-counter-container' ref={drag} style={{ opacity: isDragging ? 0.5 : 1, zIndex: '50' }}>
+          <div className='d-flex justify-content-center align-items-center'>
             <img className='img-fluid' src={item.image} style={{ width: '60%', zIndex: '50' }} alt={item.name} />
           </div>
         </div>
