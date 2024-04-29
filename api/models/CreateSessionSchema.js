@@ -12,6 +12,9 @@ const CreateSessionSchema = new mongoose.Schema({
   },
   sessionImage: {
     type: String,
+  },
+  sessionBackgrounds: {
+    type: [String]
   }
 })
 

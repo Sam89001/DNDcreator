@@ -693,103 +693,124 @@ function HostSession() {
 
            <div className='d-flex flex-column' style={{width: '91.5%', zIndex: '100'}} onClick={(e) => e.stopPropagation()}>
 
-              <div style={{fontSize: '1.5vw', paddingBottom: '10px'}}>Grid Settings</div>
-              {/* Grid Height and Width*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Width</label>
-                <input 
-                    value={userMapSize.dimensionOne} 
-                    style={{width: '5vw', height: '3vh'}}
-                    onChange={(e) => setUserMapSize((prevData) => ({
-                      ...prevData,
-                      dimensionOne: e.target.value
-                    }))}
-                />
-              
-                <label>Height</label>
-                <input 
-                  value={userMapSize.dimensionTwo} 
-                  style={{width: '5vw', height: '3vh'}}
-                  onChange={(e) => setUserMapSize((prevData) => ({
-                    ...prevData,
-                    dimensionTwo: e.target.value
-                  }))}
-                />
-              </div>
-              
-              {/* Grid Size*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Choose Grid Width:</label>
-                <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
-              </div>
-              
-              {/* Grid Opacity*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Choose Grid Opacity:</label>
-                <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
-                <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
-              </div>
-              
-              {/* Grid Colour*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Choose Grid Colour:</label>
-                <select onChange={(e) => setGridColour({
-                  redValue: e.target.options[e.target.selectedIndex].getAttribute('value'),
-                  greenValue: e.target.options[e.target.selectedIndex].getAttribute('value2'),
-                  blueValue: e.target.options[e.target.selectedIndex].getAttribute('value3')
-                })}>
-                  <option value="255" value2="255" value3="255">White</option>
-                  <option value="255" value2="0" value3="0">Red</option>
+              <div style={{padding: '0px 30px 10px 10px', overflowY: 'auto'}}>
+                
+                <div className='grid-popout-titles'>
+                  <div style={{borderBottom: '1px solid rgba(255,255,255,0.5)'}}>Grid Settings</div>
+                </div>
 
-                  <option value="144" value2="238" value3="144">Light Green</option>
-                  <option value="0" value2="255" value3="0">Green</option>
+                {/* Grid Height and Width*/}
+                <div className='d-flex flex-row ' style={{paddingBottom: '5px', width: '100%'}}>
+                  <div style={{paddingRight: '2vw'}}>
+                    <label>Width: &nbsp;</label>
+                    <input 
+                      className='grid-popout-input-box text-center'
+                      value={userMapSize.dimensionOne} 
+                      onChange={(e) => setUserMapSize((prevData) => ({
+                        ...prevData,
+                        dimensionOne: e.target.value
+                      }))}
+                    />
+                  </div>
 
-                  <option value="173" value2="216" value3="230">Light Blue</option>
-                  <option value="0" value2="0" value3="255">Dark Blue</option>
-                </select>
+                  <div>
+                    <label>Height: &nbsp;</label>
+                      <input 
+                        className='grid-popout-input-box text-center'
+                        value={userMapSize.dimensionTwo} 
+                        onChange={(e) => setUserMapSize((prevData) => ({
+                          ...prevData,
+                          dimensionTwo: e.target.value
+                        }))}
+                      />
+                  </div>      
+                  
+                </div>
+                
+                {/* Grid Size*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                  <label>Choose Grid Width:</label>
+                  <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
+                  <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
+                </div>
+                
+                {/* Grid Opacity*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                  <label>Choose Grid Opacity:</label>
+                  <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
+                  <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
+                </div>
+                
+                {/* Grid Colour*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '20px'}}>
+                  <label>Choose Grid Colour:</label>
+                  <select onChange={(e) => setGridColour({
+                    redValue: e.target.options[e.target.selectedIndex].getAttribute('value'),
+                    greenValue: e.target.options[e.target.selectedIndex].getAttribute('value2'),
+                    blueValue: e.target.options[e.target.selectedIndex].getAttribute('value3')
+                  })}>
+                    <option value="255" value2="255" value3="255">White</option>
+                    <option value="255" value2="0" value3="0">Red</option>
+
+                    <option value="144" value2="238" value3="144">Light Green</option>
+                    <option value="0" value2="255" value3="0">Green</option>
+
+                    <option value="173" value2="216" value3="230">Light Blue</option>
+                    <option value="0" value2="0" value3="255">Dark Blue</option>
+                  </select>
+                </div>
+
+                <div className='grid-popout-titles'>
+                  <div style={{borderBottom: '1px solid rgba(255,255,255,0.5)'}}>Image Settings</div>
+                </div>
+
+                {/* Image Size*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                  <label>Choose Image Width:</label>
+                  <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
+                  <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
+                </div>
+
+                {/* Image Rotation*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                  <label>Rotate Image:</label>
+                  <input type="range" min="0" max="360" value={mapRotationValue} onChange={mapRotationSliderChange} style={{width: '8vw', height: '3vh'}}/>
+                  <input type="number" value={mapRotationValue} onChange={mapRotateInputChange} style={{width: '5vw', height: '3vh'}}/>
+                </div>
+
+                {/* Default Image Selection*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                  <label>Choose Default Image:</label>
+                  <select onChange={MapChange} style={{fontSize: '0.7vw'}}>
+                    <option value='TavernMap'>Tavern</option>
+                    <option value='CaveMap'>Cave</option>
+                    <option value='BeachMap'>Beach</option>
+                    <option value='DockMap'>Dock</option>
+                    <option value='CampMap'>Camp</option>
+                    <option value='ForestMap'>Forest</option>
+                    <option value='EmptyFieldMap'>Empty Field</option>
+                    <option value='GraveyardMap'>Graveyard</option>
+                    <option value='CastleMap'>Castle</option>
+                    <option value='HellMap'>Hell</option>
+                    <option value='HellDungeonMap'>Hell Dungeon</option>
+                    <option value='VolcanoMap'>Volcano</option>
+                  </select>
+                </div>
+
+                {/* Save Image to library*/}
+                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                  <label>Upload Image to save:</label>
+                  <form style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <input className='image-upload-input' type='file' name='avatar'  />
+                    <div className='d-flex justify-content-between'>
+                      <button className='image-upload-button' type="submit" style={{width: '70%', marginTop: '10px'}}>Upload</button>
+                      <button 
+                      className='image-upload-button' style={{width: '25%', marginTop: '10px'}}
+                      type="button" >Clear</button>
+                    </div>
+                  </form>
+                </div>
               </div>
-
-              <div style={{fontSize: '1.5vw', paddingBottom: '10px'}}>Image Settings</div>
-
-              {/* Image Size*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Choose Image Width:</label>
-                <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
-              </div>
-
-              {/* Image Rotation*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Rotate Image:</label>
-                <input type="range" min="0" max="360" value={mapRotationValue} onChange={mapRotationSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                <input type="number" value={mapRotationValue} onChange={mapRotateInputChange} style={{width: '5vw', height: '3vh'}}/>
-              </div>
-
-              {/* Default Image Selection*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Choose Default Image:</label>
-                <select onChange={MapChange} style={{fontSize: '0.7vw'}}>
-                  <option value='TavernMap'>Tavern</option>
-                  <option value='CaveMap'>Cave</option>
-                  <option value='BeachMap'>Beach</option>
-                  <option value='DockMap'>Dock</option>
-                  <option value='CampMap'>Camp</option>
-                  <option value='ForestMap'>Forest</option>
-                  <option value='EmptyFieldMap'>Empty Field</option>
-                  <option value='GraveyardMap'>Graveyard</option>
-                  <option value='CastleMap'>Castle</option>
-                  <option value='HellMap'>Hell</option>
-                  <option value='HellDungeonMap'>Hell Dungeon</option>
-                  <option value='VolcanoMap'>Volcano</option>
-                </select>
-              </div>
-
-              {/* Save Image to library*/}
-              <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                <label>Upload Image to save:</label>
-              </div>
-
            </div>
 
            <div style={{ width: '8.5%', height: '100%'}}>
