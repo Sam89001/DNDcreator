@@ -463,15 +463,26 @@
 }
 
 .grid-popout-titles {
-  font: 2vw 'Grenze Gotisch', sans-serif;
+  font: 2vw 'Grenze Gotisch', 'Grenze', sans-serif;
   padding-bottom: 20px;
 }
 
+.grid-popout-mini-titles {
+  font: 1vw 'Grenze', sans-serif;
+}
+
 .grid-popout-input-box {
-  width: 5vw;
-  height: 1.5vw;
-  font-size: 1.2vw;
-  color: white;
-  background-color: var(--backgroundGrey);
+  width: 4vw;
+  height: 1.3vw;
+  font-size: 1vw;
+  color: var(--backgroundGrey);
+  background-color: white;
   border: none;
+  border-radius: 5px;
+}
+
+.grid-popout-slider {
+  width: 7vw;
+  height: 3vh;
+  background-color: var(--backgroundGrey);
 }

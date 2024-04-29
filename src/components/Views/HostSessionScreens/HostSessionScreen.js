@@ -702,7 +702,7 @@ function HostSession() {
                 {/* Grid Height and Width*/}
                 <div className='d-flex flex-row ' style={{paddingBottom: '5px', width: '100%'}}>
                   <div style={{paddingRight: '2vw'}}>
-                    <label>Width: &nbsp;</label>
+                    <label className='grid-popout-mini-titles'>Width: &nbsp;</label>
                     <input 
                       className='grid-popout-input-box text-center'
                       value={userMapSize.dimensionOne} 
@@ -714,7 +714,7 @@ function HostSession() {
                   </div>
 
                   <div>
-                    <label>Height: &nbsp;</label>
+                    <label className='grid-popout-mini-titles'>Height: &nbsp;</label>
                       <input 
                         className='grid-popout-input-box text-center'
                         value={userMapSize.dimensionTwo} 
@@ -729,21 +729,21 @@ function HostSession() {
                 
                 {/* Grid Size*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                  <label>Choose Grid Width:</label>
-                  <input type="range" value={gridWidthValue} onChange={gridSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                  <input type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
+                  <label className='d-flex flex-row '>Choose Grid Width: &nbsp;</label>
+                  <input className='grid-popout-slider' type="range" value={gridWidthValue} onChange={gridSliderChange}/>
+                  <input className='grid-popout-input-box text-center' type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
                 </div>
                 
                 {/* Grid Opacity*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                  <label>Choose Grid Opacity:</label>
-                  <input type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange} style={{width: '8vw', height: '3vh'}}/>
-                  <input type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
+                  <label className='grid-popout-mini-titles'>Choose Grid Opacity: &nbsp;</label>
+                  <input className='grid-popout-slider' type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange}/>
+                  <input className='grid-popout-input-box text-center' type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
                 </div>
                 
                 {/* Grid Colour*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '20px'}}>
-                  <label>Choose Grid Colour:</label>
+                  <label className='d-flex flex-row '>Choose Grid Colour: &nbsp;</label>
                   <select onChange={(e) => setGridColour({
                     redValue: e.target.options[e.target.selectedIndex].getAttribute('value'),
                     greenValue: e.target.options[e.target.selectedIndex].getAttribute('value2'),
@@ -766,21 +766,21 @@ function HostSession() {
 
                 {/* Image Size*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                  <label>Choose Image Width:</label>
-                  <input type="range" value={mapWidthValue} onChange={mapSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                  <input type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
+                  <label className='d-flex flex-row '>Choose Image Width: &nbsp;</label>
+                  <input className='grid-popout-slider' type="range" value={mapWidthValue} onChange={mapSliderChange}/>
+                  <input className='grid-popout-input-box text-center'  type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
                 </div>
 
                 {/* Image Rotation*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                  <label>Rotate Image:</label>
-                  <input type="range" min="0" max="360" value={mapRotationValue} onChange={mapRotationSliderChange} style={{width: '8vw', height: '3vh'}}/>
-                  <input type="number" value={mapRotationValue} onChange={mapRotateInputChange} style={{width: '5vw', height: '3vh'}}/>
+                  <label className='d-flex flex-row '>Rotate Image: &nbsp;</label>
+                  <input className='grid-popout-slider' type="range" min="0" max="360" value={mapRotationValue} onChange={mapRotationSliderChange} />
+                  <input className='grid-popout-input-box text-center'  type="number" value={mapRotationValue} onChange={mapRotateInputChange} style={{width: '5vw', height: '3vh'}}/>
                 </div>
 
                 {/* Default Image Selection*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                  <label>Choose Default Image:</label>
+                  <label className='d-flex flex-row '>Choose Default Image: &nbsp;</label>
                   <select onChange={MapChange} style={{fontSize: '0.7vw'}}>
                     <option value='TavernMap'>Tavern</option>
                     <option value='CaveMap'>Cave</option>
@@ -799,7 +799,7 @@ function HostSession() {
 
                 {/* Save Image to library*/}
                 <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
-                  <label>Upload Image to save:</label>
+                  <label>Upload Image to save: &nbsp;</label>
                   <form style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <input className='image-upload-input' type='file' name='avatar'  />
                     <div className='d-flex justify-content-between'>
