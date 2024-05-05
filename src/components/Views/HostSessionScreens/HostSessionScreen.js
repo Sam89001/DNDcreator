@@ -44,52 +44,25 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 function HostSession() {
 
-  //Initiative
+  
   const [turnNumber, setTurnNumber] = useState(0);
   const [pointer, setPointer] = useState(0);
+  const [userInitiativeState, setUserInitiativeState] = useState([]);
   const [initiativeState, setInitiativeState] = useState([]);
-  useEffect(() => {
-    let initiativeArray = [
-      {
-        name: 'John',
-        initiative: 20
-      },
-      {
-        name: 'Mark',
-        initiative: 12
-      },
-      {
-        name: 'Steve',
-        initiative: 1
-      },
-      {
-        name: 'Janis',
-        initiative: 16
-      },
-      {
-        name: 'Amy',
-        initiative: 8
-      }
-    ];
 
-    function bubbleSort(array) {
-      const arrayLength = array.length;
-      for (let leftSort = 0; leftSort < arrayLength - 1; leftSort++) {
-          for (let rightSort = 0; rightSort < arrayLength - leftSort - 1; rightSort++) {
-              if (array[rightSort].initiative < array[rightSort + 1].initiative) {
-                  // Swap array[rightSort] and array[rightSort + 1]
-                  const temp = array[rightSort];
-                  array[rightSort] = array[rightSort + 1];
-                  array[rightSort + 1] = temp;
-              }
-          }
-      }
-      return array;
-    }
+  const addCharacterToUserInitiativeState = (name, initiative) => {
+    setUserInitiativeState(prevState => {
+      return [...prevState, { name, initiative }];
+    });
 
-    let sortedArray = bubbleSort(initiativeArray);
-    setInitiativeState(sortedArray); // Update the state with the sorted array
-  }, []); 
+    bubbleSort(userInitiativeState.concat({ name, initiative }));
+  };
+
+  function bubbleSort(array) {
+    const sortedArray = array.slice().sort((a, b) => b.initiative - a.initiative);
+    setInitiativeState(sortedArray);
+    return sortedArray;
+  }
 
   function leftInitiative() {
     setPointer(prevPointer => {
@@ -100,7 +73,8 @@ function HostSession() {
         return prevPointer - 1;
       }
     });
-  } 
+  }
+
   function rightInitiative() {
     setPointer(prevPointer => {
       if (prevPointer === initiativeState.length - 1) {
@@ -110,7 +84,8 @@ function HostSession() {
         return prevPointer + 1;
       }
     });
-  } 
+  }
+
 
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
@@ -844,7 +819,8 @@ function HostSession() {
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
                     {initiativeState.length > 0 && (
                       <span>
-                        {initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].name} ({initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].initiative})
+                        {initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].name} 
+                        ({initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].initiative})
                       </span>
                     )}
                   </div>
@@ -895,7 +871,7 @@ function HostSession() {
 
                   <div className='d-flex flex-row justify-content-center align-items-center'>
                     <div className='text-center' style={{fontSize: '2vh', color: 'var(--textLightGrey)'}}>Initiative Settings</div>
-                    <img className='img-fluid initiative-settings-icon' src={GearIcon}></img>
+                    <img className='img-fluid initiative-settings-icon' src={GearIcon} onClick={() => {setPopupFormSelection(3); setEditCharacterPopup(1); }}/>
                   </div>
 
                   <div className="d-flex justify-content-center align-items-center flex-column" style={{ width: '100%'}}> 
@@ -1006,7 +982,7 @@ function HostSession() {
 
         <CounterPopUp editCharacterPopup={editCharacterPopup} setEditCharacterPopup={setEditCharacterPopup} 
         placeCharacterEditableValues={placeCharacterEditableValues} droppedItems={droppedItems} 
-        setDroppedItems={setDroppedItems} formSelection={popupFormSelection}/>
+        setDroppedItems={setDroppedItems} addCharacterToUserInitiativeState={addCharacterToUserInitiativeState} formSelection={popupFormSelection}/>
 
     </div>
     </DndProvider>
