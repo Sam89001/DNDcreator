@@ -100,8 +100,7 @@ function HostSession() {
         return prevPointer - 1;
       }
     });
-  }
-  
+  } 
   function rightInitiative() {
     setPointer(prevPointer => {
       if (prevPointer === initiativeState.length - 1) {
@@ -111,20 +110,7 @@ function HostSession() {
         return prevPointer + 1;
       }
     });
-  }
-  
-  
-  function rightInitiative() {
-    setPointer(prevPointer => {
-      if (prevPointer === initiativeState.length - 1) {
-        setTurnNumber(prevTurnNumber => ++prevTurnNumber);
-        return 0;
-      } else {
-        return prevPointer + 1;
-      }
-    });
-  }
-  
+  } 
 
   //Grid & Image Sliders
   const [gridWidthValue, setGridWidthValue] = useState(100);
@@ -309,13 +295,14 @@ function HostSession() {
   ]
   const [placeCharacterPopup, setPlaceCharacterPopup] = useState(null);
   const [editCharacterPopup, setEditCharacterPopup] = useState(null);
+  const [popupFormSelection, setPopupFormSelection] = useState();
   const [placedCharacterTemporaryData, setPlacedCharacterTemporaryData] = useState({
     characterName: '',
     characterMaxHp: ''
   })
 
   //Used to update counter values
-  const [placeCharacteryEditableValues, setPlaceCharacteryEditableValues] = useState({
+  const [placeCharacterEditableValues, setPlaceCharacterEditableValues] = useState({
     auraSize: '',
     uniqueId: ''
   })
@@ -529,7 +516,8 @@ function HostSession() {
       setClickCount((prevCount) => prevCount + 1);
       if (clickCount === 1) {
         setEditCharacterPopup(1);
-        setPlaceCharacteryEditableValues({
+        setPopupFormSelection(2);
+        setPlaceCharacterEditableValues({
           auraSize: item.auraSize,
           uniqueId: item.uniqueId
         })
@@ -728,14 +716,14 @@ function HostSession() {
                 </div>
                 
                 {/* Grid Size*/}
-                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <div className='d-flex flex-row' style={{paddingBottom: '15px'}}>
                   <label className='d-flex flex-row '>Choose Grid Width: &nbsp;</label>
                   <input className='grid-popout-slider' type="range" value={gridWidthValue} onChange={gridSliderChange}/>
                   <input className='grid-popout-input-box text-center' type="number" value={gridWidthValue} onChange={gridInputChange} style={{width: '5vw', height: '3vh'}}/>
                 </div>
                 
                 {/* Grid Opacity*/}
-                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <div className='d-flex flex-row' style={{paddingBottom: '15px'}}>
                   <label className='grid-popout-mini-titles'>Choose Grid Opacity: &nbsp;</label>
                   <input className='grid-popout-slider' type="range" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacitySliderChange}/>
                   <input className='grid-popout-input-box text-center' type="number" min="0" max="1" step="0.01" value={gridOpacityValue} onChange={gridOpacityInputChange} style={{ width: '5vw', height: '3vh' }}/>
@@ -765,21 +753,21 @@ function HostSession() {
                 </div>
 
                 {/* Image Size*/}
-                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <div className='d-flex flex-row' style={{paddingBottom: '15px'}}>
                   <label className='d-flex flex-row '>Choose Image Width: &nbsp;</label>
                   <input className='grid-popout-slider' type="range" value={mapWidthValue} onChange={mapSliderChange}/>
                   <input className='grid-popout-input-box text-center'  type="number" value={mapWidthValue} onChange={mapInputChange} style={{width: '5vw', height: '3vh'}}/>
                 </div>
 
                 {/* Image Rotation*/}
-                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <div className='d-flex flex-row' style={{paddingBottom: '15px'}}>
                   <label className='d-flex flex-row '>Rotate Image: &nbsp;</label>
                   <input className='grid-popout-slider' type="range" min="0" max="360" value={mapRotationValue} onChange={mapRotationSliderChange} />
                   <input className='grid-popout-input-box text-center'  type="number" value={mapRotationValue} onChange={mapRotateInputChange} style={{width: '5vw', height: '3vh'}}/>
                 </div>
 
                 {/* Default Image Selection*/}
-                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <div className='d-flex flex-row' style={{paddingBottom: '15px'}}>
                   <label className='d-flex flex-row '>Choose Default Image: &nbsp;</label>
                   <select onChange={MapChange} style={{fontSize: '0.7vw'}}>
                     <option value='TavernMap'>Tavern</option>
@@ -798,7 +786,7 @@ function HostSession() {
                 </div>
 
                 {/* Save Image to library*/}
-                <div className='d-flex flex-row' style={{paddingBottom: '5px'}}>
+                <div className='d-flex flex-row' style={{paddingBottom: '15px'}}>
                   <label>Upload Image to save: &nbsp;</label>
                   <form style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                     <input className='image-upload-input' type='file' name='avatar'  />
@@ -1017,8 +1005,8 @@ function HostSession() {
         </div>
 
         <CounterPopUp editCharacterPopup={editCharacterPopup} setEditCharacterPopup={setEditCharacterPopup} 
-        placeCharacteryEditableValues={placeCharacteryEditableValues} droppedItems={droppedItems} 
-        setDroppedItems={setDroppedItems} />
+        placeCharacterEditableValues={placeCharacterEditableValues} droppedItems={droppedItems} 
+        setDroppedItems={setDroppedItems} formSelection={popupFormSelection}/>
 
     </div>
     </DndProvider>

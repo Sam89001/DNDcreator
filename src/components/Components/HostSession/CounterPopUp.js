@@ -1,32 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {toast} from 'react-hot-toast'
 
-function CounterPopUp({ setEditCharacterPopup, editCharacterPopup, placeCharacteryEditableValues, droppedItems, setDroppedItems }) {
-  const droppedItem = droppedItems.find(item => item.uniqueId === placeCharacteryEditableValues.uniqueId);
-  const [newAuraSize, setNewAuraSize] = useState(droppedItem ? droppedItem.auraSize.toString() : '');
+//Forms
+import UpdateCharacterForm from '../../Forms/HostSessionForms/UpdateCharacterForm'
+
+function CounterPopUp({ setEditCharacterPopup, editCharacterPopup, placeCharacterEditableValues, droppedItems, setDroppedItems, formSelection }) {
+  const [newAuraSize, setNewAuraSize] = useState('');
+  
+  const droppedItem = droppedItems.find(item => item.uniqueId === placeCharacterEditableValues.uniqueId);
+  useEffect(() => {
+    if (droppedItem) {
+      setNewAuraSize(droppedItem.auraSize.toString());
+    }
+  }, [droppedItem]);
 
   const handleAuraSizeChange = (event) => {
     const newValue = event.target.value;
-    setNewAuraSize(parseFloat(newValue));
+    setNewAuraSize(newValue); 
   };
 
   const updateAuraSize = () => {
-    if (isNaN(newAuraSize)) {
+    const auraSizeNumber = parseFloat(newAuraSize);
+    if (isNaN(auraSizeNumber)) {
       toast.error('Please enter a number');
-    } else if (newAuraSize > 999) {
+    } else if (auraSizeNumber > 999) {
       toast.error('Value cannot exceed 999');
     } else {
       const updatedItems = droppedItems.map(item => {
-        if (item.uniqueId === placeCharacteryEditableValues.uniqueId) {
-          return { ...item, auraSize: newAuraSize };
+        if (item.uniqueId === placeCharacterEditableValues.uniqueId) {
+          return { ...item, auraSize: auraSizeNumber };
         }
         return item;
       });
       setDroppedItems(updatedItems);
     }
   };
-  
-  
 
   return (
     <div className={`d-flex align-items-center flex-column place-character-popup ${editCharacterPopup !== null ? 'active' : ''}`}>
@@ -34,30 +42,15 @@ function CounterPopUp({ setEditCharacterPopup, editCharacterPopup, placeCharacte
         <button className='close-place-character-popup' onClick={() => setEditCharacterPopup(null)}>X</button>
       </div>
 
-      <div>Character Information + {placeCharacteryEditableValues.uniqueId}</div>
+     {formSelection === 2 && <UpdateCharacterForm
+        placeCharacterEditableValues={placeCharacterEditableValues}
+        newAuraSize={newAuraSize}
+        handleAuraSizeChange={handleAuraSizeChange}
+        updateAuraSize={updateAuraSize}
+     />}
 
-      <div>
-        <label>Character Name</label>
-        <input />
-      </div>
-
-      <div>
-        <label>Character Max Health</label>
-        <input />
-      </div>
-
-      <div>
-        <label>Character Aura</label>
-        <div>
-          {/* Input for aura size */}
-          <input value={newAuraSize} onChange={handleAuraSizeChange} />
-          {/* Button to update aura size */}
-          <button onClick={updateAuraSize}>Update Aura Size</button>
-        </div>
-      </div>
     </div>
   );
 }
-
 
 export default CounterPopUp;
