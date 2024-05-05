@@ -817,18 +817,17 @@ function HostSession() {
                   </div>
 
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && (
+                    {initiativeState.length > 0 && pointer > 1 && (
                       <span>
-                        {initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].name} 
-                        ({initiativeState[(pointer - 2 + initiativeState.length) % initiativeState.length].initiative})
+                        {initiativeState[pointer - 2].name} ({initiativeState[pointer - 2].initiative})
                       </span>
                     )}
                   </div>
 
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && (
+                    {initiativeState.length > 0 && pointer > 0 && (
                       <span>
-                        {initiativeState[(pointer - 1 + initiativeState.length) % initiativeState.length].name} ({initiativeState[(pointer - 1 + initiativeState.length) % initiativeState.length].initiative})
+                        {initiativeState[pointer - 1].name} ({initiativeState[pointer - 1].initiative})
                       </span>
                     )}
                   </div>
@@ -840,22 +839,23 @@ function HostSession() {
                       </span>
                     )}
                   </div>
-                  
+
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && (
+                    {initiativeState.length > 0 && pointer < initiativeState.length - 1 && (
                       <span>
-                        {initiativeState[(pointer + 1) % initiativeState.length].name} ({initiativeState[(pointer + 1) % initiativeState.length].initiative})
+                        {initiativeState[pointer + 1].name} ({initiativeState[pointer + 1].initiative})
                       </span>
                     )}
                   </div>
 
                   <div className='initiative-box d-flex justify-content-center align-items-center'>
-                    {initiativeState.length > 0 && (
+                    {initiativeState.length > 0 && pointer < initiativeState.length - 2 && (
                       <span>
-                        {initiativeState[(pointer + 2) % initiativeState.length].name} ({initiativeState[(pointer + 2) % initiativeState.length].initiative})
+                        {initiativeState[pointer + 2].name} ({initiativeState[pointer + 2].initiative})
                       </span>
                     )}
                   </div>
+
 
                   <div className='initiative-box d-flex justify-content-start align-items-center'>
                     <img className='img-fluid arrow-image' src={RightArrow} onClick={rightInitiative}/>
