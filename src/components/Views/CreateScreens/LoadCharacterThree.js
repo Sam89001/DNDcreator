@@ -38,7 +38,7 @@ function LoadCharacterPageThree() {
     try {
       const sentId = characterId.Id ; // Accessing the userId from the state object
       console.log("This is the id: " + sentId); 
-      const response = await axios.get(`http://localhost:4000/CreateCharacter/NextPage/${sentId}`);
+      const response = await axios.get(`/CreateCharacter/NextPage/${sentId}`);
       if (!response) {
         toast.error('An error occurred while fetching data.');
         return; 
