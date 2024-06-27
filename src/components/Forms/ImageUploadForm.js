@@ -57,7 +57,7 @@ function ImageUploadForm({getCharacterData, propId, propAddress, propMaxWidth, p
     formData.append('avatar', file);
   
     try {
-      const response = await axios.put(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, formData, {
+      const response = await axios.put(`/CreateCharacter/${address}/${characterId}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

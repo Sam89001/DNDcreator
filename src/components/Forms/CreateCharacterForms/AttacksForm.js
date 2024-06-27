@@ -51,7 +51,7 @@ function AttacksForm({characterAttacks, setCharacterAttacks, fetchData}) {
       characterDamageType } = data;
 		try {
 
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateAttack/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateAttack/${id}`, {
 				id, characterAttackName, characterAttackBonus,
         characterDamageType
 			});
@@ -71,7 +71,7 @@ function AttacksForm({characterAttacks, setCharacterAttacks, fetchData}) {
   //Put Request
   const updateExistingAttack = async (id, characterAttackName, characterAttackBonus, characterDamageType) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeAttack/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeAttack/${id}`, {
 					id, characterAttackName, 
           characterAttackBonus, 
           characterDamageType

@@ -51,7 +51,7 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 		const {id, characterIdeal } = data;
 		
 		try {
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateIdeal/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateIdeal/${id}`, {
 				id, characterIdeal
 			});
 
@@ -70,7 +70,7 @@ function IdealsForm ({characterIdeals, setCharacterIdeals, fetchData}) {
 	//Put Request
 	const updateExistingIdeal = async (id, characterIdeal) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeIdeal/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeIdeal/${id}`, {
 					id,
 					characterIdeal
 				});

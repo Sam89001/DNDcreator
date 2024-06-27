@@ -48,7 +48,7 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
 	const updateLanguage =  async (e) => {
 		const {id, characterLanguage} = data;
 		try {
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateLanguage/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateLanguage/${id}`, {
 				id, characterLanguage
 			});
 
@@ -67,7 +67,7 @@ function LanguagesForm({characterLanguages, setCharacterLanguages, fetchData}) {
 	//Put Request
 	const updateExistingLanguage = async (id, characterLanguage) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeLanguage/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeLanguage/${id}`, {
 					id,
 					characterLanguage
 				});

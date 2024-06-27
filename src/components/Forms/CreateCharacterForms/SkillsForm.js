@@ -38,7 +38,7 @@ function SkillsForm({updateCharacterSkills}) {
 			characterWisdom, characterCharisma, characterProficiencys } = data;
 	
 		try {
-			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateSkills/${id}`, {
+			const response = await axios.put(`/CreateCharacter/UpdateSkills/${id}`, {
 				id, characterStrength, characterDexterity, characterConstitution, characterIntelligence,
 				characterWisdom, characterCharisma, characterProficiencys
 			});

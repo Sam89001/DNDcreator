@@ -38,7 +38,7 @@ function ChangeUserDetailsForm({userData}) {
 			const { email, firstName, password, id } = data;
 	
 			try {
-				const { data } = await axios.put('http://localhost:4000/Home/AccountEdit', {
+				const { data } = await axios.put('/Home/AccountEdit', {
 					firstName,
 					email,
 					password,

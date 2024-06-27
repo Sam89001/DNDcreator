@@ -28,7 +28,7 @@ function RegisterForm() {
 		const {email, firstName, password} = data
 		try {
 			//Posts the data
-			const {data} = await axios.post('http://localhost:4000/', {
+			const {data} = await axios.post('/', {
 				firstName, email, password
 			})
 

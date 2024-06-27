@@ -87,7 +87,7 @@ function GeneralStatsForm({updateCharacterData, characterData}) {
 			characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice } = data;
 	
 		try {
-			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateGeneralStats/${id}`, {
+			const response = await axios.put(`/CreateCharacter/UpdateGeneralStats/${id}`, {
 				id, characterName, characterClass, characterHp, characterAc, characterLevel,
 				characterRace, characterBackground, characterAlignment, characterSpeed,
 				characterXp, characterInspiration, characterProficiencyBonus, characterPerception, characterHitDice

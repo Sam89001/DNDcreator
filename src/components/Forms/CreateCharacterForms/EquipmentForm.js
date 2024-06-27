@@ -51,7 +51,7 @@ function EquipmentForm({setCharacterEquipment, characterEquipment, fetchData}) {
       characterEquipmentDescription } = data;
 		try {
 
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateEquipment/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateEquipment/${id}`, {
 				id, characterEquipmentName, characterEquipmentQuantity,
         characterEquipmentDescription
 			});
@@ -71,7 +71,7 @@ function EquipmentForm({setCharacterEquipment, characterEquipment, fetchData}) {
   //Put Request
   const updateExistingEquipment = async (id, characterEquipmentName, characterEquipmentQuantity, characterEquipmentDescription) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeEquipment/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeEquipment/${id}`, {
 					id, characterEquipmentName, 
           characterEquipmentQuantity, 
           characterEquipmentDescription

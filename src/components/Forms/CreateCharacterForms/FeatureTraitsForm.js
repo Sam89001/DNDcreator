@@ -52,7 +52,7 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
     characterTraitDescription } = data;
 		try {
 
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateTrait/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateTrait/${id}`, {
 				id, characterTraitTitle, characterTraitAdditionalInfo,
         characterTraitDescription
 			});
@@ -72,7 +72,7 @@ function FeaturesTraitsForm({characterTraits, setCharacterTraits, fetchData}) {
   //Put Request
   const updateExistingTrait = async (id, characterTraitTitle, characterTraitAdditionalInfo, characterTraitDescription) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeTrait/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeTrait/${id}`, {
 					id, characterTraitTitle, 
           characterTraitAdditionalInfo, 
           characterTraitDescription

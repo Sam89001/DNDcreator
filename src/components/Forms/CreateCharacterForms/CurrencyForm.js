@@ -20,7 +20,7 @@ function CurrencyForm({fetchData}) {
     e.preventDefault();
     const {id, characterCurrencyName, characterCurrencyAmount} = data;
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeCurrency/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeCurrency/${id}`, {
 					id,
 					characterCurrencyName,
           characterCurrencyAmount

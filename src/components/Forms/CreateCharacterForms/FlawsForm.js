@@ -49,7 +49,7 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 	const updateFlaw =  async (e) => {
 		const {id, characterFlaw } = data;
 		try {
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateFlaw/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateFlaw/${id}`, {
 				id, characterFlaw
 			});
 
@@ -68,7 +68,7 @@ function FlawsForm({characterFlaws, setCharacterFlaws, fetchData}) {
 	//Put Request
 	const updateExistingFlaw = async (id, characterFlaw) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeFlaw/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeFlaw/${id}`, {
 					id,
 					characterFlaw
 				});

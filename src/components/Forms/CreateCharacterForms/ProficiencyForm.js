@@ -47,7 +47,7 @@ function ProficiencyForm({fetchData}) {
     const { id, characterSavingThrowProficiencys } = data;
 
     try {
-      const response = await axios.put(`http://localhost:4000/CreateCharacter/SavingThrows/${id}`, {
+      const response = await axios.put(`/CreateCharacter/SavingThrows/${id}`, {
         id, characterSavingThrowProficiencys
       })
 
@@ -67,7 +67,7 @@ function ProficiencyForm({fetchData}) {
     const { id, characterSkillProficiencys } =  data;
 
     try {
-      const response = await axios.put(`http://localhost:4000/CreateCharacter/ProficiencySkills/${id}`, {
+      const response = await axios.put(`/CreateCharacter/ProficiencySkills/${id}`, {
         id, characterSkillProficiencys
       })
 

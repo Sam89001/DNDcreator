@@ -317,7 +317,7 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setU
 			characterSpellSave, characterSpellSchool, characterSpellDamage } = characterSpells[spellLevel];
 		try {
 
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateSpells/${characterId}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateSpells/${characterId}`, {
 				characterSpellName, characterSpellLevel,
 				characterSpellCastTime, characterSpellRangeArea,
 				characterSpellDescription, characterSpellDuration,
@@ -341,7 +341,7 @@ function SpellsForm({propId, getCharacterData, updateCharacterSpellcasting, setU
 		characterSpellDescription, characterSpellDuration,
 		characterSpellSave, characterSpellSchool, characterSpellDamage) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeSpells/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeSpells/${id}`, {
 					id, characterSpellName, characterSpellLevel,
 					characterSpellCastTime, characterSpellRangeArea,
 					characterSpellDescription, characterSpellDuration,

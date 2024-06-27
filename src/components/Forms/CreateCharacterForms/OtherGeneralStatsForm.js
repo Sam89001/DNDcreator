@@ -116,7 +116,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
 			characterEyes, characterSkin, characterHair } = characterOtherStats;
 	
 		try {
-			const response = await axios.put(`http://localhost:4000/CreateCharacter/UpdateOtherGeneralStats/${characterId}`, {
+			const response = await axios.put(`/CreateCharacter/UpdateOtherGeneralStats/${characterId}`, {
 				characterAge, characterHeight, characterWeight,
 			  characterEyes, characterSkin, characterHair
 			});
@@ -143,7 +143,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
   const update = async (e, contentInfo, address) => {
 		e.preventDefault();	
 		try {
-			const response = await axios.put(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, {
+			const response = await axios.put(`/CreateCharacter/${address}/${characterId}`, {
 				contentInfo
 			});
 	
@@ -250,7 +250,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
 	const updateSymbolOrg = async (characterOrganisationName, characterOrganisationDescription, address) => {
 	
 		try {
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/${address}/${characterId}`, {
+			const response = await axios.post(`/CreateCharacter/${address}/${characterId}`, {
 				characterOrganisationName, characterOrganisationDescription
 			});
 
@@ -275,7 +275,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
       console.log( address)
 
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/${address}/${id}`, {
+				const response = await axios.put(`/CreateCharacter/${address}/${id}`, {
 					id, characterOrganisationName, 
           characterOrganisationDescription
 				});
@@ -297,7 +297,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
       characterTreasureDescription } = characterTreasure;
 		try {
 
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdateTreasure/${characterId}`, {
+			const response = await axios.post(`/CreateCharacter/UpdateTreasure/${characterId}`, {
 				characterTreasureName, characterTreasureQuantity,
         characterTreasureDescription
 			});
@@ -317,7 +317,7 @@ function OtherGeneralStatsForm({propId, updateCharacterStats, setUpdateCharacter
   const updateExistingTreasure = async (id, characterTreasureName, 
     characterTreasureQuantity, characterTreasureDescription) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangeTreasure/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangeTreasure/${id}`, {
 					id, characterTreasureName, 
           characterTreasureQuantity, 
           characterTreasureDescription

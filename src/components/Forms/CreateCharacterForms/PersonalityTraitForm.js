@@ -52,7 +52,7 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 		const {id, characterPersonalityTrait } = data;
 		
 		try {
-			const response = await axios.post(`http://localhost:4000/CreateCharacter/UpdatePersonalityTrait/${id}`, {
+			const response = await axios.post(`/CreateCharacter/UpdatePersonalityTrait/${id}`, {
 				id, characterPersonalityTrait
 			});
 
@@ -71,7 +71,7 @@ function PersonalityTraitForm({characterPersonalityTraits, setCharacterPersonali
 	//Put Request
 	const updateExistingPersonalityTrait = async (id, characterPersonalityTrait) => {
 		try {
-				const response = await axios.put(`http://localhost:4000/CreateCharacter/ChangePersonalityTrait/${id}`, {
+				const response = await axios.put(`/CreateCharacter/ChangePersonalityTrait/${id}`, {
 					id,
 					characterPersonalityTrait
 				});
