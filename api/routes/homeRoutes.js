@@ -8,7 +8,8 @@ const RegisterSchema = require('../models/RegisterSchema');
 router.use(
 	cors({
 			credentials: true,
-			origin: 'https://dndcreator.netlify.app' || 'http://localhost:3000'
+			origin: 'https://dndcreator.netlify.app' 
+      //|| 'http://localhost:3000'
 	})
 );
 
