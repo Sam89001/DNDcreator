@@ -1,12 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const router = express.Router();
-const jwt = require('jsonwebtoken')
 
 const { hashedPassword, comparePassword } = require('../helpers/auth')
 const RegisterSchema = require('../models/RegisterSchema');
-const { default: toast } = require('react-hot-toast');
-const { json } = require('react-router-dom');
 
 //cors middleware to resolve cors issues
 router.use(
