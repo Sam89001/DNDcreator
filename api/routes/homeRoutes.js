@@ -5,15 +5,14 @@ const router = express.Router();
 const { hashedPassword, comparePassword } = require('../helpers/auth')
 const RegisterSchema = require('../models/RegisterSchema');
 
-/* Not necessary
 router.use(
 	cors({
 			credentials: true,
-			origin: 'http://localhost:3000'
+			origin: 'https://dndcreator.netlify.app' || 'http://localhost:3000'
 	})
 );
 
-*/
+
 
 router.put('/AccountEdit', async (req, res) => {
   try {
