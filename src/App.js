@@ -21,7 +21,7 @@ import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
 
 //axios
-axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
 axios.defaults.withCredentials = true;
 
 function App() {
